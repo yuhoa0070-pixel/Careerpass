@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css?family=Google+Sans:300,400,500,700&subset=khmer&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" rel="stylesheet">
 <style>
 /* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
@@ -59,6 +60,25 @@ a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 input { font-family: inherit; }
 img, svg { display: block; max-width: 100%; }
+
+/* ===== MATERIAL SYMBOLS (OUTLINE ICONS) ===== */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.1em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
 
 
 /* ===== MOBILE TOP BAR ===== */
@@ -668,10 +688,9 @@ img, svg { display: block; max-width: 100%; }
   gap: 5px;
 }
 .career-unis::before {
-  content: '\f19c';
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 11px;
+  content: 'school';
+  font-family: 'Material Symbols Outlined';
+  font-size: 14px;
 }
 .empty-state {
   text-align: center;
@@ -821,9 +840,9 @@ footer.site-footer {
 <!-- Mobile Top Bar -->
 <div class="topbar">
   <div class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
-    <i class="fa-solid fa-bars"></i>
+    <i class="material-symbols-outlined">menu</i>
   </div>
-  <div class="nav-logo" data-view="home"><i class="fa-solid fa-compass"></i> Compass</div>
+  <div class="nav-logo" data-view="home"><i class="material-symbols-outlined">explore</i> Compass</div>
   <div style="width:40px"></div>
 </div>
 
@@ -832,23 +851,23 @@ footer.site-footer {
 
 <!-- Left Sidebar Navigation -->
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo" data-view="home"><i class="fa-solid fa-compass"></i> Compass</div>
+  <div class="sidebar-logo" data-view="home"><i class="material-symbols-outlined">explore</i> Compass</div>
 
   <p class="sidebar-label">ម៉ឺនុយ</p>
   <nav class="side-nav">
-    <div class="side-link" data-view="home"><i class="fa-solid fa-house"></i> ទំព័រដើម</div>
-    <div class="side-link" data-view="quiz"><i class="fa-solid fa-clipboard-question"></i> កម្រងសំណួរ</div>
-    <div class="side-link" data-view="browse"><i class="fa-solid fa-compass-drafting"></i> រុករកអាជីព <span class="badge">6</span></div>
-    <div class="side-link" data-view="results"><i class="fa-solid fa-chart-pie"></i> លទ្ធផលរបស់ខ្ញុំ</div>
+    <div class="side-link" data-view="home"><i class="material-symbols-outlined">home</i> ទំព័រដើម</div>
+    <div class="side-link" data-view="quiz"><i class="material-symbols-outlined">quiz</i> កម្រងសំណួរ</div>
+    <div class="side-link" data-view="browse"><i class="material-symbols-outlined">travel_explore</i> រុករកអាជីព <span class="badge">6</span></div>
+    <div class="side-link" data-view="results"><i class="material-symbols-outlined">pie_chart</i> លទ្ធផលរបស់ខ្ញុំ</div>
   </nav>
 
   <p class="sidebar-label">ប្រភេទ</p>
   <nav class="side-nav">
-    <div class="side-link" data-view="browse" data-cat="technology"><i class="fa-solid fa-microchip"></i> បច្ចេកវិទ្យា</div>
-    <div class="side-link" data-view="browse" data-cat="healthcare"><i class="fa-solid fa-heart-pulse"></i> សុខភាព</div>
-    <div class="side-link" data-view="browse" data-cat="design"><i class="fa-solid fa-palette"></i> ការរចនា</div>
-    <div class="side-link" data-view="browse" data-cat="business"><i class="fa-solid fa-briefcase"></i> ពាណិជ្ជកម្ម</div>
-    <div class="side-link" data-view="browse" data-cat="trades"><i class="fa-solid fa-hammer"></i> ជំនាញការ</div>
+    <div class="side-link" data-view="browse" data-cat="technology"><i class="material-symbols-outlined">memory</i> បច្ចេកវិទ្យា</div>
+    <div class="side-link" data-view="browse" data-cat="healthcare"><i class="material-symbols-outlined">cardiology</i> សុខភាព</div>
+    <div class="side-link" data-view="browse" data-cat="design"><i class="material-symbols-outlined">palette</i> ការរចនា</div>
+    <div class="side-link" data-view="browse" data-cat="business"><i class="material-symbols-outlined">work</i> ពាណិជ្ជកម្ម</div>
+    <div class="side-link" data-view="browse" data-cat="trades"><i class="material-symbols-outlined">construction</i> ជំនាញការ</div>
   </nav>
 
   <div class="sidebar-progress">
@@ -867,7 +886,7 @@ footer.site-footer {
       <i class="fa-brands fa-facebook"></i>
       <i class="fa-brands fa-telegram"></i>
       <i class="fa-brands fa-youtube"></i>
-      <i class="fa-solid fa-envelope"></i>
+      <i class="material-symbols-outlined">mail</i>
     </div>
     <p>Compass &copy; 2026<br>គម្រោងជួយសិស្សស្វែងរកទិសដៅ។</p>
   </div>
@@ -892,15 +911,15 @@ footer.site-footer {
 
     <div class="values">
       <div class="value-item reveal" style="transition-delay:0s">
-        <i class="fa-solid fa-clock"></i>
+        <i class="material-symbols-outlined">schedule</i>
         <p>រយៈពេល ៥ នាទី</p>
       </div>
       <div class="value-item reveal" style="transition-delay:.1s">
-        <i class="fa-solid fa-bullseye"></i>
+        <i class="material-symbols-outlined">center_focus_strong</i>
         <p>ផ្គូផ្គងតាមអ្នក មិនមែនទូទៅ</p>
       </div>
       <div class="value-item reveal" style="transition-delay:.2s">
-        <i class="fa-solid fa-building-columns"></i>
+        <i class="material-symbols-outlined">account_balance</i>
         <p>សាកលវិទ្យាល័យពិតប្រាកដនៅជិត</p>
       </div>
     </div>
@@ -909,11 +928,11 @@ footer.site-footer {
     <div class="categories">
       <p class="label">ឬលោតទៅប្រភេទមួយដោយផ្ទាល់</p>
       <div class="chip-row">
-        <div class="chip reveal" style="transition-delay:0s" data-cat="technology"><i class="fa-solid fa-microchip"></i>បច្ចេកវិទ្យា</div>
-        <div class="chip reveal" style="transition-delay:.06s" data-cat="healthcare"><i class="fa-solid fa-heart-pulse"></i>សុខភាព</div>
-        <div class="chip reveal" style="transition-delay:.12s" data-cat="design"><i class="fa-solid fa-palette"></i>ការរចនា</div>
-        <div class="chip reveal" style="transition-delay:.18s" data-cat="business"><i class="fa-solid fa-briefcase"></i>ពាណិជ្ជកម្ម</div>
-        <div class="chip reveal" style="transition-delay:.24s" data-cat="trades"><i class="fa-solid fa-hammer"></i>ជំនាញការ</div>
+        <div class="chip reveal" style="transition-delay:0s" data-cat="technology"><i class="material-symbols-outlined">memory</i>បច្ចេកវិទ្យា</div>
+        <div class="chip reveal" style="transition-delay:.06s" data-cat="healthcare"><i class="material-symbols-outlined">cardiology</i>សុខភាព</div>
+        <div class="chip reveal" style="transition-delay:.12s" data-cat="design"><i class="material-symbols-outlined">palette</i>ការរចនា</div>
+        <div class="chip reveal" style="transition-delay:.18s" data-cat="business"><i class="material-symbols-outlined">work</i>ពាណិជ្ជកម្ម</div>
+        <div class="chip reveal" style="transition-delay:.24s" data-cat="trades"><i class="material-symbols-outlined">construction</i>ជំនាញការ</div>
       </div>
     </div>
   </section>
@@ -958,10 +977,10 @@ footer.site-footer {
       <h2>រុករកអាជីព</h2>
       <div class="search-row">
         <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="material-symbols-outlined">search</i>
           <input type="text" id="search-input" placeholder="ស្វែងរកអាជីព..." autocomplete="off">
         </div>
-        <div class="filter-toggle" id="filter-toggle-btn"><i class="fa-solid fa-sliders"></i><span>តម្រង</span></div>
+        <div class="filter-toggle" id="filter-toggle-btn"><i class="material-symbols-outlined">tune</i><span>តម្រង</span></div>
       </div>
       <div class="filter-row" id="filter-row"></div>
       <div class="career-grid" id="career-grid"></div>
@@ -979,27 +998,27 @@ footer.site-footer {
 <script>
 /* ===== DATA ===== */
 const careerData = {
-  technology: { name: "វិស្វករផ្នែកទន់", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", icon: "fa-code", unis: 6 },
-  healthcare: { name: "អ្នកព្យាបាលរាងកាយ", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", icon: "fa-heart-pulse", unis: 2 },
-  design: { name: "អ្នករចនា UX", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", icon: "fa-palette", unis: 3 },
-  business: { name: "អ្នកគ្រប់គ្រងទីផ្សារ", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", icon: "fa-briefcase", unis: 4 }
+  technology: { name: "វិស្វករផ្នែកទន់", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", icon: "code", unis: 6 },
+  healthcare: { name: "អ្នកព្យាបាលរាងកាយ", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", icon: "cardiology", unis: 2 },
+  design: { name: "អ្នករចនា UX", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", icon: "palette", unis: 3 },
+  business: { name: "អ្នកគ្រប់គ្រងទីផ្សារ", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", icon: "work", unis: 4 }
 };
 
 const browseCareers = [
-  { name: "វិស្វករផ្នែកទន់", cat: "technology", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", unis: 6, icon: "fa-code" },
-  { name: "អ្នកវិភាគទិន្នន័យ", cat: "technology", desc: "បញ្ហាតក្កវិជ្ជា ចម្លើយច្បាស់លាស់", unis: 5, icon: "fa-chart-line" },
-  { name: "អ្នករចនា UX", cat: "design", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", unis: 3, icon: "fa-palette" },
-  { name: "អ្នកព្យាបាលរាងកាយ", cat: "healthcare", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", unis: 2, icon: "fa-heart-pulse" },
-  { name: "អ្នកគ្រប់គ្រងទីផ្សារ", cat: "business", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", unis: 4, icon: "fa-briefcase" },
-  { name: "ជាងអគ្គិសនី", cat: "trades", desc: "ប្រព័ន្ធជាក់ស្ដែង ជួសជុលពិតប្រាកដ", unis: 2, icon: "fa-bolt" }
+  { name: "វិស្វករផ្នែកទន់", cat: "technology", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", unis: 6, icon: "code" },
+  { name: "អ្នកវិភាគទិន្នន័យ", cat: "technology", desc: "បញ្ហាតក្កវិជ្ជា ចម្លើយច្បាស់លាស់", unis: 5, icon: "monitoring" },
+  { name: "អ្នករចនា UX", cat: "design", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", unis: 3, icon: "palette" },
+  { name: "អ្នកព្យាបាលរាងកាយ", cat: "healthcare", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", unis: 2, icon: "cardiology" },
+  { name: "អ្នកគ្រប់គ្រងទីផ្សារ", cat: "business", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", unis: 4, icon: "work" },
+  { name: "ជាងអគ្គិសនី", cat: "trades", desc: "ប្រព័ន្ធជាក់ស្ដែង ជួសជុលពិតប្រាកដ", unis: 2, icon: "bolt" }
 ];
 
 const categoryMeta = {
-  technology: { label: "បច្ចេកវិទ្យា", icon: "fa-microchip" },
-  healthcare: { label: "សុខភាព", icon: "fa-heart-pulse" },
-  design: { label: "ការរចនា", icon: "fa-palette" },
-  business: { label: "ពាណិជ្ជកម្ម", icon: "fa-briefcase" },
-  trades: { label: "ជំនាញការ", icon: "fa-hammer" }
+  technology: { label: "បច្ចេកវិទ្យា", icon: "memory" },
+  healthcare: { label: "សុខភាព", icon: "cardiology" },
+  design: { label: "ការរចនា", icon: "palette" },
+  business: { label: "ពាណិជ្ជកម្ម", icon: "work" },
+  trades: { label: "ជំនាញការ", icon: "construction" }
 };
 
 
@@ -1098,7 +1117,7 @@ function renderQuestion(slide) {
     selectedCat = null;
     document.getElementById("next-btn").disabled = true;
     const optsHtml = q.options.map(o =>
-      '<div class="option" data-cat="' + o.cat + '"><i class="fa-solid fa-circle"></i><span>' + o.label + "</span></div>"
+      '<div class="option" data-cat="' + o.cat + '"><i class="material-symbols-outlined">radio_button_unchecked</i><span>' + o.label + "</span></div>"
     ).join("");
     document.getElementById("options").innerHTML = optsHtml;
     document.querySelectorAll(".option").forEach(el => el.addEventListener("click", onSelectOption));
@@ -1146,7 +1165,7 @@ function showResults() {
     div.className = "match-card";
     div.style.animationDelay = (i * 0.12) + "s";
     div.innerHTML =
-      '<div class="match-left"><div class="match-icon"><i class="fa-solid ' + c.icon + '"></i></div>' +
+      '<div class="match-left"><div class="match-icon"><i class="material-symbols-outlined">' + c.icon + '</i></div>' +
       '<div><p class="match-name">' + c.name + '</p>' +
       '<p class="match-desc">' + c.desc + '</p>' +
       '<span class="match-badge">' + categoryMeta[cat].label + '</span></div></div>' +
@@ -1176,7 +1195,7 @@ function renderFilterRow() {
   const row = document.getElementById("filter-row");
   let html = '<div class="chip" data-cat="all">ទាំងអស់</div>';
   Object.keys(categoryMeta).forEach(key => {
-    html += '<div class="chip" data-cat="' + key + '"><i class="fa-solid ' + categoryMeta[key].icon + '"></i>' + categoryMeta[key].label + "</div>";
+    html += '<div class="chip" data-cat="' + key + '"><i class="material-symbols-outlined">' + categoryMeta[key].icon + '</i>' + categoryMeta[key].label + "</div>";
   });
   row.innerHTML = html;
   row.querySelectorAll(".chip").forEach(chip => {
@@ -1201,7 +1220,7 @@ function renderBrowse() {
   }
   grid.innerHTML = filtered.map((c, i) =>
     '<div class="career-card" style="animation-delay:' + (i * 0.05) + 's">' +
-    '<div class="career-top"><i class="fa-solid ' + c.icon + '"></i>' +
+    '<div class="career-top"><i class="material-symbols-outlined">' + c.icon + '</i>' +
     '<span class="career-cat">' + categoryMeta[c.cat].label + "</span></div>" +
     '<p class="career-name">' + c.name + "</p>" +
     '<p class="career-desc">' + c.desc + "</p>" +
