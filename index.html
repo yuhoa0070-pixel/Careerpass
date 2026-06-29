@@ -31,6 +31,7 @@
   --shadow-lg: 0 12px 32px rgba(58,58,58,0.12);
   --nav-height: 60px;
   --container-px: 16px;
+  --sidebar-w: 264px;
 }
 
 /* ===== RESET & BASE (Mobile First) ===== */
@@ -60,50 +61,28 @@ input { font-family: inherit; }
 img, svg { display: block; max-width: 100%; }
 
 
-/* ===== NAVIGATION (Mobile First) ===== */
-.nav {
+/* ===== MOBILE TOP BAR ===== */
+.topbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 90;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--container-px);
   height: var(--nav-height);
-  background: rgba(241,236,224,0.8);
-  border-bottom: none;
+  padding: 0 var(--container-px);
+  background: rgba(241,236,224,0.85);
   backdrop-filter: blur(8px);
 }
-.nav-logo {
+.topbar .nav-logo {
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  z-index: 101;
 }
-.nav-logo i { color: var(--accent); }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.nav-link {
-  font-size: 14px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: color .15s;
-  display: none;
-}
-.nav-link.active {
-  color: var(--text-primary);
-  font-weight: 600;
-  border-bottom-color: var(--accent);
-}
-/* Mobile hamburger */
+.topbar .nav-logo i { color: var(--accent); }
 .nav-hamburger {
   display: flex;
   align-items: center;
@@ -117,41 +96,149 @@ img, svg { display: block; max-width: 100%; }
 }
 .nav-hamburger:hover { background: var(--accent-tint); }
 .nav-hamburger i { font-size: 20px; color: var(--text-primary); }
+@media (min-width: 992px) { .topbar { display: none; } }
 
-
-/* Mobile menu overlay */
-.mobile-menu {
+/* ===== LEFT SIDEBAR ===== */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  background: rgba(241,236,224,0.97);
-  z-index: 99;
+  width: var(--sidebar-w);
+  background: rgba(247,243,233,0.97);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  padding: 22px 16px;
+  z-index: 95;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+}
+.sidebar.open { transform: translateX(0); }
+@media (min-width: 992px) { .sidebar { transform: none; } }
+
+.sidebar-logo {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 19px;
+  cursor: pointer;
+  padding: 4px 10px 20px;
+}
+.sidebar-logo i { color: var(--accent); font-size: 22px; }
+
+.sidebar-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0 10px;
+  margin: 16px 0 8px;
+}
+
+.side-nav { display: flex; flex-direction: column; gap: 3px; }
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.side-link i { width: 20px; text-align: center; font-size: 15px; }
+.side-link:hover { background: var(--accent-tint); color: var(--text-primary); }
+.side-link.active { background: var(--accent); color: #fff; font-weight: 600; }
+.side-link.active i { color: #fff; }
+.side-link .badge {
+  margin-left: auto;
+  font-size: 11px;
+  background: var(--accent-tint);
+  color: var(--accent);
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.side-link.active .badge { background: rgba(255,255,255,0.25); color: #fff; }
+
+.sidebar-cta {
+  margin: 18px 4px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #fff;
+}
+.sidebar-cta h4 { margin: 0 0 6px; font-size: 14px; font-weight: 700; }
+.sidebar-cta p { margin: 0 0 12px; font-size: 12px; opacity: .9; line-height: 1.5; }
+.sidebar-cta button {
+  width: 100%;
+  background: #fff;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: opacity .15s;
+}
+.sidebar-cta button:hover { opacity: .9; }
+
+.sidebar-progress {
+  margin: 0 4px 8px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.4);
+}
+.sidebar-progress .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.sidebar-progress .row b { color: var(--text-primary); }
+.sidebar-progress .bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.sidebar-progress .bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 10px 4px;
+  border-top: 1px solid var(--border);
+}
+.sidebar-footer .social { display: flex; gap: 16px; margin-bottom: 10px; }
+.sidebar-footer .social i {
+  font-size: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color .15s;
+}
+.sidebar-footer .social i:hover { color: var(--accent); }
+.sidebar-footer p { margin: 0; font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* Backdrop for mobile sidebar */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 94;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .25s ease;
+  transition: opacity .3s;
 }
-.mobile-menu.open {
-  opacity: 1;
-  pointer-events: all;
+.sidebar-backdrop.open { opacity: 1; pointer-events: all; }
+@media (min-width: 992px) { .sidebar-backdrop { display: none; } }
+
+/* Main content offset for sidebar */
+@media (min-width: 992px) {
+  .app-main { margin-left: var(--sidebar-w); }
 }
-.mobile-menu .mobile-nav-link {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text-primary);
-  padding: 12px 32px;
-  border-radius: 12px;
-  transition: background .15s;
-  cursor: pointer;
-}
-.mobile-menu .mobile-nav-link:hover { background: var(--accent-tint); }
-.mobile-menu .mobile-nav-link.accent { color: var(--accent); }
 
 /* ===== BUTTONS ===== */
 .btn {
@@ -635,10 +722,6 @@ footer.site-footer {
 @media (min-width: 768px) {
   :root { --container-px: 32px; --nav-height: 64px; }
 
-  .nav-hamburger { display: none; }
-  .nav-link { display: inline-block; }
-  .nav-links { gap: 24px; }
-
   .hero {
     padding: 72px var(--container-px) 60px;
     min-height: auto;
@@ -666,9 +749,6 @@ footer.site-footer {
 @media (min-width: 992px) {
   :root { --container-px: 40px; }
 
-  .nav { padding: 0 40px; }
-  .nav-links { gap: 28px; }
-
   .hero { padding: 80px 40px 64px; }
 
   .values { gap: 44px; padding-top: 60px; }
@@ -690,8 +770,6 @@ footer.site-footer {
 @media (min-width: 1200px) {
   :root { --container-px: 48px; }
 
-  .nav { padding: 0 48px; }
-
   .hero { padding: 96px 48px 72px; }
 
   .career-grid {
@@ -710,7 +788,6 @@ footer.site-footer {
 /* ===== EXTRA LARGE (1440px+) ===== */
 @media (min-width: 1440px) {
   :root { --container-px: 64px; }
-  .nav { max-width: 1440px; margin: 0 auto; padding: 0 64px; }
   .hero-content { max-width: 700px; }
 }
 
@@ -727,10 +804,6 @@ footer.site-footer {
   footer.site-footer {
     padding-bottom: calc(24px + env(safe-area-inset-bottom));
   }
-  .nav {
-    padding-left: calc(var(--container-px) + env(safe-area-inset-left));
-    padding-right: calc(var(--container-px) + env(safe-area-inset-right));
-  }
 }
 
 /* ===== REDUCED MOTION ===== */
@@ -745,24 +818,62 @@ footer.site-footer {
 <body>
 
 
-<!-- Navigation -->
-<nav class="nav">
-  <div class="nav-logo" data-view="home"><i class="fa-solid fa-compass"></i> Compass</div>
-  <div class="nav-links">
-    <span class="nav-link" data-view="browse">អាជីព</span>
-    <button class="btn btn-primary btn-sm" data-view="quiz">ចាប់ផ្តើមកម្រងសំណួរ</button>
-    <div class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
-      <i class="fa-solid fa-bars"></i>
-    </div>
+<!-- Mobile Top Bar -->
+<div class="topbar">
+  <div class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
+    <i class="fa-solid fa-bars"></i>
   </div>
-</nav>
-
-<!-- Mobile Menu Overlay -->
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-nav-link" data-view="home">ទំព័រដើម</div>
-  <div class="mobile-nav-link" data-view="browse">រុករកអាជីព</div>
-  <div class="mobile-nav-link accent" data-view="quiz">ចាប់ផ្តើមកម្រងសំណួរ</div>
+  <div class="nav-logo" data-view="home"><i class="fa-solid fa-compass"></i> Compass</div>
+  <div style="width:40px"></div>
 </div>
+
+<!-- Sidebar Backdrop (mobile) -->
+<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+<!-- Left Sidebar Navigation -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo" data-view="home"><i class="fa-solid fa-compass"></i> Compass</div>
+
+  <p class="sidebar-label">ម៉ឺនុយ</p>
+  <nav class="side-nav">
+    <div class="side-link" data-view="home"><i class="fa-solid fa-house"></i> ទំព័រដើម</div>
+    <div class="side-link" data-view="quiz"><i class="fa-solid fa-clipboard-question"></i> កម្រងសំណួរ</div>
+    <div class="side-link" data-view="browse"><i class="fa-solid fa-compass-drafting"></i> រុករកអាជីព <span class="badge">6</span></div>
+    <div class="side-link" data-view="results"><i class="fa-solid fa-chart-pie"></i> លទ្ធផលរបស់ខ្ញុំ</div>
+  </nav>
+
+  <p class="sidebar-label">ប្រភេទ</p>
+  <nav class="side-nav">
+    <div class="side-link" data-view="browse" data-cat="technology"><i class="fa-solid fa-microchip"></i> បច្ចេកវិទ្យា</div>
+    <div class="side-link" data-view="browse" data-cat="healthcare"><i class="fa-solid fa-heart-pulse"></i> សុខភាព</div>
+    <div class="side-link" data-view="browse" data-cat="design"><i class="fa-solid fa-palette"></i> ការរចនា</div>
+    <div class="side-link" data-view="browse" data-cat="business"><i class="fa-solid fa-briefcase"></i> ពាណិជ្ជកម្ម</div>
+    <div class="side-link" data-view="browse" data-cat="trades"><i class="fa-solid fa-hammer"></i> ជំនាញការ</div>
+  </nav>
+
+  <div class="sidebar-progress">
+    <div class="row"><span>វឌ្ឍនភាពកម្រងសំណួរ</span><b id="side-progress-pct">0%</b></div>
+    <div class="bar"><span id="side-progress-bar" style="width:0%"></span></div>
+  </div>
+
+  <div class="sidebar-cta">
+    <h4>រកមិនទាន់ឃើញទេ?</h4>
+    <p>ធ្វើកម្រងសំណួរ ៥ នាទី ដើម្បីស្វែងរកអាជីពដែលសមនឹងអ្នក។</p>
+    <button data-view="quiz">ចាប់ផ្តើមឥឡូវនេះ</button>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="social">
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-telegram"></i>
+      <i class="fa-brands fa-youtube"></i>
+      <i class="fa-solid fa-envelope"></i>
+    </div>
+    <p>Compass &copy; 2026<br>គម្រោងជួយសិស្សស្វែងរកទិសដៅ។</p>
+  </div>
+</aside>
+
+<div class="app-main">
 
 <main>
 
@@ -861,6 +972,9 @@ footer.site-footer {
 
 <footer class="site-footer">Compass — គម្រោងជួយសិស្សស្វែងរកទិសដៅ។</footer>
 
+</div>
+<!-- /app-main -->
+
 
 <script>
 /* ===== DATA ===== */
@@ -925,14 +1039,15 @@ let activeCategory = "all";
 let searchTerm = "";
 let menuOpen = false;
 
-/* ===== MOBILE MENU ===== */
+/* ===== SIDEBAR (mobile drawer) ===== */
 const hamburgerBtn = document.getElementById("hamburger-btn");
-const mobileMenu = document.getElementById("mobile-menu");
+const sidebar = document.getElementById("sidebar");
+const sidebarBackdrop = document.getElementById("sidebar-backdrop");
 
 function toggleMenu() {
   menuOpen = !menuOpen;
-  mobileMenu.classList.toggle("open", menuOpen);
-  hamburgerBtn.querySelector("i").className = menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+  sidebar.classList.toggle("open", menuOpen);
+  sidebarBackdrop.classList.toggle("open", menuOpen);
   document.body.style.overflow = menuOpen ? "hidden" : "";
 }
 
@@ -941,17 +1056,7 @@ function closeMenu() {
 }
 
 hamburgerBtn.addEventListener("click", toggleMenu);
-
-document.querySelectorAll(".mobile-nav-link").forEach(el => {
-  el.addEventListener("click", () => {
-    closeMenu();
-    showView(el.dataset.view);
-    if (el.dataset.view === "browse") {
-      renderFilterRow();
-      renderBrowse();
-    }
-  });
-});
+sidebarBackdrop.addEventListener("click", closeMenu);
 
 /* ===== VIEW NAVIGATION ===== */
 function showView(view) {
@@ -959,9 +1064,18 @@ function showView(view) {
   const target = document.getElementById("view-" + view);
   target.classList.add("active");
   requestAnimationFrame(() => target.classList.add("fade-in"));
-  document.querySelectorAll(".nav-link").forEach(l => l.classList.toggle("active", l.dataset.view === view));
+  document.querySelectorAll(".side-link").forEach(l => l.classList.toggle("active", l.dataset.view === view && !l.dataset.cat));
   window.scrollTo({ top: 0, behavior: "smooth" });
   if (view === "quiz") resetQuiz();
+}
+
+/* ===== SIDEBAR PROGRESS ===== */
+function updateSidebarProgress() {
+  const pct = Math.round((qIndex / questions.length) * 100);
+  const pctEl = document.getElementById("side-progress-pct");
+  const barEl = document.getElementById("side-progress-bar");
+  if (pctEl) pctEl.textContent = pct + "%";
+  if (barEl) barEl.style.width = pct + "%";
 }
 
 
@@ -979,6 +1093,7 @@ function renderQuestion(slide) {
     const q = questions[qIndex];
     document.getElementById("quiz-progress-label").textContent = "សំណួរទី " + (qIndex + 1) + " ក្នុង " + questions.length;
     document.getElementById("progress-fill").style.width = (qIndex / questions.length) * 100 + "%";
+    updateSidebarProgress();
     document.getElementById("q-text").textContent = q.text;
     selectedCat = null;
     document.getElementById("next-btn").disabled = true;
@@ -1012,6 +1127,8 @@ document.getElementById("next-btn").addEventListener("click", () => {
     renderQuestion(true);
   } else {
     document.getElementById("progress-fill").style.width = "100%";
+    qIndex = questions.length;
+    updateSidebarProgress();
     setTimeout(showResults, 200);
   }
 });
@@ -1136,6 +1253,7 @@ filterToggleBtn.addEventListener("click", () => {
 });
 
 /* ===== INIT ===== */
+document.querySelector('.side-link[data-view="home"]').classList.add("active");
 renderFilterRow();
 renderBrowse();
 </script>
