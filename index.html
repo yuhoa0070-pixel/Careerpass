@@ -77,27 +77,12 @@ input,select{font-family:inherit;}
 .s-link.active{font-weight:600;color:var(--text);background:transparent;box-shadow:none;}
 .s-link.active::before{content:'';width:8px;height:8px;background:var(--accent);flex-shrink:0;}
 .s-link .badge{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:1px 7px;border-radius:999px;font-weight:600;}
-/* CTA button with crop-mark corners */
-.nav-cta{position:relative;display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:600;font-size:14px;padding:11px 20px;border-radius:4px;cursor:pointer;--c:rgba(0,0,0,.4);--len:10px;transition:background .15s;}
-.nav-cta .sq{width:9px;height:9px;background:#fff;flex-shrink:0;}
-.nav-cta:hover{background:var(--accent-h);}
-.nav-cta::after{
-  content:'';position:absolute;inset:-6px;pointer-events:none;
-  background:
-    linear-gradient(var(--c),var(--c)) 0 0,linear-gradient(var(--c),var(--c)) 0 0,
-    linear-gradient(var(--c),var(--c)) 100% 0,linear-gradient(var(--c),var(--c)) 100% 0,
-    linear-gradient(var(--c),var(--c)) 0 100%,linear-gradient(var(--c),var(--c)) 0 100%,
-    linear-gradient(var(--c),var(--c)) 100% 100%,linear-gradient(var(--c),var(--c)) 100% 100%;
-  background-repeat:no-repeat;
-  background-size:var(--len) 1px,1px var(--len),var(--len) 1px,1px var(--len),var(--len) 1px,1px var(--len),var(--len) 1px,1px var(--len);
-}
 .hamburger{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;cursor:pointer;transition:background .15s;}
 .hamburger:hover{background:var(--accent-tint);}
 /* Mobile */
 @media(max-width:860px){
   .nav-inner{padding:0 18px;}
   .hamburger{display:flex;}
-  .nav-cta{display:none;}
   .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:2px;padding:10px;border-radius:0;box-shadow:var(--shadow-md);transform:translateY(-130%);transition:transform .3s ease;z-index:94;}
   .nav-links.open{transform:none;}
   .s-link{padding:13px 14px;font-size:15px;border-radius:8px;}
@@ -314,7 +299,6 @@ select.filter-select:focus{border-color:var(--accent);}
         <div class="s-link" data-view="cost">ប៉ាន់ស្មានថ្លៃ</div>
         <div class="s-link" data-view="results">លទ្ធផលខ្ញុំ</div>
       </nav>
-      <button class="nav-cta" data-view="quiz"><span class="sq"></span> ចាប់ផ្តើម</button>
       <div class="hamburger" id="hamburger"><i class="material-symbols-outlined">menu</i></div>
     </div>
   </div>
