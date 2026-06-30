@@ -146,17 +146,7 @@ input,select{font-family:inherit;}
 .hero .browse-link{font-size:13px;color:var(--accent);cursor:pointer;border-bottom:1px solid transparent;transition:border-color .15s;}
 .hero .browse-link:hover{border-bottom-color:var(--accent);}
 
-/* ===== ORBIT ECOSYSTEM (behind hero text) ===== */
-/* ===== HERO SOFT GLOW (clean modern backdrop) ===== */
-.hero-glow{position:absolute;inset:-100px -40px;z-index:0;pointer-events:none;overflow:hidden;opacity:0;animation:orbitIn 1.2s ease forwards .3s;transition:transform .4s ease-out;}
-@keyframes orbitIn{to{opacity:1;}}
-.hero-glow .blob{position:absolute;border-radius:50%;filter:blur(72px);opacity:.4;}
-.hero-glow .b1{width:clamp(240px,40vw,420px);aspect-ratio:1;background:radial-gradient(circle,#624EBC,transparent 70%);top:-40px;left:6%;animation:floatBlob 16s ease-in-out infinite;}
-.hero-glow .b2{width:clamp(200px,34vw,360px);aspect-ratio:1;background:radial-gradient(circle,#0ea5e9,transparent 70%);top:30px;right:4%;animation:floatBlob 20s ease-in-out infinite reverse;}
-.hero-glow .b3{width:clamp(200px,32vw,340px);aspect-ratio:1;background:radial-gradient(circle,#e0568f,transparent 70%);bottom:-60px;left:38%;animation:floatBlob 18s ease-in-out infinite;}
-@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(24px,-28px) scale(1.12);}}
-@media(prefers-reduced-motion:reduce){.hero-glow .blob{animation:none;}}
-
+/* ===== HOME VIEW ===== */
 .goals-row{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto 60px;padding:0 20px;}
 @media(min-width:600px){.goals-row{grid-template-columns:repeat(3,1fr);}}
 .goal-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;background:var(--card);text-align:center;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s;}
@@ -337,12 +327,6 @@ select.filter-select:focus{border-color:var(--accent);}
     <div class="cta-row">
       <button class="btn btn-primary btn-lg" data-view="quiz"><i class="material-symbols-outlined">explore</i> ចាប់ផ្តើមស្វែងរក</button>
       <span class="browse-link" data-view="schools">ឬស្វែងរកសាលា</span>
-    </div>
-
-    <div class="hero-glow" id="hero-glow">
-      <span class="blob b1"></span>
-      <span class="blob b2"></span>
-      <span class="blob b3"></span>
     </div>
   </div>
 
@@ -918,20 +902,6 @@ function typeHero(){
 initQuiz();
 calcCost();
 typeHero();
-
-/* ===== HERO GLOW PARALLAX ===== */
-(function(){
-  const heroEl=document.querySelector('.hero');
-  const glow=document.getElementById('hero-glow');
-  if(!heroEl||!glow)return;
-  heroEl.addEventListener('mousemove',e=>{
-    const r=heroEl.getBoundingClientRect();
-    const dx=(e.clientX-(r.left+r.width/2))/r.width;
-    const dy=(e.clientY-(r.top+r.height/2))/r.height;
-    glow.style.transform='translate('+(dx*18).toFixed(1)+'px,'+(dy*18).toFixed(1)+'px)';
-  });
-  heroEl.addEventListener('mouseleave',()=>{glow.style.transform='translate(0,0)';});
-})();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
