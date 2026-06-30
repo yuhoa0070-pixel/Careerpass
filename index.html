@@ -43,22 +43,26 @@ body::before{
   background-size: var(--grid-cell) 100%;
   background-position: 0 0;
 }
-/* Animated highlight sweeping across the vertical grid */
+/* Animated highlight flowing DOWN the vertical grid lines */
 body::after{
   content:'';
   position:fixed;
-  top:0;bottom:0;left:0;
-  width:var(--grid-cell);
+  inset:0;
   z-index:-1;
   pointer-events:none;
-  background:linear-gradient(to right, transparent, rgba(98,78,188,0.10), transparent);
-  animation: gridSweep 9s linear infinite;
+  background-image:linear-gradient(to right, rgba(98,78,188,0.55) 1px, transparent 1px);
+  background-size: var(--grid-cell) 100%;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 50%, transparent);
+  mask-image:linear-gradient(to bottom, transparent, #000 50%, transparent);
+  -webkit-mask-size:100% 240px;
+  mask-size:100% 240px;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  animation: rulerFlow 5s linear infinite;
 }
-@keyframes gridSweep{
-  0%{transform:translateX(-100%);opacity:0;}
-  10%{opacity:1;}
-  90%{opacity:1;}
-  100%{transform:translateX(500%);opacity:0;}
+@keyframes rulerFlow{
+  0%{ -webkit-mask-position:0 -260px; mask-position:0 -260px; }
+  100%{ -webkit-mask-position:0 100vh; mask-position:0 100vh; }
 }
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
