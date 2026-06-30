@@ -180,6 +180,7 @@ input,select{font-family:inherit;}
 .hero .cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;opacity:0;animation:fadeUp .7s ease forwards .4s;}
 .hero .browse-link{font-size:13px;color:var(--accent);cursor:pointer;border-bottom:1px solid transparent;transition:border-color .15s;}
 .hero .browse-link:hover{border-bottom-color:var(--accent);}
+.hero-img{display:block;width:100%;max-width:640px;height:clamp(200px,40vw,320px);object-fit:cover;margin:36px auto 0;box-shadow:var(--shadow-md);position:relative;z-index:1;opacity:0;animation:fadeUp .8s ease forwards .55s;}
 
 /* ===== HOME VIEW ===== */
 .goals-row{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto 60px;padding:0 20px;}
@@ -260,6 +261,7 @@ select.filter-select:focus{border-color:var(--accent);}
 .school-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease);opacity:0;animation:fadeUp .4s ease forwards;cursor:pointer;}
 .school-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:transparent;}
 .school-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.school-cover{width:calc(100% + 44px);height:140px;object-fit:cover;display:block;margin:-22px -22px 16px;}
 .school-type-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 10px;border-radius:999px;}
 .badge-public{background:rgba(34,197,94,.1);color:#16a34a;}
 .badge-private{background:rgba(234,179,8,.1);color:#b45309;}
@@ -390,6 +392,7 @@ select.filter-select:focus{border-color:var(--accent);}
     <div class="cta-row">
       <button class="btn btn-primary btn-lg" data-view="quiz"><i class="material-symbols-outlined">explore</i> ចាប់ផ្តើមស្វែងរក</button>
     </div>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1100&q=70" alt="សិស្សនិស្សិត" loading="lazy">
   </div>
 
   <div class="goals-row">
@@ -886,8 +889,17 @@ function renderSchools(){
   });
   const grid=document.getElementById("schools-grid");
   if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;return;}
+  const covers=[
+    "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=500&q=60"
+  ];
   grid.innerHTML=filtered.map((s,i)=>`
     <div class="school-card" style="animation-delay:${i*.06}s" onclick="toggleCompare('${s.id}')">
+      <img class="school-cover" src="${covers[i%covers.length]}" alt="" loading="lazy">
       <div class="school-card-top">
         <span class="school-type-badge ${s.type==="public"?"badge-public":"badge-private"}">${s.type==="public"?"រដ្ឋ":"ឯកជន"}</span>
         <span style="font-size:12px;color:var(--text-3)">★ ${s.rating}</span>
