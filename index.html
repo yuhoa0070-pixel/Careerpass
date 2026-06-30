@@ -20,12 +20,6 @@
   --accent-tint: rgba(98,78,188,0.08);
   --border: rgba(0,0,0,0.08);
   --border-strong: rgba(0,0,0,0.14);
-  --ruler-size: 20px;
-  --ruler-bg: #f0ede6;
-  --ruler-tick: rgba(0,0,0,0.25);
-  --ruler-text: rgba(0,0,0,0.35);
-  --ruler-accent: var(--accent);
-}
   --card: #ffffff;
   --radius: 12px;
   --radius-lg: 18px;
@@ -35,101 +29,10 @@
   --nav-h: 60px;
 }
 *,*::before,*::after{box-sizing:border-box;}
-body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  padding-top:var(--ruler-size);
-  padding-left:var(--ruler-size);
-}
+body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 input,select{font-family:inherit;}
-
-/* ===== RULERS ===== */
-/* Top ruler */
-.ruler-top {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--ruler-size);
-  background: var(--ruler-bg);
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  z-index: 9999;
-  overflow: hidden;
-  pointer-events: none;
-}
-/* Left ruler */
-.ruler-left {
-  position: fixed;
-  top: 0; left: 0; bottom: 0;
-  width: var(--ruler-size);
-  background: var(--ruler-bg);
-  border-right: 1px solid rgba(0,0,0,0.15);
-  z-index: 9999;
-  overflow: hidden;
-  pointer-events: none;
-}
-/* Corner square where rulers meet */
-.ruler-corner {
-  position: fixed;
-  top: 0; left: 0;
-  width: var(--ruler-size);
-  height: var(--ruler-size);
-  background: var(--ruler-accent);
-  z-index: 10000;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ruler-corner i {
-  font-size: 11px;
-  color: #fff;
-  font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
-}
-/* Ruler canvas elements are drawn by JS */
-.ruler-top canvas,
-.ruler-left canvas {
-  display: block;
-}
-/* Mouse crosshair lines */
-.crosshair-h, .crosshair-v {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0;
-  transition: opacity .15s;
-}
-.crosshair-h {
-  left: var(--ruler-size);
-  right: 0;
-  height: 1px;
-  background: rgba(98,78,188,0.35);
-}
-.crosshair-v {
-  top: var(--ruler-size);
-  bottom: 0;
-  width: 1px;
-  background: rgba(98,78,188,0.35);
-}
-body:hover .crosshair-h,
-body:hover .crosshair-v { opacity: 1; }
-/* Ruler position tooltip */
-.ruler-tooltip {
-  position: fixed;
-  background: var(--accent);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 4px;
-  pointer-events: none;
-  z-index: 10001;
-  white-space: nowrap;
-  letter-spacing: .3px;
-  display: none;
-}
-/* Offset the sidebar and topbar from the rulers */
-.topbar { left: var(--ruler-size) !important; }
-.sidebar { left: var(--ruler-size) !important; }
-@media(min-width:992px){ .app-main { margin-left: calc(var(--sidebar-w) + var(--ruler-size)); } }
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:20px;line-height:1;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 
 /* ===== TOPBAR (mobile) ===== */
@@ -390,14 +293,6 @@ select.filter-select:focus{border-color:var(--accent);}
 </style>
 </head>
 <body>
-
-<!-- Rulers -->
-<div class="ruler-corner"><i class="material-symbols-outlined">straighten</i></div>
-<div class="ruler-top"><canvas id="ruler-top-canvas"></canvas></div>
-<div class="ruler-left"><canvas id="ruler-left-canvas"></canvas></div>
-<div class="crosshair-h" id="ch-h"></div>
-<div class="crosshair-v" id="ch-v"></div>
-<div class="ruler-tooltip" id="ruler-tooltip"></div>
 
 <!-- Mobile topbar -->
 <div class="topbar">
@@ -1000,104 +895,6 @@ calcCost();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
-
-/* ===== RULER ENGINE ===== */
-(function(){
-  const RULER = 20;
-  const BIG_TICK = 100, MED_TICK = 50, SM_TICK = 10;
-  const TICK_H_BIG = 12, TICK_H_MED = 8, TICK_H_SM = 4;
-  const BG = '#f0ede6', LINE = 'rgba(0,0,0,0.25)', LABEL = 'rgba(0,0,0,0.4)';
-
-  function drawTopRuler(){
-    const el = document.getElementById('ruler-top-canvas');
-    if(!el) return;
-    const W = window.innerWidth;
-    el.width = W; el.height = RULER;
-    const ctx = el.getContext('2d');
-    ctx.clearRect(0,0,W,RULER);
-    ctx.fillStyle = BG;
-    ctx.fillRect(0,0,W,RULER);
-    ctx.font = '8px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillStyle = LABEL;
-    ctx.strokeStyle = LINE;
-    ctx.lineWidth = 1;
-    for(let x = RULER; x < W; x += SM_TICK){
-      const isBig = (x-RULER) % BIG_TICK === 0;
-      const isMed = (x-RULER) % MED_TICK === 0;
-      const h = isBig ? TICK_H_BIG : isMed ? TICK_H_MED : TICK_H_SM;
-      ctx.beginPath();
-      ctx.moveTo(x+0.5, RULER - h);
-      ctx.lineTo(x+0.5, RULER);
-      ctx.stroke();
-      if(isBig && x > RULER+2){
-        ctx.fillText((x-RULER)+'px', x, RULER - h - 1);
-      }
-    }
-  }
-
-  function drawLeftRuler(){
-    const el = document.getElementById('ruler-left-canvas');
-    if(!el) return;
-    const H = document.documentElement.scrollHeight;
-    el.width = RULER; el.height = H;
-    const ctx = el.getContext('2d');
-    ctx.clearRect(0,0,RULER,H);
-    ctx.fillStyle = BG;
-    ctx.fillRect(0,0,RULER,H);
-    ctx.font = '8px monospace';
-    ctx.textAlign = 'right';
-    ctx.fillStyle = LABEL;
-    ctx.strokeStyle = LINE;
-    ctx.lineWidth = 1;
-    for(let y = RULER; y < H; y += SM_TICK){
-      const isBig = (y-RULER) % BIG_TICK === 0;
-      const isMed = (y-RULER) % MED_TICK === 0;
-      const h = isBig ? TICK_H_BIG : isMed ? TICK_H_MED : TICK_H_SM;
-      ctx.beginPath();
-      ctx.moveTo(RULER - h, y+0.5);
-      ctx.lineTo(RULER, y+0.5);
-      ctx.stroke();
-      if(isBig && y > RULER+2){
-        ctx.save();
-        ctx.translate(RULER - h - 2, y);
-        ctx.rotate(-Math.PI/2);
-        ctx.textAlign = 'center';
-        ctx.fillText((y-RULER)+'px', 0, 0);
-        ctx.restore();
-      }
-    }
-  }
-
-  function init(){
-    drawTopRuler();
-    drawLeftRuler();
-  }
-  init();
-  window.addEventListener('resize', init);
-  document.addEventListener('scroll', ()=>{ drawLeftRuler(); }, { passive:true });
-
-  /* Crosshair + tooltip */
-  const chH = document.getElementById('ch-h');
-  const chV = document.getElementById('ch-v');
-  const tip = document.getElementById('ruler-tooltip');
-
-  document.addEventListener('mousemove', e=>{
-    const x = e.clientX, y = e.clientY;
-    const sx = x - RULER + window.scrollX;
-    const sy = y - RULER + window.scrollY;
-    if(x < RULER || y < RULER){ chH.style.opacity=0; chV.style.opacity=0; tip.style.display='none'; return; }
-    chH.style.top = y+'px';
-    chH.style.opacity = '1';
-    chV.style.left = x+'px';
-    chV.style.opacity = '1';
-    tip.style.display = 'block';
-    tip.style.left = (x+6)+'px';
-    tip.style.top = (RULER+4)+'px';
-    tip.textContent = sx+'×'+sy+' px';
-  });
-  document.addEventListener('mouseleave', ()=>{ chH.style.opacity=0; chV.style.opacity=0; tip.style.display='none'; });
-})();
 </script>
 </body>
 </html>
