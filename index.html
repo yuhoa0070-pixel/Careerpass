@@ -3,1283 +3,859 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compass — ស្វែងរកអាជីព និងសាកលវិទ្យាល័យដែលសមនឹងអ្នក</title>
+<title>Compass — ស្វែងរកអាជីព សាលារៀន និងថ្លៃសិក្សា</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css?family=Google+Sans:300,400,500,700&subset=khmer&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,300..800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
 <style>
-/* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
-  --bg-page: #fbfaf6;
-  --bg-hero: #e8e4d9;
-  --text-primary: #3a3a3a;
-  --text-secondary: #6b6860;
-  --text-muted: #8c8980;
-  --border: #ddd8cc;
-  --border-strong: #c9c3b3;
+  --bg: #FAF9F5;
+  --text: #1a1a1a;
+  --text-2: #4a4a4a;
+  --text-3: #888;
   --accent: #624EBC;
-  --accent-hover: #4f3e9c;
-  --accent-tint: rgba(98,78,188,0.1);
-  --on-accent: #ffffff;
-  --card-bg: #ffffff;
-  --radius: 10px;
+  --accent-h: #4f3e9c;
+  --accent-tint: rgba(98,78,188,0.08);
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --card: #ffffff;
+  --radius: 12px;
   --radius-lg: 18px;
-  --shadow-sm: 0 2px 8px rgba(58,58,58,0.06);
-  --shadow-md: 0 8px 24px rgba(58,58,58,0.08);
-  --shadow-lg: 0 12px 32px rgba(58,58,58,0.12);
-  --nav-height: 60px;
-  --container-px: 16px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.09);
   --sidebar-w: 264px;
+  --nav-h: 60px;
 }
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select{font-family:inherit;}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:20px;line-height:1;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 
-/* ===== RESET & BASE (Mobile First) ===== */
-*, *::before, *::after { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Google Sans', 'Google Sans Flex', 'Helvetica Neue', sans-serif;
-  background-color: #FAF9F5;
-  color: var(--text-primary);
-  font-size: 15px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-a { text-decoration: none; color: inherit; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
-input { font-family: inherit; }
-img, svg { display: block; max-width: 100%; }
+/* ===== TOPBAR (mobile) ===== */
+.topbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 16px;background:rgba(250,249,245,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.topbar .logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;cursor:pointer;}
+.topbar .logo i{color:var(--accent);}
+.hamburger{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;cursor:pointer;transition:background .15s;}
+.hamburger:hover{background:var(--accent-tint);}
+@media(min-width:992px){.topbar{display:none;}}
 
-/* ===== MATERIAL SYMBOLS (OUTLINE ICONS) ===== */
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 1.1em;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-  vertical-align: middle;
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-/* Keep icons outline + consistent weight even inside bold/active containers */
-.side-link i,
-.side-link.active i,
-.value-item i,
-.career-top i,
-.match-icon i,
-.option i,
-.topbar i,
-.sidebar-logo i {
-  font-weight: normal;
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
+/* ===== SIDEBAR ===== */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:rgba(250,249,245,0.98);backdrop-filter:blur(10px);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 14px;z-index:95;overflow-y:auto;transform:translateX(-100%);transition:transform .3s ease;}
+.sidebar.open{transform:none;}
+@media(min-width:992px){.sidebar{transform:none;}}
+.sidebar-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;cursor:pointer;padding:4px 8px 18px;color:var(--text);}
+.sidebar-logo .material-symbols-outlined{color:var(--accent);font-size:24px;}
+.s-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);font-weight:600;padding:0 8px;margin:14px 0 6px;}
+.side-nav{display:flex;flex-direction:column;gap:2px;}
+.s-link{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:10px;font-size:14px;color:var(--text-2);cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent;}
+.s-link .material-symbols-outlined{font-size:20px;width:22px;text-align:center;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.s-link:hover{background:var(--accent-tint);color:var(--text);}
+.s-link.active{background:var(--accent);color:#fff;font-weight:600;}
+.s-link.active .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.s-link .badge{margin-left:auto;font-size:11px;background:var(--accent-tint);color:var(--accent);padding:1px 8px;border-radius:999px;font-weight:600;}
+.s-link.active .badge{background:rgba(255,255,255,.25);color:#fff;}
+.sidebar-footer{margin-top:auto;padding:14px 8px 2px;border-top:1px solid var(--border);}
+.sidebar-footer .socials{display:flex;gap:14px;margin-bottom:8px;}
+.sidebar-footer .socials i{font-size:15px;color:var(--text-3);cursor:pointer;transition:color .15s;}
+.sidebar-footer .socials i:hover{color:var(--accent);}
+.sidebar-footer p{margin:0;font-size:11px;color:var(--text-3);line-height:1.5;}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:94;opacity:0;pointer-events:none;transition:opacity .3s;}
+.backdrop.open{opacity:1;pointer-events:all;}
+@media(min-width:992px){.backdrop{display:none;}}
 
+/* ===== MAIN ===== */
+.app-main{min-height:100dvh;}
+@media(min-width:992px){.app-main{margin-left:var(--sidebar-w);}}
 
-/* ===== MOBILE TOP BAR ===== */
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--nav-height);
-  padding: 0 var(--container-px);
-  background: rgba(250,249,245,0.85);
-  backdrop-filter: blur(8px);
-}
-.topbar .nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-}
-.topbar .nav-logo i { color: var(--accent); }
-.nav-hamburger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background .15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.nav-hamburger:hover { background: var(--accent-tint); }
-.nav-hamburger i { font-size: 20px; color: var(--text-primary); }
-@media (min-width: 992px) { .topbar { display: none; } }
-
-/* ===== LEFT SIDEBAR ===== */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--sidebar-w);
-  background: rgba(250,249,245,0.97);
-  backdrop-filter: blur(10px);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  padding: 22px 16px;
-  z-index: 95;
-  overflow-y: auto;
-  transform: translateX(-100%);
-  transition: transform .3s ease;
-}
-.sidebar.open { transform: translateX(0); }
-@media (min-width: 992px) { .sidebar { transform: none; } }
-
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 19px;
-  cursor: pointer;
-  padding: 4px 10px 20px;
-}
-.sidebar-logo i { color: var(--accent); font-size: 22px; }
-
-.sidebar-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  font-weight: 600;
-  padding: 0 10px;
-  margin: 16px 0 8px;
-}
-
-.side-nav { display: flex; flex-direction: column; gap: 3px; }
-.side-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 12px;
-  border-radius: 10px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: background .15s, color .15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.side-link i { width: 20px; text-align: center; font-size: 15px; }
-.side-link:hover { background: var(--accent-tint); color: var(--text-primary); }
-.side-link.active { background: var(--accent); color: #fff; font-weight: 600; }
-.side-link.active i { color: #fff; }
-.side-link .badge {
-  margin-left: auto;
-  font-size: 11px;
-  background: var(--accent-tint);
-  color: var(--accent);
-  padding: 1px 8px;
-  border-radius: 999px;
-  font-weight: 600;
-}
-.side-link.active .badge { background: rgba(255,255,255,0.25); color: #fff; }
-
-.sidebar-cta {
-  margin: 18px 4px;
-  padding: 16px;
-  border-radius: 14px;
-  background: var(--accent);
-  color: #fff;
-}
-.sidebar-cta h4 { margin: 0 0 6px; font-size: 14px; font-weight: 700; }
-.sidebar-cta p { margin: 0 0 12px; font-size: 12px; opacity: .9; line-height: 1.5; }
-.sidebar-cta button {
-  width: 100%;
-  background: #fff;
-  color: var(--accent);
-  font-weight: 600;
-  padding: 9px;
-  border-radius: 8px;
-  font-size: 13px;
-  transition: opacity .15s;
-}
-.sidebar-cta button:hover { opacity: .9; }
-
-.sidebar-progress {
-  margin: 0 4px 8px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: rgba(255,255,255,0.4);
-}
-.sidebar-progress .row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
-.sidebar-progress .row b { color: var(--text-primary); }
-.sidebar-progress .bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.sidebar-progress .bar span { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
-
-.sidebar-footer {
-  margin-top: auto;
-  padding: 16px 10px 4px;
-  border-top: 1px solid var(--border);
-}
-.sidebar-footer .social { display: flex; gap: 16px; margin-bottom: 10px; }
-.sidebar-footer .social i {
-  font-size: 16px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: color .15s;
-}
-.sidebar-footer .social i:hover { color: var(--accent); }
-.sidebar-footer p { margin: 0; font-size: 11px; color: var(--text-muted); line-height: 1.5; }
-
-/* Backdrop for mobile sidebar */
-.sidebar-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 94;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s;
-}
-.sidebar-backdrop.open { opacity: 1; pointer-events: all; }
-@media (min-width: 992px) { .sidebar-backdrop { display: none; } }
-
-/* Main content offset for sidebar */
-@media (min-width: 992px) {
-  .app-main { margin-left: var(--sidebar-w); }
-}
+/* ===== VIEWS ===== */
+.view{display:none;}
+.view.active{display:block;}
+.view.fade-in{animation:viewIn .35s ease forwards;}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
 
 /* ===== BUTTONS ===== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 8px;
-  transition: transform .15s, opacity .15s, box-shadow .15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.btn:active { transform: scale(0.97); }
-.btn-primary {
-  background: #624EBC;
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(98,78,188,0.3);
-}
-.btn-primary:hover { background: #4f3e9c; }
-.btn-primary:disabled { opacity: .35; cursor: not-allowed; transform: none; }
-.btn-ghost {
-  border: 1px solid var(--border-strong);
-  color: var(--text-primary);
-}
-.btn-ghost:hover { background: var(--accent-tint); }
-.btn-sm { font-size: 13px; padding: 10px 18px; }
-.btn-lg { font-size: 16px; padding: 14px 32px; border-radius: 10px; }
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;padding:11px 22px;border-radius:10px;transition:background .15s,transform .1s,box-shadow .15s;-webkit-tap-highlight-color:transparent;cursor:pointer;border:none;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 10px rgba(98,78,188,.25);}
+.btn-primary:hover{background:var(--accent-h);}
+.btn-primary:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.btn-ghost{border:1.5px solid var(--border-strong);color:var(--text);background:transparent;}
+.btn-ghost:hover{background:var(--accent-tint);}
+.btn-sm{font-size:13px;padding:9px 18px;}
+.btn-lg{font-size:16px;padding:14px 30px;border-radius:12px;}
+.btn-outline-accent{border:1.5px solid var(--accent);color:var(--accent);background:transparent;}
+.btn-outline-accent:hover{background:var(--accent-tint);}
 
+/* ===== SECTION WRAPPER ===== */
+.page-wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px;}
+@media(min-width:768px){.page-wrap{padding:40px 32px 80px;}}
+@media(min-width:1200px){.page-wrap{padding:48px 48px 80px;}}
+.page-title{font-size:clamp(22px,4vw,32px);font-weight:700;letter-spacing:-.5px;margin:0 0 6px;}
+.page-sub{font-size:14px;color:var(--text-2);margin:0 0 32px;line-height:1.6;}
+.section-title{font-size:18px;font-weight:700;margin:0 0 16px;letter-spacing:-.2px;}
 
-/* ===== VIEW SYSTEM ===== */
-.view { display: none; }
-.view.active { display: block; }
-.view.fade-in { animation: viewFade .4s ease forwards; }
-@keyframes viewFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
+.reveal.in-view{opacity:1;transform:none;}
 
-/* ===== HERO SECTION (Mobile First) ===== */
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 48px var(--container-px) 40px;
-  background: transparent;
-  overflow: hidden;
-  min-height: calc(100dvh - var(--nav-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-path {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  clip-path: inset(0 100% 0 0);
-  animation: pathReveal 1.6s ease forwards;
-}
-@keyframes pathReveal { to { clip-path: inset(0 0 0 0); } }
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 8px;
-}
-.hero h1 {
-  font-size: clamp(26px, 6vw, 42px);
-  line-height: 1.15;
-  font-weight: 700;
-  margin: 0 0 16px;
-  opacity: 0;
-  animation: fadeUp .6s ease forwards;
-  animation-delay: .1s;
-}
-.hero p.sub {
-  font-size: clamp(14px, 3.5vw, 17px);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 480px;
-  margin: 0 auto 28px;
-  opacity: 0;
-  animation: fadeUp .6s ease forwards;
-  animation-delay: .25s;
-}
-.hero .cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  opacity: 0;
-  animation: fadeUp .6s ease forwards;
-  animation-delay: .4s;
-}
-.hero .cta .browse-link {
-  font-size: 14px;
-  color: var(--accent);
-  cursor: pointer;
-}
-.hero .cta .browse-link:hover { text-decoration: underline; }
+/* ===== HOME VIEW ===== */
+.hero{padding:60px 20px 48px;text-align:center;max-width:700px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-tint);color:var(--accent);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:20px;letter-spacing:.3px;}
+.hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;line-height:1.1;letter-spacing:-1px;margin:0 0 16px;opacity:0;animation:fadeUp .7s ease forwards .1s;}
+.hero p.sub{font-size:clamp(14px,2.5vw,17px);color:var(--text-2);line-height:1.7;max-width:500px;margin:0 auto 32px;opacity:0;animation:fadeUp .7s ease forwards .25s;}
+.hero .cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;opacity:0;animation:fadeUp .7s ease forwards .4s;}
+.hero .browse-link{font-size:13px;color:var(--accent);cursor:pointer;border-bottom:1px solid transparent;transition:border-color .15s;}
+.hero .browse-link:hover{border-bottom-color:var(--accent);}
 
+.goals-row{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto 60px;padding:0 20px;}
+@media(min-width:600px){.goals-row{grid-template-columns:repeat(3,1fr);}}
+.goal-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;background:var(--card);text-align:center;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s;}
+.goal-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--accent);}
+.goal-card .icon-wrap{width:52px;height:52px;border-radius:14px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+.goal-card .icon-wrap .material-symbols-outlined{font-size:26px;color:var(--accent);}
+.goal-card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
+.goal-card p{font-size:13px;color:var(--text-2);margin:0;line-height:1.5;}
+.goal-card .goal-number{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-tint);padding:2px 10px;border-radius:999px;margin-bottom:12px;}
 
-/* ===== REVEAL ANIMATION ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .5s ease, transform .5s ease;
-}
-.reveal.in-view { opacity: 1; transform: translateY(0); }
+/* ===== GOAL 1 — CAREER QUIZ ===== */
+.quiz-layout{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:768px){.quiz-layout{grid-template-columns:1fr 280px;align-items:start;}}
+.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;box-shadow:var(--shadow-sm);}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-3);margin-bottom:14px;font-weight:500;}
+.quiz-phase-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);background:var(--accent-tint);padding:3px 10px;border-radius:999px;}
+.progress-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:28px;}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .4s ease;border-radius:3px;}
+.q-text{font-size:clamp(16px,3.5vw,20px);font-weight:700;margin:0 0 22px;line-height:1.4;letter-spacing:-.3px;}
+.option{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:11px;margin-bottom:10px;cursor:pointer;transition:border-color .15s,background .15s;}
+.option:hover{border-color:var(--border-strong);}
+.option.selected{border-color:var(--accent);background:var(--accent-tint);}
+.option .material-symbols-outlined{font-size:16px;color:var(--text-3);flex-shrink:0;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.option.selected .material-symbols-outlined{color:var(--accent);}
+.option span{font-size:14px;line-height:1.4;}
+.quiz-actions{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
+.quiz-side-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);}
+.quiz-side-card h4{font-size:13px;font-weight:700;margin:0 0 12px;color:var(--text);}
+.phase-list{display:flex;flex-direction:column;gap:8px;}
+.phase-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:13px;color:var(--text-3);border:1px solid var(--border);}
+.phase-item.active{background:var(--accent-tint);border-color:var(--accent);color:var(--accent);font-weight:600;}
+.phase-item.done{background:rgba(98,78,188,.05);border-color:rgba(98,78,188,.2);color:var(--text-2);}
+.phase-item .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 
-/* ===== VALUES SECTION ===== */
-.values {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-  padding: 40px var(--container-px) 10px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.value-item { text-align: center; width: 180px; }
-.value-item i { font-size: 24px; color: var(--accent); }
-.value-item p {
-  margin: 10px 0 0;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
+/* ===== PROFILE RESULT CARD ===== */
+.profile-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:28px;}
+@media(min-width:600px){.profile-grid{grid-template-columns:repeat(3,1fr);}}
+.profile-trait{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;text-align:center;}
+.profile-trait .material-symbols-outlined{font-size:28px;color:var(--accent);margin-bottom:10px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.profile-trait h4{font-size:13px;font-weight:700;margin:0 0 8px;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;}
+.profile-trait .tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.profile-trait .tag{font-size:12px;font-weight:600;background:var(--accent-tint);color:var(--accent);padding:3px 10px;border-radius:999px;}
+.match-card{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:12px;background:var(--card);box-shadow:var(--shadow-sm);opacity:0;animation:fadeUp .5s ease forwards;}
+.match-card:hover{box-shadow:var(--shadow-md);}
+.match-left{display:flex;gap:14px;align-items:flex-start;}
+.match-icon{width:44px;height:44px;border-radius:12px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.match-icon .material-symbols-outlined{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.match-name{font-size:15px;font-weight:700;margin:0 0 4px;}
+.match-why{font-size:12px;color:var(--text-2);margin:0 0 10px;line-height:1.5;max-width:30ch;}
+.match-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.match-tag{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:2px 8px;border-radius:999px;font-weight:600;}
+.match-salary{font-size:12px;color:var(--text-2);margin-top:6px;}
+.match-salary b{color:var(--text);}
+.match-pct{text-align:right;flex-shrink:0;}
+.match-pct .num{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
+.match-pct .word{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);}
+.results-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
 
-/* ===== CATEGORIES SECTION ===== */
-.categories {
-  padding: 32px var(--container-px) 60px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-.categories p.label {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin: 0 0 14px;
-}
-.chip-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.chip {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 13px;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: border-color .15s, background .15s, color .15s, transform .1s;
-  -webkit-tap-highlight-color: transparent;
-}
-.chip:hover { border-color: var(--border-strong); }
-.chip:active { transform: scale(0.96); }
-.chip.active-filter {
-  background: var(--accent-tint);
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 600;
-}
+/* ===== GOAL 2 — SCHOOL FINDER ===== */
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center;}
+.search-box{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;background:var(--card);transition:border-color .15s,box-shadow .15s;}
+.search-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+.search-box .material-symbols-outlined{font-size:18px;color:var(--text-3);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.search-box input{flex:1;border:none;outline:none;background:none;font-size:14px;color:var(--text);}
+.search-box input::placeholder{color:var(--text-3);}
+select.filter-select{border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:13px;color:var(--text);background:var(--card);outline:none;cursor:pointer;transition:border-color .15s;}
+select.filter-select:focus{border-color:var(--accent);}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--text-2);cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.chip:hover{border-color:var(--border-strong);}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+.schools-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:600px){.schools-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1000px){.schools-grid{grid-template-columns:repeat(3,1fr);}}
+.school-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s,border-color .2s;opacity:0;animation:fadeUp .4s ease forwards;cursor:pointer;}
+.school-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--accent);}
+.school-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.school-type-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 10px;border-radius:999px;}
+.badge-public{background:rgba(34,197,94,.1);color:#16a34a;}
+.badge-private{background:rgba(234,179,8,.1);color:#b45309;}
+.school-name{font-size:15px;font-weight:700;margin:0 0 5px;letter-spacing:-.2px;}
+.school-location{font-size:12px;color:var(--text-3);display:flex;align-items:center;gap:4px;margin-bottom:10px;}
+.school-location .material-symbols-outlined{font-size:14px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.school-programs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.school-prog-tag{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:2px 9px;border-radius:999px;font-weight:600;}
+.school-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text-2);}
+.school-tuition{font-weight:700;color:var(--text);}
+.compare-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center;}
+.compare-table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--card);}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;}
+.compare-table th{background:var(--accent);color:#fff;padding:12px 16px;text-align:left;font-weight:600;font-size:12px;letter-spacing:.3px;}
+.compare-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table tr:hover td{background:var(--accent-tint);}
+.empty-state{text-align:center;padding:60px 0;color:var(--text-3);font-size:14px;}
+.empty-state .material-symbols-outlined{font-size:48px;margin-bottom:12px;opacity:.4;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;}
 
+/* ===== GOAL 3 — COST ESTIMATOR ===== */
+.cost-layout{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:768px){.cost-layout{grid-template-columns:1fr 320px;align-items:start;}}
+.cost-form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;box-shadow:var(--shadow-sm);}
+.form-row{margin-bottom:18px;}
+.form-label{font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+.form-label .material-symbols-outlined{font-size:16px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.form-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s,box-shadow .15s;}
+.form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.range-wrap{display:flex;align-items:center;gap:12px;}
+.range-wrap input[type=range]{flex:1;accent-color:var(--accent);}
+.range-val{font-size:14px;font-weight:700;color:var(--accent);min-width:60px;text-align:right;}
+.cost-result{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);}
+.cost-total-box{background:var(--accent);color:#fff;border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:20px;}
+.cost-total-box .label{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;opacity:.8;margin-bottom:6px;}
+.cost-total-box .amount{font-size:32px;font-weight:800;letter-spacing:-1px;}
+.cost-total-box .sub{font-size:12px;opacity:.8;margin-top:4px;}
+.cost-breakdown{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.cost-line{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:10px 12px;border-radius:8px;background:var(--bg);}
+.cost-line .label{color:var(--text-2);display:flex;align-items:center;gap:6px;}
+.cost-line .material-symbols-outlined{font-size:16px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.cost-line .val{font-weight:700;color:var(--text);}
+.cost-divider{height:1px;background:var(--border);margin:4px 0;}
+.roi-box{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:rgba(98,78,188,.04);}
+.roi-box h4{font-size:13px;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:6px;}
+.roi-box h4 .material-symbols-outlined{font-size:16px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.roi-stat{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+.roi-stat .label{color:var(--text-2);}
+.roi-stat .val{font-weight:700;color:var(--text);}
+.scholarship-list{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.scholarship-item{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--card);}
+.scholarship-item h5{font-size:13px;font-weight:700;margin:0 0 4px;}
+.scholarship-item p{font-size:12px;color:var(--text-2);margin:0 0 8px;line-height:1.5;}
+.scholarship-amount{font-size:13px;font-weight:700;color:var(--accent);}
 
-/* ===== QUIZ SECTION ===== */
-.quiz-wrap {
-  max-width: 520px;
-  margin: 32px auto 60px;
-  padding: 0 var(--container-px);
-}
-.quiz-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px 20px;
-  box-shadow: var(--shadow-sm);
-}
-.quiz-top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-}
-.progress-track {
-  height: 5px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  width: 0%;
-  transition: width .35s ease;
-  border-radius: 3px;
-}
-.question-slide {
-  transition: opacity .25s ease, transform .25s ease;
-}
-.question-slide.sliding { opacity: 0; transform: translateX(14px); }
-.q-text {
-  font-size: clamp(16px, 4vw, 19px);
-  font-weight: 600;
-  margin: 0 0 20px;
-  line-height: 1.4;
-}
-.option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: border-color .15s, background .15s, transform .1s;
-  -webkit-tap-highlight-color: transparent;
-}
-.option:active { transform: scale(0.98); }
-.option:hover { border-color: var(--border-strong); }
-.option.selected {
-  border-color: var(--accent);
-  background: var(--accent-tint);
-}
-.option i { font-size: 14px; color: var(--text-secondary); flex-shrink: 0; }
-.option.selected i { color: var(--accent); }
-.option span { font-size: 14px; line-height: 1.4; }
-.quiz-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 22px;
-}
-
-
-/* ===== RESULTS SECTION ===== */
-.results-wrap {
-  max-width: 560px;
-  margin: 32px auto 60px;
-  padding: 0 var(--container-px);
-}
-.results-wrap .label {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin: 0 0 4px;
-  text-align: center;
-}
-.results-wrap h2 {
-  font-size: clamp(18px, 4.5vw, 22px);
-  font-weight: 700;
-  margin: 0 0 22px;
-  text-align: center;
-}
-.match-card {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  margin-bottom: 12px;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-sm);
-  opacity: 0;
-  transform: translateY(14px);
-  animation: fadeUp .5s ease forwards;
-}
-.match-left { display: flex; gap: 12px; }
-.match-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--accent-tint);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.match-icon i { font-size: 16px; color: var(--accent); }
-.match-name { font-size: 14px; font-weight: 600; margin: 0 0 3px; }
-.match-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  margin: 0 0 8px;
-  max-width: 24ch;
-  line-height: 1.45;
-}
-.match-badge {
-  font-size: 10px;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 2px 8px;
-}
-.match-pct { text-align: right; flex-shrink: 0; }
-.match-pct .num { font-size: 18px; font-weight: 700; color: var(--accent); }
-.match-pct .word { font-size: 11px; color: var(--text-muted); }
-.results-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-
-/* ===== BROWSE SECTION ===== */
-.browse-wrap {
-  max-width: 1200px;
-  margin: 24px auto 60px;
-  padding: 0 var(--container-px);
-}
-.browse-wrap h2 {
-  font-size: clamp(18px, 4.5vw, 22px);
-  font-weight: 700;
-  margin: 0 0 16px;
-}
-.search-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.search-box {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  background: var(--card-bg);
-  transition: border-color .15s, box-shadow .15s;
-}
-.search-box:focus-within {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-tint);
-}
-.search-box i { color: var(--text-muted); font-size: 14px; }
-.search-box input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 14px;
-  color: var(--text-primary);
-}
-.search-box input::placeholder { color: var(--text-muted); }
-.filter-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  color: var(--text-secondary);
-  font-size: 13px;
-  background: var(--card-bg);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.filter-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-  scrollbar-width: none;
-}
-.filter-row::-webkit-scrollbar { display: none; }
-.filter-row .chip { white-space: nowrap; flex-shrink: 0; }
-
-
-/* Career grid - mobile: 1 column */
-.career-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-.career-card {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-sm);
-  transition: transform .2s ease, box-shadow .2s ease;
-  opacity: 0;
-  animation: fadeUp .4s ease forwards;
-}
-.career-card:active { transform: scale(0.98); }
-.career-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.career-top i { font-size: 20px; color: var(--accent); }
-.career-cat {
-  font-size: 11px;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 3px 10px;
-}
-.career-name { font-size: 15px; font-weight: 600; margin: 0 0 5px; }
-.career-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin: 0 0 12px;
-  line-height: 1.5;
-}
-.career-unis {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.career-unis::before {
-  content: 'school';
-  font-family: 'Material Symbols Outlined';
-  font-size: 14px;
-}
-.empty-state {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 14px;
-  padding: 48px 0;
-}
-
-/* ===== FOOTER ===== */
-footer.site-footer {
-  text-align: center;
-  padding: 24px var(--container-px);
-  border-top: none;
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-
-/* ===== TABLET BREAKPOINT (576px+) ===== */
-@media (min-width: 576px) {
-  :root { --container-px: 24px; }
-
-  .values {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
-    padding-top: 50px;
-  }
-
-  .career-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .quiz-card { padding: 28px 24px; }
-
-  .results-actions {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .match-desc { max-width: 28ch; }
-  .match-name { font-size: 15px; }
-}
-
-/* ===== TABLET LANDSCAPE / LAPTOP (768px+) ===== */
-@media (min-width: 768px) {
-  :root { --container-px: 32px; --nav-height: 64px; }
-
-  .hero {
-    padding: 72px var(--container-px) 60px;
-    min-height: auto;
-  }
-
-  .quiz-card { padding: 32px 28px; }
-  .quiz-wrap { margin-top: 48px; margin-bottom: 80px; }
-
-  .results-wrap { margin-top: 48px; margin-bottom: 80px; }
-
-  .filter-row {
-    flex-wrap: wrap;
-    overflow-x: visible;
-  }
-
-  .career-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-  .career-card:active { transform: translateY(-3px); }
-}
-
-
-/* ===== LAPTOP BREAKPOINT (992px+) ===== */
-@media (min-width: 992px) {
-  :root { --container-px: 40px; }
-
-  .hero { padding: 80px 40px 64px; }
-
-  .values { gap: 44px; padding-top: 60px; }
-
-  .categories { padding: 40px 40px 80px; }
-
-  .career-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .quiz-card { padding: 36px 32px; }
-  .quiz-wrap { margin-top: 56px; }
-
-  .browse-wrap { margin-top: 32px; }
-}
-
-/* ===== DESKTOP BREAKPOINT (1200px+) ===== */
-@media (min-width: 1200px) {
-  :root { --container-px: 48px; }
-
-  .hero { padding: 96px 48px 72px; }
-
-  .career-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .browse-wrap { margin-top: 40px; margin-bottom: 90px; }
-
-  .quiz-card { padding: 40px 36px; }
-  .quiz-wrap { margin-top: 64px; margin-bottom: 90px; }
-
-  .results-wrap { margin-top: 60px; margin-bottom: 90px; }
-}
-
-/* ===== EXTRA LARGE (1440px+) ===== */
-@media (min-width: 1440px) {
-  :root { --container-px: 64px; }
-  .hero-content { max-width: 700px; }
-}
-
-/* ===== TOUCH DEVICE OPTIMIZATION ===== */
-@media (hover: none) {
-  .btn:hover { transform: none; }
-  .career-card:hover { transform: none; box-shadow: var(--shadow-sm); }
-  .chip:hover { border-color: var(--border); }
-  .option:hover { border-color: var(--border); }
-}
-
-/* ===== SAFE AREA (Notched Phones) ===== */
-@supports (padding: env(safe-area-inset-bottom)) {
-  footer.site-footer {
-    padding-bottom: calc(24px + env(safe-area-inset-bottom));
-  }
-}
-
-/* ===== REDUCED MOTION ===== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* ===== RESPONSIVE ===== */
+@media(min-width:576px){.cost-form,.quiz-card{padding:32px 28px;}}
+@media(min-width:768px){.match-why{max-width:36ch;}}
+@media(hover:none){.school-card:hover,.goal-card:hover{transform:none;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 </style>
 </head>
 <body>
 
-
-<!-- Mobile Top Bar -->
+<!-- Mobile topbar -->
 <div class="topbar">
-  <div class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
-    <i class="material-symbols-outlined">menu</i>
-  </div>
-  <div class="nav-logo" data-view="home"><i class="material-symbols-outlined">explore</i> Compass</div>
+  <div class="hamburger" id="hamburger"><i class="material-symbols-outlined">menu</i></div>
+  <div class="logo" data-view="home"><i class="material-symbols-outlined">explore</i> Compass</div>
   <div style="width:40px"></div>
 </div>
 
-<!-- Sidebar Backdrop (mobile) -->
-<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+<!-- Backdrop -->
+<div class="backdrop" id="backdrop"></div>
 
-<!-- Left Sidebar Navigation -->
+<!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo" data-view="home"><i class="material-symbols-outlined">explore</i> Compass</div>
 
-  <p class="sidebar-label">ម៉ឺនុយ</p>
+  <p class="s-label">ម៉ឺនុយ</p>
   <nav class="side-nav">
-    <div class="side-link" data-view="home"><i class="material-symbols-outlined">home</i> ទំព័រដើម</div>
-    <div class="side-link" data-view="quiz"><i class="material-symbols-outlined">quiz</i> កម្រងសំណួរ</div>
-    <div class="side-link" data-view="browse"><i class="material-symbols-outlined">travel_explore</i> រុករកអាជីព <span class="badge">6</span></div>
-    <div class="side-link" data-view="results"><i class="material-symbols-outlined">pie_chart</i> លទ្ធផលរបស់ខ្ញុំ</div>
+    <div class="s-link active" data-view="home"><i class="material-symbols-outlined">home</i> ទំព័រដើម</div>
+    <div class="s-link" data-view="quiz"><i class="material-symbols-outlined">quiz</i> ស្វែងរកអាជីព</div>
+    <div class="s-link" data-view="schools"><i class="material-symbols-outlined">school</i> ស្វែងរកសាលា <span class="badge">12</span></div>
+    <div class="s-link" data-view="cost"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</div>
+    <div class="s-link" data-view="results"><i class="material-symbols-outlined">bar_chart</i> លទ្ធផលខ្ញុំ</div>
   </nav>
 
-  <p class="sidebar-label">ប្រភេទ</p>
+  <p class="s-label">ប្រភេទអាជីព</p>
   <nav class="side-nav">
-    <div class="side-link" data-view="browse" data-cat="technology"><i class="material-symbols-outlined">memory</i> បច្ចេកវិទ្យា</div>
-    <div class="side-link" data-view="browse" data-cat="healthcare"><i class="material-symbols-outlined">cardiology</i> សុខភាព</div>
-    <div class="side-link" data-view="browse" data-cat="design"><i class="material-symbols-outlined">palette</i> ការរចនា</div>
-    <div class="side-link" data-view="browse" data-cat="business"><i class="material-symbols-outlined">work</i> ពាណិជ្ជកម្ម</div>
-    <div class="side-link" data-view="browse" data-cat="trades"><i class="material-symbols-outlined">construction</i> ជំនាញការ</div>
+    <div class="s-link" data-view="quiz" data-cat="technology"><i class="material-symbols-outlined">memory</i> បច្ចេកវិទ្យា</div>
+    <div class="s-link" data-view="quiz" data-cat="healthcare"><i class="material-symbols-outlined">cardiology</i> សុខភាព</div>
+    <div class="s-link" data-view="quiz" data-cat="design"><i class="material-symbols-outlined">palette</i> ការរចនា</div>
+    <div class="s-link" data-view="quiz" data-cat="business"><i class="material-symbols-outlined">work</i> ពាណិជ្ជកម្ម</div>
+    <div class="s-link" data-view="quiz" data-cat="trades"><i class="material-symbols-outlined">construction</i> ជំនាញការ</div>
   </nav>
-
-  <div class="sidebar-progress">
-    <div class="row"><span>វឌ្ឍនភាពកម្រងសំណួរ</span><b id="side-progress-pct">0%</b></div>
-    <div class="bar"><span id="side-progress-bar" style="width:0%"></span></div>
-  </div>
-
-  <div class="sidebar-cta">
-    <h4>រកមិនទាន់ឃើញទេ?</h4>
-    <p>ធ្វើកម្រងសំណួរ ៥ នាទី ដើម្បីស្វែងរកអាជីពដែលសមនឹងអ្នក។</p>
-    <button data-view="quiz">ចាប់ផ្តើមឥឡូវនេះ</button>
-  </div>
 
   <div class="sidebar-footer">
-    <div class="social">
+    <div class="socials">
       <i class="fa-brands fa-facebook"></i>
       <i class="fa-brands fa-telegram"></i>
       <i class="fa-brands fa-youtube"></i>
-      <i class="material-symbols-outlined">mail</i>
     </div>
-    <p>Compass &copy; 2026<br>គម្រោងជួយសិស្សស្វែងរកទិសដៅ។</p>
+    <p>Compass &copy; 2026 — ជួយសិស្សស្វែងរកទិសដៅ</p>
   </div>
 </aside>
 
 <div class="app-main">
 
-<main>
-
-  <!-- HOME VIEW -->
-  <section id="view-home" class="view active fade-in">
-    <div class="hero">
-      <div class="hero-content">
-        <h1>ស្វែងរកអ្វីដែលសមនឹងអ្នក រួចស្វែងរកកន្លែងសិក្សា</h1>
-        <p class="sub">ឆ្លើយសំណួរមួយចំនួនអំពីរបៀបគិត និងអ្វីដែលអ្នកចូលចិត្ត។ យើងនឹងផ្គូផ្គងអ្នកទៅអាជីពដែលសម និងសាកលវិទ្យាល័យនៅជិតដែលបង្រៀនវា។</p>
-        <div class="cta">
-          <button class="btn btn-primary btn-lg" data-view="quiz">ចាប់ផ្តើមកម្រងសំណួរ</button>
-          <span class="browse-link" data-view="browse">ឬរុករកអាជីព និងសាកលវិទ្យាល័យ</span>
-        </div>
-      </div>
+<!-- ======================== HOME ======================== -->
+<section id="view-home" class="view active fade-in">
+  <div class="hero reveal">
+    <div class="hero-badge"><i class="material-symbols-outlined" style="font-size:14px">auto_awesome</i> ជំនួយការអាជីពរបស់អ្នក</div>
+    <h1>ស្វែងរកខ្លួនអ្នក ជ្រើសរើសអាជីព រៀនកន្លែងណា</h1>
+    <p class="sub">Compass ជួយសិស្សស្វែងរកអាជីពដែលសមស្រប ស្វែងរកសាលាដែលបង្រៀន និងប៉ាន់ស្មានថ្លៃដែលត្រូវចំណាយ។</p>
+    <div class="cta-row">
+      <button class="btn btn-primary btn-lg" data-view="quiz"><i class="material-symbols-outlined">explore</i> ចាប់ផ្តើមស្វែងរក</button>
+      <span class="browse-link" data-view="schools">ឬស្វែងរកសាលា</span>
     </div>
+  </div>
 
-    <div class="values">
-      <div class="value-item reveal" style="transition-delay:0s">
-        <i class="material-symbols-outlined">schedule</i>
-        <p>រយៈពេល ៥ នាទី</p>
-      </div>
-      <div class="value-item reveal" style="transition-delay:.1s">
-        <i class="material-symbols-outlined">center_focus_strong</i>
-        <p>ផ្គូផ្គងតាមអ្នក មិនមែនទូទៅ</p>
-      </div>
-      <div class="value-item reveal" style="transition-delay:.2s">
-        <i class="material-symbols-outlined">account_balance</i>
-        <p>សាកលវិទ្យាល័យពិតប្រាកដនៅជិត</p>
-      </div>
+  <div class="goals-row">
+    <div class="goal-card reveal" data-view="quiz">
+      <div class="goal-number">គោលដៅ ១</div>
+      <div class="icon-wrap"><i class="material-symbols-outlined">person_search</i></div>
+      <h3>ស្វែងរកអាជីពរបស់អ្នក</h3>
+      <p>ឆ្លើយសំណួរអំពីចំណូលចិត្ត ជំនាញ និងតម្លៃ ហើយយើងផ្គូផ្គងអ្នកទៅអាជីពដែលសម។</p>
     </div>
-
-
-    <div class="categories">
-      <p class="label">ឬលោតទៅប្រភេទមួយដោយផ្ទាល់</p>
-      <div class="chip-row">
-        <div class="chip reveal" style="transition-delay:0s" data-cat="technology"><i class="material-symbols-outlined">memory</i>បច្ចេកវិទ្យា</div>
-        <div class="chip reveal" style="transition-delay:.06s" data-cat="healthcare"><i class="material-symbols-outlined">cardiology</i>សុខភាព</div>
-        <div class="chip reveal" style="transition-delay:.12s" data-cat="design"><i class="material-symbols-outlined">palette</i>ការរចនា</div>
-        <div class="chip reveal" style="transition-delay:.18s" data-cat="business"><i class="material-symbols-outlined">work</i>ពាណិជ្ជកម្ម</div>
-        <div class="chip reveal" style="transition-delay:.24s" data-cat="trades"><i class="material-symbols-outlined">construction</i>ជំនាញការ</div>
-      </div>
+    <div class="goal-card reveal" style="transition-delay:.1s" data-view="schools">
+      <div class="goal-number">គោលដៅ ២</div>
+      <div class="icon-wrap"><i class="material-symbols-outlined">account_balance</i></div>
+      <h3>ស្វែងរកសាលារៀន</h3>
+      <p>ស្វែងរកសាកលវិទ្យាល័យ និងសាលាដែលបង្រៀនអាជីពដែលអ្នកចង់បាន ក្នុងតំបន់របស់អ្នក។</p>
     </div>
-  </section>
+    <div class="goal-card reveal" style="transition-delay:.2s" data-view="cost">
+      <div class="goal-number">គោលដៅ ៣</div>
+      <div class="icon-wrap"><i class="material-symbols-outlined">payments</i></div>
+      <h3>ប៉ាន់ស្មានថ្លៃសិក្សា</h3>
+      <p>គណនាថ្លៃសិក្សា ថ្លៃរស់នៅ ថ្លៃសម្ភារ និងការប្រៀបធៀបជាមួយប្រាក់ខែដែលរំពឹងទុក។</p>
+    </div>
+  </div>
+</section>
 
-  <!-- QUIZ VIEW -->
-  <section id="view-quiz" class="view">
-    <div class="quiz-wrap">
+<!-- ======================== GOAL 1: QUIZ ======================== -->
+<section id="view-quiz" class="view">
+  <div class="page-wrap">
+    <p class="page-title">ស្វែងរកអាជីពរបស់អ្នក</p>
+    <p class="page-sub">ឆ្លើយតាមវេន ៣ ដំណាក់កាល៖ ចំណូលចិត្ត · ជំនាញ · តម្លៃការងារ</p>
+    <div class="quiz-layout">
       <div class="quiz-card">
         <div class="quiz-top">
-          <span id="quiz-progress-label">សំណួរទី ១ ក្នុង ៤</span>
-          <span>កម្រងសំណួរអាជីព</span>
+          <span id="quiz-phase-lbl" class="quiz-phase-label">ដំណាក់កាលទី ១: ចំណូលចិត្ត</span>
+          <span id="quiz-counter" style="color:var(--text-3);font-size:12px;">សំណួរ ១ / ១៨</span>
         </div>
         <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-        <div class="question-slide" id="question-slide">
+        <div id="question-slide">
           <p class="q-text" id="q-text"></p>
           <div id="options"></div>
         </div>
         <div class="quiz-actions">
-          <button class="btn btn-primary" id="next-btn" disabled>បន្ទាប់</button>
+          <button class="btn btn-ghost btn-sm" id="prev-btn" style="display:none" onclick="prevQ()"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់</button>
+          <button class="btn btn-primary" id="next-btn" disabled>បន្ទាប់ <i class="material-symbols-outlined">arrow_forward</i></button>
+        </div>
+      </div>
+      <div class="quiz-side-card">
+        <h4>ដំណាក់កាលវាយតម្លៃ</h4>
+        <div class="phase-list">
+          <div class="phase-item active" id="phase-1"><i class="material-symbols-outlined">favorite</i> ចំណូលចិត្ត (RIASEC)</div>
+          <div class="phase-item" id="phase-2"><i class="material-symbols-outlined">psychology</i> ជំនាញ</div>
+          <div class="phase-item" id="phase-3"><i class="material-symbols-outlined">star</i> តម្លៃការងារ</div>
+        </div>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
+          <p style="font-size:12px;color:var(--text-3);margin:0 0 6px;font-weight:600;">ការណែនាំ</p>
+          <p style="font-size:12px;color:var(--text-2);margin:0;line-height:1.6;">ឆ្លើយតាមអារម្មណ៍ពិត។ គ្មានចម្លើយត្រឹមត្រូវ ឬខុស ទេ។ ចម្លើយរបស់អ្នកជួយ Compass ផ្គូផ្គងអ្នកទៅអាជីពដែលណាស់ត្រូវ។</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- RESULTS VIEW -->
-  <section id="view-results" class="view">
-    <div class="results-wrap">
-      <p class="label">ផ្អែកលើចម្លើយរបស់អ្នក</p>
-      <h2>អាជីពដែលផ្គូផ្គងល្អបំផុតរបស់អ្នក</h2>
-      <div id="results-list"></div>
-      <div class="results-actions">
-        <button class="btn btn-ghost btn-sm" data-view="quiz">ធ្វើកម្រងសំណួរម្ដងទៀត</button>
-        <button class="btn btn-primary btn-sm" data-view="browse">រុករកអាជីពទាំងអស់</button>
-      </div>
+<!-- ======================== RESULTS ======================== -->
+<section id="view-results" class="view">
+  <div class="page-wrap">
+    <p class="page-title">លទ្ធផលរបស់អ្នក</p>
+    <p class="page-sub">ផ្អែកលើចម្លើយរបស់អ្នក នេះជាប្រវត្តិ និងអាជីពដែលសម</p>
+    <div class="profile-grid" id="profile-grid"></div>
+    <p class="section-title">អាជីពដែលផ្គូផ្គងល្អបំផុត</p>
+    <div id="results-list"></div>
+    <div class="results-actions">
+      <button class="btn btn-ghost btn-sm" data-view="quiz"><i class="material-symbols-outlined">refresh</i> ធ្វើម្តងទៀត</button>
+      <button class="btn btn-primary btn-sm" data-view="schools"><i class="material-symbols-outlined">school</i> ស្វែងរកសាលា</button>
+      <button class="btn btn-outline-accent btn-sm" data-view="cost"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
     </div>
-  </section>
+  </div>
+</section>
 
+<!-- ======================== GOAL 2: SCHOOLS ======================== -->
+<section id="view-schools" class="view">
+  <div class="page-wrap">
+    <p class="page-title">ស្វែងរកសាលារៀន</p>
+    <p class="page-sub">ស្វែងរកសាកលវិទ្យាល័យ និងសាលាអប់រំបច្ចេកទេសក្នុងប្រទេសកម្ពុជា</p>
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="material-symbols-outlined">search</i>
+        <input type="text" id="school-search" placeholder="ស្វែងរកឈ្មោះសាលា...">
+      </div>
+      <select class="filter-select" id="school-province">
+        <option value="all">ទាំងអស់ (ខេត្ត)</option>
+        <option value="phnom-penh">ភ្នំពេញ</option>
+        <option value="siem-reap">សៀមរាប</option>
+        <option value="battambang">បាត់ដំបង</option>
+        <option value="kampong-cham">កំពង់ចាម</option>
+      </select>
+      <select class="filter-select" id="school-type">
+        <option value="all">ប្រភេទទាំងអស់</option>
+        <option value="public">រដ្ឋ</option>
+        <option value="private">ឯកជន</option>
+      </select>
+      <select class="filter-select" id="school-career-filter">
+        <option value="all">អាជីពទាំងអស់</option>
+        <option value="technology">បច្ចេកវិទ្យា</option>
+        <option value="healthcare">សុខភាព</option>
+        <option value="design">ការរចនា</option>
+        <option value="business">ពាណិជ្ជកម្ម</option>
+        <option value="trades">ជំនាញការ</option>
+      </select>
+    </div>
+    <div class="chip-row" id="school-chips"></div>
+    <div id="compare-bar" style="display:none" class="compare-row">
+      <span style="font-size:13px;color:var(--text-2)" id="compare-count">ជ្រើស ២ ដើម្បីប្រៀបធៀប</span>
+      <button class="btn btn-primary btn-sm" onclick="showCompare()"><i class="material-symbols-outlined">compare_arrows</i> ប្រៀបធៀប</button>
+      <button class="btn btn-ghost btn-sm" onclick="clearCompare()">លុបចោល</button>
+    </div>
+    <div class="schools-grid" id="schools-grid"></div>
+    <div id="compare-section" style="display:none">
+      <p class="section-title" style="margin-top:32px">ការប្រៀបធៀប</p>
+      <div class="compare-table-wrap"><table class="compare-table" id="compare-table"></table></div>
+    </div>
+  </div>
+</section>
 
-  <!-- BROWSE VIEW -->
-  <section id="view-browse" class="view">
-    <div class="browse-wrap">
-      <h2>រុករកអាជីព</h2>
-      <div class="search-row">
-        <div class="search-box">
-          <i class="material-symbols-outlined">search</i>
-          <input type="text" id="search-input" placeholder="ស្វែងរកអាជីព..." autocomplete="off">
+<!-- ======================== GOAL 3: COST ======================== -->
+<section id="view-cost" class="view">
+  <div class="page-wrap">
+    <p class="page-title">ប៉ាន់ស្មានថ្លៃសិក្សា</p>
+    <p class="page-sub">គណនាថ្លៃសិក្សាសរុប និងប្រៀបធៀបជាមួយប្រាក់ខែអាជីព</p>
+    <div class="cost-layout">
+      <div class="cost-form">
+        <p class="section-title">ព័ត៌មានសិក្សា</p>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">account_balance</i> ជ្រើសសាកលវិទ្យាល័យ</div>
+          <select class="form-input" id="cost-school" onchange="calcCost()">
+            <option value="">-- ជ្រើសសាលា --</option>
+            <option value="rupp" data-tuition="600">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)</option>
+            <option value="ite" data-tuition="500">វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា (ITC)</option>
+            <option value="ppu" data-tuition="450">សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (PPU)</option>
+            <option value="aic" data-tuition="900">AIC University</option>
+            <option value="puc" data-tuition="1000">PUC — Pannasastra University</option>
+            <option value="norton" data-tuition="950">Norton University</option>
+            <option value="bbu" data-tuition="1100">Build Bright University (BBU)</option>
+            <option value="ncu" data-tuition="800">National University of Management (NUM)</option>
+          </select>
         </div>
-        <div class="filter-toggle" id="filter-toggle-btn"><i class="material-symbols-outlined">tune</i><span>តម្រង</span></div>
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom:0">
+            <div class="form-label"><i class="material-symbols-outlined">school</i> ផ្នែកសិក្សា</div>
+            <select class="form-input" id="cost-major" onchange="calcCost()">
+              <option value="cs">វិទ្យាសាស្ត្រកុំព្យូទ័រ</option>
+              <option value="business">ពាណិជ្ជកម្ម</option>
+              <option value="engineering">វិស្វកម្ម</option>
+              <option value="health">សុខភាព</option>
+              <option value="design">ការរចនា</option>
+              <option value="law">ច្បាប់</option>
+            </select>
+          </div>
+          <div class="form-row" style="margin-bottom:0">
+            <div class="form-label"><i class="material-symbols-outlined">calendar_today</i> រយៈពេល (ឆ្នាំ)</div>
+            <select class="form-input" id="cost-years" onchange="calcCost()">
+              <option value="2">២ ឆ្នាំ</option>
+              <option value="3">៣ ឆ្នាំ</option>
+              <option value="4" selected>៤ ឆ្នាំ</option>
+              <option value="5">៥ ឆ្នាំ</option>
+            </select>
+          </div>
+        </div>
+        <p class="section-title" style="margin-top:24px">ជម្រើសរស់នៅ</p>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">location_city</i> ទីកន្លែង</div>
+          <select class="form-input" id="cost-city" onchange="calcCost()">
+            <option value="pp">ភ្នំពេញ</option>
+            <option value="sr">សៀមរាប</option>
+            <option value="province">ខេត្ត</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">home</i> ថ្លៃស្នាក់នៅ ($/ខែ)</div>
+          <div class="range-wrap">
+            <input type="range" id="cost-rent" min="30" max="300" value="80" step="10" oninput="calcCost()">
+            <span class="range-val" id="rent-val">$80</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">restaurant</i> ថ្លៃម្ហូបអាហារ ($/ខែ)</div>
+          <div class="range-wrap">
+            <input type="range" id="cost-food" min="30" max="200" value="60" step="5" oninput="calcCost()">
+            <span class="range-val" id="food-val">$60</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">directions_bus</i> ថ្លៃធ្វើដំណើរ ($/ខែ)</div>
+          <div class="range-wrap">
+            <input type="range" id="cost-transport" min="10" max="100" value="30" step="5" oninput="calcCost()">
+            <span class="range-val" id="transport-val">$30</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-label"><i class="material-symbols-outlined">menu_book</i> ថ្លៃសម្ភារ + ថ្នាក់ ($/ឆ្នាំ)</div>
+          <div class="range-wrap">
+            <input type="range" id="cost-materials" min="50" max="500" value="150" step="25" oninput="calcCost()">
+            <span class="range-val" id="materials-val">$150</span>
+          </div>
+        </div>
       </div>
-      <div class="filter-row" id="filter-row"></div>
-      <div class="career-grid" id="career-grid"></div>
+      <div>
+        <div class="cost-result" id="cost-result">
+          <div class="cost-total-box">
+            <div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div>
+            <div class="amount" id="total-cost">$0</div>
+            <div class="sub" id="cost-duration">សម្រាប់ ៤ ឆ្នាំ</div>
+          </div>
+          <div class="cost-breakdown">
+            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val" id="breakdown-tuition">$0</span></div>
+            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ស្នាក់នៅ</span><span class="val" id="breakdown-rent">$0</span></div>
+            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">restaurant</i> ម្ហូបអាហារ</span><span class="val" id="breakdown-food">$0</span></div>
+            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">directions_bus</i> ធ្វើដំណើរ</span><span class="val" id="breakdown-transport">$0</span></div>
+            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">menu_book</i> សម្ភារ</span><span class="val" id="breakdown-materials">$0</span></div>
+            <div class="cost-divider"></div>
+            <div class="cost-line" style="font-weight:700"><span class="label" style="color:var(--text);font-weight:700"><i class="material-symbols-outlined">payments</i> សរុប</span><span class="val" id="breakdown-total" style="color:var(--accent)">$0</span></div>
+          </div>
+          <div class="roi-box">
+            <h4><i class="material-symbols-outlined">trending_up</i> ការវិភាគ ROI</h4>
+            <div class="roi-stat"><span class="label">ប្រាក់ខែប្រចាំខែ (ប៉ាន់ស្មាន)</span><span class="val" id="roi-salary">$400</span></div>
+            <div class="roi-stat"><span class="label">ប្រចាំឆ្នាំ</span><span class="val" id="roi-annual">$4,800</span></div>
+            <div class="roi-stat"><span class="label">ពេលវេលាសង (ឆ្នាំ)</span><span class="val" id="roi-payback">—</span></div>
+          </div>
+        </div>
+        <p class="section-title" style="margin-top:24px">អាហារូបករណ៍ដែលអាចទទួលបាន</p>
+        <div class="scholarship-list">
+          <div class="scholarship-item">
+            <h5>អាហារូបករណ៍រដ្ឋាភិបាល (MOEYS)</h5>
+            <p>ផ្ដល់ជូនដល់សិស្សដែលមានពិន្ទុល្អ សម្រាប់ការសិក្សានៅសាកលវិទ្យាល័យរដ្ឋ</p>
+            <span class="scholarship-amount">ដល់ $2,000/ឆ្នាំ</span>
+          </div>
+          <div class="scholarship-item">
+            <h5>មូលនិធិ JICA (ជប៉ុន)</h5>
+            <p>ផ្ដល់ជូនផ្នែកវិទ្យាសាស្ត្រ បច្ចេកវិទ្យា នៅ ITC</p>
+            <span class="scholarship-amount">ដល់ $3,500/ឆ្នាំ</span>
+          </div>
+          <div class="scholarship-item">
+            <h5>អាហារូបករណ៍ ADB</h5>
+            <p>ផ្នែកវិស្វកម្ម និងពាណិជ្ជកម្ម</p>
+            <span class="scholarship-amount">$1,500–$4,000/ឆ្នាំ</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
-
-<footer class="site-footer">Compass — គម្រោងជួយសិស្សស្វែងរកទិសដៅ។</footer>
-
-</div>
-<!-- /app-main -->
-
+</div><!-- /app-main -->
 
 <script>
 /* ===== DATA ===== */
-const careerData = {
-  technology: { name: "វិស្វករផ្នែកទន់", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", icon: "code", unis: 6 },
-  healthcare: { name: "អ្នកព្យាបាលរាងកាយ", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", icon: "cardiology", unis: 2 },
-  design: { name: "អ្នករចនា UX", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", icon: "palette", unis: 3 },
-  business: { name: "អ្នកគ្រប់គ្រងទីផ្សារ", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", icon: "work", unis: 4 }
+const careers = {
+  technology: {name:"វិស្វករផ្នែកទន់",icon:"code",salary:"$500–$1,500",why:"ចំណូលចិត្តបច្ចេកទេស ជំនាញតក្កវិជ្ជា",skills:["JavaScript","Python","SQL"],tags:["ល្អ","ប្រាក់ខែខ្ពស់"],schools:["rupp","ite","norton"]},
+  healthcare:{name:"គ្រូពេទ្យ/អ្នកថែទាំ",icon:"cardiology",salary:"$400–$1,200",why:"ចំណូលចិត្តជួយមនុស្ស ចូលចិត្តវិទ្យាសាស្ត្រ",skills:["ជំនាញទំនាក់ទំនង","ការពិនិត្យ"],tags:["មានន័យ","ជំនាញ"],schools:["rupp","ppu"]},
+  design:{name:"អ្នករចនា UX/UI",icon:"palette",salary:"$350–$900",why:"ការគិតច្នៃប្រឌិត ចូលចិត្ដម្គប់ស្ថានភាព",skills:["Figma","ការរចនា","CSS"],tags:["ច្នៃប្រឌិត"],schools:["aic","puc"]},
+  business:{name:"អ្នកគ្រប់គ្រងទីផ្សារ",icon:"work",salary:"$400–$1,000",why:"ចូលចិត្ដគ្រប់គ្រង ចំណូលចិត្ដពាណិជ្ជកម្ម",skills:["ទីផ្សារ","ការលក់","Excel"],tags:["ល្អ","ឱកាស"],schools:["num","puc","norton"]},
+  trades:{name:"ជាងបច្ចេកទេស",icon:"construction",salary:"$300–$800",why:"ជំនាញជាក់ស្ដែង ចូលចិត្ដការងារដៃ",skills:["ជំនាញ","បច្ចេកទេស"],tags:["ជំនាញ"],schools:["ite"]}
 };
-
-const browseCareers = [
-  { name: "វិស្វករផ្នែកទន់", cat: "technology", desc: "បង្កើត និងជួសជុលប្រព័ន្ធ", unis: 6, icon: "code" },
-  { name: "អ្នកវិភាគទិន្នន័យ", cat: "technology", desc: "បញ្ហាតក្កវិជ្ជា ចម្លើយច្បាស់លាស់", unis: 5, icon: "monitoring" },
-  { name: "អ្នករចនា UX", cat: "design", desc: "បញ្ហាបើកចំហ មុំច្នៃប្រឌិត", unis: 3, icon: "palette" },
-  { name: "អ្នកព្យាបាលរាងកាយ", cat: "healthcare", desc: "ធ្វើការដោយដៃ ជាមួយមនុស្ស", unis: 2, icon: "cardiology" },
-  { name: "អ្នកគ្រប់គ្រងទីផ្សារ", cat: "business", desc: "ពង្រីកអ្វីមួយ រៀបរាប់រឿងរ៉ាវ", unis: 4, icon: "work" },
-  { name: "ជាងអគ្គិសនី", cat: "trades", desc: "ប្រព័ន្ធជាក់ស្ដែង ជួសជុលពិតប្រាកដ", unis: 2, icon: "bolt" }
+const schoolsData = [
+  {id:"rupp",name:"សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",type:"public",province:"phnom-penh",tuition:600,duration:4,careers:["technology","healthcare","business"],programs:["វិទ្យាសាស្ត្រ","ភាសា","ច្បាប់"],rating:"4.2"},
+  {id:"ite",name:"វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា (ITC)",type:"public",province:"phnom-penh",tuition:500,duration:4,careers:["technology","trades"],programs:["វិស្វកម្ម","IT","ហេដ្ឋារចនាសម្ព័ន្ធ"],rating:"4.5"},
+  {id:"ppu",name:"សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (PPU)",type:"public",province:"phnom-penh",tuition:450,duration:4,careers:["healthcare","business"],programs:["សេដ្ឋកិច្ច","កសិកម្ម"],rating:"3.9"},
+  {id:"aic",name:"AIC University",type:"private",province:"phnom-penh",tuition:900,duration:4,careers:["design","business"],programs:["ការរចនា","ពាណិជ្ជកម្ម","IT"],rating:"4.0"},
+  {id:"puc",name:"Pannasastra University (PUC)",type:"private",province:"phnom-penh",tuition:1000,duration:4,careers:["design","business","technology"],programs:["ទំនាក់ទំនង","ច្បាប់","IT"],rating:"4.3"},
+  {id:"norton",name:"Norton University",type:"private",province:"phnom-penh",tuition:950,duration:4,careers:["technology","business"],programs:["IT","ពាណិជ្ជកម្ម"],rating:"4.1"},
+  {id:"bbu",name:"Build Bright University (BBU)",type:"private",province:"siem-reap",tuition:1100,duration:4,careers:["technology","business"],programs:["IT","ពាណិជ្ជកម្ម","ច្បាប់"],rating:"3.8"},
+  {id:"num",name:"National University of Management (NUM)",type:"public",province:"phnom-penh",tuition:800,duration:4,careers:["business"],programs:["ការគ្រប់គ្រង","ហិរញ្ញវត្ថុ"],rating:"4.0"},
+  {id:"ub",name:"University of Battambang (UBB)",type:"public",province:"battambang",tuition:400,duration:4,careers:["business","healthcare"],programs:["ការអប់រំ","សុខភាពសាធារណៈ"],rating:"3.7"},
+  {id:"ucka",name:"University of Puthisastra (UP)",type:"private",province:"phnom-penh",tuition:1200,duration:5,careers:["healthcare"],programs:["វេជ្ជសាស្ត្រ","ឱសថ"],rating:"4.6"},
+  {id:"sor",name:"Svay Rieng University (SRU)",type:"public",province:"kampong-cham",tuition:380,duration:4,careers:["business","technology"],programs:["ភូគព្ភ","IT"],rating:"3.6"},
+  {id:"rufa",name:"Royal University of Fine Arts (RUFA)",type:"public",province:"phnom-penh",tuition:350,duration:4,careers:["design"],programs:["ស្ថាបត្យកម្ម","វិចិត្រ"],rating:"4.4"}
 ];
-
-const categoryMeta = {
-  technology: { label: "បច្ចេកវិទ្យា", icon: "memory" },
-  healthcare: { label: "សុខភាព", icon: "cardiology" },
-  design: { label: "ការរចនា", icon: "palette" },
-  business: { label: "ពាណិជ្ជកម្ម", icon: "work" },
-  trades: { label: "ជំនាញការ", icon: "construction" }
-};
+</script>
 
 
-const questions = [
-  { text: "តើអ្នកចង់ចំណាយពេលមួយថ្ងៃដោះស្រាយបញ្ហាប្រភេទណា?", options: [
-    { label: "ល្បែងផ្គុំច្នៃប្រឌិតដែលគ្មានចម្លើយថេរ", cat: "design" },
-    { label: "បញ្ហាតក្កវិជ្ជាដែលមានចម្លើយត្រឹមត្រូវមួយ", cat: "technology" },
-    { label: "បញ្ហារបស់មនុស្សម្នាក់ ជួបផ្ទាល់មុខ", cat: "healthcare" },
-    { label: "បញ្ហាទីផ្សារ ឬលេខ", cat: "business" }
-  ]},
-  { text: "តើបរិយាកាសណាដែលស្ដាប់ទៅល្អបំផុត?", options: [
-    { label: "ស្ទូឌីយោពោរពេញដោយគំនូរព្រាង និងគំរូ", cat: "design" },
-    { label: "អេក្រង់ កាសស្ដាប់ត្រចៀក ផ្ចង់ស្មារតី", cat: "technology" },
-    { label: "គ្លីនិក ផ្លាស់ទីជានិច្ច", cat: "healthcare" },
-    { label: "បន្ទប់ប្រជុំ បង្ហាញគំនិត", cat: "business" }
-  ]},
-  { text: "តើអ្វីសំខាន់បំផុតក្នុងការងាររបស់អ្នក?", options: [
-    { label: "ធ្វើឱ្យអ្វីមួយមើលទៅ និងមានអារម្មណ៍ត្រឹមត្រូវ", cat: "design" },
-    { label: "បង្កើតអ្វីមួយដែលដំណើរការបានយូរ", cat: "technology" },
-    { label: "ជួយនរណាម្នាក់មានអារម្មណ៍ល្អប្រសើរ", cat: "healthcare" },
-    { label: "ពង្រីកអ្វីមួយ មើលលេខផ្លាស់ប្តូរ", cat: "business" }
-  ]},
-  { text: "ជ្រើសរើសថ្ងៃសៅរ៍មួយ។", options: [
-    { label: "រចនាបន្ទប់ឡើងវិញជាលើកទីបី", cat: "design" },
-    { label: "ជួសជុលបញ្ហាក្នុងគម្រោងផ្ទាល់ខ្លួន", cat: "technology" },
-    { label: "ស្ម័គ្រចិត្តនៅគ្លីនិក ឬកន្លែងជម្រក", cat: "healthcare" },
-    { label: "ចរចាតម្លៃល្អជាងនៅផ្សារ", cat: "business" }
-  ]}
+<script>
+/* ===== QUIZ QUESTIONS (3 phases) ===== */
+const phases = [
+  {
+    label:"ដំណាក់កាលទី ១: ចំណូលចិត្ត",
+    key:"interests",
+    questions:[
+      {text:"តើអ្នកចូលចិត្ដធ្វើអ្វីក្នុងម៉ោងទំនេរ?",opts:[{l:"ជួសជុលរឿងអ្វីមួយ",c:"trades"},{l:"ស្រាវជ្រាវ ឬអានស្រាវជ្រាវ",c:"technology"},{l:"ជួយដល់អ្នកដ៏ទៃ",c:"healthcare"},{l:"បង្កើតអ្វីដោយដៃ",c:"design"}]},
+      {text:"ប្រភេទបញ្ហាណាដែលអ្នកចង់ដោះស្រាយ?",opts:[{l:"បញ្ហាតក្កវិជ្ជា ឬចំនួន",c:"technology"},{l:"បញ្ហាច្នៃប្រឌិត ឬស្ថាបត្យ",c:"design"},{l:"បញ្ហារបស់មនុស្ស",c:"healthcare"},{l:"បញ្ហាពាណិជ្ជកម្ម",c:"business"}]},
+      {text:"បរិយាកាសការងារអ្វីដែលអ្នកឆ្លើយតបបានល្អ?",opts:[{l:"នៅក្នុងស្ទូឌីយោ រចនា",c:"design"},{l:"ក្នុងការិយាល័យ ជាមួយក្រុម",c:"business"},{l:"នៅខាងក្រៅ ជាក់ស្ដែង",c:"trades"},{l:"ស្ងប់ ផ្ចង់ស្មារតី",c:"technology"}]},
+      {text:"ចំណូលចិត្ដមុខវិជ្ជានៅសាលា?",opts:[{l:"គណិតវិទ្យា ឬ វិទ្យាសាស្ត្រ",c:"technology"},{l:"ជីវវិទ្យា ឬ រូបវិទ្យា",c:"healthcare"},{l:"វិចិត្រ ឬ តន្ត្រី",c:"design"},{l:"ភូមិវិទ្យា ឬ សេដ្ឋកិច្ច",c:"business"}]},
+      {text:"អ្វីដែលផ្ដល់ការពេញចិត្ដពិតប្រាកដ?",opts:[{l:"ធ្វើឱ្យអ្វីមួយដំណើរការ",c:"trades"},{l:"ស្វែងរកចម្លើយស្មុគ",c:"technology"},{l:"ឃើញមនុស្សដ៏ទៃប្រសើរឡើង",c:"healthcare"},{l:"ធ្វើឱ្យគម្រោងជោគជ័យ",c:"business"}]}
+    ]
+  },
+  {
+    label:"ដំណាក់កាលទី ២: ជំនាញ",
+    key:"skills",
+    questions:[
+      {text:"ជំនាញណាដែលអ្នកគិតថាខ្លួនអ្នកខ្លាំង?",opts:[{l:"ការអានចំនួន ឬ ការកំណត់ចំណុចខ្ខ",c:"technology"},{l:"ការទំនាក់ទំនង ឬ ការចូលទៅរក",c:"healthcare"},{l:"ការគ្រប់គ្រង ឬ ការណែនាំ",c:"business"},{l:"ការបង្កើត ឬ ការរចនា",c:"design"}]},
+      {text:"ក្នុងក្រុម អ្នកតែងតែដើរតួជាអ្វី?",opts:[{l:"អ្នកដោះស្រាយបញ្ហា",c:"technology"},{l:"អ្នកតភ្ជាប់ ឬ ការពាររួម",c:"healthcare"},{l:"អ្នកដឹកនាំ",c:"business"},{l:"អ្នករចនា ឬ ច្នៃ",c:"design"}]},
+      {text:"ប្រតិកម្មរបស់អ្នកចំពោះបញ្ហាពិបាក?",opts:[{l:"រស់ស្ងប់ ស្វែងរកដំណោះស្រាយ",c:"technology"},{l:"ឈប់ស្ដាប់ ចង់ជួយ",c:"healthcare"},{l:"ស្ដែងអំណាច ណែនាំ",c:"business"},{l:"ស្រមៃ ឬ ប្រើភ្នែក",c:"design"}]},
+      {text:"ការងារប្រភេទណាអ្នកធ្វើបានជោគជ័យ?",opts:[{l:"ការវិភាគ ឬ ក្រោមផ្លូវ",c:"technology"},{l:"ការព្យាបាល ឬ ទំនាក់ទំនង",c:"healthcare"},{l:"ការផ្សព្វ ឬ ការគ្រប់គ្រង",c:"business"},{l:"ការបង្កើត ឬ ការរចនា",c:"design"}]},
+      {text:"ស្ថានភាពការបង្រៀន ឬ ធ្វើបទបង្ហាញ?",opts:[{l:"ដោយប្រើទិន្នន័យ ឬ ស្ថិតិ",c:"technology"},{l:"ដោយបញ្ចុះបញ្ចូលអារម្មណ៍",c:"healthcare"},{l:"ប្រកបដោយទំនុកចិត្ត",c:"business"},{l:"ដោយមើលឃើញ",c:"design"}]}
+    ]
+  },
+  {
+    label:"ដំណាក់កាលទី ៣: តម្លៃការងារ",
+    key:"values",
+    questions:[
+      {text:"អ្វីសំខាន់ជាងគេក្នុងការងារ?",opts:[{l:"ប្រាក់ខែខ្ពស់",c:"technology"},{l:"ជួយដល់សង្គម",c:"healthcare"},{l:"ឱកាសសម្រាប់ច្នៃប្រឌិត",c:"design"},{l:"ការធំដំណើរ",c:"business"}]},
+      {text:"ការធ្វើការប្រភេទណា?",opts:[{l:"ធ្វើការម្នាក់ ផ្ចង់ស្មារតី",c:"technology"},{l:"ធ្វើការជាមួយមនុស្ស",c:"healthcare"},{l:"ធ្វើការជាក្រុម ប្រកួតប្រជែង",c:"business"},{l:"ធ្វើការម្នាក់ ច្នៃប្រឌិត",c:"design"}]},
+      {text:"ចង់ការងារយ៉ាងណា?",opts:[{l:"ស្ថិរភាព ប្រាក់ខែខ្ចប់ខ្ចោល",c:"business"},{l:"ជួយដល់អ្នកដ៏ទៃ",c:"healthcare"},{l:"ដំណើរការ ផ្ទុះថ្មី",c:"technology"},{l:"ការបង្ហាញស្នាដៃ",c:"design"}]},
+      {text:"ចំណេញ ឬ បំណងផ្ទាល់ខ្លួន?",opts:[{l:"ប្រាក់ចំណូលគ្រប់គ្រាន់",c:"trades"},{l:"ការផ្លាស់ប្ដូរផ្ នែករបស់ខ្លួន",c:"healthcare"},{l:"ការសហការ ហ្ស័ ប",c:"technology"},{l:"ផ្ដោតលើការច្នៃ",c:"design"}]},
+      {text:"ចង់ធ្វើការនៅ?",opts:[{l:"ប្រទេសរបស់ខ្លួន",c:"healthcare"},{l:"ការងារអន្ដរជាតិ",c:"business"},{l:"ការងារពីផ្ទះ",c:"technology"},{l:"ស្ទូឌីយោ/ការបង្ហាញ",c:"design"}]}
+    ]
+  }
 ];
+</script>
 
 
+<script>
 /* ===== APP STATE ===== */
-let qIndex = 0;
-let selectedCat = null;
-let scores = {};
-let activeCategory = "all";
-let searchTerm = "";
-let menuOpen = false;
+let menuOpen=false, phaseIdx=0, qIdx=0, selCat=null;
+let scores={technology:0,healthcare:0,design:0,business:0,trades:0};
+let phaseScores=[{},{},{}];
+let compareList=[];
+const allQs = phases.flatMap(p=>p.questions);
+const totalQs = allQs.length;
+let globalIdx=0;
 
-/* ===== SIDEBAR (mobile drawer) ===== */
-const hamburgerBtn = document.getElementById("hamburger-btn");
-const sidebar = document.getElementById("sidebar");
-const sidebarBackdrop = document.getElementById("sidebar-backdrop");
+/* ===== SIDEBAR ===== */
+const hamburger=document.getElementById("hamburger");
+const sidebar=document.getElementById("sidebar");
+const backdrop=document.getElementById("backdrop");
+function toggleSidebar(){menuOpen=!menuOpen;sidebar.classList.toggle("open",menuOpen);backdrop.classList.toggle("open",menuOpen);document.body.style.overflow=menuOpen?"hidden":"";}
+function closeSidebar(){if(menuOpen)toggleSidebar();}
+hamburger.addEventListener("click",toggleSidebar);
+backdrop.addEventListener("click",closeSidebar);
 
-function toggleMenu() {
-  menuOpen = !menuOpen;
-  sidebar.classList.toggle("open", menuOpen);
-  sidebarBackdrop.classList.toggle("open", menuOpen);
-  document.body.style.overflow = menuOpen ? "hidden" : "";
+/* ===== NAVIGATION ===== */
+function showView(v){
+  document.querySelectorAll(".view").forEach(el=>el.classList.remove("active","fade-in"));
+  const t=document.getElementById("view-"+v);
+  if(!t)return;
+  t.classList.add("active");
+  requestAnimationFrame(()=>t.classList.add("fade-in"));
+  document.querySelectorAll(".s-link").forEach(l=>l.classList.toggle("active",l.dataset.view===v&&!l.dataset.cat));
+  window.scrollTo({top:0,behavior:"smooth"});
+  closeSidebar();
+  if(v==="quiz")initQuiz();
+  if(v==="schools")renderSchools();
+  if(v==="cost")calcCost();
 }
-
-function closeMenu() {
-  if (menuOpen) toggleMenu();
-}
-
-hamburgerBtn.addEventListener("click", toggleMenu);
-sidebarBackdrop.addEventListener("click", closeMenu);
-
-/* ===== VIEW NAVIGATION ===== */
-function showView(view) {
-  document.querySelectorAll(".view").forEach(v => { v.classList.remove("active", "fade-in"); });
-  const target = document.getElementById("view-" + view);
-  target.classList.add("active");
-  requestAnimationFrame(() => target.classList.add("fade-in"));
-  document.querySelectorAll(".side-link").forEach(l => l.classList.toggle("active", l.dataset.view === view && !l.dataset.cat));
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  if (view === "quiz") resetQuiz();
-}
-
-/* ===== SIDEBAR PROGRESS ===== */
-function updateSidebarProgress() {
-  const pct = Math.round((qIndex / questions.length) * 100);
-  const pctEl = document.getElementById("side-progress-pct");
-  const barEl = document.getElementById("side-progress-bar");
-  if (pctEl) pctEl.textContent = pct + "%";
-  if (barEl) barEl.style.width = pct + "%";
-}
-
-
-/* ===== QUIZ LOGIC ===== */
-function resetQuiz() {
-  qIndex = 0;
-  selectedCat = null;
-  scores = { design: 0, technology: 0, healthcare: 0, business: 0 };
-  renderQuestion(false);
-}
-
-function renderQuestion(slide) {
-  const slideEl = document.getElementById("question-slide");
-  const draw = () => {
-    const q = questions[qIndex];
-    document.getElementById("quiz-progress-label").textContent = "សំណួរទី " + (qIndex + 1) + " ក្នុង " + questions.length;
-    document.getElementById("progress-fill").style.width = (qIndex / questions.length) * 100 + "%";
-    updateSidebarProgress();
-    document.getElementById("q-text").textContent = q.text;
-    selectedCat = null;
-    document.getElementById("next-btn").disabled = true;
-    const optsHtml = q.options.map(o =>
-      '<div class="option" data-cat="' + o.cat + '"><i class="material-symbols-outlined">radio_button_unchecked</i><span>' + o.label + "</span></div>"
-    ).join("");
-    document.getElementById("options").innerHTML = optsHtml;
-    document.querySelectorAll(".option").forEach(el => el.addEventListener("click", onSelectOption));
-    slideEl.classList.remove("sliding");
-  };
-  if (slide) {
-    slideEl.classList.add("sliding");
-    setTimeout(draw, 220);
-  } else {
-    draw();
-  }
-}
-
-function onSelectOption(e) {
-  document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
-  e.currentTarget.classList.add("selected");
-  selectedCat = e.currentTarget.dataset.cat;
-  document.getElementById("next-btn").disabled = false;
-}
-
-document.getElementById("next-btn").addEventListener("click", () => {
-  if (!selectedCat) return;
-  scores[selectedCat]++;
-  if (qIndex < questions.length - 1) {
-    qIndex++;
-    renderQuestion(true);
-  } else {
-    document.getElementById("progress-fill").style.width = "100%";
-    qIndex = questions.length;
-    updateSidebarProgress();
-    setTimeout(showResults, 200);
-  }
+document.querySelectorAll("[data-view]").forEach(el=>{
+  el.addEventListener("click",()=>{
+    const v=el.dataset.view;
+    const cat=el.dataset.cat;
+    showView(v);
+    if(v==="schools"&&cat){filterSchoolsByCat(cat);}
+  });
 });
+document.querySelector('.s-link[data-view="home"]').classList.add("active");
 
+/* ===== GOAL 1: QUIZ ===== */
+function initQuiz(){
+  phaseIdx=0;qIdx=0;globalIdx=0;selCat=null;
+  scores={technology:0,healthcare:0,design:0,business:0,trades:0};
+  phaseScores=[{},{},{}];
+  renderQ();
+}
+function renderQ(){
+  const phase=phases[phaseIdx];
+  const q=phase.questions[qIdx];
+  document.getElementById("quiz-phase-lbl").textContent=phase.label;
+  document.getElementById("quiz-counter").textContent="សំណួរ "+(globalIdx+1)+" / "+totalQs;
+  document.getElementById("progress-fill").style.width=((globalIdx/totalQs)*100)+"%";
+  document.getElementById("q-text").textContent=q.text;
+  document.getElementById("options").innerHTML=q.opts.map(o=>`<div class="option" data-cat="${o.c}"><i class="material-symbols-outlined">radio_button_unchecked</i><span>${o.l}</span></div>`).join("");
+  document.querySelectorAll(".option").forEach(el=>el.addEventListener("click",()=>{
+    document.querySelectorAll(".option").forEach(e=>e.classList.remove("selected"));
+    el.classList.add("selected");
+    el.querySelector(".material-symbols-outlined").textContent="task_alt";
+    selCat=el.dataset.cat;
+    document.getElementById("next-btn").disabled=false;
+  }));
+  selCat=null;
+  document.getElementById("next-btn").disabled=true;
+  document.getElementById("prev-btn").style.display=globalIdx>0?"inline-flex":"none";
+  document.getElementById("next-btn").textContent=globalIdx===totalQs-1?"មើលលទ្ធផល":"បន្ទាប់ ▶";
+  ["phase-1","phase-2","phase-3"].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.remove("active","done");
+    if(i<phaseIdx)el.classList.add("done");
+    else if(i===phaseIdx)el.classList.add("active");
+  });
+}
+document.getElementById("next-btn").addEventListener("click",()=>{
+  if(!selCat)return;
+  scores[selCat]=(scores[selCat]||0)+1;
+  if(!phaseScores[phaseIdx][selCat])phaseScores[phaseIdx][selCat]=0;
+  phaseScores[phaseIdx][selCat]++;
+  qIdx++;globalIdx++;
+  if(qIdx>=phases[phaseIdx].questions.length){phaseIdx++;qIdx=0;}
+  if(phaseIdx>=phases.length){document.getElementById("progress-fill").style.width="100%";setTimeout(showResults,200);}
+  else renderQ();
+});
+function prevQ(){if(globalIdx===0)return;globalIdx--;let g=0;phaseIdx=0;qIdx=0;for(let pi=0;pi<phases.length;pi++){if(g+phases[pi].questions.length>globalIdx){phaseIdx=pi;qIdx=globalIdx-g;break;}g+=phases[pi].questions.length;}selCat=null;renderQ();}
 
-/* ===== RESULTS ===== */
-function showResults() {
-  const ranked = Object.keys(scores).sort((a, b) => scores[b] - scores[a]).slice(0, 3);
-  const list = document.getElementById("results-list");
-  list.innerHTML = "";
-  ranked.forEach((cat, i) => {
-    const c = careerData[cat];
-    const pct = Math.min(96, 55 + scores[cat] * 10);
-    const div = document.createElement("div");
-    div.className = "match-card";
-    div.style.animationDelay = (i * 0.12) + "s";
-    div.innerHTML =
-      '<div class="match-left"><div class="match-icon"><i class="material-symbols-outlined">' + c.icon + '</i></div>' +
-      '<div><p class="match-name">' + c.name + '</p>' +
-      '<p class="match-desc">' + c.desc + '</p>' +
-      '<span class="match-badge">' + categoryMeta[cat].label + '</span></div></div>' +
-      '<div class="match-pct"><span class="num" id="pct-' + i + '">0%</span><div class="word">ផ្គូផ្គង</div></div>';
-    list.appendChild(div);
-    animateCount(document.getElementById("pct-" + i), pct, i * 150 + 250);
+function showResults(){
+  const ranked=Object.keys(scores).sort((a,b)=>scores[b]-scores[a]);
+  const top=ranked.slice(0,3);
+  const traits=[
+    {icon:"favorite",label:"ចំណូលចិត្ត",tags:Object.keys(phaseScores[0]).sort((a,b)=>phaseScores[0][b]-phaseScores[0][a]).slice(0,2).map(k=>careers[k]?.name||k)},
+    {icon:"psychology",label:"ជំនាញ",tags:Object.keys(phaseScores[1]).sort((a,b)=>phaseScores[1][b]-phaseScores[1][a]).slice(0,2).map(k=>careers[k]?.name||k)},
+    {icon:"star",label:"តម្លៃ",tags:Object.keys(phaseScores[2]).sort((a,b)=>phaseScores[2][b]-phaseScores[2][a]).slice(0,2).map(k=>careers[k]?.name||k)}
+  ];
+  document.getElementById("profile-grid").innerHTML=traits.map(t=>`<div class="profile-trait"><i class="material-symbols-outlined">${t.icon}</i><h4>${t.label}</h4><div class="tags">${t.tags.map(tg=>`<span class="tag">${tg||"—"}</span>`).join("")}</div></div>`).join("");
+  document.getElementById("results-list").innerHTML=top.map((cat,i)=>{
+    const c=careers[cat]||{};
+    const pct=Math.min(97,55+scores[cat]*8);
+    return`<div class="match-card" style="animation-delay:${i*.12}s"><div class="match-left"><div class="match-icon"><i class="material-symbols-outlined">${c.icon||"work"}</i></div><div><p class="match-name">${c.name||cat}</p><p class="match-why">${c.why||""}</p><div class="match-tags">${(c.tags||[]).map(t=>`<span class="match-tag">${t}</span>`).join("")}</div><p class="match-salary">ប្រាក់ខែ: <b>${c.salary||"—"}</b></p></div></div><div class="match-pct"><div class="num" id="pct${i}">0%</div><div class="word">ផ្គូផ្គង</div></div></div>`;
+  }).join("");
+  top.forEach((cat,i)=>{
+    const pct=Math.min(97,55+scores[cat]*8);
+    animCount(document.getElementById("pct"+i),pct,i*150+300);
   });
   showView("results");
 }
-
-function animateCount(el, target, delay) {
-  setTimeout(() => {
-    const duration = 700;
-    const start = performance.now();
-    function step(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      el.textContent = Math.round(progress * target) + "%";
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }, delay);
-}
-
-
-/* ===== BROWSE / FILTER ===== */
-function renderFilterRow() {
-  const row = document.getElementById("filter-row");
-  let html = '<div class="chip" data-cat="all">ទាំងអស់</div>';
-  Object.keys(categoryMeta).forEach(key => {
-    html += '<div class="chip" data-cat="' + key + '"><i class="material-symbols-outlined">' + categoryMeta[key].icon + '</i>' + categoryMeta[key].label + "</div>";
-  });
-  row.innerHTML = html;
-  row.querySelectorAll(".chip").forEach(chip => {
-    chip.classList.toggle("active-filter", chip.dataset.cat === activeCategory);
-    chip.addEventListener("click", () => {
-      activeCategory = chip.dataset.cat;
-      renderFilterRow();
-      renderBrowse();
-    });
-  });
-}
-
-function renderBrowse() {
-  const grid = document.getElementById("career-grid");
-  const filtered = browseCareers.filter(c =>
-    (activeCategory === "all" || c.cat === activeCategory) &&
-    c.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state">គ្មានអាជីពដែលត្រូវនឹងការស្វែងរក។</div>';
-    return;
-  }
-  grid.innerHTML = filtered.map((c, i) =>
-    '<div class="career-card" style="animation-delay:' + (i * 0.05) + 's">' +
-    '<div class="career-top"><i class="material-symbols-outlined">' + c.icon + '</i>' +
-    '<span class="career-cat">' + categoryMeta[c.cat].label + "</span></div>" +
-    '<p class="career-name">' + c.name + "</p>" +
-    '<p class="career-desc">' + c.desc + "</p>" +
-    '<p class="career-unis">' + c.unis + " សាកលវិទ្យាល័យនៅជិត</p></div>"
-  ).join("");
-}
-
-document.getElementById("search-input").addEventListener("input", (e) => {
-  searchTerm = e.target.value;
-  renderBrowse();
-});
-
-
-/* ===== EVENT DELEGATION FOR NAV ===== */
-document.querySelectorAll("[data-view]").forEach(el => {
-  el.addEventListener("click", () => {
-    closeMenu();
-    const cat = el.dataset.cat;
-    if (cat && categoryMeta[cat]) {
-      activeCategory = cat;
-    }
-    showView(el.dataset.view);
-    if (el.dataset.view === "browse") {
-      renderFilterRow();
-      renderBrowse();
-    }
-  });
-});
-
-/* ===== INTERSECTION OBSERVER FOR REVEALS ===== */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("in-view");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-/* ===== FILTER TOGGLE (Mobile) ===== */
-const filterToggleBtn = document.getElementById("filter-toggle-btn");
-const filterRow = document.getElementById("filter-row");
-let filtersVisible = true;
-
-filterToggleBtn.addEventListener("click", () => {
-  filtersVisible = !filtersVisible;
-  filterRow.style.display = filtersVisible ? "flex" : "none";
-});
-
-/* ===== INIT ===== */
-document.querySelector('.side-link[data-view="home"]').classList.add("active");
-renderFilterRow();
-renderBrowse();
+function animCount(el,target,delay){if(!el)return;setTimeout(()=>{const dur=700,st=performance.now();function step(now){const p=Math.min((now-st)/dur,1);el.textContent=Math.round(p*target)+"%";if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);},delay);}
 </script>
 
+
+<script>
+/* ===== GOAL 2: SCHOOLS ===== */
+let schoolSearch="",schoolProvince="all",schoolType="all",schoolCareer="all";
+
+function filterSchoolsByCat(cat){schoolCareer=cat;document.getElementById("school-career-filter").value=cat;renderSchools();}
+
+function renderSchools(){
+  const q=schoolSearch.toLowerCase();
+  const filtered=schoolsData.filter(s=>{
+    const matchQ=s.name.toLowerCase().includes(q);
+    const matchP=schoolProvince==="all"||s.province===schoolProvince;
+    const matchT=schoolType==="all"||s.type===schoolType;
+    const matchC=schoolCareer==="all"||s.careers.includes(schoolCareer);
+    return matchQ&&matchP&&matchT&&matchC;
+  });
+  const grid=document.getElementById("schools-grid");
+  if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;return;}
+  grid.innerHTML=filtered.map((s,i)=>`
+    <div class="school-card" style="animation-delay:${i*.06}s" onclick="toggleCompare('${s.id}')">
+      <div class="school-card-top">
+        <span class="school-type-badge ${s.type==="public"?"badge-public":"badge-private"}">${s.type==="public"?"រដ្ឋ":"ឯកជន"}</span>
+        <span style="font-size:12px;color:var(--text-3)">★ ${s.rating}</span>
+      </div>
+      <p class="school-name">${s.name}</p>
+      <p class="school-location"><i class="material-symbols-outlined">location_on</i>${provinceLabel(s.province)}</p>
+      <div class="school-programs">${s.programs.map(p=>`<span class="school-prog-tag">${p}</span>`).join("")}</div>
+      <div class="school-footer">
+        <span class="school-tuition">$${s.tuition}/ឆ្នាំ</span>
+        <span>${s.duration} ឆ្នាំ</span>
+        ${compareList.includes(s.id)?`<span style="color:var(--accent);font-weight:700;font-size:11px">✓ ជ្រើស</span>`:""}
+      </div>
+    </div>`).join("");
+  updateCompareBar();
+}
+
+function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម",province:"ខេត្ត"};return m[p]||p;}
+
+function toggleCompare(id){
+  if(compareList.includes(id))compareList=compareList.filter(x=>x!==id);
+  else if(compareList.length<3)compareList.push(id);
+  renderSchools();
+}
+function updateCompareBar(){
+  const bar=document.getElementById("compare-bar");
+  const cnt=document.getElementById("compare-count");
+  bar.style.display=compareList.length>0?"flex":"none";
+  cnt.textContent=compareList.length>=2?`${compareList.length} សាលាត្រូវបានជ្រើស — ប្រៀបធៀប`:`ជ្រើស ${compareList.length}/3`;
+}
+function showCompare(){
+  if(compareList.length<2)return;
+  const sel=schoolsData.filter(s=>compareList.includes(s.id));
+  const rows=[
+    ["ឈ្មោះ",s=>s.name],
+    ["ប្រភេទ",s=>s.type==="public"?"រដ្ឋ":"ឯកជន"],
+    ["ខេត្ត",s=>provinceLabel(s.province)],
+    ["ថ្លៃ/ឆ្នាំ",s=>"$"+s.tuition],
+    ["រយៈពេល",s=>s.duration+" ឆ្នាំ"],
+    ["ការវាយតម្លៃ",s=>"★ "+s.rating],
+    ["ផ្នែក",s=>s.programs.join(", ")]
+  ];
+  const thead=`<tr><th>ចំណុច</th>${sel.map(s=>`<th>${s.name.split(" ")[0]}</th>`).join("")}</tr>`;
+  const tbody=rows.map(([label,fn])=>`<tr><td><b>${label}</b></td>${sel.map(s=>`<td>${fn(s)}</td>`).join("")}</tr>`).join("");
+  document.getElementById("compare-table").innerHTML=thead+tbody;
+  const sec=document.getElementById("compare-section");
+  sec.style.display="block";
+  sec.scrollIntoView({behavior:"smooth"});
+}
+function clearCompare(){compareList=[];document.getElementById("compare-section").style.display="none";renderSchools();}
+
+document.getElementById("school-search").addEventListener("input",e=>{schoolSearch=e.target.value;renderSchools();});
+document.getElementById("school-province").addEventListener("change",e=>{schoolProvince=e.target.value;renderSchools();});
+document.getElementById("school-type").addEventListener("change",e=>{schoolType=e.target.value;renderSchools();});
+document.getElementById("school-career-filter").addEventListener("change",e=>{schoolCareer=e.target.value;renderSchools();});
+
+/* ===== GOAL 3: COST ===== */
+const salaryMap={technology:800,healthcare:600,design:500,business:650,trades:450,cs:800,health:600,design2:500,business2:650,engineering:750,law:550};
+function calcCost(){
+  const schoolSel=document.getElementById("cost-school");
+  const tuitionPerYear=schoolSel.selectedOptions[0]?.dataset.tuition||0;
+  const years=parseInt(document.getElementById("cost-years").value)||4;
+  const rent=parseInt(document.getElementById("cost-rent").value)||80;
+  const food=parseInt(document.getElementById("cost-food").value)||60;
+  const transport=parseInt(document.getElementById("cost-transport").value)||30;
+  const materials=parseInt(document.getElementById("cost-materials").value)||150;
+  document.getElementById("rent-val").textContent="$"+rent;
+  document.getElementById("food-val").textContent="$"+food;
+  document.getElementById("transport-val").textContent="$"+transport;
+  document.getElementById("materials-val").textContent="$"+materials;
+  const tuitionTotal=tuitionPerYear*years;
+  const livingPerYear=(rent+food+transport)*12;
+  const livingTotal=livingPerYear*years;
+  const materialsTotal=materials*years;
+  const total=tuitionTotal+livingTotal+materialsTotal;
+  const fmt=n=>"$"+n.toLocaleString();
+  document.getElementById("total-cost").textContent=fmt(total);
+  document.getElementById("cost-duration").textContent="សម្រាប់ "+years+" ឆ្នាំ";
+  document.getElementById("breakdown-tuition").textContent=fmt(tuitionTotal);
+  document.getElementById("breakdown-rent").textContent=fmt(rent*12*years);
+  document.getElementById("breakdown-food").textContent=fmt(food*12*years);
+  document.getElementById("breakdown-transport").textContent=fmt(transport*12*years);
+  document.getElementById("breakdown-materials").textContent=fmt(materialsTotal);
+  document.getElementById("breakdown-total").textContent=fmt(total);
+  const major=document.getElementById("cost-major").value;
+  const monthSalary=salaryMap[major]||500;
+  const annualSalary=monthSalary*12;
+  const payback=total>0?(total/annualSalary).toFixed(1):"—";
+  document.getElementById("roi-salary").textContent=fmt(monthSalary)+"/ខែ";
+  document.getElementById("roi-annual").textContent=fmt(annualSalary)+"/ឆ្នាំ";
+  document.getElementById("roi-payback").textContent=payback+" ឆ្នាំ";
+}
+
+/* ===== REVEAL OBSERVER ===== */
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* ===== INIT ===== */
+initQuiz();
+calcCost();
+</script>
 </body>
 </html>
