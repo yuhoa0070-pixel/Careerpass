@@ -307,6 +307,32 @@ select.filter-select:focus{border-color:var(--accent);}
 </head>
 <body>
 
+<!-- Intro preloader -->
+<div class="preloader" id="preloader">
+  <div class="pre-inner">
+    <div class="pre-word">COMPASS</div>
+    <div class="pre-sub">ស្វែងរកអាជីព · សាលា · ថ្លៃសិក្សា</div>
+    <div class="pre-bar"><span></span></div>
+  </div>
+</div>
+<script>
+  document.documentElement.style.overflow='hidden';
+  (function(){
+    var pre=document.getElementById('preloader');
+    if(!pre)return;
+    if(sessionStorage.getItem('introSeen')){pre.style.display='none';document.documentElement.style.overflow='';return;}
+    function finish(){
+      if(pre.classList.contains('done'))return;
+      pre.classList.add('done');
+      document.documentElement.style.overflow='';
+      sessionStorage.setItem('introSeen','1');
+      setTimeout(function(){if(pre&&pre.parentNode)pre.parentNode.removeChild(pre);},950);
+    }
+    window.addEventListener('load',function(){setTimeout(finish,1700);});
+    setTimeout(finish,4200);
+  })();
+</script>
+
 <!-- Animated grid line highlights (alternating directions) -->
 <div class="grid-flow" aria-hidden="true">
   <span class="gline down" style="left:0;--d:5s;--delay:0s"></span>
