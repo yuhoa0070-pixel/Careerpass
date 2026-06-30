@@ -27,9 +27,23 @@
   --shadow-md: 0 6px 20px rgba(0,0,0,0.09);
   --sidebar-w: 264px;
   --nav-h: 60px;
+  --grid-cell: 150px;
 }
 *,*::before,*::after{box-sizing:border-box;}
 body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+/* Subtle modular grid on background */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px);
+  background-size: var(--grid-cell) var(--grid-cell);
+  background-position: 0 0;
+}
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 input,select{font-family:inherit;}
@@ -93,6 +107,8 @@ input,select{font-family:inherit;}
 
 /* ===== SECTION WRAPPER ===== */
 .page-wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px;}
+@media(min-width:600px){:root{--grid-cell:200px;}}
+@media(min-width:1024px){:root{--grid-cell:240px;}}
 @media(min-width:768px){.page-wrap{padding:40px 32px 80px;}}
 @media(min-width:1200px){.page-wrap{padding:48px 48px 80px;}}
 .page-title{font-size:clamp(22px,4vw,32px);font-weight:700;letter-spacing:-.5px;margin:0 0 6px;}
