@@ -188,6 +188,8 @@ input,select{font-family:inherit;}
 .goal-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px);border-color:transparent;}
 .goal-card .icon-wrap{width:54px;height:54px;border-radius:16px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:transform .3s var(--ease);}
 .goal-card:hover .icon-wrap{transform:scale(1.08);}
+.goal-illu{width:100%;max-width:150px;height:96px;margin:0 auto 16px;display:block;}
+.goal-card:hover .goal-illu{transform:scale(1.05);transition:transform .3s var(--ease);}
 .goal-card .icon-wrap .material-symbols-outlined{font-size:26px;color:var(--accent);}
 .goal-card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
 .goal-card p{font-size:13px;color:var(--text-2);margin:0;line-height:1.5;}
@@ -395,19 +397,42 @@ select.filter-select:focus{border-color:var(--accent);}
   <div class="goals-row">
     <div class="goal-card reveal" data-view="quiz">
       <div class="goal-number">គោលដៅ ១</div>
-      <div class="icon-wrap"><i class="material-symbols-outlined">person_search</i></div>
+      <svg class="goal-illu" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="16" y="22" width="58" height="62" rx="8" fill="#EDE9FA"/>
+        <circle cx="45" cy="44" r="11" fill="#624EBC"/>
+        <path d="M29 70c0-9 7-16 16-16s16 7 16 16z" fill="#624EBC"/>
+        <circle cx="94" cy="56" r="21" fill="#fff" stroke="#624EBC" stroke-width="5"/>
+        <path d="M85 56l6 7 13-14" stroke="#624EBC" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="109" y1="71" x2="123" y2="86" stroke="#624EBC" stroke-width="6" stroke-linecap="round"/>
+      </svg>
       <h3>ស្វែងរកអាជីពរបស់អ្នក</h3>
       <p>ឆ្លើយសំណួរអំពីចំណូលចិត្ត ជំនាញ និងតម្លៃ ហើយយើងផ្គូផ្គងអ្នកទៅអាជីពដែលសម។</p>
     </div>
     <div class="goal-card reveal" style="transition-delay:.1s" data-view="schools">
       <div class="goal-number">គោលដៅ ២</div>
-      <div class="icon-wrap"><i class="material-symbols-outlined">account_balance</i></div>
+      <svg class="goal-illu" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M70 16 L118 40 L22 40 Z" fill="#624EBC"/>
+        <circle cx="70" cy="32" r="5" fill="#EDE9FA"/>
+        <rect x="34" y="46" width="9" height="30" fill="#624EBC"/>
+        <rect x="52" y="46" width="9" height="30" fill="#624EBC"/>
+        <rect x="79" y="46" width="9" height="30" fill="#624EBC"/>
+        <rect x="97" y="46" width="9" height="30" fill="#624EBC"/>
+        <rect x="24" y="78" width="92" height="7" rx="2" fill="#624EBC"/>
+        <rect x="18" y="40" width="104" height="6" fill="#EDE9FA"/>
+      </svg>
       <h3>ស្វែងរកសាលារៀន</h3>
       <p>ស្វែងរកសាកលវិទ្យាល័យ និងសាលាដែលបង្រៀនអាជីពដែលអ្នកចង់បាន ក្នុងតំបន់របស់អ្នក។</p>
     </div>
     <div class="goal-card reveal" style="transition-delay:.2s" data-view="cost">
       <div class="goal-number">គោលដៅ ៣</div>
-      <div class="icon-wrap"><i class="material-symbols-outlined">payments</i></div>
+      <svg class="goal-illu" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="46" cy="76" rx="27" ry="9" fill="#624EBC"/>
+        <ellipse cx="46" cy="67" rx="27" ry="9" fill="#EDE9FA"/>
+        <ellipse cx="46" cy="58" rx="27" ry="9" fill="#624EBC"/>
+        <ellipse cx="46" cy="49" rx="27" ry="9" fill="#EDE9FA" stroke="#624EBC" stroke-width="2"/>
+        <circle cx="98" cy="42" r="23" fill="#624EBC"/>
+        <text x="98" y="51" text-anchor="middle" font-size="28" font-weight="800" fill="#fff" font-family="Arial, sans-serif">$</text>
+      </svg>
       <h3>ប៉ាន់ស្មានថ្លៃសិក្សា</h3>
       <p>គណនាថ្លៃសិក្សា ថ្លៃរស់នៅ ថ្លៃសម្ភារ និងការប្រៀបធៀបជាមួយប្រាក់ខែដែលរំពឹងទុក។</p>
     </div>
