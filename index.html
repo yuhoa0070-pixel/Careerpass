@@ -182,8 +182,12 @@ input,select{font-family:inherit;}
 .hero .browse-link:hover{border-bottom-color:var(--accent);}
 
 /* ===== HOME VIEW ===== */
-.goals-row{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto 60px;padding:0 20px;}
-@media(min-width:600px){.goals-row{grid-template-columns:repeat(3,1fr);}}
+.goals-row{display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:980px;margin:0 auto 60px;padding:0 20px;}
+@media(min-width:768px){.goals-row{flex-direction:row;align-items:stretch;}}
+.goal-card{flex:1;}
+.goal-connector{display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;padding:6px 0;transform:rotate(90deg);}
+.goal-connector .material-symbols-outlined{font-size:28px;font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;}
+@media(min-width:768px){.goal-connector{padding:0;min-width:40px;transform:none;}}
 .goal-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 22px;background:var(--card);text-align:center;cursor:pointer;transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease);}
 .goal-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px);border-color:transparent;}
 .goal-card .icon-wrap{width:54px;height:54px;border-radius:16px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:transform .3s var(--ease);}
@@ -403,12 +407,14 @@ select.filter-select:focus{border-color:var(--accent);}
       <h3>ស្វែងរកអាជីពរបស់អ្នក</h3>
       <p>ឆ្លើយសំណួរអំពីចំណូលចិត្ត ជំនាញ និងតម្លៃ ហើយយើងផ្គូផ្គងអ្នកទៅអាជីពដែលសម។</p>
     </div>
+    <div class="goal-connector" aria-hidden="true"><i class="material-symbols-outlined">arrow_forward</i></div>
     <div class="goal-card reveal" style="transition-delay:.1s" data-view="schools">
       <img class="goal-photo" src="https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy">
       <div class="goal-number">គោលដៅ ២</div>
       <h3>ស្វែងរកសាលារៀន</h3>
       <p>ស្វែងរកសាកលវិទ្យាល័យ និងសាលាដែលបង្រៀនអាជីពដែលអ្នកចង់បាន ក្នុងតំបន់របស់អ្នក។</p>
     </div>
+    <div class="goal-connector" aria-hidden="true"><i class="material-symbols-outlined">arrow_forward</i></div>
     <div class="goal-card reveal" style="transition-delay:.2s" data-view="cost">
       <img class="goal-photo" src="https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" loading="lazy">
       <div class="goal-number">គោលដៅ ៣</div>
