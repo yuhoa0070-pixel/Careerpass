@@ -43,27 +43,21 @@ body::before{
   background-size: var(--grid-cell) 100%;
   background-position: 0 0;
 }
-/* Animated highlight flowing DOWN the vertical grid lines */
-body::after{
+/* Per-line animated highlights — alternating directions & speeds */
+.grid-flow{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.gline{position:absolute;top:0;bottom:0;width:1px;overflow:hidden;}
+.gline::before{
   content:'';
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background-image:linear-gradient(to right, rgba(98,78,188,0.55) 1px, transparent 1px);
-  background-size: var(--grid-cell) 100%;
-  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 50%, transparent);
-  mask-image:linear-gradient(to bottom, transparent, #000 50%, transparent);
-  -webkit-mask-size:100% 240px;
-  mask-size:100% 240px;
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  animation: rulerFlow 5s linear infinite;
+  position:absolute;
+  left:0;
+  width:1px;
+  height:220px;
+  background:linear-gradient(to bottom, transparent, rgba(98,78,188,0.6), transparent);
 }
-@keyframes rulerFlow{
-  0%{ -webkit-mask-position:0 -260px; mask-position:0 -260px; }
-  100%{ -webkit-mask-position:0 100vh; mask-position:0 100vh; }
-}
+.gline.down::before{animation:flowDown var(--d,5s) linear infinite;animation-delay:var(--delay,0s);}
+.gline.up::before{animation:flowUp var(--d,5s) linear infinite;animation-delay:var(--delay,0s);}
+@keyframes flowDown{0%{top:-220px;}100%{top:100%;}}
+@keyframes flowUp{0%{top:100%;}100%{top:-220px;}}
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 input,select{font-family:inherit;}
@@ -279,6 +273,16 @@ select.filter-select:focus{border-color:var(--accent);}
 </style>
 </head>
 <body>
+
+<!-- Animated grid line highlights (alternating directions) -->
+<div class="grid-flow" aria-hidden="true">
+  <span class="gline down" style="left:0;--d:5s;--delay:0s"></span>
+  <span class="gline up" style="left:20vw;--d:6.5s;--delay:.8s"></span>
+  <span class="gline down" style="left:40vw;--d:4.5s;--delay:.3s"></span>
+  <span class="gline up" style="left:60vw;--d:7s;--delay:1.2s"></span>
+  <span class="gline down" style="left:80vw;--d:5.8s;--delay:.5s"></span>
+  <span class="gline up" style="left:calc(100vw - 1px);--d:6.2s;--delay:.2s"></span>
+</div>
 
 <!-- Top Navbar -->
 <header class="navbar">
