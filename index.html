@@ -305,6 +305,24 @@ select.filter-select:focus{border-color:var(--accent);}
 .detail-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
 .detail-tags .tag{font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 10px;font-weight:600;}
 .detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+
+/* ===== CAREERS DIRECTORY ===== */
+.jobs-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:600px){.jobs-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1000px){.jobs-grid{grid-template-columns:repeat(3,1fr);}}
+.job-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease);cursor:pointer;opacity:0;animation:fadeUp .4s ease forwards;}
+.job-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:transparent;}
+.job-top{display:flex;gap:12px;align-items:center;margin-bottom:12px;}
+.job-icon{width:44px;height:44px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.job-icon .material-symbols-outlined{font-size:24px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.job-name{font-size:15px;font-weight:700;margin:0 0 3px;letter-spacing:-.2px;}
+.job-cat{font-size:11px;color:var(--text-3);font-weight:600;}
+.job-desc{font-size:13px;color:var(--text-2);margin:0 0 14px;line-height:1.5;}
+.job-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);}
+.job-salary{font-size:14px;font-weight:700;color:var(--accent);}
+.rel-schools{display:flex;flex-direction:column;gap:8px;}
+.rel-school{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:background .15s,border-color .15s;}
+.rel-school:hover{background:var(--accent-tint);border-color:var(--accent);}
 .school-name{font-size:15px;font-weight:700;margin:0 0 5px;letter-spacing:-.2px;}
 .school-location{font-size:12px;color:var(--text-3);display:flex;align-items:center;gap:4px;margin-bottom:10px;}
 .school-location .material-symbols-outlined{font-size:14px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
@@ -410,9 +428,10 @@ select.filter-select:focus{border-color:var(--accent);}
     <div class="nav-right">
       <nav class="nav-links" id="nav-links">
         <div class="s-link active" data-view="home">ទំព័រដើម</div>
-        <div class="s-link" data-view="quiz">ស្វែងរកអាជីព</div>
-        <div class="s-link" data-view="schools">ស្វែងរកសាលា <span class="badge">12</span></div>
-        <div class="s-link" data-view="cost">ប៉ាន់ស្មានថ្លៃ</div>
+        <div class="s-link" data-view="careers">អាជីព</div>
+        <div class="s-link" data-view="quiz">តេស្តអាជីព</div>
+        <div class="s-link" data-view="schools">សាលា <span class="badge">35</span></div>
+        <div class="s-link" data-view="cost">ថ្លៃសិក្សា</div>
         <div class="s-link" data-view="scholarship">អាហារូបករណ៍</div>
         <div class="s-link" data-view="results">លទ្ធផលខ្ញុំ</div>
       </nav>
@@ -562,6 +581,29 @@ select.filter-select:focus{border-color:var(--accent);}
 <section id="view-school-detail" class="view">
   <div class="page-wrap">
     <div id="school-detail"></div>
+  </div>
+</section>
+
+<!-- ======================== CAREERS DIRECTORY ======================== -->
+<section id="view-careers" class="view">
+  <div class="page-wrap">
+    <p class="page-title">អាជីពនៅកម្ពុជា</p>
+    <p class="page-sub">បញ្ជីអាជីពពេញនិយម ចែកតាមវិស័យ ព្រមទាំងប្រាក់ខែ និងសាលាដែលបង្រៀន</p>
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="material-symbols-outlined">search</i>
+        <input type="text" id="career-search" placeholder="ស្វែងរកឈ្មោះអាជីព...">
+      </div>
+    </div>
+    <div class="chip-row" id="career-chips"></div>
+    <div class="jobs-grid" id="jobs-grid"></div>
+  </div>
+</section>
+
+<!-- ======================== CAREER DETAIL ======================== -->
+<section id="view-career-detail" class="view">
+  <div class="page-wrap">
+    <div id="career-detail"></div>
   </div>
 </section>
 
@@ -863,6 +905,7 @@ function showView(v){
   closeSidebar();
   if(v==="quiz")initQuiz();
   if(v==="schools")renderSchools();
+  if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
   if(v==="home")typeHero();
 }
@@ -1150,3 +1193,143 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
+
+
+<script>
+/* ===== CAREERS DIRECTORY ===== */
+const jobCats={
+  tech:{label:"បច្ចេកវិទ្យា",icon:"memory"},
+  health:{label:"សុខាភិបាល",icon:"cardiology"},
+  design:{label:"ការរចនា និងសិល្បៈ",icon:"palette"},
+  business:{label:"ពាណិជ្ជកម្ម និងហិរញ្ញវត្ថុ",icon:"work"},
+  trades:{label:"ជំនាញការ",icon:"construction"},
+  education:{label:"អប់រំ",icon:"school"},
+  tourism:{label:"ទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",icon:"tour"},
+  agri:{label:"កសិកម្ម",icon:"agriculture"},
+  law:{label:"ច្បាប់ និងរដ្ឋបាល",icon:"gavel"},
+  media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"}
+};
+const careersList=[
+  {id:"softeng",name:"វិស្វករផ្នែកទន់",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","ab"]},
+  {id:"webdev",name:"អ្នកអភិវឌ្ឍន៍គេហទំព័រ",cat:"tech",icon:"html",salary:"$400–$1,200",desc:"សាងសង់គេហទំព័រ និងកម្មវិធីវ៉េប។",skills:["HTML/CSS","React","Node.js"],schools:["ab","sabaicode","cadt"]},
+  {id:"mobiledev",name:"អ្នកអភិវឌ្ឍន៍កម្មវិធីទូរស័ព្ទ",cat:"tech",icon:"smartphone",salary:"$500–$1,400",desc:"បង្កើតកម្មវិធីលើ Android និង iOS។",skills:["Flutter","Kotlin","Swift"],schools:["cadt","itc"]},
+  {id:"dataanalyst",name:"អ្នកវិភាគទិន្នន័យ",cat:"tech",icon:"monitoring",salary:"$500–$1,300",desc:"វិភាគទិន្នន័យ ដើម្បីជួយសម្រេចចិត្ត។",skills:["Excel","SQL","Power BI","Python"],schools:["cadt","num"]},
+  {id:"aieng",name:"វិស្វករ AI/ML",cat:"tech",icon:"smart_toy",salary:"$700–$2,000",desc:"បង្កើតគំរូបញ្ញាសិប្បនិម្មិត និងម៉ាស៊ីនរៀន។",skills:["Python","TensorFlow","NLP"],schools:["cadt","camtech"]},
+  {id:"cyber",name:"អ្នកឯកទេសសន្តិសុខសាយប័រ",cat:"tech",icon:"security",salary:"$600–$1,800",desc:"ការពារប្រព័ន្ធ និងទិន្នន័យពីការវាយប្រហារ។",skills:["Networking","Linux","Pentesting"],schools:["cadt"]},
+  {id:"netadmin",name:"អ្នកគ្រប់គ្រងបណ្ដាញ",cat:"tech",icon:"lan",salary:"$400–$1,000",desc:"គ្រប់គ្រងបណ្ដាញ និងម៉ាស៊ីនមេ។",skills:["Cisco","Linux","Security"],schools:["itc","npic"]},
+  {id:"iot",name:"វិស្វករ IoT",cat:"tech",icon:"sensors",salary:"$500–$1,400",desc:"បង្កើតឧបករណ៍ឆ្លាតវៃ និងបណ្ដាញ sensor។",skills:["Arduino","C++","IoT"],schools:["camscience","itc"]},
+  {id:"qa",name:"អ្នកសាកល្បងកម្មវិធី (QA)",cat:"tech",icon:"bug_report",salary:"$400–$1,000",desc:"ធានាគុណភាព និងរកកំហុសក្នុងកម្មវិធី។",skills:["Testing","Automation"],schools:["ab"]},
+  {id:"doctor",name:"វេជ្ជបណ្ឌិត",cat:"health",icon:"stethoscope",salary:"$600–$2,500",desc:"ពិនិត្យ និងព្យាបាលអ្នកជំងឺ។",skills:["វិទ្យាសាស្ត្រ","ការទំនាក់ទំនង"],schools:["uhs","up","iu"]},
+  {id:"nurse",name:"គិលានុបដ្ឋាក",cat:"health",icon:"vaccines",salary:"$300–$800",desc:"ថែទាំ និងជួយអ្នកជំងឺ។",skills:["ការថែទាំ","ការទំនាក់ទំនង"],schools:["uhs","iu"]},
+  {id:"pharma",name:"ឱសថការី",cat:"health",icon:"medication",salary:"$500–$1,200",desc:"ចែកចាយ និងណែនាំអំពីឱសថ។",skills:["គីមី","ឱសថសាស្ត្រ"],schools:["uhs","up"]},
+  {id:"dentist",name:"ទន្តបណ្ឌិត",cat:"health",icon:"dentistry",salary:"$600–$2,000",desc:"ព្យាបាល និងថែទាំធ្មេញ។",skills:["ជំនាញដៃ","វេជ្ជសាស្ត្រ"],schools:["uhs","up"]},
+  {id:"physio",name:"អ្នកព្យាបាលរាងកាយ",cat:"health",icon:"accessibility_new",salary:"$400–$1,000",desc:"ជួយអ្នកជំងឺស្ដារមុខងាររាងកាយ។",skills:["កាយវិការ","ការថែទាំ"],schools:["uhs"]},
+  {id:"labtech",name:"បច្ចេកទេសមន្ទីរពិសោធន៍",cat:"health",icon:"science",salary:"$350–$800",desc:"ធ្វើតេស្តវិភាគនៅមន្ទីរពិសោធន៍។",skills:["ជីវវិទ្យា","ភាពត្រឹមត្រូវ"],schools:["uhs"]},
+  {id:"graphic",name:"អ្នករចនាក្រាហ្វិក",cat:"design",icon:"palette",salary:"$300–$900",desc:"បង្កើតការរចនាដែលមើលឃើញ។",skills:["Photoshop","Illustrator"],schools:["limkokwing","puc"]},
+  {id:"uxui",name:"អ្នករចនា UX/UI",cat:"design",icon:"design_services",salary:"$400–$1,200",desc:"រចនាបទពិសោធន៍អ្នកប្រើ។",skills:["Figma","Research","Prototyping"],schools:["tux","limkokwing"]},
+  {id:"architect",name:"ស្ថាបត្យករ",cat:"design",icon:"architecture",salary:"$500–$1,500",desc:"រចនាអគារ និងលំហ។",skills:["AutoCAD","3D","Design"],schools:["itc","paragon"]},
+  {id:"interior",name:"អ្នករចនាខាងក្នុង",cat:"design",icon:"chair",salary:"$400–$1,100",desc:"រចនាលំហខាងក្នុងអគារ។",skills:["SketchUp","Design"],schools:["limkokwing"]},
+  {id:"videographer",name:"អ្នកថត និងកាត់តវីដេអូ",cat:"design",icon:"videocam",salary:"$300–$1,000",desc:"ថត និងកែសម្រួលរូបភាព វីដេអូ។",skills:["Premiere","Camera"],schools:["limkokwing"]},
+  {id:"marketing",name:"អ្នកគ្រប់គ្រងទីផ្សារ",cat:"business",icon:"campaign",salary:"$500–$1,500",desc:"គ្រប់គ្រងយុទ្ធសាស្ត្រទីផ្សារ។",skills:["Marketing","Analytics"],schools:["num","uc","puc"]},
+  {id:"accountant",name:"គណនេយ្យករ",cat:"business",icon:"calculate",salary:"$400–$1,200",desc:"គ្រប់គ្រងគណនី និងរបាយការណ៍ហិរញ្ញវត្ថុ។",skills:["Accounting","Excel","QuickBooks"],schools:["camed","vanda","num"]},
+  {id:"auditor",name:"សវនករ",cat:"business",icon:"fact_check",salary:"$500–$1,500",desc:"ត្រួតពិនិត្យ និងផ្ទៀងផ្ទាត់គណនី។",skills:["Audit","ACCA"],schools:["camed"]},
+  {id:"finance",name:"អ្នកវិភាគហិរញ្ញវត្ថុ",cat:"business",icon:"trending_up",salary:"$500–$1,600",desc:"វិភាគ និងផ្ដល់ដំបូន្មានហិរញ្ញវត្ថុ។",skills:["Finance","Modeling"],schools:["num","camed"]},
+  {id:"pm",name:"អ្នកគ្រប់គ្រងគម្រោង",cat:"business",icon:"checklist",salary:"$600–$1,800",desc:"គ្រប់គ្រងគម្រោង និងក្រុមការងារ។",skills:["Planning","Agile"],schools:["num","uc"]},
+  {id:"hr",name:"មន្ត្រីធនធានមនុស្ស",cat:"business",icon:"groups",salary:"$400–$1,100",desc:"គ្រប់គ្រងបុគ្គលិក និងជ្រើសរើស។",skills:["Communication","HR"],schools:["num","uc"]},
+  {id:"banker",name:"បុគ្គលិកធនាគារ",cat:"business",icon:"account_balance",salary:"$400–$1,300",desc:"ផ្ដល់សេវាហិរញ្ញវត្ថុ និងឥណទាន។",skills:["Finance","Sales"],schools:["num","camed"]},
+  {id:"entrepreneur",name:"សហគ្រិន",cat:"business",icon:"rocket_launch",salary:"ប្រែប្រួល",desc:"បង្កើត និងដឹកនាំអាជីវកម្មផ្ទាល់ខ្លួន។",skills:["Leadership","Strategy"],schools:["dichi","num"]},
+  {id:"electrician",name:"ជាងអគ្គិសនី",cat:"trades",icon:"bolt",salary:"$300–$800",desc:"តម្លើង និងជួសជុលប្រព័ន្ធអគ្គិសនី។",skills:["Electrical","Safety"],schools:["ntti","npic"]},
+  {id:"plumber",name:"ជាងទុយោ",cat:"trades",icon:"plumbing",salary:"$300–$700",desc:"តម្លើង និងជួសជុលប្រព័ន្ធទឹក។",skills:["Plumbing"],schools:["ntti"]},
+  {id:"mechanic",name:"ជាងម៉ាស៊ីន",cat:"trades",icon:"build",salary:"$300–$800",desc:"ជួសជុលម៉ាស៊ីន និងយានយន្ត។",skills:["Mechanics"],schools:["ntti","npic"]},
+  {id:"construction",name:"ជាងបច្ចេកទេសសំណង់",cat:"trades",icon:"construction",salary:"$300–$900",desc:"ការងារសំណង់ និងហេដ្ឋារចនាសម្ព័ន្ធ។",skills:["Construction","Safety"],schools:["npic","itc"]},
+  {id:"hvac",name:"ជាងម៉ាស៊ីនត្រជាក់",cat:"trades",icon:"ac_unit",salary:"$300–$800",desc:"តម្លើង និងជួសជុលម៉ាស៊ីនត្រជាក់។",skills:["HVAC"],schools:["ntti"]},
+  {id:"teacher",name:"គ្រូបង្រៀន",cat:"education",icon:"school",salary:"$250–$700",desc:"បង្រៀន និងអប់រំសិស្ស។",skills:["Teaching","Communication"],schools:["nie","rupp"]},
+  {id:"lecturer",name:"សាស្ត្រាចារ្យ",cat:"education",icon:"history_edu",salary:"$500–$1,500",desc:"បង្រៀននៅឧត្តមសិក្សា និងស្រាវជ្រាវ។",skills:["Research","Teaching"],schools:["nie","rupp"]},
+  {id:"eduadmin",name:"អ្នកគ្រប់គ្រងអប់រំ",cat:"education",icon:"admin_panel_settings",salary:"$400–$1,000",desc:"គ្រប់គ្រងសាលា និងកម្មវិធីសិក្សា។",skills:["Management"],schools:["nie"]},
+  {id:"tourguide",name:"អ្នកនាំភ្ញៀវទេសចរណ៍",cat:"tourism",icon:"tour",salary:"$300–$800",desc:"នាំភ្ញៀវទេសចរណ៍ទស្សនាកម្សាន្ត។",skills:["ភាសា","ការទំនាក់ទំនង"],schools:[]},
+  {id:"hotel",name:"អ្នកគ្រប់គ្រងសណ្ឋាគារ",cat:"tourism",icon:"hotel",salary:"$500–$1,500",desc:"គ្រប់គ្រងប្រតិបត្តិការសណ្ឋាគារ។",skills:["Hospitality","Management"],schools:["num"]},
+  {id:"chef",name:"ចុងភៅ",cat:"tourism",icon:"restaurant",salary:"$300–$1,000",desc:"ចម្អិន និងគ្រប់គ្រងផ្ទះបាយ។",skills:["Cooking"],schools:[]},
+  {id:"agrieng",name:"វិស្វករកសិកម្ម",cat:"agri",icon:"agriculture",salary:"$400–$1,000",desc:"អភិវឌ្ឍបច្ចេកទេស និងផលិតកម្មកសិកម្ម។",skills:["Agronomy"],schools:["rua","pnca"]},
+  {id:"vet",name:"សត្វពេទ្យ",cat:"agri",icon:"pets",salary:"$400–$1,200",desc:"ព្យាបាល និងថែទាំសត្វ។",skills:["Veterinary"],schools:["rua"]},
+  {id:"aqua",name:"អ្នកជំនាញវារីវប្បកម្ម",cat:"agri",icon:"water",salary:"$350–$900",desc:"គ្រប់គ្រងការចិញ្ចឹមត្រី និងវារីវប្បកម្ម។",skills:["Aquaculture"],schools:["rua"]},
+  {id:"lawyer",name:"មេធាវី",cat:"law",icon:"gavel",salary:"$500–$2,000",desc:"ផ្ដល់ប្រឹក្សា និងតំណាងផ្នែកច្បាប់។",skills:["Law","Argument"],schools:["rule","puc"]},
+  {id:"civil",name:"មន្ត្រីរាជការ",cat:"law",icon:"badge",salary:"$250–$800",desc:"បម្រើការក្នុងស្ថាប័នរដ្ឋ។",skills:["Administration"],schools:["era","rule"]},
+  {id:"diplomat",name:"អ្នកការទូត",cat:"law",icon:"public",salary:"$600–$2,000",desc:"តំណាងប្រទេសក្នុងទំនាក់ទំនងអន្តរជាតិ។",skills:["Languages","Diplomacy"],schools:["rule","uc"]},
+  {id:"journalist",name:"អ្នកសារព័ត៌មាន",cat:"media",icon:"newspaper",salary:"$300–$900",desc:"ស្រាវជ្រាវ និងរាយការណ៍ព័ត៌មាន។",skills:["Writing","Research"],schools:["uc","puc"]},
+  {id:"socialmedia",name:"អ្នកគ្រប់គ្រងប្រព័ន្ធផ្សព្វផ្សាយសង្គម",cat:"media",icon:"share",salary:"$300–$1,000",desc:"គ្រប់គ្រងមាតិកា និងទំព័រសង្គម។",skills:["Content","Marketing"],schools:["limkokwing","puc"]},
+  {id:"pr",name:"អ្នកទំនាក់ទំនងសាធារណៈ",cat:"media",icon:"record_voice_over",salary:"$400–$1,200",desc:"គ្រប់គ្រងរូបភាព និងទំនាក់ទំនងស្ថាប័ន។",skills:["Communication","PR"],schools:["uc"]}
+];
+</script>
+
+
+<script>
+/* ===== CAREERS RENDER + DETAIL ===== */
+let jobSearch="",jobCat="all";
+function renderCareerChips(){
+  const row=document.getElementById("career-chips");
+  if(!row)return;
+  let html='<div class="chip'+(jobCat==="all"?" active":"")+'" onclick="setJobCat(\'all\')">ទាំងអស់</div>';
+  Object.keys(jobCats).forEach(k=>{
+    html+='<div class="chip'+(jobCat===k?" active":"")+'" onclick="setJobCat(\''+k+'\')"><i class="material-symbols-outlined">'+jobCats[k].icon+'</i>'+jobCats[k].label+'</div>';
+  });
+  row.innerHTML=html;
+}
+function setJobCat(c){jobCat=c;renderCareerChips();renderCareers();}
+function renderCareers(){
+  renderCareerChips();
+  const q=jobSearch.toLowerCase();
+  const grid=document.getElementById("jobs-grid");
+  if(!grid)return;
+  const filtered=careersList.filter(j=>(jobCat==="all"||j.cat===jobCat)&&j.name.toLowerCase().includes(q));
+  if(!filtered.length){grid.innerHTML='<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញអាជីព</p></div>';return;}
+  grid.innerHTML=filtered.map((j,i)=>`
+    <div class="job-card" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
+      <div class="job-top">
+        <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
+        <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
+      </div>
+      <p class="job-desc">${j.desc}</p>
+      <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
+    </div>`).join("");
+}
+function openCareer(id){
+  const j=careersList.find(x=>x.id===id);
+  if(!j)return;
+  const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
+  const relHtml=rel.length?rel.map(s=>`<div class="rel-school" onclick="openSchool('${s.id}')"><div class="school-logo" style="width:38px;height:38px;background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div><div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
+  document.getElementById("career-detail").innerHTML=`
+    <div class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</div>
+    <div class="detail-head">
+      <div class="detail-logo" style="background:var(--accent)"><i class="material-symbols-outlined" style="font-size:30px">${j.icon}</i></div>
+      <div style="flex:1;min-width:220px">
+        <span class="school-type-badge badge-digital">${jobCats[j.cat].label}</span>
+        <h1 class="detail-title" style="margin-top:8px">${j.name}</h1>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <span><i class="material-symbols-outlined">payments</i> ${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span>
+      <span><i class="material-symbols-outlined">category</i> ${jobCats[j.cat].label}</span>
+    </div>
+    <p class="detail-desc">${j.desc}</p>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h3><i class="material-symbols-outlined">bolt</i> ជំនាញត្រូវការ</h3>
+        <div class="detail-tags">${j.skills.map(sk=>'<span class="tag">'+sk+'</span>').join("")}</div>
+        <h3 style="margin-top:24px"><i class="material-symbols-outlined">school</i> សាលាដែលបង្រៀន</h3>
+        <div class="rel-schools">${relHtml}</div>
+      </div>
+      <div class="detail-card detail-side">
+        <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
+        <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">payments</i> ប្រាក់ខែ</span><span class="val">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span></div>
+        <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">category</i> វិស័យ</span><span class="val">${jobCats[j.cat].label}</span></div>
+        <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">account_balance</i> សាលា</span><span class="val">${rel.length}</span></div>
+        <div class="detail-actions">
+          <button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
+          <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ថ្លៃសិក្សា</button>
+        </div>
+      </div>
+    </div>`;
+  showView("career-detail");
+}
+document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;renderCareers();});
+</script>
