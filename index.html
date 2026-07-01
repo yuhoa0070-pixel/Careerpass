@@ -1181,7 +1181,7 @@ const schoolsData = [
   {id:"npic",name:"វិទ្យាស្ថានពហុបច្ចេកទេសជាតិកម្ពុជា (NPIC)",type:"institute",province:"phnom-penh",tuition:450,duration:4,careers:["technology","trades"],programs:["សំណង់","មេកានិច","ឧស្សាហកម្ម"],rating:"4.2",desc:"វិទ្យាស្ថានឈានមុខផ្នែកបច្ចេកវិទ្យាសំណង់ មេកានិច និងឧស្សាហកម្ម។"},
   {id:"nie",name:"វិទ្យាស្ថានជាតិអប់រំ (NIE)",type:"institute",province:"phnom-penh",tuition:300,duration:4,careers:["education","business"],programs:["បណ្ដុះបណ្ដាលគ្រូ","គ្រប់គ្រងអប់រំ"],rating:"4.0",desc:"គ្រឹះស្ថានបណ្ដុះបណ្ដាលគ្រូ សាស្ត្រាចារ្យ និងអ្នកគ្រប់គ្រងសាលាឈានមុខ។"},
   {id:"era",name:"សាលាភូមិន្ទរដ្ឋបាល (ERA)",type:"institute",province:"phnom-penh",tuition:300,duration:2,careers:["business"],programs:["រដ្ឋបាលសាធារណៈ"],rating:"4.1",desc:"បណ្ឌិត្យសភារដ្ឋជ្រើសរើស និងបណ្ដុះបណ្ដាលមន្ត្រីរដ្ឋបាលឧត្តម។"},
-  {id:"ntti",name:"វិទ្យាស្ថានបណ្ដុះបណ្ដាលបច្ចេកទេសជាតិ (NTTI)",type:"institute",province:"phnom-penh",tuition:400,duration:4,careers:["technology","trades"],programs:["វិស្វកម្មវិជ្ជាជីវៈ","បច្ចេកទេស"],rating:"3.9",desc:"ផ្ដោតលើវិស្វកម្មវិជ្ជាជីវៈ និងវិញ្ញាបនបត្របច្ចេកទេស។"},
+  {id:"ntti",name:"វិទ្យាស្ថានបណ្ដុះបណ្ដាលបច្ចេកទេសជាតិ (NTTI)",type:"institute",province:"phnom-penh",address:"Teuk Thla, Sen Sok, Phnom Penh",tuition:400,duration:4,careers:["technology","trades"],programs:["វិស្វកម្មវិជ្ជាជីវៈ","បច្ចេកទេស"],rating:"3.9",desc:"ផ្ដោតលើវិស្វកម្មវិជ្ជាជីវៈ និងវិញ្ញាបនបត្របច្ចេកទេស។ ស្ថិតនៅតឹកថ្លា សែនសុខ ភ្នំពេញ។"},
   {id:"nubb",name:"សាកលវិទ្យាល័យជាតិបាត់ដំបង (NUBB)",type:"public",province:"battambang",tuition:400,duration:4,careers:["business","technology"],programs:["អប់រំ","កសិកម្ម","IT"],rating:"3.8",desc:"មជ្ឈមណ្ឌលសិក្សាធិការសំខាន់សម្រាប់តំបន់ភាគពាយ័ព្យ។"},
   {id:"sru",name:"សាកលវិទ្យាល័យស្វាយរៀង (SRU)",type:"public",province:"svay-rieng",tuition:380,duration:4,careers:["business","technology"],programs:["វិស្វកម្ម","ភ័ស្តុភារ"],rating:"3.6",desc:"មានទំនាក់ទំនងខ្លាំងជាមួយតំបន់សេដ្ឋកិច្ចព្រំដែន និងភ័ស្តុភារ។"},
   {id:"mcu",name:"សាកលវិទ្យាល័យមានជ័យ (MCU)",type:"public",province:"banteay-meanchey",tuition:360,duration:4,careers:["business"],programs:["អភិវឌ្ឍន៍តំបន់"],rating:"3.5",desc:"ស្ថិតនៅបន្ទាយមានជ័យ បម្រើការអភិវឌ្ឍតំបន់។"},
@@ -1546,7 +1546,7 @@ function openSchool(id){
       <h3><i class="material-symbols-outlined">menu_book</i> កម្មវិធីសិក្សា</h3>
       <div class="detail-tags">${s.programs.map(p=>'<span class="tag">'+p+'</span>').join("")}</div>
     </div>`;
-  const mapQ=encodeURIComponent(s.name+" "+provinceLabel(s.province)+" Cambodia");
+  const mapQ=encodeURIComponent(s.name+" "+(s.address?s.address:provinceLabel(s.province))+" Cambodia");
   const mapCard=`
     <div class="detail-card">
       <h3><i class="material-symbols-outlined">location_on</i> ទីតាំង (Google Maps)</h3>
