@@ -106,12 +106,14 @@ input,select{font-family:inherit;}
 .s-link .badge{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:1px 7px;border-radius:999px;font-weight:600;}
 .hamburger{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;cursor:pointer;transition:background .15s;}
 .hamburger:hover{background:var(--accent-tint);}
+.hamburger i{transition:transform .35s cubic-bezier(.62,.05,.3,1);}
+.hamburger.open i{transform:rotate(180deg);color:var(--accent);}
 /* Mobile */
 @media(max-width:860px){
   .nav-inner{padding:0 18px;}
   .hamburger{display:flex;}
-  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:2px;padding:10px;border-radius:0;box-shadow:var(--shadow-md);transform:translateY(-130%);transition:transform .3s ease;z-index:94;}
-  .nav-links.open{transform:none;}
+  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:2px;padding:10px;border-radius:0;box-shadow:var(--shadow-md);transform:perspective(1400px) rotateX(-90deg);transform-origin:top center;opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .42s cubic-bezier(.62,.05,.3,1),opacity .3s ease;z-index:94;}
+  .nav-links.open{transform:perspective(1400px) rotateX(0deg);opacity:1;pointer-events:auto;}
   .s-link{padding:13px 14px;font-size:15px;border-radius:8px;}
 }
 
@@ -1068,7 +1070,7 @@ let answers=new Array(totalQs).fill(null);
 /* ===== SIDEBAR ===== */
 const hamburger=document.getElementById("hamburger");
 const navLinks=document.getElementById("nav-links");
-function toggleSidebar(){menuOpen=!menuOpen;navLinks.classList.toggle("open",menuOpen);}
+function toggleSidebar(){menuOpen=!menuOpen;navLinks.classList.toggle("open",menuOpen);hamburger.classList.toggle("open",menuOpen);hamburger.querySelector("i").textContent=menuOpen?"close":"menu";}
 function closeSidebar(){if(menuOpen)toggleSidebar();}
 hamburger.addEventListener("click",toggleSidebar);
 
