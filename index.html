@@ -96,6 +96,7 @@ input,select{font-family:inherit;}
 .nav-links{display:flex;align-items:center;gap:2px;background:transparent;border-radius:0;padding:0;box-shadow:none;}
 .s-link{display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:5px;font-size:13.5px;font-weight:500;color:var(--text);cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent;white-space:nowrap;}
 .s-link .material-symbols-outlined{display:none;}
+.s-link-icon{width:17px;height:17px;flex-shrink:0;pointer-events:none;}
 .s-link:hover{background:var(--accent-tint);}
 .s-link.active{font-weight:600;color:var(--text);background:transparent;box-shadow:none;}
 .s-link.active::before{content:'';width:8px;height:8px;background:var(--accent);flex-shrink:0;}
@@ -517,13 +518,13 @@ select.filter-select:focus{border-color:var(--accent);}
     </div>
     <div class="nav-right">
       <nav class="nav-links" id="nav-links">
-        <div class="s-link active" data-view="home">ទំព័រដើម</div>
-        <div class="s-link" data-view="careers">អាជីព</div>
-        <div class="s-link" data-view="quiz">តេស្តអាជីព</div>
-        <div class="s-link" data-view="schools">សាលា <span class="badge">35</span></div>
-        <div class="s-link" data-view="cost">ថ្លៃសិក្សា</div>
-        <div class="s-link" data-view="scholarship">អាហារូបករណ៍</div>
-        <div class="s-link" data-view="plan">ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></div>
+        <div class="s-link active" data-view="home"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V20h14V9.5"/></svg>ទំព័រដើម</div>
+        <div class="s-link" data-view="careers"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><rect x="3" y="7" width="18" height="13"/><path d="M3 12h18"/></svg>អាជីព</div>
+        <div class="s-link" data-view="quiz"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17"/><path d="M9 4h6"/><path d="M8.5 12.5l2.2 2.2 4.3-4.3"/></svg>តេស្តអាជីព</div>
+        <div class="s-link" data-view="schools"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11v4.5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5V11"/></svg>សាលា <span class="badge">35</span></div>
+        <div class="s-link" data-view="cost"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12"/><circle cx="12" cy="12" r="2.6"/></svg>ថ្លៃសិក្សា</div>
+        <div class="s-link" data-view="scholarship"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13L7 21l5-2.3L17 21l-1.5-8"/></svg>អាហារូបករណ៍</div>
+        <div class="s-link" data-view="plan"><svg class="s-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3z"/></svg>ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></div>
       </nav>
       <div class="hamburger" id="hamburger"><i class="material-symbols-outlined">menu</i></div>
     </div>
