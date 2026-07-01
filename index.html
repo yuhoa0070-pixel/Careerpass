@@ -1687,7 +1687,8 @@ const jobCats={
   tourism:{label:"ទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",icon:"tour"},
   agri:{label:"កសិកម្ម",icon:"agriculture"},
   law:{label:"ច្បាប់ និងរដ្ឋបាល",icon:"gavel"},
-  media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"}
+  media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"},
+  culinary:{label:"ចម្អិនអាហារ និងបដិសណ្ឋារកិច្ច",icon:"restaurant"}
 };
 const careersList=[
   {id:"softeng",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","ab"]},
@@ -1737,7 +1738,11 @@ const careersList=[
   {id:"diplomat",name:"អ្នកការទូត",cat:"law",icon:"public",salary:"$600–$2,000",desc:"តំណាងប្រទេសក្នុងទំនាក់ទំនងអន្តរជាតិ។",skills:["Languages","Diplomacy"],schools:["rule","uc"]},
   {id:"journalist",name:"អ្នកសារព័ត៌មាន",cat:"media",icon:"newspaper",salary:"$300–$900",desc:"ស្រាវជ្រាវ និងរាយការណ៍ព័ត៌មាន។",skills:["Writing","Research"],schools:["uc","puc"]},
   {id:"socialmedia",name:"អ្នកគ្រប់គ្រងប្រព័ន្ធផ្សព្វផ្សាយសង្គម",cat:"media",icon:"share",salary:"$300–$1,000",desc:"គ្រប់គ្រងមាតិកា និងទំព័រសង្គម។",skills:["Content","Marketing"],schools:["limkokwing","puc"]},
-  {id:"pr",name:"អ្នកទំនាក់ទំនងសាធារណៈ",cat:"media",icon:"record_voice_over",salary:"$400–$1,200",desc:"គ្រប់គ្រងរូបភាព និងទំនាក់ទំនងស្ថាប័ន។",skills:["Communication","PR"],schools:["uc"]}
+  {id:"pr",name:"អ្នកទំនាក់ទំនងសាធារណៈ",cat:"media",icon:"record_voice_over",salary:"$400–$1,200",desc:"គ្រប់គ្រងរូបភាព និងទំនាក់ទំនងស្ថាប័ន។",skills:["Communication","PR"],schools:["uc"]},
+  {id:"chef",name:"ចុងភៅ (Commis Chef / Line Cook)",cat:"culinary",icon:"restaurant",salary:"$250–$800",desc:"ចម្អិនអាហារនៅផ្ទះបាយអាជីព តាមស្តង់ដារភោជនីយដ្ឋាន និងសណ្ឋាគារ ៥ ផ្កាយ។",skills:["Knife Skills","French Techniques","Mise en Place","Stocks & Sauces","Banquet Production"],schools:["acac"]},
+  {id:"pastrychef",name:"ចុងភៅនំ (Pastry Chef / Baker)",cat:"culinary",icon:"bakery_dining",salary:"$300–$900",desc:"ធ្វើនំបុ័ង នំផ្អែម និងបង្អែម តាមបែបបារាំង និងសិល្បៈ។",skills:["Viennoiserie","Artisanal Bread","Dough Fermentation","Chocolate Tempering","Plating"],schools:["acac"]},
+  {id:"barista",name:"អ្នកឆុងកាហ្វេ (Head Barista / Cafe Lead)",cat:"culinary",icon:"local_cafe",salary:"$250–$700",desc:"ឆុងកាហ្វេ espresso គ្រប់គ្រង cafe និងបង្កើត latte art។",skills:["Espresso Extraction","Milk Texturing","Latte Art","Flavor Profiling","Cafe Menu"],schools:["acac"]},
+  {id:"kitchenmgr",name:"អ្នកគ្រប់គ្រងផ្ទះបាយ (Kitchen Manager / Sous Chef)",cat:"culinary",icon:"restaurant_menu",salary:"$500–$2,000+",desc:"គ្រប់គ្រងផ្ទះបាយ ថ្លៃដើម សន្តិសុខអាហារ (HACCP) និងបុគ្គលិក។",skills:["Cost Engineering","Inventory","HACCP Safety","Procurement","Leadership"],schools:["acac"]}
 ];
 </script>
 
@@ -1897,7 +1902,8 @@ const subjectsByCat={
   tourism:["ភាសាអង់គ្លេស","ភូមិវិទ្យា","ការទំនាក់ទំនង"],
   agri:["ជីវវិទ្យា","គីមីវិទ្យា","កសិកម្ម"],
   law:["ភាសាខ្មែរ","ពលរដ្ឋវិជ្ជា","ភាសាអង់គ្លេស"],
-  media:["ភាសាខ្មែរ","ភាសាអង់គ្លេស","ការសរសេរ"]
+  media:["ភាសាខ្មែរ","ភាសាអង់គ្លេស","ការសរសេរ"],
+  culinary:["ភាសាអង់គ្លេស","សិល្បៈ","ជំនាញបច្ចេកទេស"]
 };
 const freeResources=["Khan Academy","Coursera / edX","YouTube","freeCodeCamp","Google Digital Garage"];
 const quizCatToJob={technology:"tech",healthcare:"health",design:"design",business:"business",trades:"trades"};
