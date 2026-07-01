@@ -87,7 +87,9 @@ input,select{font-family:inherit;}
 /* ===== TOP NAVBAR (Cura style) ===== */
 .navbar{position:sticky;top:0;z-index:95;background:var(--bg);border-bottom:1px solid rgba(0,0,0,0.10);}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);padding:0 28px;}
-.nav-logo{font-weight:800;font-size:22px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--text);}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--text);}
+.nav-logo-icon{width:26px;height:26px;flex-shrink:0;color:var(--text);transition:transform .6s var(--ease);}
+.nav-logo:hover .nav-logo-icon{transform:rotate(45deg);}
 .nav-logo .material-symbols-outlined{display:none;}
 .nav-right{display:flex;align-items:center;gap:14px;}
 /* white pill containing links */
@@ -505,7 +507,14 @@ select.filter-select:focus{border-color:var(--accent);}
 <!-- Top Navbar -->
 <header class="navbar">
   <div class="nav-inner">
-    <div class="nav-logo" data-view="home">Compass</div>
+    <div class="nav-logo" data-view="home">
+      <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M16 8L10.6 10.6L8 16L13.4 13.4L16 8Z" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.1" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="1.15" fill="currentColor"/>
+      </svg>
+      <span>Compass</span>
+    </div>
     <div class="nav-right">
       <nav class="nav-links" id="nav-links">
         <div class="s-link active" data-view="home">ទំព័រដើម</div>
