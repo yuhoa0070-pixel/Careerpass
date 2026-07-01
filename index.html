@@ -37,7 +37,7 @@
 *,*::before,*::after{box-sizing:border-box;}
 *,*::before,*::after{border-radius:0 !important;}
 html{scroll-behavior:smooth;}
-body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}
+body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}
 /* Vertical grid on background — center 2 lines removed (keep 0, 20vw, 80vw, 100vw) */
 body::before{
   content:'';
@@ -1729,7 +1729,6 @@ const careersList=[
   {id:"eduadmin",name:"អ្នកគ្រប់គ្រងអប់រំ",cat:"education",icon:"admin_panel_settings",salary:"$400–$1,000",desc:"គ្រប់គ្រងសាលា និងកម្មវិធីសិក្សា។",skills:["Management"],schools:["nie"]},
   {id:"tourguide",name:"អ្នកនាំភ្ញៀវទេសចរណ៍",cat:"tourism",icon:"tour",salary:"$300–$800",desc:"នាំភ្ញៀវទេសចរណ៍ទស្សនាកម្សាន្ត។",skills:["ភាសា","ការទំនាក់ទំនង"],schools:[]},
   {id:"hotel",name:"អ្នកគ្រប់គ្រងសណ្ឋាគារ",cat:"tourism",icon:"hotel",salary:"$500–$1,500",desc:"គ្រប់គ្រងប្រតិបត្តិការសណ្ឋាគារ។",skills:["Hospitality","Management"],schools:["num"]},
-  {id:"chef",name:"ចុងភៅ",cat:"tourism",icon:"restaurant",salary:"$300–$1,000",desc:"ចម្អិន និងគ្រប់គ្រងផ្ទះបាយ។",skills:["Cooking"],schools:[]},
   {id:"agrieng",name:"វិស្វករកសិកម្ម",cat:"agri",icon:"agriculture",salary:"$400–$1,000",desc:"អភិវឌ្ឍបច្ចេកទេស និងផលិតកម្មកសិកម្ម។",skills:["Agronomy"],schools:["rua","pnca"]},
   {id:"vet",name:"សត្វពេទ្យ",cat:"agri",icon:"pets",salary:"$400–$1,200",desc:"ព្យាបាល និងថែទាំសត្វ។",skills:["Veterinary"],schools:["rua"]},
   {id:"aqua",name:"អ្នកជំនាញវារីវប្បកម្ម",cat:"agri",icon:"water",salary:"$350–$900",desc:"គ្រប់គ្រងការចិញ្ចឹមត្រី និងវារីវប្បកម្ម។",skills:["Aquaculture"],schools:["rua"]},
@@ -1742,7 +1741,44 @@ const careersList=[
   {id:"chef",name:"ចុងភៅ (Commis Chef / Line Cook)",cat:"culinary",icon:"restaurant",salary:"$250–$800",desc:"ចម្អិនអាហារនៅផ្ទះបាយអាជីព តាមស្តង់ដារភោជនីយដ្ឋាន និងសណ្ឋាគារ ៥ ផ្កាយ។",skills:["Knife Skills","French Techniques","Mise en Place","Stocks & Sauces","Banquet Production"],schools:["acac"]},
   {id:"pastrychef",name:"ចុងភៅនំ (Pastry Chef / Baker)",cat:"culinary",icon:"bakery_dining",salary:"$300–$900",desc:"ធ្វើនំបុ័ង នំផ្អែម និងបង្អែម តាមបែបបារាំង និងសិល្បៈ។",skills:["Viennoiserie","Artisanal Bread","Dough Fermentation","Chocolate Tempering","Plating"],schools:["acac"]},
   {id:"barista",name:"អ្នកឆុងកាហ្វេ (Head Barista / Cafe Lead)",cat:"culinary",icon:"local_cafe",salary:"$250–$700",desc:"ឆុងកាហ្វេ espresso គ្រប់គ្រង cafe និងបង្កើត latte art។",skills:["Espresso Extraction","Milk Texturing","Latte Art","Flavor Profiling","Cafe Menu"],schools:["acac"]},
-  {id:"kitchenmgr",name:"អ្នកគ្រប់គ្រងផ្ទះបាយ (Kitchen Manager / Sous Chef)",cat:"culinary",icon:"restaurant_menu",salary:"$500–$2,000+",desc:"គ្រប់គ្រងផ្ទះបាយ ថ្លៃដើម សន្តិសុខអាហារ (HACCP) និងបុគ្គលិក។",skills:["Cost Engineering","Inventory","HACCP Safety","Procurement","Leadership"],schools:["acac"]}
+  {id:"kitchenmgr",name:"អ្នកគ្រប់គ្រងផ្ទះបាយ (Kitchen Manager / Sous Chef)",cat:"culinary",icon:"restaurant_menu",salary:"$500–$2,000+",desc:"គ្រប់គ្រងផ្ទះបាយ ថ្លៃដើម សន្តិសុខអាហារ (HACCP) និងបុគ្គលិក។",skills:["Cost Engineering","Inventory","HACCP Safety","Procurement","Leadership"],schools:["acac"]},
+  {id:"devops",name:"វិស្វករ DevOps",cat:"tech",icon:"deployed_code",salary:"$700–$1,900",desc:"គ្រប់គ្រង CI/CD និងហេដ្ឋារចនាសម្ព័ន្ធ cloud។",skills:["Docker","Kubernetes","AWS"],schools:["cadt","itc"]},
+  {id:"gamedev",name:"អ្នកអភិវឌ្ឍន៍ហ្គេម (Game Developer)",cat:"tech",icon:"sports_esports",salary:"$500–$1,500",desc:"បង្កើតហ្គេមលើ mobile និង PC។",skills:["Unity","C#","3D"],schools:["cadt"]},
+  {id:"dbadmin",name:"អ្នកគ្រប់គ្រងទិន្នន័យ (Database Admin)",cat:"tech",icon:"database",salary:"$500–$1,400",desc:"គ្រប់គ្រង និងធានាសុវត្ថិភាពមូលដ្ឋានទិន្នន័យ។",skills:["SQL","Oracle","Backup"],schools:["itc","cadt"]},
+  {id:"itsupport",name:"អ្នកជំនួយ IT (IT Support)",cat:"tech",icon:"support_agent",salary:"$300–$800",desc:"ដោះស្រាយបញ្ហាកុំព្យូទ័រ និងបណ្ដាញ។",skills:["Troubleshooting","Hardware"],schools:["npic","itc"]},
+  {id:"midwife",name:"ឆ្មប",cat:"health",icon:"pregnant_woman",salary:"$300–$800",desc:"ថែទាំស្ត្រីមានផ្ទៃពោះ និងសម្រាលកូន។",skills:["ការថែទាំ","សម្ភព"],schools:["uhs","iu"]},
+  {id:"publichealth",name:"មន្ត្រីសុខភាពសាធារណៈ",cat:"health",icon:"health_and_safety",salary:"$400–$1,100",desc:"គ្រប់គ្រងកម្មវិធីសុខភាពសហគមន៍។",skills:["Public Health","Epidemiology"],schools:["uhs"]},
+  {id:"nutritionist",name:"អ្នកជំនាញអាហារូបត្ថម្ភ",cat:"health",icon:"nutrition",salary:"$350–$900",desc:"ណែនាំរបបអាហារ និងសុខភាព។",skills:["Nutrition","Diet"],schools:["uhs"]},
+  {id:"radiographer",name:"បច្ចេកទេសរូបភាពវេជ្ជសាស្ត្រ",cat:"health",icon:"radiology",salary:"$400–$1,000",desc:"ថតកាំរស្មី X និង scan។",skills:["Imaging","X-ray"],schools:["uhs"]},
+  {id:"fashion",name:"អ្នករចនាម៉ូដ (Fashion Designer)",cat:"design",icon:"checkroom",salary:"$300–$1,000",desc:"រចនាសម្លៀកបំពាក់ និងម៉ូដ។",skills:["Sketching","Sewing","Trends"],schools:["limkokwing"]},
+  {id:"animator",name:"អ្នកបង្កើត Animation",cat:"design",icon:"animation",salary:"$400–$1,200",desc:"បង្កើតចលនា និង motion graphics។",skills:["After Effects","2D/3D"],schools:["limkokwing","tux"]},
+  {id:"photographer",name:"អ្នកថតរូប (Photographer)",cat:"design",icon:"photo_camera",salary:"$300–$1,000",desc:"ថត និងកែសម្រួលរូបភាពអាជីព។",skills:["Photography","Lightroom"],schools:["limkokwing"]},
+  {id:"productdesign",name:"អ្នករចនាផលិតផល (Product Designer)",cat:"design",icon:"widgets",salary:"$500–$1,400",desc:"រចនាផលិតផល និងបទពិសោធន៍អ្នកប្រើ។",skills:["Figma","Research","Prototyping"],schools:["tux","cadt"]},
+  {id:"economist",name:"សេដ្ឋវិទូ",cat:"business",icon:"insights",salary:"$500–$1,600",desc:"វិភាគសេដ្ឋកិច្ច និងគោលនយោបាយ។",skills:["Economics","Statistics"],schools:["rule","num"]},
+  {id:"salesmgr",name:"អ្នកគ្រប់គ្រងផ្នែកលក់",cat:"business",icon:"sell",salary:"$400–$1,500",desc:"ដឹកនាំក្រុមលក់ និងសម្រេចគោលដៅ។",skills:["Sales","Negotiation"],schools:["num","uc"]},
+  {id:"logistics",name:"អ្នកគ្រប់គ្រង Logistics",cat:"business",icon:"local_shipping",salary:"$400–$1,300",desc:"គ្រប់គ្រងខ្សែសង្វាក់ផ្គត់ផ្គង់ និងដឹកជញ្ជូន។",skills:["Supply Chain","Logistics"],schools:["num"]},
+  {id:"realestate",name:"ភ្នាក់ងារអចលនទ្រព្យ",cat:"business",icon:"real_estate_agent",salary:"$300–$1,500",desc:"ទិញលក់ និងជួលអចលនទ្រព្យ។",skills:["Sales","Negotiation"],schools:["num"]},
+  {id:"insurance",name:"ភ្នាក់ងារធានារ៉ាប់រង",cat:"business",icon:"shield",salary:"$300–$1,200",desc:"លក់ និងគ្រប់គ្រងផលិតផលធានារ៉ាប់រង។",skills:["Sales","Finance"],schools:["num"]},
+  {id:"ecommerce",name:"អ្នកគ្រប់គ្រង E-commerce",cat:"business",icon:"shopping_cart",salary:"$400–$1,300",desc:"គ្រប់គ្រងហាងអនឡាញ និងលក់ឌីជីថល។",skills:["E-commerce","Digital Marketing"],schools:["dichi","num"]},
+  {id:"welder",name:"ជាងផ្សារដែក (Welder)",cat:"trades",icon:"local_fire_department",salary:"$300–$900",desc:"ផ្សារ និងភ្ជាប់លោហធាតុ។",skills:["Welding","Safety"],schools:["ntti","npic"]},
+  {id:"carpenter",name:"ជាងឈើ (Carpenter)",cat:"trades",icon:"carpenter",salary:"$300–$800",desc:"កាត់ តម្លើង និងផលិតគ្រឿងឈើ។",skills:["Woodwork"],schools:["ntti"]},
+  {id:"automotive",name:"ជាងជួសជុលរថយន្ត",cat:"trades",icon:"car_repair",salary:"$300–$900",desc:"ជួសជុល និងថែទាំរថយន្ត។",skills:["Automotive","Diagnostics"],schools:["ntti","npic"]},
+  {id:"solar",name:"ជាងបច្ចេកទេសថាមពលព្រះអាទិត្យ",cat:"trades",icon:"solar_power",salary:"$350–$1,000",desc:"តម្លើងប្រព័ន្ធថាមពលព្រះអាទិត្យ។",skills:["Solar","Electrical"],schools:["itc","ntti"]},
+  {id:"englishteacher",name:"គ្រូភាសាអង់គ្លេស",cat:"education",icon:"translate",salary:"$300–$1,000",desc:"បង្រៀនភាសាអង់គ្លេស។",skills:["English","Teaching"],schools:["nie","rupp"]},
+  {id:"earlyedu",name:"គ្រូមត្តេយ្យ",cat:"education",icon:"child_care",salary:"$250–$600",desc:"អប់រំ និងថែទាំកុមារតូច។",skills:["Early Education","Patience"],schools:["nie"]},
+  {id:"counselor",name:"អ្នកប្រឹក្សាការសិក្សា",cat:"education",icon:"psychology",salary:"$350–$900",desc:"ណែនាំសិស្សអំពីការសិក្សា និងអាជីព។",skills:["Counseling","Communication"],schools:["nie","rupp"]},
+  {id:"travelagent",name:"ភ្នាក់ងារទេសចរណ៍",cat:"tourism",icon:"flight",salary:"$300–$900",desc:"រៀបចំដំណើរកម្សាន្ត និងកញ្ចប់ទេសចរណ៍។",skills:["Booking","Customer Service"],schools:["num"]},
+  {id:"eventplanner",name:"អ្នករៀបចំព្រឹត្តិការណ៍",cat:"tourism",icon:"celebration",salary:"$350–$1,200",desc:"រៀបចំកម្មវិធី និងព្រឹត្តិការណ៍។",skills:["Planning","Coordination"],schools:["num"]},
+  {id:"flightattendant",name:"បុគ្គលិកអាកាសចរណ៍ (Flight Attendant)",cat:"tourism",icon:"airlines",salary:"$500–$1,500",desc:"បម្រើសេវា និងសុវត្ថិភាពលើយន្តហោះ។",skills:["Service","Languages","Safety"],schools:[]},
+  {id:"foodtech",name:"បច្ចេកវិទ្យាចំណីអាហារ",cat:"agri",icon:"factory",salary:"$400–$1,100",desc:"កែច្នៃ និងធានាគុណភាពចំណីអាហារ។",skills:["Food Science","QA"],schools:["rua"]},
+  {id:"agribusiness",name:"អ្នកគ្រប់គ្រងអាជីវកម្មកសិកម្ម",cat:"agri",icon:"storefront",salary:"$400–$1,200",desc:"គ្រប់គ្រងអាជីវកម្ម និងទីផ្សារកសិផល។",skills:["Agribusiness","Management"],schools:["rua","num"]},
+  {id:"forestry",name:"អ្នកជំនាញព្រៃឈើ",cat:"agri",icon:"forest",salary:"$350–$1,000",desc:"គ្រប់គ្រង និងអភិរក្សព្រៃឈើ។",skills:["Forestry","Conservation"],schools:["rua"]},
+  {id:"notary",name:"សារការី (Notary)",cat:"law",icon:"contract",salary:"$500–$1,500",desc:"បញ្ជាក់ និងផ្ទៀងផ្ទាត់ឯកសារច្បាប់។",skills:["Law","Documentation"],schools:["rule"]},
+  {id:"police",name:"នគរបាល",cat:"law",icon:"local_police",salary:"$250–$800",desc:"រក្សាសន្តិសុខ និងសណ្ដាប់ធ្នាប់សាធារណៈ។",skills:["Law Enforcement"],schools:["era"]},
+  {id:"socialworker",name:"អ្នកសង្គមកិច្ច",cat:"law",icon:"volunteer_activism",salary:"$300–$900",desc:"ជួយសហគមន៍ និងក្រុមងាយរងគ្រោះ។",skills:["Social Work","Empathy"],schools:["rupp","uc"]},
+  {id:"contentcreator",name:"អ្នកបង្កើតមាតិកា (Content Creator)",cat:"media",icon:"video_camera_front",salary:"$300–$1,500",desc:"បង្កើតវីដេអូ និងមាតិកាលើ digital platforms។",skills:["Video","Storytelling","Editing"],schools:["limkokwing"]},
+  {id:"broadcaster",name:"អ្នកនាំកម្មវិធី (Broadcaster)",cat:"media",icon:"podcasts",salary:"$300–$1,200",desc:"នាំកម្មវិធីទូរទស្សន៍ និងវិទ្យុ។",skills:["Presenting","Voice"],schools:["uc"]},
+  {id:"copywriter",name:"អ្នកសរសេរពាណិជ្ជកម្ម (Copywriter)",cat:"media",icon:"edit_note",salary:"$300–$1,000",desc:"សរសេរអត្ថបទផ្សាយពាណិជ្ជកម្ម។",skills:["Writing","Marketing"],schools:["puc","uc"]}
 ];
 </script>
 
