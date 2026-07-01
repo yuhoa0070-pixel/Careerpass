@@ -391,6 +391,16 @@ select.filter-select:focus{border-color:var(--accent);}
 .save-btn.on .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
 .card-actions{display:flex;align-items:center;gap:2px;}
 
+/* ===== PAGINATION ===== */
+.pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:32px;flex-wrap:wrap;}
+.page-btn{min-width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;border:1.5px solid var(--border-strong);background:var(--card);color:var(--text);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.page-btn:hover:not(:disabled):not(.active){background:var(--accent-tint);border-color:var(--accent);color:var(--accent);}
+.page-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;cursor:default;}
+.page-btn:disabled{opacity:.4;cursor:not-allowed;}
+.page-btn .material-symbols-outlined{font-size:20px;}
+.page-ellipsis{min-width:24px;text-align:center;color:var(--text-3);font-weight:700;}
+.page-info{text-align:center;font-size:12px;color:var(--text-3);margin-top:10px;}
+
 /* ===== SOCIAL SHARE ===== */
 .share-module{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;}
 .share-module .share-label{font-size:13px;font-weight:700;color:var(--text-2);display:flex;align-items:center;gap:7px;}
@@ -661,6 +671,8 @@ select.filter-select:focus{border-color:var(--accent);}
       <button class="btn btn-ghost btn-sm" onclick="clearCompare()">លុបចោល</button>
     </div>
     <div class="schools-grid" id="schools-grid"></div>
+    <div class="pagination" id="schools-pagination"></div>
+    <div class="page-info" id="schools-page-info"></div>
     <div id="compare-section" style="display:none">
       <p class="section-title" style="margin-top:32px">ការប្រៀបធៀប</p>
       <div class="compare-table-wrap"><table class="compare-table" id="compare-table"></table></div>
@@ -688,6 +700,8 @@ select.filter-select:focus{border-color:var(--accent);}
     </div>
     <div class="chip-row" id="career-chips"></div>
     <div class="jobs-grid" id="jobs-grid"></div>
+    <div class="pagination" id="jobs-pagination"></div>
+    <div class="page-info" id="jobs-page-info"></div>
   </div>
 </section>
 
@@ -1178,8 +1192,41 @@ function animCount(el,target,delay){if(!el)return;setTimeout(()=>{const dur=700,
 <script>
 /* ===== GOAL 2: SCHOOLS ===== */
 let schoolSearch="",schoolProvince="all",schoolType="all",schoolCareer="all";
+let schoolPage=1,jobPage=1;
+const SCHOOLS_PER_PAGE=9,JOBS_PER_PAGE=9;
 
-function filterSchoolsByCat(cat){schoolCareer=cat;document.getElementById("school-career-filter").value=cat;renderSchools();}
+/* ===== PAGINATION HELPERS ===== */
+function khNum(n){return String(n).replace(/\d/g,d=>"០១២៣៤៥៦៧៨៩"[+d]);}
+function pageRange(cur,total){
+  const range=[],delta=1;let last=0;
+  for(let i=1;i<=total;i++){
+    if(i===1||i===total||(i>=cur-delta&&i<=cur+delta)){
+      if(last&&i-last>1)range.push("...");
+      range.push(i);last=i;
+    }
+  }
+  return range;
+}
+function renderPagination(elId,total,page,per,fn){
+  const el=document.getElementById(elId);if(!el)return;
+  const pages=Math.ceil(total/per);
+  if(pages<=1){el.innerHTML="";return;}
+  let h='<button class="page-btn" '+(page<=1?"disabled":"")+' onclick="'+fn+'('+(page-1)+')" aria-label="prev"><i class="material-symbols-outlined">chevron_left</i></button>';
+  pageRange(page,pages).forEach(n=>{
+    if(n==="...")h+='<span class="page-ellipsis">…</span>';
+    else h+='<button class="page-btn'+(n===page?" active":"")+'" onclick="'+fn+'('+n+')">'+khNum(n)+'</button>';
+  });
+  h+='<button class="page-btn" '+(page>=pages?"disabled":"")+' onclick="'+fn+'('+(page+1)+')" aria-label="next"><i class="material-symbols-outlined">chevron_right</i></button>';
+  el.innerHTML=h;
+}
+function pageInfo(elId,total,page,per){
+  const el=document.getElementById(elId);if(!el)return;
+  if(!total){el.textContent="";return;}
+  const start=(page-1)*per+1,end=Math.min(total,page*per);
+  el.textContent="បង្ហាញ "+khNum(start)+"–"+khNum(end)+" ក្នុងចំណោម "+khNum(total);
+}
+
+function filterSchoolsByCat(cat){schoolCareer=cat;schoolPage=1;document.getElementById("school-career-filter").value=cat;renderSchools();}
 
 function renderSchools(){
   const q=schoolSearch.toLowerCase();
@@ -1191,8 +1238,12 @@ function renderSchools(){
     return matchQ&&matchP&&matchT&&matchC;
   });
   const grid=document.getElementById("schools-grid");
-  if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;return;}
-  grid.innerHTML=filtered.map((s,i)=>`
+  if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;renderPagination("schools-pagination",0,1,SCHOOLS_PER_PAGE,"gotoSchoolPage");pageInfo("schools-page-info",0,1,SCHOOLS_PER_PAGE);return;}
+  const pages=Math.ceil(filtered.length/SCHOOLS_PER_PAGE);
+  if(schoolPage>pages)schoolPage=pages;if(schoolPage<1)schoolPage=1;
+  const start=(schoolPage-1)*SCHOOLS_PER_PAGE;
+  const pageItems=filtered.slice(start,start+SCHOOLS_PER_PAGE);
+  grid.innerHTML=pageItems.map((s,i)=>`
     <div class="school-card" style="animation-delay:${i*.06}s" onclick="openSchool('${s.id}')">
       <div class="school-card-top">
         <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
@@ -1212,8 +1263,11 @@ function renderSchools(){
         <span class="school-view-more">មើលលម្អិត →</span>
       </div>
     </div>`).join("");
+  renderPagination("schools-pagination",filtered.length,schoolPage,SCHOOLS_PER_PAGE,"gotoSchoolPage");
+  pageInfo("schools-page-info",filtered.length,schoolPage,SCHOOLS_PER_PAGE);
   updateCompareBar();
 }
+function gotoSchoolPage(p){schoolPage=p;renderSchools();window.scrollTo({top:0,behavior:"smooth"});}
 
 function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម","svay-rieng":"ស្វាយរៀង","banteay-meanchey":"បន្ទាយមានជ័យ","prey-veng":"ព្រៃវែង",province:"ខេត្ត"};return m[p]||p;}
 function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល"}[t]||t;}
@@ -1306,10 +1360,10 @@ function showCompare(){
 }
 function clearCompare(){compareList=[];document.getElementById("compare-section").style.display="none";renderSchools();}
 
-document.getElementById("school-search").addEventListener("input",e=>{schoolSearch=e.target.value;renderSchools();});
-document.getElementById("school-province").addEventListener("change",e=>{schoolProvince=e.target.value;renderSchools();});
-document.getElementById("school-type").addEventListener("change",e=>{schoolType=e.target.value;renderSchools();});
-document.getElementById("school-career-filter").addEventListener("change",e=>{schoolCareer=e.target.value;renderSchools();});
+document.getElementById("school-search").addEventListener("input",e=>{schoolSearch=e.target.value;schoolPage=1;renderSchools();});
+document.getElementById("school-province").addEventListener("change",e=>{schoolProvince=e.target.value;schoolPage=1;renderSchools();});
+document.getElementById("school-type").addEventListener("change",e=>{schoolType=e.target.value;schoolPage=1;renderSchools();});
+document.getElementById("school-career-filter").addEventListener("change",e=>{schoolCareer=e.target.value;schoolPage=1;renderSchools();});
 
 /* ===== GOAL 3: COST ===== */
 const salaryMap={technology:800,healthcare:600,design:500,business:650,trades:450,cs:800,health:600,design2:500,business2:650,engineering:750,law:550};
@@ -1468,15 +1522,19 @@ function renderCareerChips(){
   });
   row.innerHTML=html;
 }
-function setJobCat(c){jobCat=c;renderCareerChips();renderCareers();}
+function setJobCat(c){jobCat=c;jobPage=1;renderCareerChips();renderCareers();}
 function renderCareers(){
   renderCareerChips();
   const q=jobSearch.toLowerCase();
   const grid=document.getElementById("jobs-grid");
   if(!grid)return;
   const filtered=careersList.filter(j=>(jobCat==="all"||j.cat===jobCat)&&j.name.toLowerCase().includes(q));
-  if(!filtered.length){grid.innerHTML='<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញអាជីព</p></div>';return;}
-  grid.innerHTML=filtered.map((j,i)=>`
+  if(!filtered.length){grid.innerHTML='<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញអាជីព</p></div>';renderPagination("jobs-pagination",0,1,JOBS_PER_PAGE,"gotoJobPage");pageInfo("jobs-page-info",0,1,JOBS_PER_PAGE);return;}
+  const pages=Math.ceil(filtered.length/JOBS_PER_PAGE);
+  if(jobPage>pages)jobPage=pages;if(jobPage<1)jobPage=1;
+  const start=(jobPage-1)*JOBS_PER_PAGE;
+  const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
+  grid.innerHTML=pageItems.map((j,i)=>`
     <div class="job-card" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
       <div class="job-top">
         <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
@@ -1486,7 +1544,10 @@ function renderCareers(){
       <p class="job-desc">${j.desc}</p>
       <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
     </div>`).join("");
+  renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
+  pageInfo("jobs-page-info",filtered.length,jobPage,JOBS_PER_PAGE);
 }
+function gotoJobPage(p){jobPage=p;renderCareers();window.scrollTo({top:0,behavior:"smooth"});}
 function openCareer(id){
   const j=careersList.find(x=>x.id===id);
   if(!j)return;
@@ -1527,7 +1588,7 @@ function openCareer(id){
     </div>`;
   showView("career-detail");
 }
-document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;renderCareers();});
+document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
 </script>
 
 
