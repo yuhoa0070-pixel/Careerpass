@@ -1837,33 +1837,37 @@ function shareBtnsHTML(){
 
 <script>
 /* ===== SHARE PLAN WITH PARENTS (encoded link + summary) ===== */
-function costShareText(){
+function costData(){
   const g=id=>{const el=document.getElementById(id);return el?el.textContent.trim():"";};
-  const total=g("total-cost");
-  const dur=g("cost-duration").replace("សម្រាប់ ","");
-  const payback=g("roi-payback");
-  const salary=g("roi-salary");
   const sel=document.getElementById("cost-school");
-  const schoolName=(sel&&sel.value&&sel.selectedOptions[0])?sel.selectedOptions[0].text:"";
+  return {total:g("total-cost"),dur:g("cost-duration"),tu:g("breakdown-tuition"),rent:g("breakdown-rent"),food:g("breakdown-food"),tr:g("breakdown-transport"),mat:g("breakdown-materials"),sal:g("roi-salary"),ann:g("roi-annual"),pay:g("roi-payback"),sc:(sel&&sel.value&&sel.selectedOptions[0])?sel.selectedOptions[0].text:""};
+}
+function encodeCostUrl(){
+  let b64="";
+  try{b64=btoa(unescape(encodeURIComponent(JSON.stringify(costData()))));}catch(e){b64="";}
+  return location.origin+location.pathname+"#cost="+b64;
+}
+function costShareText(){
+  const d=costData();
   const lines=["🎓 ការប៉ាន់ស្មានថ្លៃសិក្សា — Trey Visai",""];
-  lines.push("💰 ថ្លៃសិក្សាសរុប៖ "+(total||"$0")+(dur?" ("+dur+")":""));
-  if(schoolName)lines.push("🏫 "+schoolName);
-  if(payback&&payback!=="—")lines.push("📊 ROI៖ សងវិញ "+payback+(salary?" (ប្រាក់ខែ ~"+salary+")":""));
+  lines.push("💰 ថ្លៃសិក្សាសរុប៖ "+(d.total||"$0")+(d.dur?" ("+d.dur.replace("សម្រាប់ ","")+")":""));
+  if(d.sc)lines.push("🏫 "+d.sc);
+  if(d.pay&&d.pay!=="—")lines.push("📊 ROI៖ សងវិញ "+d.pay+(d.sal?" (ប្រាក់ខែ ~"+d.sal+")":""));
   lines.push("");
-  lines.push("គណនាថ្លៃសិក្សារបស់អ្នកនៅ Trey Visai 👇");
+  lines.push("ចុចតំណដើម្បីមើលព័ត៌មានលម្អិត 👇");
   return lines.join("\n");
 }
 function shareCostTo(p){
   if(p==="copy"){
-    const url=window.location.href;const done=()=>showShareToast("បានចម្លងតំណ ✓");
+    const url=encodeCostUrl();const done=()=>showShareToast("បានចម្លងតំណ ✓");
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fallbackCopy(url,done));}else fallbackCopy(url,done);
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — Trey Visai",text:costShareText(),url:window.location.href}).catch(()=>{});}else shareCostTo("copy");
+    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — Trey Visai",text:costShareText(),url:encodeCostUrl()}).catch(()=>{});}else shareCostTo("copy");
     return;
   }
-  const url=encodeURIComponent(window.location.href);
+  const url=encodeURIComponent(encodeCostUrl());
   const text=encodeURIComponent(costShareText());
   const map={
     facebook:"https://www.facebook.com/sharer/sharer.php?u="+url,
@@ -1955,11 +1959,42 @@ function exitShared(action,careerId){
   if(history.replaceState)history.replaceState(null,"",location.pathname);else location.hash="";
   if(action==="career"&&careerId)openCareer(careerId);
   else if(action==="quiz")showView("quiz");
+  else if(action==="cost")showView("cost");
   else showView("home");
 }
 function checkSharedPlan(){
   const m=(location.hash||"").match(/plan=([^&]+)/);
   if(m){const data=decodePlanHash(m[1]);if(data){renderSharedPlan(data);showView("shared");return true;}}
+  return false;
+}
+function renderSharedCost(d){
+  const el=document.getElementById("shared-content");if(!el)return;
+  const dur=(d.dur||"").replace("សម្រាប់ ","");
+  let html="";
+  html+=`<div class="shared-banner"><i class="material-symbols-outlined">savings</i><div><p class="sb-eyebrow">ការប៉ាន់ស្មានថ្លៃសិក្សា</p><h2>${d.total||"$0"}</h2><p class="sb-sub">${dur?dur+" ":""}${d.sc?"· "+d.sc:""} — សូមឪពុកម្ដាយ/អាណាព្យាបាលពិនិត្យមើលការចំណាយសិក្សា។</p></div></div>`;
+  html+=`<div class="cost-result" style="max-width:480px;margin:0 auto">
+    <div class="cost-total-box"><div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div><div class="amount">${d.total||"$0"}</div><div class="sub">${d.dur||""}${d.sc?" · "+d.sc:""}</div></div>
+    <div class="cost-breakdown">
+      <div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val">${d.tu||"$0"}</span></div>
+      <div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ស្នាក់នៅ</span><span class="val">${d.rent||"$0"}</span></div>
+      <div class="cost-line"><span class="label"><i class="material-symbols-outlined">restaurant</i> ម្ហូបអាហារ</span><span class="val">${d.food||"$0"}</span></div>
+      <div class="cost-line"><span class="label"><i class="material-symbols-outlined">directions_bus</i> ធ្វើដំណើរ</span><span class="val">${d.tr||"$0"}</span></div>
+      <div class="cost-line"><span class="label"><i class="material-symbols-outlined">menu_book</i> សម្ភារ</span><span class="val">${d.mat||"$0"}</span></div>
+      <div class="cost-divider"></div>
+      <div class="cost-line" style="font-weight:700"><span class="label" style="color:var(--text);font-weight:700"><i class="material-symbols-outlined">payments</i> សរុប</span><span class="val" style="color:var(--accent)">${d.total||"$0"}</span></div>
+    </div>
+    <div class="roi-box"><h4><i class="material-symbols-outlined">trending_up</i> ការវិភាគ ROI</h4>
+      <div class="roi-stat"><span class="label">ប្រាក់ខែប្រចាំខែ (ប៉ាន់ស្មាន)</span><span class="val">${d.sal||"—"}</span></div>
+      <div class="roi-stat"><span class="label">ប្រចាំឆ្នាំ</span><span class="val">${d.ann||"—"}</span></div>
+      <div class="roi-stat"><span class="label">ពេលវេលាសង (ឆ្នាំ)</span><span class="val">${d.pay||"—"}</span></div>
+    </div>
+  </div>`;
+  html+=`<div class="shared-cta"><button class="btn btn-primary" onclick="exitShared('cost')"><i class="material-symbols-outlined">calculate</i> គណនាដោយខ្លួនឯង</button><button class="btn btn-ghost" onclick="exitShared('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តអាជីព</button></div>`;
+  el.innerHTML=html;
+}
+function checkSharedCost(){
+  const m=(location.hash||"").match(/cost=([^&]+)/);
+  if(m){const data=decodePlanHash(m[1]);if(data){renderSharedCost(data);showView("shared");return true;}}
   return false;
 }
 </script>
@@ -1968,7 +2003,7 @@ function checkSharedPlan(){
 /* ===== MY PLAN INIT ===== */
 loadPlan();
 updatePlanBadge();
-checkSharedPlan();
+if(!checkSharedPlan())checkSharedCost();
 </script>
 
 </body>
