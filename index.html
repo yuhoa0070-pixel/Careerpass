@@ -382,7 +382,8 @@ select.filter-select:focus{border-color:var(--accent);}
 .detail-side .info-row .val{font-weight:700;color:var(--text);}
 .detail-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
 .map-embed{position:relative;width:100%;height:220px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px;background:var(--bg);}
-.map-embed iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.15);}
+.map-embed iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(1) contrast(1.02) brightness(1.03);}
+.map-embed::after{content:"";position:absolute;inset:0;background:var(--accent);mix-blend-mode:multiply;opacity:.16;pointer-events:none;}
 .map-btn{width:100%;justify-content:center;}
 .detail-tags .tag{font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 10px;font-weight:600;}
 .detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
