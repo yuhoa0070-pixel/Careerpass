@@ -2050,25 +2050,35 @@ function encodeCostUrl(){
 }
 function costShareText(){
   const d=costData();
-  const lines=["🎓 ការប៉ាន់ស្មានថ្លៃសិក្សា — Trey Visai",""];
-  lines.push("💰 ថ្លៃសិក្សាសរុប៖ "+(d.total||"$0")+(d.dur?" ("+d.dur.replace("សម្រាប់ ","")+")":""));
-  if(d.sc)lines.push("🏫 "+d.sc);
-  if(d.pay&&d.pay!=="—")lines.push("📊 ROI៖ សងវិញ "+d.pay+(d.sal?" (ប្រាក់ខែ ~"+d.sal+")":""));
-  lines.push("");
-  lines.push("ចុចតំណដើម្បីមើលព័ត៌មានលម្អិត 👇");
-  return lines.join("\n");
+  const bar="━━━━━━━━━━━━━";
+  const L=["🧾 វិក្កយបត្រថ្លៃសិក្សា — Trey Visai",bar];
+  if(d.sc)L.push("🏫 "+d.sc);
+  if(d.dur)L.push("🎓 "+d.dur);
+  L.push(bar);
+  L.push("• ថ្លៃសិក្សា៖ "+(d.tu||"$0"));
+  L.push("• ស្នាក់នៅ៖ "+(d.rent||"$0"));
+  L.push("• ម្ហូបអាហារ៖ "+(d.food||"$0"));
+  L.push("• ធ្វើដំណើរ៖ "+(d.tr||"$0"));
+  L.push("• សម្ភារ៖ "+(d.mat||"$0"));
+  L.push(bar);
+  L.push("💰 សរុប៖ "+(d.total||"$0"));
+  if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
+  L.push(bar);
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ Trey Visai");
+  return L.join("\n");
 }
 function shareCostTo(p){
+  const shareUrl=location.origin+location.pathname;
   if(p==="copy"){
-    const url=encodeCostUrl();const done=()=>showShareToast("បានចម្លងតំណ ✓");
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fallbackCopy(url,done));}else fallbackCopy(url,done);
+    const txt=costShareText()+"\n"+shareUrl;const done=()=>showShareToast("បានចម្លងអត្ថបទ ✓");
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}else fallbackCopy(txt,done);
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — Trey Visai",text:costShareText(),url:encodeCostUrl()}).catch(()=>{});}else shareCostTo("copy");
+    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — Trey Visai",text:costShareText(),url:shareUrl}).catch(()=>{});}else shareCostTo("copy");
     return;
   }
-  const url=encodeURIComponent(encodeCostUrl());
+  const url=encodeURIComponent(shareUrl);
   const text=encodeURIComponent(costShareText());
   const map={
     facebook:"https://www.facebook.com/sharer/sharer.php?u="+url,
