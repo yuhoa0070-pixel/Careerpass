@@ -1361,7 +1361,6 @@ function renderSchools(){
       <div class="school-card-top">
         <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
         <div class="card-actions">
-          <div class="save-btn ${isSavedSchool(s.id)?'on':''}" title="រក្សាទុកទៅផែនការ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">${isSavedSchool(s.id)?'bookmark':'bookmark_add'}</i></div>
           <div class="compare-btn ${compareList.includes(s.id)?'on':''}" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></div>
         </div>
       </div>
@@ -1432,8 +1431,7 @@ function openSchool(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">star</i> វាយតម្លៃ</span><span class="val">★ ${s.rating}</span></div>
         <div style="margin-top:16px"><div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:8px">អាជីពពាក់ព័ន្ធ</div><div class="detail-tags">${s.careers.map(c=>'<span class="tag">'+careerLabel(c)+'</span>').join("")}</div></div>
         <div class="detail-actions">
-          <button class="btn btn-primary btn-sm" onclick="toggleSaveSchool('${s.id}');openSchool('${s.id}')"><i class="material-symbols-outlined">${isSavedSchool(s.id)?'bookmark':'bookmark_add'}</i> ${isSavedSchool(s.id)?'បានរក្សាទុក':'រក្សាទុកទៅផែនការ'}</button>
-          <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
+          <button class="btn btn-primary btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
           <button class="btn btn-ghost btn-sm" onclick="showView('scholarship')"><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍</button>
         </div>
       </div>
@@ -1652,7 +1650,6 @@ function renderCareers(){
       <div class="job-top">
         <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
         <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
-        <div class="save-btn ${isSavedCareer(j.id)?'on':''}" style="margin-left:auto" title="រក្សាទុកទៅផែនការ" onclick="event.stopPropagation();toggleSaveCareer('${j.id}')"><i class="material-symbols-outlined">${isSavedCareer(j.id)?'bookmark':'bookmark_add'}</i></div>
       </div>
       <p class="job-desc">${j.desc}</p>
       <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
@@ -1693,8 +1690,7 @@ function openCareer(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">category</i> វិស័យ</span><span class="val">${jobCats[j.cat].label}</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">account_balance</i> សាលា</span><span class="val">${rel.length}</span></div>
         <div class="detail-actions">
-          <button class="btn btn-primary btn-sm" id="career-save-btn" onclick="toggleSaveCareer('${j.id}');openCareer('${j.id}')"><i class="material-symbols-outlined">${isSavedCareer(j.id)?'bookmark':'bookmark_add'}</i> ${isSavedCareer(j.id)?'បានរក្សាទុក':'រក្សាទុកទៅផែនការ'}</button>
-          <button class="btn btn-ghost btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
+          <button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
           <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ថ្លៃសិក្សា</button>
         </div>
       </div>
