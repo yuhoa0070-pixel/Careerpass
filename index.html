@@ -501,7 +501,11 @@ select.filter-select:focus{border-color:var(--accent);}
 .cs-option.sel .cs-check{opacity:1;}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .range-wrap{display:flex;align-items:center;gap:12px;}
-.range-wrap input[type=range]{flex:1;accent-color:var(--accent);}
+.range-wrap input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:6px;background:var(--border);border-radius:0;cursor:pointer;}
+.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;background:var(--accent);border-radius:0;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.28);margin-top:-5px;}
+.range-wrap input[type=range]::-webkit-slider-runnable-track{height:6px;background:transparent;border-radius:0;}
+.range-wrap input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--accent);border-radius:0;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.28);}
+.range-wrap input[type=range]::-moz-range-track{height:6px;background:transparent;border-radius:0;}
 .range-val{font-size:14px;font-weight:700;color:var(--accent);min-width:60px;text-align:right;}
 .cost-result{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);}
 .cost-total-box{background:var(--accent);color:#fff;border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:20px;}
@@ -1678,7 +1682,9 @@ document.getElementById("school-career-filter").addEventListener("change",e=>{sc
 
 /* ===== GOAL 3: COST ===== */
 const salaryMap={technology:800,healthcare:600,design:500,business:650,trades:450,cs:800,health:600,design2:500,business2:650,engineering:750,law:550};
+function styleRange(el){if(!el)return;const min=+el.min||0,max=+el.max||100,val=+el.value;const pct=max>min?((val-min)/(max-min))*100:0;el.style.background="linear-gradient(to right,var(--accent) 0%,var(--accent) "+pct+"%,var(--border) "+pct+"%,var(--border) 100%)";}
 function calcCost(){
+  ["cost-rent","cost-food","cost-transport","cost-materials"].forEach(id=>styleRange(document.getElementById(id)));
   const schoolSel=document.getElementById("cost-school");
   const tuitionPerYear=schoolSel.selectedOptions[0]?.dataset.tuition||0;
   const years=parseInt(document.getElementById("cost-years").value)||4;
