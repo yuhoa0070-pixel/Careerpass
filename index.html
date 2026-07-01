@@ -375,6 +375,26 @@ select.filter-select:focus{border-color:var(--accent);}
 .form-label .material-symbols-outlined{font-size:16px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .form-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s,box-shadow .15s;}
 .form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+
+/* ===== CUSTOM DROPDOWN (styled select) ===== */
+.cs-wrap{position:relative;display:inline-block;vertical-align:middle;}
+.cs-wrap.full{display:block;width:100%;}
+.cs-wrap:not(.full){min-width:150px;}
+.cs-native{position:absolute!important;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden;clip:rect(0 0 0 0);}
+.cs-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1.5px solid var(--border);color:var(--text);font-family:inherit;text-align:left;cursor:pointer;line-height:1.3;transition:border-color .15s,box-shadow .15s;}
+.cs-trigger.cs-form{padding:11px 14px;font-size:14px;background:var(--bg);}
+.cs-trigger.cs-filter{padding:11px 14px;font-size:13px;background:var(--card);}
+.cs-wrap.cs-open .cs-trigger{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+.cs-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cs-arrow{font-size:20px;color:var(--text-3);flex-shrink:0;transition:transform .2s,color .15s;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.cs-wrap.cs-open .cs-arrow{transform:rotate(180deg);color:var(--accent);}
+.cs-panel{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:100%;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-lg);z-index:85;max-height:260px;overflow-y:auto;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .16s ease,transform .16s ease;}
+.cs-wrap.cs-open .cs-panel{opacity:1;transform:none;pointer-events:auto;}
+.cs-option{display:flex;align-items:center;gap:8px;padding:11px 14px;font-size:13.5px;color:var(--text-2);cursor:pointer;transition:background .12s,color .12s;}
+.cs-option:hover{background:var(--accent-tint);color:var(--accent);}
+.cs-option.sel{color:var(--accent);font-weight:700;background:var(--accent-tint);}
+.cs-check{margin-left:auto;font-size:18px;opacity:0;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;}
+.cs-option.sel .cs-check{opacity:1;}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .range-wrap{display:flex;align-items:center;gap:12px;}
 .range-wrap input[type=range]{flex:1;accent-color:var(--accent);}
@@ -1303,7 +1323,7 @@ function pageInfo(elId,total,page,per){
   el.textContent="បង្ហាញ "+khNum(start)+"–"+khNum(end)+" ក្នុងចំណោម "+khNum(total);
 }
 
-function filterSchoolsByCat(cat){schoolCareer=cat;schoolPage=1;document.getElementById("school-career-filter").value=cat;renderSchools();}
+function filterSchoolsByCat(cat){schoolCareer=cat;schoolPage=1;const el=document.getElementById("school-career-filter");el.value=cat;if(el._csSync)el._csSync();renderSchools();}
 
 function renderSchools(){
   const q=schoolSearch.toLowerCase();
@@ -2064,9 +2084,46 @@ function checkSharedCost(){
 </script>
 
 <script>
+/* ===== CUSTOM DROPDOWN (styled select that syncs with native <select>) ===== */
+function enhanceSelect(sel){
+  if(sel.dataset.cs)return;sel.dataset.cs="1";
+  const isForm=sel.classList.contains("form-input");
+  const wrap=document.createElement("div");
+  wrap.className="cs-wrap"+(isForm?" full":"");
+  sel.parentNode.insertBefore(wrap,sel);
+  wrap.appendChild(sel);
+  sel.classList.add("cs-native");
+  const trigger=document.createElement("button");
+  trigger.type="button";
+  trigger.className="cs-trigger "+(isForm?"cs-form":"cs-filter");
+  trigger.innerHTML='<span class="cs-label"></span><i class="material-symbols-outlined cs-arrow">expand_more</i>';
+  const panel=document.createElement("div");panel.className="cs-panel";
+  const label=trigger.querySelector(".cs-label");
+  function build(){
+    panel.innerHTML=Array.from(sel.options).map((o,i)=>`<div class="cs-option${i===sel.selectedIndex?" sel":""}" data-i="${i}"><span>${o.textContent}</span><i class="material-symbols-outlined cs-check">check</i></div>`).join("");
+    panel.querySelectorAll(".cs-option").forEach(el=>el.addEventListener("click",()=>{
+      const i=+el.dataset.i;
+      if(i!==sel.selectedIndex){sel.selectedIndex=i;sel.dispatchEvent(new Event("change",{bubbles:true}));}
+      sync();closeAllSelects();
+    }));
+  }
+  function sync(){const o=sel.options[sel.selectedIndex];label.textContent=o?o.textContent:"";Array.from(panel.querySelectorAll(".cs-option")).forEach((el,i)=>el.classList.toggle("sel",i===sel.selectedIndex));}
+  sel._csSync=sync;
+  trigger.addEventListener("click",e=>{e.stopPropagation();const open=wrap.classList.contains("cs-open");closeAllSelects();if(!open){build();sync();wrap.classList.add("cs-open");}});
+  wrap.appendChild(trigger);wrap.appendChild(panel);
+  build();sync();
+}
+function closeAllSelects(){document.querySelectorAll(".cs-wrap.cs-open").forEach(w=>w.classList.remove("cs-open"));}
+document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))closeAllSelects();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAllSelects();});
+function enhanceAllSelects(){document.querySelectorAll("select.form-input,select.filter-select").forEach(enhanceSelect);}
+</script>
+
+<script>
 /* ===== MY PLAN INIT ===== */
 loadPlan();
 updatePlanBadge();
+enhanceAllSelects();
 if(!checkSharedPlan())checkSharedCost();
 </script>
 
