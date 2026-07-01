@@ -1083,6 +1083,15 @@ select.filter-select:focus{border-color:var(--accent);}
     <p class="page-title">តើអ្នកដឹងទេ?</p>
     <p class="page-sub">ការពិត និងតួលេខគួរឲ្យចាប់អារម្មណ៍អំពីការអប់រំ និងអាជីពនៅកម្ពុជា</p>
 
+    <div class="chip-row" id="facts-tabs" style="margin-bottom:22px">
+      <div class="chip active" data-fc="all" onclick="filterFacts('all')">ទាំងអស់</div>
+      <div class="chip" data-fc="stats" onclick="filterFacts('stats')"><i class="material-symbols-outlined">insights</i>ស្ថិតិ</div>
+      <div class="chip" data-fc="scholarship" onclick="filterFacts('scholarship')"><i class="material-symbols-outlined">workspace_premium</i>អាហារូបករណ៍</div>
+      <div class="chip" data-fc="careertest" onclick="filterFacts('careertest')"><i class="material-symbols-outlined">quiz</i>តេស្តអាជីព</div>
+      <div class="chip" data-fc="howto" onclick="filterFacts('howto')"><i class="material-symbols-outlined">route</i>របៀបប្រើ</div>
+      <div class="chip" data-fc="truth" onclick="filterFacts('truth')"><i class="material-symbols-outlined">history_edu</i>ការពិតអប់រំ</div>
+    </div>
+    <div class="fact-section" data-fc="stats">
     <div class="facts-cat"><i class="material-symbols-outlined">insights</i> ស្ថិតិការអប់រំនៅកម្ពុជា</div>
     <div class="facts-grid">
       <div class="fact-card" style="animation-delay:0s"><div class="fact-icon"><i class="material-symbols-outlined">groups</i></div><div class="fact-num">~៣០០ពាន់</div><h4>កុមារនៅក្រៅសាលា</h4><p>នៅឆ្នាំ ២០២៣ កុមារ និងក្មេងជំទង់ប្រមាណ ៣០០,០០០ នាក់ មិនបានទៅសាលារៀន។</p></div>
@@ -1092,6 +1101,8 @@ select.filter-select:focus{border-color:var(--accent);}
       <div class="fact-card" style="animation-delay:.24s"><div class="fact-icon"><i class="material-symbols-outlined">diversity_3</i></div><h4>រាល់កុមារសំខាន់</h4><p>កុមារពីគ្រួសារក្រីក្រ តំបន់ជនបទ ជនជាតិភាគតិច និងកុមារពិការ ប្រឈមនឹងឧបសគ្គច្រើនក្នុងការសិក្សា។</p></div>
     </div>
 
+    </div>
+    <div class="fact-section" data-fc="scholarship">
     <div class="facts-cat"><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍ (Scholarship)</div>
     <div class="facts-grid">
       <div class="fact-card" style="animation-delay:0s"><div class="fact-icon"><i class="material-symbols-outlined">workspace_premium</i></div><h4>អាហារូបករណ៍មានច្រើន</h4><p>មានអាហារូបករណ៍ជាច្រើន (MOEYS, JICA, ADB, Australia Awards, Chevening...) ដែលអាចជួយបង់ថ្លៃសិក្សា។</p><span class="fact-link" data-view="scholarship">មើលអាហារូបករណ៍ →</span></div>
@@ -1099,6 +1110,8 @@ select.filter-select:focus{border-color:var(--accent);}
       <div class="fact-card" style="animation-delay:.12s"><div class="fact-icon"><i class="material-symbols-outlined">event</i></div><h4>កំណត់ពេលដាក់ពាក្យ</h4><p>ពាក្យសុំអាហារូបករណ៍ភាគច្រើនផុតកំណត់ក្នុងខែតុលា — សូមរៀបចំជាមុន។</p></div>
     </div>
 
+    </div>
+    <div class="fact-section" data-fc="careertest">
     <div class="facts-cat"><i class="material-symbols-outlined">quiz</i> តេស្តអាជីព (Career Test)</div>
     <div class="facts-grid">
       <div class="fact-card" style="animation-delay:0s"><div class="fact-icon"><i class="material-symbols-outlined">psychology</i></div><h4>ស្គាល់ខ្លួនឯងជាមុនសិន</h4><p>ការធ្វើតេស្តអាជីពជួយអ្នកយល់ពីចំណូលចិត្ត និងជំនាញ មុននឹងជ្រើសរើសផ្លូវសិក្សា។</p><span class="fact-link" data-view="quiz">ធ្វើតេស្តអាជីព →</span></div>
@@ -1106,6 +1119,8 @@ select.filter-select:focus{border-color:var(--accent);}
       <div class="fact-card" style="animation-delay:.12s"><div class="fact-icon"><i class="material-symbols-outlined">refresh</i></div><h4>ធ្វើឡើងវិញបានគ្រប់ពេល</h4><p>អ្នកអាចធ្វើតេស្តឡើងវិញបានគ្រប់ពេល ដើម្បីមើលលទ្ធផលថ្មី។</p><span class="fact-link" data-view="quiz">ចាប់ផ្ដើម →</span></div>
     </div>
 
+    </div>
+    <div class="fact-section" data-fc="howto">
     <div class="facts-cat"><i class="material-symbols-outlined">route</i> របៀបប្រើ Trey Visai</div>
     <div class="facts-grid">
       <div class="fact-card" style="animation-delay:0s"><div class="fact-icon"><i class="material-symbols-outlined">quiz</i></div><h4>១. ធ្វើតេស្តអាជីព</h4><p>ស្គាល់ចំណូលចិត្ត និងជំនាញរបស់អ្នក។</p><span class="fact-link" data-view="quiz">ធ្វើតេស្ត →</span></div>
@@ -1114,6 +1129,8 @@ select.filter-select:focus{border-color:var(--accent);}
       <div class="fact-card" style="animation-delay:.18s"><div class="fact-icon"><i class="material-symbols-outlined">payments</i></div><h4>៤. ប៉ាន់ស្មានថ្លៃ</h4><p>គណនាថ្លៃសិក្សា និងវិភាគ ROI ជាមួយគ្រួសារ។</p><span class="fact-link" data-view="cost">ប៉ាន់ស្មានថ្លៃ →</span></div>
     </div>
 
+    </div>
+    <div class="fact-section" data-fc="truth">
     <div class="facts-cat"><i class="material-symbols-outlined">history_edu</i> ការពិតអំពីការអប់រំ (The Truth About Education)</div>
     <div class="future-note"><i class="material-symbols-outlined">factory</i><div><h3>ប្រព័ន្ធអប់រំ មិនត្រូវបានរចនាសម្រាប់មនុស្ស</h3><p>វាត្រូវបានរចនាឡើងសម្រាប់រោងចក្រ (ឆ្នាំ ១៨០០) — ត្រូវការកម្មករដែលធ្វើតាមបញ្ជា មិនសួរសំណួរ។ ឆ្នាំ ២០២៦ យើងនៅតែដំណើរការប្រព័ន្ធដែលរចនាតាំងពីឆ្នាំ ១៨៥០។ វាកើតឡើងនៅកម្ពុជា អាមេរិក បារាំង ជប៉ុន — ពិភពលោកទាំងមូល។</p></div></div>
 
@@ -1161,6 +1178,7 @@ select.filter-select:focus{border-color:var(--accent);}
 
     <div class="edu-quote"><p>“ពិភពលោកមិនត្រូវការមនុស្សដែលពូកែប្រឡងជាប់ទេ។ ពិភពលោកត្រូវការមនុស្សដែលពូកែដោះស្រាយបញ្ហា។”<span class="small">ការអប់រំគួរបង្កើតអ្នកដោះស្រាយបញ្ហា មិនមែនអ្នកទន្ទេញ។</span></p></div>
 
+    </div>
     <p class="fact-src">ប្រភពតួលេខ៖ ក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS) &amp; UNICEF (២០២៣–២០២៤)។</p>
   </div>
 </section>
@@ -2473,6 +2491,10 @@ function enhanceAllSelects(){document.querySelectorAll("select.form-input,select
 loadPlan();
 updatePlanBadge();
 enhanceAllSelects();
+function filterFacts(c){
+  document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
+  document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});
+}
 function restoreView(){
   let v=null;try{v=sessionStorage.getItem("tv_view");}catch(e){}
   if(!v||v==="home"||v==="results"||v==="shared")return;
