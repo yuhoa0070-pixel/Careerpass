@@ -194,6 +194,13 @@ input,select{font-family:inherit;}
 .facts-cat{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:800;letter-spacing:-.3px;margin:34px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
 .facts-cat:first-of-type{margin-top:8px;}
 .facts-cat .material-symbols-outlined{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;}
+.future-note{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(120deg,var(--accent),var(--accent-h));color:#fff;padding:20px 22px;margin-bottom:4px;}
+.future-note .material-symbols-outlined{font-size:30px;flex-shrink:0;}
+.future-note h3{margin:0 0 4px;font-size:16px;font-weight:800;}
+.future-note p{margin:0;font-size:13.5px;line-height:1.6;opacity:.95;}
+.fact-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.fact-grow{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#16a34a;background:rgba(34,197,94,.12);padding:3px 9px;margin-bottom:8px;}
+.fact-grow .material-symbols-outlined{font-size:14px;color:#16a34a;}
 
 /* ===== MOBILE TYPOGRAPHY (slightly larger) ===== */
 @media(max-width:640px){
@@ -1049,6 +1056,29 @@ select.filter-select:focus{border-color:var(--accent);}
   <div class="page-wrap">
     <p class="page-title">តើអ្នកដឹងទេ?</p>
     <p class="page-sub">ការពិត និងតួលេខគួរឲ្យចាប់អារម្មណ៍អំពីការអប់រំ និងអាជីពនៅកម្ពុជា</p>
+
+    <div class="future-note">
+      <i class="material-symbols-outlined">smart_toy</i>
+      <div>
+        <h3>AI កំពុងផ្លាស់ប្ដូរពិភពការងារ</h3>
+        <p>ការងារខ្លះនឹងថយចុះ (ឧ. ការសរសេរកូដសាមញ្ញ ត្រូវ AI ជំនួយ/ជំនួស) តែការងារ និងជំនាញថ្មីៗនឹងកើនឡើង។ ការរៀនជំនាញអនាគត ជួយឲ្យអ្នកនាំមុខ មិនត្រូវបានជំនួស។</p>
+      </div>
+    </div>
+
+    <div class="facts-cat"><i class="material-symbols-outlined">rocket_launch</i> អាជីពដែលនឹងកើនឡើង (៥–១០ ឆ្នាំខាងមុខ)</div>
+    <div class="facts-grid">
+      <div class="fact-card" style="animation-delay:0s"><div class="fact-icon"><i class="material-symbols-outlined">smart_toy</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើងខ្លាំង</span><h4>Prompt Engineer / អ្នកគ្រប់គ្រង AI</h4><p>ខណៈ AI ជំនួសការសរសេរកូដសាមញ្ញ ជំនាញដឹកនាំ AI ឲ្យធ្វើការត្រឹមត្រូវ ក្លាយជាតម្រូវការថ្មីដ៏មានតម្លៃ។</p><div class="fact-skills"><span class="tag">Prompt Engineering</span><span class="tag">AI Tools</span><span class="tag">Critical Thinking</span></div></div>
+      <div class="fact-card" style="animation-delay:.06s"><div class="fact-icon"><i class="material-symbols-outlined">analytics</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើងខ្លាំង</span><h4>Data Scientist / AI Engineer</h4><p>ទិន្នន័យ និង Machine Learning ជាឆ្អឹងខ្នងនៃសេដ្ឋកិច្ចឌីជីថល។</p><div class="fact-skills"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Statistics</span></div></div>
+      <div class="fact-card" style="animation-delay:.12s"><div class="fact-icon"><i class="material-symbols-outlined">security</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> តម្រូវការខ្ពស់</span><h4>Cybersecurity Specialist</h4><p>កាន់តែច្រើនធ្វើឌីជីថល កាន់តែត្រូវការសុវត្ថិភាពទិន្នន័យ។</p><div class="fact-skills"><span class="tag">Network Security</span><span class="tag">Ethical Hacking</span><span class="tag">Cloud Security</span></div></div>
+      <div class="fact-card" style="animation-delay:.18s"><div class="fact-icon"><i class="material-symbols-outlined">cloud</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> តម្រូវការខ្ពស់</span><h4>Cloud / DevOps Engineer</h4><p>ក្រុមហ៊ុនផ្លាស់ទៅ cloud — ត្រូវការអ្នកគ្រប់គ្រងហេដ្ឋារចនាសម្ព័ន្ធ។</p><div class="fact-skills"><span class="tag">AWS / Cloud</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div></div>
+      <div class="fact-card" style="animation-delay:.24s"><div class="fact-icon"><i class="material-symbols-outlined">query_stats</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span><h4>Data Analyst</h4><p>អាជីវកម្មគ្រប់ប្រភេទ ត្រូវការមនុស្សអានទិន្នន័យ ដើម្បីសម្រេចចិត្ត។</p><div class="fact-skills"><span class="tag">SQL</span><span class="tag">Data Visualization</span><span class="tag">Excel / BI</span></div></div>
+      <div class="fact-card" style="animation-delay:.3s"><div class="fact-icon"><i class="material-symbols-outlined">campaign</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span><h4>Digital Marketer / Content Creator</h4><p>សេដ្ឋកិច្ចអនឡាញ ធ្វើឲ្យទីផ្សារឌីជីថល និងមាតិកា ក្លាយជាតម្រូវការ។</p><div class="fact-skills"><span class="tag">SEO</span><span class="tag">Social Media</span><span class="tag">Video Editing</span></div></div>
+      <div class="fact-card" style="animation-delay:.36s"><div class="fact-icon"><i class="material-symbols-outlined">solar_power</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> ថាមពលបៃតង</span><h4>Renewable Energy Technician</h4><p>ថាមពលព្រះអាទិត្យ និងបៃតង កំពុងរីកចម្រើននៅកម្ពុជា។</p><div class="fact-skills"><span class="tag">Solar Systems</span><span class="tag">Electrical</span><span class="tag">Maintenance</span></div></div>
+      <div class="fact-card" style="animation-delay:.42s"><div class="fact-icon"><i class="material-symbols-outlined">design_services</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span><h4>UX / Product Designer</h4><p>ផលិតផលឌីជីថលកាន់តែច្រើន ត្រូវការអ្នករចនាបទពិសោធន៍អ្នកប្រើ។</p><div class="fact-skills"><span class="tag">Figma</span><span class="tag">User Research</span><span class="tag">Prototyping</span></div></div>
+      <div class="fact-card" style="animation-delay:.48s"><div class="fact-icon"><i class="material-symbols-outlined">health_and_safety</i></div><span class="fact-grow"><i class="material-symbols-outlined">trending_up</i> តម្រូវការស្ថិរភាព</span><h4>Healthcare & Elder Care</h4><p>តម្រូវការសុខាភិបាល និងការថែទាំ នឹងបន្តកើនឡើងជាមួយប្រជាជន។</p><div class="fact-skills"><span class="tag">Nursing</span><span class="tag">Patient Care</span><span class="tag">Empathy</span></div></div>
+    </div>
+
+    <div class="fact-card" style="animation:none;opacity:1;border-top-color:#16a34a;margin-bottom:8px"><div class="fact-icon"><i class="material-symbols-outlined">psychology_alt</i></div><h4>ជំនាញការពារអនាគត (Future-Proof Skills)</h4><p>ជំនាញទាំងនេះមិនងាយត្រូវ AI ជំនួស — គួររៀនគ្រប់អាជីព៖</p><div class="fact-skills"><span class="tag">AI Literacy</span><span class="tag">Prompt Engineering</span><span class="tag">Critical Thinking</span><span class="tag">Creativity</span><span class="tag">Adaptability</span><span class="tag">Communication</span><span class="tag">English</span></div></div>
 
     <div class="facts-cat"><i class="material-symbols-outlined">insights</i> ស្ថិតិការអប់រំនៅកម្ពុជា</div>
     <div class="facts-grid">
