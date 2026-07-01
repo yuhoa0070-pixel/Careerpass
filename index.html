@@ -475,6 +475,23 @@ select.filter-select:focus{border-color:var(--accent);}
 .scholarship-item p{font-size:12px;color:var(--text-2);margin:0 0 8px;line-height:1.5;}
 .scholarship-amount{font-size:13px;font-weight:700;color:var(--accent);}
 
+/* ===== COST RECEIPT (paper style) ===== */
+#cost-result{background:transparent;border:none;box-shadow:none;padding:0;}
+.receipt{position:relative;max-width:340px;margin:0 auto;filter:drop-shadow(0 14px 26px rgba(16,24,40,.16));}
+.receipt-clip{height:14px;width:76%;margin:0 auto;background:linear-gradient(#4c4c4c,#2b2b2b);border-radius:8px!important;position:relative;z-index:3;box-shadow:0 2px 5px rgba(0,0,0,.35);}
+.receipt-paper{position:relative;background:linear-gradient(180deg,#fdfdfb,#f3f2ec);padding:26px 24px 18px;margin-top:-5px;font-family:'Courier New',ui-monospace,monospace;color:#2a2a2a;}
+.rc-title{text-align:center;font-size:24px;font-weight:800;letter-spacing:5px;margin-bottom:16px;}
+.rc-meta{display:flex;justify-content:space-between;font-size:12px;font-weight:700;}
+.rc-dash{border-top:2px dashed #c3c2b8;margin:12px 0;}
+.rc-line{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:3px 0;}
+.rc-line>span:last-child{font-weight:700;white-space:nowrap;}
+.rc-line.small{font-size:12px;color:#555;}
+.rc-total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;padding:2px 0;}
+.rc-roi-title{text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;color:#777;margin-bottom:4px;}
+.rc-barcode{height:54px;margin:18px 0 10px;background:repeating-linear-gradient(90deg,#222 0 2px,#fff 2px 4px,#222 4px 7px,#fff 7px 9px,#222 9px 10px,#fff 10px 13px,#222 13px 16px,#fff 16px 18px);}
+.rc-thanks{text-align:center;font-size:15px;font-weight:700;letter-spacing:2px;color:#333;padding-bottom:2px;}
+.receipt-edge{height:12px;background-image:linear-gradient(45deg,#f3f2ec 50%,transparent 51%),linear-gradient(-45deg,#f3f2ec 50%,transparent 51%);background-size:12px 12px;background-repeat:repeat-x;background-position:0 0;}
+
 /* ===== SAVE BUTTON ===== */
 .save-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:var(--text-3);cursor:pointer;transition:color .15s,background .15s;flex-shrink:0;}
 .save-btn:hover{color:var(--accent);background:var(--accent-tint);}
@@ -889,25 +906,29 @@ select.filter-select:focus{border-color:var(--accent);}
       </div>
       <div>
         <div class="cost-result" id="cost-result">
-          <div class="cost-total-box">
-            <div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div>
-            <div class="amount" id="total-cost">$0</div>
-            <div class="sub" id="cost-duration">សម្រាប់ ៤ ឆ្នាំ</div>
-          </div>
-          <div class="cost-breakdown">
-            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val" id="breakdown-tuition">$0</span></div>
-            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ស្នាក់នៅ</span><span class="val" id="breakdown-rent">$0</span></div>
-            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">restaurant</i> ម្ហូបអាហារ</span><span class="val" id="breakdown-food">$0</span></div>
-            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">directions_bus</i> ធ្វើដំណើរ</span><span class="val" id="breakdown-transport">$0</span></div>
-            <div class="cost-line"><span class="label"><i class="material-symbols-outlined">menu_book</i> សម្ភារ</span><span class="val" id="breakdown-materials">$0</span></div>
-            <div class="cost-divider"></div>
-            <div class="cost-line" style="font-weight:700"><span class="label" style="color:var(--text);font-weight:700"><i class="material-symbols-outlined">payments</i> សរុប</span><span class="val" id="breakdown-total" style="color:var(--accent)">$0</span></div>
-          </div>
-          <div class="roi-box">
-            <h4><i class="material-symbols-outlined">trending_up</i> ការវិភាគ ROI</h4>
-            <div class="roi-stat"><span class="label">ប្រាក់ខែប្រចាំខែ (ប៉ាន់ស្មាន)</span><span class="val" id="roi-salary">$400</span></div>
-            <div class="roi-stat"><span class="label">ប្រចាំឆ្នាំ</span><span class="val" id="roi-annual">$4,800</span></div>
-            <div class="roi-stat"><span class="label">ពេលវេលាសង (ឆ្នាំ)</span><span class="val" id="roi-payback">—</span></div>
+          <div class="receipt">
+            <div class="receipt-clip"></div>
+            <div class="receipt-paper">
+              <div class="rc-title">RECEIPT</div>
+              <div class="rc-meta"><span>ថ្លៃសិក្សា</span><span id="cost-duration">សម្រាប់ ៤ ឆ្នាំ</span></div>
+              <div class="rc-dash"></div>
+              <div class="rc-line"><span>1. ថ្លៃសិក្សា</span><span id="breakdown-tuition">$0</span></div>
+              <div class="rc-line"><span>2. ស្នាក់នៅ</span><span id="breakdown-rent">$0</span></div>
+              <div class="rc-line"><span>3. ម្ហូបអាហារ</span><span id="breakdown-food">$0</span></div>
+              <div class="rc-line"><span>4. ធ្វើដំណើរ</span><span id="breakdown-transport">$0</span></div>
+              <div class="rc-line"><span>5. សម្ភារ</span><span id="breakdown-materials">$0</span></div>
+              <div class="rc-dash"></div>
+              <div class="rc-total"><span>សរុប TOTAL</span><span id="total-cost">$0</span></div>
+              <span id="breakdown-total" hidden></span>
+              <div class="rc-dash"></div>
+              <div class="rc-roi-title">— ការវិភាគ ROI —</div>
+              <div class="rc-line small"><span>ប្រាក់ខែ / ខែ</span><span id="roi-salary">$400</span></div>
+              <div class="rc-line small"><span>ប្រចាំឆ្នាំ</span><span id="roi-annual">$4,800</span></div>
+              <div class="rc-line small"><span>ពេលសង (ROI)</span><span id="roi-payback">—</span></div>
+              <div class="rc-barcode" aria-hidden="true"></div>
+              <div class="rc-thanks">THANK YOU!</div>
+            </div>
+            <div class="receipt-edge"></div>
           </div>
           <div class="cost-share">
             <span class="share-label"><i class="material-symbols-outlined">share</i> ចែករំលែក</span>
