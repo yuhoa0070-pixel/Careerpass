@@ -380,6 +380,61 @@ select.filter-select:focus{border-color:var(--accent);}
 .scholarship-item p{font-size:12px;color:var(--text-2);margin:0 0 8px;line-height:1.5;}
 .scholarship-amount{font-size:13px;font-weight:700;color:var(--accent);}
 
+/* ===== SAVE BUTTON ===== */
+.save-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:var(--text-3);cursor:pointer;transition:color .15s,background .15s;flex-shrink:0;}
+.save-btn:hover{color:var(--accent);background:var(--accent-tint);}
+.save-btn.on{color:var(--accent);}
+.save-btn .material-symbols-outlined{font-size:20px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.save-btn.on .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
+.card-actions{display:flex;align-items:center;gap:2px;}
+
+/* ===== MY PLAN DASHBOARD ===== */
+.plan-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:32px;}
+@media(min-width:640px){.plan-stats{grid-template-columns:repeat(4,1fr);}}
+.plan-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 18px;box-shadow:var(--shadow-sm);text-align:center;}
+.plan-stat .material-symbols-outlined{font-size:26px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.plan-stat .num{font-size:26px;font-weight:800;letter-spacing:-1px;margin-top:6px;color:var(--text);}
+.plan-stat .lbl{font-size:12px;color:var(--text-3);font-weight:600;margin-top:2px;}
+.plan-block{margin-bottom:36px;}
+.plan-block-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.plan-block-head h3{font-size:17px;font-weight:800;letter-spacing:-.3px;margin:0;display:flex;align-items:center;gap:8px;}
+.plan-block-head h3 .material-symbols-outlined{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.plan-empty{background:var(--card);border:1px dashed var(--border-strong);border-radius:var(--radius-lg);padding:28px;text-align:center;color:var(--text-3);font-size:14px;}
+.plan-empty .material-symbols-outlined{font-size:34px;opacity:.5;display:block;margin:0 auto 10px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.plan-hero{background:linear-gradient(120deg,var(--accent),var(--accent-h));color:#fff;border-radius:var(--radius-lg);padding:28px;margin-bottom:32px;box-shadow:var(--shadow-md);}
+.plan-hero .eyebrow{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.85;margin:0 0 6px;}
+.plan-hero h2{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+.plan-hero p{font-size:14px;opacity:.9;margin:0;line-height:1.6;max-width:60ch;}
+.plan-hero .top-match{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-top:14px;}
+.plan-hero .top-match .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
+
+/* ===== ROADMAP ===== */
+.roadmap{position:relative;padding-left:34px;}
+.roadmap::before{content:'';position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:var(--border-strong);}
+.roadmap-step{position:relative;margin-bottom:20px;}
+.roadmap-step:last-child{margin-bottom:0;}
+.roadmap-step .dot{position:absolute;left:-34px;top:0;width:32px;height:32px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-shadow:0 0 0 4px var(--bg);}
+.roadmap-step .dot .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.roadmap-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm);}
+.roadmap-card h4{font-size:14px;font-weight:800;margin:0 0 4px;}
+.roadmap-card p{font-size:13px;color:var(--text-2);margin:0 0 10px;line-height:1.55;}
+.roadmap-card p:last-child{margin-bottom:0;}
+.roadmap-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.roadmap-tags .tag{font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 10px;font-weight:600;}
+
+/* ===== ADMISSION + TIMELINE ===== */
+.admission-list{display:flex;flex-direction:column;gap:10px;}
+.admission-item{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--text-2);line-height:1.5;}
+.admission-item .material-symbols-outlined{font-size:18px;color:var(--accent);flex-shrink:0;margin-top:1px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.admission-note{font-size:12px;color:var(--text-3);margin:14px 0 0;font-style:italic;}
+.timeline{position:relative;padding-left:30px;margin-top:4px;}
+.timeline::before{content:'';position:absolute;left:9px;top:4px;bottom:4px;width:2px;background:var(--border-strong);}
+.timeline-item{position:relative;margin-bottom:16px;}
+.timeline-item:last-child{margin-bottom:0;}
+.timeline-item .tdot{position:absolute;left:-30px;top:2px;width:20px;height:20px;border-radius:999px;background:var(--card);border:2px solid var(--accent);box-shadow:0 0 0 3px var(--bg);}
+.timeline-item .tmonth{font-size:12px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.4px;}
+.timeline-item .tlabel{font-size:13.5px;color:var(--text-2);margin-top:2px;line-height:1.5;}
+
 /* ===== RESPONSIVE ===== */
 @media(min-width:576px){.cost-form,.quiz-card{padding:32px 28px;}}
 @media(min-width:768px){.match-why{max-width:36ch;}}
@@ -435,7 +490,7 @@ select.filter-select:focus{border-color:var(--accent);}
         <div class="s-link" data-view="schools">សាលា <span class="badge">35</span></div>
         <div class="s-link" data-view="cost">ថ្លៃសិក្សា</div>
         <div class="s-link" data-view="scholarship">អាហារូបករណ៍</div>
-        <div class="s-link" data-view="results">លទ្ធផលខ្ញុំ</div>
+        <div class="s-link" data-view="plan">ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></div>
       </nav>
       <div class="hamburger" id="hamburger"><i class="material-symbols-outlined">menu</i></div>
     </div>
@@ -783,6 +838,15 @@ select.filter-select:focus{border-color:var(--accent);}
   </div>
 </section>
 
+<!-- ======================== MY PLAN ======================== -->
+<section id="view-plan" class="view">
+  <div class="page-wrap">
+    <p class="page-title">ផែនការរបស់ខ្ញុំ</p>
+    <p class="page-sub">លទ្ធផលតេស្ត អាជីព និងសាលាដែលអ្នករក្សាទុក ព្រមទាំងផែនទីផ្លូវ និងការប៉ាន់ស្មានថ្លៃ</p>
+    <div id="plan-content"></div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">Compass</div>
@@ -909,6 +973,7 @@ function showView(v){
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
+  if(v==="plan")renderPlan();
   if(v==="home")typeHero();
 }
 document.querySelectorAll("[data-view]").forEach(el=>{
@@ -984,6 +1049,7 @@ function showResults(){
     const pct=Math.min(97,55+scores[cat]*8);
     animCount(document.getElementById("pct"+i),pct,i*150+300);
   });
+  if(typeof plan!=="undefined"){plan.quiz={top:top.slice(),scores:Object.assign({},scores),date:Date.now()};savePlan();updatePlanBadge();}
   showView("results");
 }
 function animCount(el,target,delay){if(!el)return;setTimeout(()=>{const dur=700,st=performance.now();function step(now){const p=Math.min((now-st)/dur,1);el.textContent=Math.round(p*target)+"%";if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);},delay);}
@@ -1011,7 +1077,10 @@ function renderSchools(){
     <div class="school-card" style="animation-delay:${i*.06}s" onclick="openSchool('${s.id}')">
       <div class="school-card-top">
         <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
-        <div class="compare-btn ${compareList.includes(s.id)?'on':''}" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></div>
+        <div class="card-actions">
+          <div class="save-btn ${isSavedSchool(s.id)?'on':''}" title="រក្សាទុកទៅផែនការ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">${isSavedSchool(s.id)?'bookmark':'bookmark_add'}</i></div>
+          <div class="compare-btn ${compareList.includes(s.id)?'on':''}" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></div>
+        </div>
       </div>
       <p class="school-name">${s.name}</p>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
@@ -1067,7 +1136,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}</div>
+      <div>${facHtml}${admissionCard(s.type)}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type)}</span></div>
@@ -1077,7 +1146,8 @@ function openSchool(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">star</i> វាយតម្លៃ</span><span class="val">★ ${s.rating}</span></div>
         <div style="margin-top:16px"><div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:8px">អាជីពពាក់ព័ន្ធ</div><div class="detail-tags">${s.careers.map(c=>'<span class="tag">'+careerLabel(c)+'</span>').join("")}</div></div>
         <div class="detail-actions">
-          <button class="btn btn-primary btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
+          <button class="btn btn-primary btn-sm" onclick="toggleSaveSchool('${s.id}');openSchool('${s.id}')"><i class="material-symbols-outlined">${isSavedSchool(s.id)?'bookmark':'bookmark_add'}</i> ${isSavedSchool(s.id)?'បានរក្សាទុក':'រក្សាទុកទៅផែនការ'}</button>
+          <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
           <button class="btn btn-ghost btn-sm" onclick="showView('scholarship')"><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍</button>
         </div>
       </div>
@@ -1157,6 +1227,11 @@ function calcCost(){
   document.getElementById("roi-salary").textContent=fmt(monthSalary)+"/ខែ";
   document.getElementById("roi-annual").textContent=fmt(annualSalary)+"/ឆ្នាំ";
   document.getElementById("roi-payback").textContent=payback+" ឆ្នាំ";
+  if(typeof plan!=="undefined"&&total>0){
+    const schName=schoolSel.selectedOptions[0]?.text||"";
+    plan.cost={total:total,years:years,tuition:tuitionTotal,living:livingTotal+materialsTotal,school:schName,major:document.getElementById("cost-major").value,payback:payback};
+    savePlan();
+  }
 }
 
 /* ===== HERO TYPING ANIMATION ===== */
@@ -1193,8 +1268,6 @@ typeHero();
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
-</body>
-</html>
 
 
 <script>
@@ -1289,6 +1362,7 @@ function renderCareers(){
       <div class="job-top">
         <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
         <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
+        <div class="save-btn ${isSavedCareer(j.id)?'on':''}" style="margin-left:auto" title="រក្សាទុកទៅផែនការ" onclick="event.stopPropagation();toggleSaveCareer('${j.id}')"><i class="material-symbols-outlined">${isSavedCareer(j.id)?'bookmark':'bookmark_add'}</i></div>
       </div>
       <p class="job-desc">${j.desc}</p>
       <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
@@ -1326,7 +1400,8 @@ function openCareer(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">category</i> វិស័យ</span><span class="val">${jobCats[j.cat].label}</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">account_balance</i> សាលា</span><span class="val">${rel.length}</span></div>
         <div class="detail-actions">
-          <button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
+          <button class="btn btn-primary btn-sm" id="career-save-btn" onclick="toggleSaveCareer('${j.id}');openCareer('${j.id}')"><i class="material-symbols-outlined">${isSavedCareer(j.id)?'bookmark':'bookmark_add'}</i> ${isSavedCareer(j.id)?'បានរក្សាទុក':'រក្សាទុកទៅផែនការ'}</button>
+          <button class="btn btn-ghost btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
           <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ថ្លៃសិក្សា</button>
         </div>
       </div>
@@ -1335,3 +1410,198 @@ function openCareer(id){
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;renderCareers();});
 </script>
+
+
+
+<script>
+/* ===== MY PLAN (localStorage persistence) ===== */
+const PLAN_KEY="compass_plan";
+let plan={careers:[],schools:[],quiz:null,cost:null};
+function loadPlan(){try{const raw=localStorage.getItem(PLAN_KEY);if(raw){const p=JSON.parse(raw);plan={careers:Array.isArray(p.careers)?p.careers:[],schools:Array.isArray(p.schools)?p.schools:[],quiz:p.quiz||null,cost:p.cost||null};}}catch(e){}}
+function savePlan(){try{localStorage.setItem(PLAN_KEY,JSON.stringify(plan));}catch(e){}}
+function isSavedCareer(id){return plan.careers.includes(id);}
+function isSavedSchool(id){return plan.schools.includes(id);}
+function toggleSaveCareer(id){
+  if(plan.careers.includes(id))plan.careers=plan.careers.filter(x=>x!==id);
+  else plan.careers.push(id);
+  savePlan();updatePlanBadge();
+  const cv=document.getElementById("view-careers");if(cv&&cv.classList.contains("active"))renderCareers();
+  const pv=document.getElementById("view-plan");if(pv&&pv.classList.contains("active"))renderPlan();
+}
+function toggleSaveSchool(id){
+  if(plan.schools.includes(id))plan.schools=plan.schools.filter(x=>x!==id);
+  else plan.schools.push(id);
+  savePlan();updatePlanBadge();
+  const sv=document.getElementById("view-schools");if(sv&&sv.classList.contains("active"))renderSchools();
+  const pv=document.getElementById("view-plan");if(pv&&pv.classList.contains("active"))renderPlan();
+}
+function updatePlanBadge(){
+  const b=document.getElementById("plan-badge");if(!b)return;
+  const n=plan.careers.length+plan.schools.length+(plan.quiz?1:0)+(plan.cost?1:0);
+  if(n>0){b.style.display="";b.textContent=n;}else b.style.display="none";
+}
+function clearPlan(){if(!confirm("សម្អាតផែនការទាំងអស់?"))return;plan={careers:[],schools:[],quiz:null,cost:null};savePlan();updatePlanBadge();renderPlan();}
+
+/* ===== ADMISSION REQUIREMENTS + TIMELINE ===== */
+function admissionInfo(type){
+  const base=["សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ឬសមមូល","អត្តសញ្ញាណប័ណ្ណ ឬសំបុត្រកំណើត","រូបថត ៤×៦ និងពាក្យសុំចូលរៀន"];
+  const map={
+    public:["ពិន្ទុបាក់ឌុបល្អ (ខ្លះមានប្រឡងចូល)","អាចមានការប្រឡងចូល ឬសម្ភាសន៍","ឯកសារបញ្ជាក់លទ្ធផលសិក្សា"],
+    private:["ចុះឈ្មោះដោយផ្ទាល់ ភាគច្រើនមិនប្រឡងចូល","អាចមានតេស្តកម្រិតភាសាអង់គ្លេស (Placement Test)","បង់ថ្លៃចុះឈ្មោះ"],
+    institute:["ផ្ដោតលើជំនាញបច្ចេកទេស","ទទួលសិស្សបញ្ចប់ថ្នាក់ទី៩ ឬ១២ តាមកម្មវិធី","តេស្តជំនាញមូលដ្ឋាន (ខ្លះ)"],
+    digital:["ចុះឈ្មោះតាមអនឡាញ","តម្រូវឲ្យមានកុំព្យូទ័រ និងអ៊ីនធឺណិត","អាចមានតេស្តតម្រង់ទិសសិក្សា"]
+  };
+  return base.concat(map[type]||[]);
+}
+const admissionTimeline=[
+  {m:"សីហា",l:"ប្រកាសលទ្ធផលបាក់ឌុប"},
+  {m:"កញ្ញា–តុលា",l:"ដាក់ពាក្យចូលរៀន និងជ្រើសរើសផ្នែក"},
+  {m:"តុលា",l:"ផុតកំណត់ដាក់ពាក្យអាហារូបករណ៍ភាគច្រើន"},
+  {m:"វិច្ឆិកា",l:"ចុះឈ្មោះ និងចាប់ផ្ដើមឆមាសថ្មី"}
+];
+function admissionCard(type){
+  const reqs=admissionInfo(type).map(r=>`<div class="admission-item"><i class="material-symbols-outlined">check_circle</i><span>${r}</span></div>`).join("");
+  const tl=admissionTimeline.map(t=>`<div class="timeline-item"><div class="tdot"></div><div class="tmonth">${t.m}</div><div class="tlabel">${t.l}</div></div>`).join("");
+  return `<div class="detail-card" style="margin-top:24px">
+    <h3><i class="material-symbols-outlined">assignment_turned_in</i> លក្ខខណ្ឌចូលរៀន</h3>
+    <div class="admission-list">${reqs}</div>
+    <p class="admission-note">* ជាទូទៅ សូមផ្ទៀងផ្ទាត់ជាមួយសាលាដោយផ្ទាល់ ព្រោះលក្ខខណ្ឌអាចខុសគ្នាតាមផ្នែក និងឆ្នាំ។</p>
+    <h3 style="margin-top:24px"><i class="material-symbols-outlined">event</i> កាលវិភាគដាក់ពាក្យ</h3>
+    <div class="timeline">${tl}</div>
+  </div>`;
+}
+</script>
+
+
+
+<script>
+/* ===== CAREER ROADMAP GENERATOR ===== */
+const subjectsByCat={
+  tech:["គណិតវិទ្យា","រូបវិទ្យា","ភាសាអង់គ្លេស"],
+  health:["ជីវវិទ្យា","គីមីវិទ្យា","រូបវិទ្យា"],
+  design:["សិល្បៈ","ភាសាអង់គ្លេស","កុំព្យូទ័រ"],
+  business:["គណិតវិទ្យា","សេដ្ឋកិច្ច","ភាសាអង់គ្លេស"],
+  trades:["រូបវិទ្យា","គណិតវិទ្យា","ជំនាញបច្ចេកទេស"],
+  education:["ភាសាខ្មែរ","ចិត្តវិទ្យា","ភាសាអង់គ្លេស"],
+  tourism:["ភាសាអង់គ្លេស","ភូមិវិទ្យា","ការទំនាក់ទំនង"],
+  agri:["ជីវវិទ្យា","គីមីវិទ្យា","កសិកម្ម"],
+  law:["ភាសាខ្មែរ","ពលរដ្ឋវិជ្ជា","ភាសាអង់គ្លេស"],
+  media:["ភាសាខ្មែរ","ភាសាអង់គ្លេស","ការសរសេរ"]
+};
+const freeResources=["Khan Academy","Coursera / edX","YouTube","freeCodeCamp","Google Digital Garage"];
+const quizCatToJob={technology:"tech",healthcare:"health",design:"design",business:"business",trades:"trades"};
+
+function generateRoadmap(careerId){
+  const j=careersList.find(x=>x.id===careerId);
+  if(!j)return `<div class="plan-empty">មិនអាចបង្កើតផែនទីផ្លូវបានទេ។</div>`;
+  const subs=(subjectsByCat[j.cat]||[]).map(s=>`<span class="tag">${s}</span>`).join("");
+  const skills=(j.skills||[]).map(s=>`<span class="tag">${s}</span>`).join("")||'<span style="font-size:13px;color:var(--text-3)">—</span>';
+  const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
+  const schoolTags=rel.length?rel.map(s=>`<span class="tag" style="cursor:pointer" onclick="openSchool('${s.id}')">${schoolAbbr(s)}</span>`).join(""):'<span style="font-size:13px;color:var(--text-3)">មិនទាន់មានទិន្នន័យសាលា — មើលទំព័រសាលា</span>';
+  const res=freeResources.map(r=>`<span class="tag">${r}</span>`).join("");
+  const steps=[
+    {icon:"menu_book",title:"១. រៀនមុខវិជ្ជាគ្រឹះ (ឥឡូវនេះ)",desc:"ផ្ដោតលើមុខវិជ្ជាទាំងនេះនៅវិទ្យាល័យ ដើម្បីត្រៀមមូលដ្ឋានឲ្យរឹងមាំ។",tags:subs},
+    {icon:"bolt",title:"២. អភិវឌ្ឍជំនាញ",desc:"ចាប់ផ្ដើមរៀន និងអនុវត្តជំនាញសំខាន់ៗសម្រាប់អាជីពនេះ។",tags:skills},
+    {icon:"school",title:"៣. ជ្រើសរើសសាលា",desc:"សាលាដែលបង្រៀនផ្នែកនេះ — ចុចដើម្បីមើលលម្អិត។",tags:schoolTags},
+    {icon:"payments",title:"៤. រៀបចំថវិកា",desc:"ប៉ាន់ស្មានថ្លៃសិក្សា និងស្វែងរកអាហារូបករណ៍ដែលសមស្រប។",tags:'<span class="tag" style="cursor:pointer" onclick="showView(\'cost\')">ប៉ាន់ស្មានថ្លៃ</span><span class="tag" style="cursor:pointer" onclick="showView(\'scholarship\')">អាហារូបករណ៍</span>'},
+    {icon:"public",title:"៥. ធនធានឥតគិតថ្លៃ",desc:"ចាប់ផ្ដើមរៀនដោយខ្លួនឯងជាមួយធនធានទាំងនេះ ដោយឥតគិតថ្លៃ។",tags:res}
+  ];
+  const stepsHtml=steps.map(st=>`<div class="roadmap-step"><div class="dot"><i class="material-symbols-outlined">${st.icon}</i></div><div class="roadmap-card"><h4>${st.title}</h4><p>${st.desc}</p><div class="roadmap-tags">${st.tags}</div></div></div>`).join("");
+  return `<div class="roadmap">${stepsHtml}</div>`;
+}
+</script>
+
+
+
+<script>
+/* ===== MY PLAN DASHBOARD RENDER ===== */
+function planCareerCard(id){
+  const j=careersList.find(x=>x.id===id);if(!j)return"";
+  return `<div class="job-card" style="animation:none;opacity:1" onclick="openCareer('${j.id}')">
+    <div class="job-top">
+      <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
+      <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
+      <div class="save-btn on" style="margin-left:auto" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveCareer('${j.id}')"><i class="material-symbols-outlined">bookmark</i></div>
+    </div>
+    <p class="job-desc">${j.desc}</p>
+    <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
+  </div>`;
+}
+function planSchoolCard(id){
+  const s=schoolsData.find(x=>x.id===id);if(!s)return"";
+  return `<div class="school-card" style="animation:none;opacity:1" onclick="openSchool('${s.id}')">
+    <div class="school-card-top">
+      <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
+      <div class="save-btn on" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">bookmark</i></div>
+    </div>
+    <p class="school-name">${s.name}</p>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+      <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span>
+      <span style="font-size:12px;color:var(--text-3)"><i class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px">location_on</i>${provinceLabel(s.province)} · ★ ${s.rating}</span>
+    </div>
+    <div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span><span class="school-view-more">មើលលម្អិត →</span></div>
+  </div>`;
+}
+function renderPlan(){
+  const c=document.getElementById("plan-content");if(!c)return;
+  const hasAny=plan.careers.length||plan.schools.length||plan.quiz||plan.cost;
+  if(!hasAny){
+    c.innerHTML=`<div class="plan-empty"><i class="material-symbols-outlined">bookmark_border</i><p>ផែនការរបស់អ្នកនៅទទេ។<br>ធ្វើតេស្តអាជីព រក្សាទុកអាជីព និងសាលា ដើម្បីបង្កើតផែនការផ្ទាល់ខ្លួន។</p><div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តអាជីព</button><button class="btn btn-ghost btn-sm" onclick="showView('careers')"><i class="material-symbols-outlined">work</i> មើលអាជីព</button></div></div>`;
+    return;
+  }
+  let html="";
+  if(plan.quiz&&plan.quiz.top&&plan.quiz.top.length){
+    const cc=careers[plan.quiz.top[0]]||{};
+    html+=`<div class="plan-hero"><p class="eyebrow">អាជីពសមស្របបំផុតរបស់អ្នក</p><h2>${cc.name||plan.quiz.top[0]}</h2><p>${cc.why||""}</p>${cc.salary?`<div class="top-match"><i class="material-symbols-outlined">payments</i> ប្រាក់ខែ ${cc.salary}</div>`:""}</div>`;
+  }
+  html+=`<div class="plan-stats">
+    <div class="plan-stat"><i class="material-symbols-outlined">work</i><div class="num">${plan.careers.length}</div><div class="lbl">អាជីពរក្សាទុក</div></div>
+    <div class="plan-stat"><i class="material-symbols-outlined">school</i><div class="num">${plan.schools.length}</div><div class="lbl">សាលារក្សាទុក</div></div>
+    <div class="plan-stat"><i class="material-symbols-outlined">quiz</i><div class="num">${plan.quiz?"✓":"—"}</div><div class="lbl">តេស្តអាជីព</div></div>
+    <div class="plan-stat"><i class="material-symbols-outlined">savings</i><div class="num">${plan.cost?("$"+Number(plan.cost.total).toLocaleString()):"—"}</div><div class="lbl">ថ្លៃប៉ាន់ស្មាន</div></div>
+  </div>`;
+  let targetId=null;
+  if(plan.careers.length)targetId=plan.careers[0];
+  else if(plan.quiz&&plan.quiz.top){const jc=quizCatToJob[plan.quiz.top[0]];const first=careersList.find(x=>x.cat===jc);if(first)targetId=first.id;}
+  if(targetId){
+    const tj=careersList.find(x=>x.id===targetId);
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">route</i> ផែនទីផ្លូវទៅ ${tj?tj.name:""}</h3></div>${generateRoadmap(targetId)}</div>`;
+  }
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">work</i> អាជីពដែលរក្សាទុក</h3><button class="btn btn-ghost btn-sm" onclick="showView('careers')"><i class="material-symbols-outlined">add</i> បន្ថែម</button></div>`;
+  html+=plan.careers.length?`<div class="jobs-grid">${plan.careers.map(planCareerCard).join("")}</div>`:`<div class="plan-empty">មិនទាន់មានអាជីពរក្សាទុក។ ចុច 🔖 នៅលើកាតអាជីព។</div>`;
+  html+=`</div>`;
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">school</i> សាលាដែលរក្សាទុក</h3><button class="btn btn-ghost btn-sm" onclick="showView('schools')"><i class="material-symbols-outlined">add</i> បន្ថែម</button></div>`;
+  html+=plan.schools.length?`<div class="schools-grid">${plan.schools.map(planSchoolCard).join("")}</div>`:`<div class="plan-empty">មិនទាន់មានសាលារក្សាទុក។ ចុច 🔖 នៅលើកាតសាលា។</div>`;
+  html+=`</div>`;
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍ណែនាំ</h3><button class="btn btn-ghost btn-sm" onclick="showView('scholarship')">មើលទាំងអស់ →</button></div><div class="scholarship-list">
+    <div class="scholarship-item"><h5>អាហារូបករណ៍រដ្ឋាភិបាល (MOEYS)</h5><p>សម្រាប់សិស្សពូកែសិក្សានៅសាកលវិទ្យាល័យរដ្ឋ</p><span class="scholarship-amount">ដល់ $2,000/ឆ្នាំ</span></div>
+    <div class="scholarship-item"><h5>មូលនិធិ JICA (ជប៉ុន)</h5><p>ផ្នែកវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា</p><span class="scholarship-amount">ដល់ $3,500/ឆ្នាំ</span></div>
+    <div class="scholarship-item"><h5>អាហារូបករណ៍សាកលវិទ្យាល័យ</h5><p>បញ្ចុះតម្លៃតាមលទ្ធផលសិក្សា</p><span class="scholarship-amount">បញ្ចុះ ២០–១០០%</span></div>
+  </div></div>`;
+  if(plan.cost){
+    const fmt=n=>"$"+Number(n).toLocaleString();
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">savings</i> ការប៉ាន់ស្មានថ្លៃ</h3><button class="btn btn-ghost btn-sm" onclick="showView('cost')">កែសម្រួល →</button></div>
+    <div class="cost-result" style="max-width:440px">
+      <div class="cost-total-box"><div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div><div class="amount">${fmt(plan.cost.total)}</div><div class="sub">សម្រាប់ ${plan.cost.years} ឆ្នាំ${plan.cost.school?" · "+plan.cost.school:""}</div></div>
+      <div class="cost-breakdown">
+        <div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val">${fmt(plan.cost.tuition)}</span></div>
+        <div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ការរស់នៅ + សម្ភារ</span><span class="val">${fmt(plan.cost.living)}</span></div>
+        <div class="cost-line"><span class="label"><i class="material-symbols-outlined">trending_up</i> រយៈពេលសង (ROI)</span><span class="val">${plan.cost.payback} ឆ្នាំ</span></div>
+      </div>
+    </div></div>`;
+  }
+  html+=`<div style="text-align:center;margin-top:8px"><button class="btn btn-ghost btn-sm" onclick="clearPlan()"><i class="material-symbols-outlined">delete</i> សម្អាតផែនការ</button></div>`;
+  c.innerHTML=html;
+}
+</script>
+
+
+
+<script>
+/* ===== MY PLAN INIT ===== */
+loadPlan();
+updatePlanBadge();
+</script>
+
+</body>
+</html>
