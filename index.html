@@ -404,6 +404,14 @@ select.filter-select:focus{border-color:var(--accent);}
 .share-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;padding:12px 22px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:3000;}
 .share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+/* ===== SHARED PLAN (parent view) ===== */
+.shared-banner{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(120deg,var(--accent),var(--accent-h));color:#fff;padding:26px;margin-bottom:28px;box-shadow:var(--shadow-md);}
+.shared-banner>.material-symbols-outlined{font-size:38px;flex-shrink:0;opacity:.9;}
+.shared-banner .sb-eyebrow{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.85;margin:0 0 4px;}
+.shared-banner h2{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+.shared-banner .sb-sub{font-size:14px;opacity:.92;margin:0;line-height:1.55;}
+.shared-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+
 /* ===== MY PLAN DASHBOARD ===== */
 .plan-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:32px;}
 @media(min-width:640px){.plan-stats{grid-template-columns:repeat(4,1fr);}}
@@ -851,6 +859,13 @@ select.filter-select:focus{border-color:var(--accent);}
         <div class="scholar-meta"><span class="scholar-amount">បញ្ចុះ ២០–១០០%</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> រាល់ឆមាស</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ======================== SHARED PLAN (parent view) ======================== -->
+<section id="view-shared" class="view">
+  <div class="page-wrap">
+    <div id="shared-content"></div>
   </div>
 </section>
 
@@ -1602,7 +1617,7 @@ function renderPlan(){
       </div>
     </div></div>`;
   }
-  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">share</i> ចែករំលែកផែនការ</h3></div><div class="share-plan"><div class="share-module">${shareBtnsHTML()}</div></div></div>`;
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">family_restroom</i> ចែករំលែកជាមួយឪពុកម្ដាយ</h3></div><div class="share-plan"><p style="font-size:13px;color:var(--text-2);margin:0 0 14px;line-height:1.55">ផ្ញើផែនការនេះ (អាជីព សាលា និងថ្លៃសិក្សា) ទៅឪពុកម្ដាយ ដើម្បីឲ្យគាត់មើល និងពិភាក្សាជាមួយអ្នក។</p><div class="share-module">${sharePlanBtnsHTML()}</div></div></div>`;
   html+=`<div style="text-align:center;margin-top:8px"><button class="btn btn-ghost btn-sm" onclick="clearPlan()"><i class="material-symbols-outlined">delete</i> សម្អាតផែនការ</button></div>`;
   c.innerHTML=html;
 }
@@ -1654,10 +1669,104 @@ function shareBtnsHTML(){
 </script>
 
 <script>
+/* ===== SHARE PLAN WITH PARENTS (encoded link + summary) ===== */
+function encodePlanUrl(){
+  const d={c:plan.careers||[],s:plan.schools||[],q:(plan.quiz&&plan.quiz.top)?plan.quiz.top:null,k:plan.cost||null};
+  let b64="";
+  try{b64=btoa(unescape(encodeURIComponent(JSON.stringify(d))));}catch(e){b64="";}
+  return location.origin+location.pathname+"#plan="+b64;
+}
+function decodePlanHash(b64){
+  try{return JSON.parse(decodeURIComponent(escape(atob(b64))));}catch(e){return null;}
+}
+function planShareText(){
+  const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — Compass",""];
+  let careerName=null;
+  if(plan.careers.length){const j=careersList.find(x=>x.id===plan.careers[0]);if(j)careerName=j.name;}
+  else if(plan.quiz&&plan.quiz.top){const cc=careers[plan.quiz.top[0]];if(cc)careerName=cc.name;}
+  if(careerName)lines.push("🎯 អាជីពគោលដៅ៖ "+careerName);
+  if(plan.schools.length){const ns=plan.schools.map(id=>{const s=schoolsData.find(x=>x.id===id);return s?schoolAbbr(s):null;}).filter(Boolean);if(ns.length)lines.push("🏫 សាលា៖ "+ns.join(", "));}
+  if(plan.cost)lines.push("💰 ថ្លៃសិក្សាប៉ាន់ស្មាន៖ $"+Number(plan.cost.total).toLocaleString()+" ("+plan.cost.years+" ឆ្នាំ)");
+  lines.push("");
+  lines.push("👨‍👩‍👧 សូមឪពុកម្ដាយជួយមើល និងពិភាក្សាជាមួយគ្នា 🙏");
+  return lines.join("\n");
+}
+function sharePlanTo(p){
+  if(p==="copy"){
+    const url=encodePlanUrl();const done=()=>showShareToast("បានចម្លងតំណផែនការ ✓");
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fallbackCopy(url,done));}else fallbackCopy(url,done);
+    return;
+  }
+  if(p==="native"){
+    if(navigator.share){navigator.share({title:"ផែនការសិក្សា — Compass",text:planShareText(),url:encodePlanUrl()}).catch(()=>{});}else sharePlanTo("copy");
+    return;
+  }
+  const url=encodeURIComponent(encodePlanUrl());
+  const text=encodeURIComponent(planShareText());
+  const map={
+    facebook:"https://www.facebook.com/sharer/sharer.php?u="+url,
+    telegram:"https://t.me/share/url?url="+url+"&text="+text,
+    twitter:"https://twitter.com/intent/tweet?url="+url+"&text="+text,
+    whatsapp:"https://api.whatsapp.com/send?text="+text+"%0A"+url
+  };
+  if(map[p])window.open(map[p],"_blank","noopener,noreferrer,width=600,height=560");
+}
+function sharePlanBtnsHTML(){
+  const nativeBtn=(typeof navigator!=="undefined"&&navigator.share)?'<button class="share-btn" style="background:var(--accent)" title="ផ្ញើ" onclick="sharePlanTo(\'native\')"><i class="fa-solid fa-share-nodes"></i></button>':'';
+  return '<span class="share-label"><i class="material-symbols-outlined">send</i> ផ្ញើទៅ</span>'+
+    '<div class="share-btns">'+nativeBtn+
+    '<button class="share-btn tg" title="Telegram" onclick="sharePlanTo(\'telegram\')"><i class="fa-brands fa-telegram"></i></button>'+
+    '<button class="share-btn fb" title="Facebook" onclick="sharePlanTo(\'facebook\')"><i class="fa-brands fa-facebook-f"></i></button>'+
+    '<button class="share-btn wa" title="WhatsApp" onclick="sharePlanTo(\'whatsapp\')"><i class="fa-brands fa-whatsapp"></i></button>'+
+    '<button class="share-btn x" title="X (Twitter)" onclick="sharePlanTo(\'twitter\')"><i class="fa-brands fa-x-twitter"></i></button>'+
+    '<button class="share-btn copy" title="ចម្លងតំណ" onclick="sharePlanTo(\'copy\')"><i class="fa-solid fa-link"></i></button>'+
+    '</div>';
+}
+function renderSharedPlan(data){
+  const el=document.getElementById("shared-content");if(!el)return;
+  let careerName=null,careerObj=null;
+  if(data.c&&data.c.length){const j=careersList.find(x=>x.id===data.c[0]);if(j){careerName=j.name;careerObj=j;}}
+  else if(data.q&&data.q.length){const cc=careers[data.q[0]];if(cc)careerName=cc.name;}
+  let html="";
+  html+=`<div class="shared-banner"><i class="material-symbols-outlined">family_restroom</i><div><p class="sb-eyebrow">ផែនការសិក្សារបស់សិស្ស</p><h2>${careerName?("គោលដៅ៖ "+careerName):"ផែនការសិក្សា"}</h2><p class="sb-sub">សូមឪពុកម្ដាយ/អាណាព្យាបាលពិនិត្យមើល ហើយពិភាក្សាជាមួយកូនអំពីជម្រើសសិក្សានេះ។</p></div></div>`;
+  if(careerObj){
+    const skills=(careerObj.skills||[]).map(s=>`<span class="tag">${s}</span>`).join("");
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">work</i> អាជីពគោលដៅ</h3></div><div class="job-card" style="animation:none;opacity:1;cursor:default"><div class="job-top"><div class="job-icon"><i class="material-symbols-outlined">${careerObj.icon}</i></div><div><p class="job-name">${careerObj.name}</p><span class="job-cat">${jobCats[careerObj.cat].label}</span></div></div><p class="job-desc">${careerObj.desc}</p><div class="job-foot"><span class="job-salary">ប្រាក់ខែ ${careerObj.salary}/ខែ</span></div>${skills?`<div class="roadmap-tags" style="margin-top:12px">${skills}</div>`:""}</div></div>`;
+  } else if(careerName){
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">work</i> អាជីពគោលដៅ</h3></div><div class="job-card" style="animation:none;opacity:1;cursor:default"><p class="job-name">${careerName}</p></div></div>`;
+  }
+  if(data.s&&data.s.length){
+    const cards=data.s.map(id=>{const s=schoolsData.find(x=>x.id===id);if(!s)return"";return `<div class="school-card" style="animation:none;opacity:1;cursor:default"><div class="school-card-top"><div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div></div><p class="school-name">${s.name}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span><span style="font-size:12px;color:var(--text-3)">${provinceLabel(s.province)} · ★ ${s.rating}</span></div><div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span></div></div>`;}).join("");
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">school</i> សាលាដែលចាប់អារម្មណ៍</h3></div><div class="schools-grid">${cards}</div></div>`;
+  }
+  if(data.k){
+    const fmt=n=>"$"+Number(n).toLocaleString();
+    html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">savings</i> ថ្លៃសិក្សាប៉ាន់ស្មាន</h3></div><div class="cost-result" style="max-width:440px"><div class="cost-total-box"><div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div><div class="amount">${fmt(data.k.total)}</div><div class="sub">សម្រាប់ ${data.k.years} ឆ្នាំ${data.k.school?" · "+data.k.school:""}</div></div><div class="cost-breakdown"><div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val">${fmt(data.k.tuition)}</span></div><div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ការរស់នៅ + សម្ភារ</span><span class="val">${fmt(data.k.living)}</span></div>${data.k.payback?`<div class="cost-line"><span class="label"><i class="material-symbols-outlined">trending_up</i> រយៈពេលសង (ROI)</span><span class="val">${data.k.payback} ឆ្នាំ</span></div>`:""}</div></div></div>`;
+  }
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">workspace_premium</i> ជំនួយហិរញ្ញវត្ថុ</h3></div><div class="plan-empty" style="border-style:solid;text-align:left">មានអាហារូបករណ៍ជាច្រើន (រដ្ឋាភិបាល MOEYS, JICA, សាកលវិទ្យាល័យ) ដែលអាចជួយបន្ថយបន្ទុកចំណាយ។ ចុច «ស្វែងយល់បន្ថែម» ដើម្បីមើលព័ត៌មានពេញលេញ។</div></div>`;
+  const exploreBtn=careerObj?`<button class="btn btn-primary" onclick="exitShared('career','${careerObj.id}')"><i class="material-symbols-outlined">visibility</i> ស្វែងយល់អំពីអាជីពនេះ</button>`:`<button class="btn btn-primary" onclick="exitShared('home')"><i class="material-symbols-outlined">explore</i> ស្វែងយល់បន្ថែម</button>`;
+  html+=`<div class="shared-cta">${exploreBtn}<button class="btn btn-ghost" onclick="exitShared('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តដោយខ្លួនឯង</button></div>`;
+  el.innerHTML=html;
+}
+function exitShared(action,careerId){
+  if(history.replaceState)history.replaceState(null,"",location.pathname);else location.hash="";
+  if(action==="career"&&careerId)openCareer(careerId);
+  else if(action==="quiz")showView("quiz");
+  else showView("home");
+}
+function checkSharedPlan(){
+  const m=(location.hash||"").match(/plan=([^&]+)/);
+  if(m){const data=decodePlanHash(m[1]);if(data){renderSharedPlan(data);showView("shared");return true;}}
+  return false;
+}
+</script>
+
+<script>
 /* ===== MY PLAN INIT ===== */
 loadPlan();
 updatePlanBadge();
 const _fs=document.getElementById("footer-share");if(_fs)_fs.innerHTML=shareBtnsHTML();
+checkSharedPlan();
 </script>
 
 </body>
