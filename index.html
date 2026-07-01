@@ -406,6 +406,14 @@ select.filter-select:focus{border-color:var(--accent);}
 .map-embed{position:relative;width:100%;height:220px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px;background:var(--bg);}
 .map-embed iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(1) contrast(1.05);}
 .map-btn{width:100%;justify-content:center;}
+/* ===== PRICING & SCHOLARSHIP CARD ===== */
+.price-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.price-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:9px 12px;background:var(--bg);border:1px solid var(--border);}
+.pr-label{color:var(--text-2);}
+.pr-val{font-weight:700;color:var(--accent);white-space:nowrap;}
+.price-scholar{display:flex;gap:10px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);padding:12px 14px;font-size:13px;color:var(--text-2);line-height:1.6;}
+.price-scholar .material-symbols-outlined{font-size:20px;color:var(--accent);flex-shrink:0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
+.price-note{font-size:11.5px;color:var(--text-3);margin:12px 0 0;font-style:italic;}
 .detail-tags .tag{font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 10px;font-weight:600;}
 .detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
 
@@ -1206,7 +1214,7 @@ const schoolsData = [
   {id:"sabaicode",name:"SabaiCode Bootcamp",type:"digital",province:"phnom-penh",tuition:800,duration:1,careers:["technology"],programs:["Full-Stack","6-month camp"],rating:"4.3",desc:"ជំរុំបណ្ដុះបណ្ដាល full-stack engineering រយៈពេល ៦ ខែ ដ៏ល្បី។"},
   {id:"dichi",name:"DICHI Academy",type:"digital",province:"phnom-penh",tuition:900,duration:1,careers:["technology","business"],programs:["Techpreneur","Deep Tech","Startup"],rating:"4.2",desc:"ដំណើរការ Techpreneur Bootcamp រួមផ្សំបច្ចេកវិទ្យាជ្រៅ និងក្របខ័ណ្ឌ startup។"},
   {id:"khmercoders",name:"Khmer Coders Community",type:"digital",province:"phnom-penh",tuition:0,duration:1,careers:["technology"],programs:["Open-Source","Khmer Localization","Design Systems"],rating:"4.6",desc:"មជ្ឈមណ្ឌល developer open-source ក្នុងស្រុក ចែករំលែក scripts និងធនធានធ្វើមូលដ្ឋានីយកម្មខ្មែរ។"},
-  {id:"acac",name:"Academy of Culinary Arts Cambodia (ACAC)",type:"institute",province:"phnom-penh",tuition:4040,duration:2,careers:["trades","business","tourism","culinary"],programs:["Professional Culinary Arts","Bakery & Pastry","Barista & Beverage","Kitchen Management"],rating:"4.5",desc:"បណ្ឌិត្យសភាចម្អិនអាហារ តាមស្តង់ដារ Swiss-ASEAN ផ្ដល់សញ្ញាបត្រ ២ ឆ្នាំ និងវគ្គខ្លីៗ ព្រមទាំងកម្មសិក្សានៅសណ្ឋាគារ ៥ ផ្កាយ។ ថ្លៃសរុប ២ ឆ្នាំ ~$8,080 (រួមឧបករណ៍ និងសម្ភារ)។",faculties:["Professional Culinary Arts — Knife Skills, French Techniques, Mise en Place, Butchery, Stocks & Sauces, Banquet Production","Bakery & Pastry Artistry — Viennoiserie, Artisanal Bread, Dough Fermentation, Chocolate Tempering, Plating, Dessert Assembly","Beverage & Barista Operations — Espresso Extraction, Milk Texturing, Latte Art, Coffee Sourcing, Flavor Profiling, Cafe Menu","Kitchen Management & Front-of-House — Cost Engineering, Inventory Valuation, HACCP Safety, Procurement, Customer Service","Public Short Courses — Basic & Advanced Bakery/Pastry (20h), Masterclasses: Macarons, Italian Pasta, Bread Crafting"]},
+  {id:"acac",name:"Academy of Culinary Arts Cambodia (ACAC)",type:"institute",province:"phnom-penh",tuition:4040,duration:2,careers:["trades","business","tourism","culinary"],programs:["Professional Culinary Arts","Bakery & Pastry","Barista & Beverage","Kitchen Management"],rating:"4.5",desc:"បណ្ឌិត្យសភាចម្អិនអាហារ តាមស្តង់ដារ Swiss-ASEAN ផ្ដល់សញ្ញាបត្រ ២ ឆ្នាំ និងវគ្គខ្លីៗ ព្រមទាំងកម្មសិក្សានៅសណ្ឋាគារ ៥ ផ្កាយ។ ថ្លៃសរុប ២ ឆ្នាំ ~$8,080 (រួមឧបករណ៍ និងសម្ភារ)។",pricing:[{p:"សញ្ញាបត្រ ២ ឆ្នាំ (គ្រប់ track)",price:"$8,080 សរុប"},{p:"ក្នុងមួយឆមាស",price:"~$2,020"},{p:"Bakery & Pastry Short Course",price:"$450 / 20h"},{p:"Masterclass (4h)",price:"$60–$95"}],scholarNote:"មានអាហារូបករណ៍ Naomi Tami (ថ្លៃសិក្សាពេញ ~$8,400) — ត្រូវឆ្លងកាត់ការជ្រើសរើស (សញ្ញាបត្រទី១២, ភាសាអង់គ្លេស, លិខិតបញ្ជាក់ជីវភាព, អត្ថបទ ៥០០ ពាក្យ)។ អ្នកអាចជ្រើសរើសបង់ថ្លៃ ឬដាក់ពាក្យអាហារូបករណ៍។",faculties:["Professional Culinary Arts — Knife Skills, French Techniques, Mise en Place, Butchery, Stocks & Sauces, Banquet Production","Bakery & Pastry Artistry — Viennoiserie, Artisanal Bread, Dough Fermentation, Chocolate Tempering, Plating, Dessert Assembly","Beverage & Barista Operations — Espresso Extraction, Milk Texturing, Latte Art, Coffee Sourcing, Flavor Profiling, Cafe Menu","Kitchen Management & Front-of-House — Cost Engineering, Inventory Valuation, HACCP Safety, Procurement, Customer Service","Public Short Courses — Basic & Advanced Bakery/Pastry (20h), Masterclasses: Macarons, Italian Pasta, Bread Crafting"]},
   {id:"pauldubrule",name:"Paul Dubrule Hotel & Tourism School",type:"institute",province:"siem-reap",tuition:500,duration:2,careers:["culinary","tourism"],programs:["Cuisine","Pastry & Bakery","Front Office","F&B Service"],rating:"4.6",desc:"សាលាបណ្ដុះបណ្ដាលវិជ្ជាជីវៈផ្នែកសណ្ឋាគារ ចម្អិនអាហារ និងទេសចរណ៍ ដ៏ល្បីនៅសៀមរាប។",faculties:["Culinary Arts — Cuisine, Pastry & Bakery","Hospitality — Front Office, Housekeeping, F&B Service","Professional Languages — English, French"]},
   {id:"salabai",name:"Sala Bai Hotel & Restaurant School",type:"institute",province:"siem-reap",tuition:0,duration:1,careers:["culinary","tourism"],programs:["Cookery","Pastry","Restaurant Service","Front Office"],rating:"4.7",desc:"សាលា NGO ផ្ដល់ការបណ្ដុះបណ្ដាលឥតគិតថ្លៃផ្នែកសណ្ឋាគារ និងភោជនីយដ្ឋាន សម្រាប់យុវជនក្រីក្រ។",faculties:["Cookery — Khmer & Western Cuisine","Pastry & Bakery","Restaurant & Bar Service","Front Office & Housekeeping"]},
   {id:"egbok",name:"EGBOK Hospitality Institute",type:"institute",province:"siem-reap",tuition:0,duration:1,careers:["culinary","tourism"],programs:["Culinary Arts","Food & Beverage","Rooms Division"],rating:"4.5",desc:"បេសកកម្ម EGBOK ផ្ដល់ការអប់រំ និងបណ្ដុះបណ្ដាលវិជ្ជាជីវៈផ្នែកបដិសណ្ឋារកិច្ចឥតគិតថ្លៃ។",faculties:["Culinary Arts — Cuisine & Pastry","Food & Beverage Service","Rooms Division & Housekeeping"]},
@@ -1534,6 +1542,26 @@ function schoolColor(s){let h=0;for(let i=0;i<s.id.length;i++)h=(h*31+s.id.charC
 function logoFont(abbr,big){const n=abbr.length;if(big)return n>4?"13px":n>3?"16px":"19px";return n>4?"11px":n>3?"13px":"15px";}
 
 function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>x.classList.remove("open"));if(!wasOpen)el.classList.add("open");}
+function scholarLine(s){
+  if(s.scholarNote)return s.scholarNote;
+  if(s.tuition===0)return "អាហារូបករណ៍ពេញ / ឥតគិតថ្លៃ — ត្រូវឆ្លងកាត់ការជ្រើសរើស (កម្រិតជីវភាព ឬការសម្ភាសន៍)។";
+  if(s.type==="public"||s.type==="institute")return "មានអាហារូបករណ៍រដ្ឋ — ត្រូវប្រឡងជ្រើសរើស (តាមលទ្ធផលបាក់ឌុប ឬប្រឡងចូល)។ អ្នកអាចជ្រើសរើសបង់ថ្លៃ ឬដាក់ពាក្យអាហារូបករណ៍ (បើមានទាំងពីរ)។";
+  return "អាចមានអាហារូបករណ៍បញ្ចុះតម្លៃ — ផ្អែកលើលទ្ធផលសិក្សា ឬការសម្ភាសន៍/ប្រឡង។ អ្នកអាចជ្រើសរើសបង់ថ្លៃ ឬដាក់ពាក្យអាហារូបករណ៍។";
+}
+function pricingCard(s){
+  let rows;
+  if(s.pricing&&s.pricing.length){
+    rows=s.pricing.map(p=>`<div class="price-row"><span class="pr-label">${p.p}</span><span class="pr-val">${p.price}</span></div>`).join("");
+  }else{
+    rows=`<div class="price-row"><span class="pr-label">ថ្លៃសិក្សា (ក្នុងមួយឆ្នាំ)</span><span class="pr-val">${tuitionLabel(s)}</span></div>`+
+      (s.tuition>0?`<div class="price-row"><span class="pr-label">សរុប ${s.duration} ឆ្នាំ</span><span class="pr-val">$${(s.tuition*s.duration).toLocaleString()}</span></div>`:"");
+  }
+  return `<div class="detail-card"><h3><i class="material-symbols-outlined">payments</i> តម្លៃសិក្សា និងអាហារូបករណ៍</h3>
+    <div class="price-list">${rows}</div>
+    <div class="price-scholar"><i class="material-symbols-outlined">workspace_premium</i><span>${scholarLine(s)}</span></div>
+    <p class="price-note">* សូមផ្ទៀងផ្ទាត់តម្លៃ និងលក្ខខណ្ឌអាហារូបករណ៍ជាមួយសាលាដោយផ្ទាល់។</p>
+  </div>`;
+}
 function openSchool(id){
   const s=schoolsData.find(x=>x.id===id);
   if(!s)return;
@@ -1570,7 +1598,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}${admissionCard(s.type)}${mapCard}</div>
+      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type)}</span></div>
