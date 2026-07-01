@@ -1274,6 +1274,7 @@ function showView(v){
   if(v==="cost")calcCost();
   if(v==="plan")renderPlan();
   if(v==="home")typeHero();
+  try{sessionStorage.setItem("tv_view",v);}catch(e){}
 }
 document.querySelectorAll("[data-view]").forEach(el=>{
   el.addEventListener("click",()=>{
@@ -1531,6 +1532,7 @@ function openSchool(id){
       </div>
     </div>`;
   showView("school-detail");
+  try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
 }
 
 function toggleCompare(id){
@@ -1790,6 +1792,7 @@ function openCareer(id){
       </div>
     </div>`;
   showView("career-detail");
+  try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
 </script>
@@ -2257,7 +2260,20 @@ function enhanceAllSelects(){document.querySelectorAll("select.form-input,select
 loadPlan();
 updatePlanBadge();
 enhanceAllSelects();
-if(!checkSharedPlan())checkSharedCost();
+function restoreView(){
+  let v=null;try{v=sessionStorage.getItem("tv_view");}catch(e){}
+  if(!v||v==="home"||v==="results"||v==="shared")return;
+  if(v==="school-detail"||v==="career-detail"){
+    let d=null;try{d=sessionStorage.getItem("tv_detail");}catch(e){}
+    if(d){const i=d.indexOf(":"),t=d.slice(0,i),id=d.slice(i+1);
+      if(t==="school"&&typeof openSchool==="function"){openSchool(id);return;}
+      if(t==="career"&&typeof openCareer==="function"){openCareer(id);return;}
+    }
+    return;
+  }
+  if(document.getElementById("view-"+v))showView(v);
+}
+if(!checkSharedPlan()&&!checkSharedCost())restoreView();
 </script>
 
 </body>
