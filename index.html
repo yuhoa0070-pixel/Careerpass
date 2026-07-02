@@ -71,6 +71,16 @@ body::before{
 .gline.up::before{animation:flowUp var(--d,5s) linear infinite;animation-delay:var(--delay,0s);}
 @keyframes flowDown{0%{top:-220px;}100%{top:100%;}}
 @keyframes flowUp{0%{top:100%;}100%{top:-220px;}}
+/* Mobile: drop the inner grid lines so content spans full-width with no lines cutting through (keep outer frame only) */
+@media(max-width:768px){
+  body::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05)),
+      linear-gradient(rgba(0,0,0,0.05),rgba(0,0,0,0.05));
+    background-position:0 0, calc(100vw - 1px) 0;
+  }
+  .gline:nth-child(2),.gline:nth-child(3){display:none;}
+}
 a{text-decoration:none;color:inherit;}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
