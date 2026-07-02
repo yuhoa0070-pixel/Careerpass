@@ -37,7 +37,9 @@
 *,*::before,*::after{box-sizing:border-box;}
 *,*::before,*::after{border-radius:0 !important;}
 html{scroll-behavior:smooth;}
-body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;zoom:1.15;}
+body{margin:0;font-family:'Google Sans','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}
+/* Enlarge UI without scaling the fixed decorative grid layers (body::before / .grid-flow) */
+.navbar,.app-main,.site-footer{zoom:1.15;}
 /* Vertical grid on background — center 2 lines removed (keep 0, 20vw, 80vw, 100vw) */
 body::before{
   content:'';
