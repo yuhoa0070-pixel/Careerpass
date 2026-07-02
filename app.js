@@ -1168,9 +1168,20 @@ function enhanceAllSelects(){document.querySelectorAll("select.form-input,select
   if(!seen&&!onShared){setTimeout(open,1800);}
 })();
 
+/* ===== COST CALCULATOR: populate university dropdown from schoolsData (all schools) ===== */
+function populateCostSchools(){
+  const sel=document.getElementById("cost-school");
+  if(!sel||typeof schoolsData==="undefined")return;
+  const opts=schoolsData
+    .map(s=>`<option value="${s.id}" data-tuition="${s.tuition||0}">${s.name}</option>`)
+    .join("");
+  sel.innerHTML='<option value="">-- ជ្រើសសាលា --</option>'+opts;
+}
+
 /* ===== MY PLAN INIT ===== */
 loadPlan();
 updatePlanBadge();
+populateCostSchools();
 enhanceAllSelects();
 function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
