@@ -368,7 +368,10 @@ select.filter-select:focus{border-color:var(--accent);}
 .school-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:transparent;}
 .school-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
 .school-type-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 10px;border-radius:999px;}
-.school-logo{width:46px;height:46px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.3px;flex-shrink:0;}
+.school-logo{position:relative;overflow:hidden;width:46px;height:46px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.3px;flex-shrink:0;}
+/* official logo overlays the initials placeholder; if it 404s, onerror removes it and the initials show */
+.school-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:11%;background:#fff;border-radius:inherit;}
+.school-logo.has-logo{background:#fff !important;color:transparent;}
 .detail-logo{width:60px;height:60px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.3px;flex-shrink:0;}
 .badge-public{background:rgba(34,197,94,.1);color:#16a34a;}
 .badge-private{background:rgba(234,179,8,.1);color:#b45309;}

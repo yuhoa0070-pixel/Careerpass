@@ -328,7 +328,7 @@ function renderSchools(){
   grid.innerHTML=pageItems.map((s,i)=>`
     <div class="school-card" style="animation-delay:${i*.06}s" onclick="openSchool('${s.id}')">
       <div class="school-card-top">
-        <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
+        ${schoolLogo(s)}
         <div class="card-actions">
           <div class="compare-btn ${compareList.includes(s.id)?'on':''}" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></div>
         </div>
@@ -360,6 +360,8 @@ const logoColors=["#624EBC","#2563eb","#16a34a","#d4860b","#e5484d","#0ea5e9","#
 function schoolAbbr(s){return logoMap[s.id]||s.name.replace(/[^A-Za-z]/g,"").slice(0,2).toUpperCase();}
 function schoolColor(s){let h=0;for(let i=0;i<s.id.length;i++)h=(h*31+s.id.charCodeAt(i))>>>0;return logoColors[h%logoColors.length];}
 function logoFont(abbr,big){const n=abbr.length;if(big)return n>4?"13px":n>3?"16px":"19px";return n>4?"11px":n>3?"13px":"15px";}
+/* renders the school logo: official image from public/logos/<id>.png, falling back to coloured initials if missing */
+function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
 
 function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>x.classList.remove("open"));if(!wasOpen)el.classList.add("open");}
 function scholarLine(s){
@@ -693,7 +695,7 @@ function openCareer(id){
   const j=careersList.find(x=>x.id===id);
   if(!j)return;
   const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
-  const relHtml=rel.length?rel.map(s=>`<div class="rel-school" onclick="openSchool('${s.id}')"><div class="school-logo" style="width:38px;height:38px;background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div><div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
+  const relHtml=rel.length?rel.map(s=>`<div class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
     <div class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</div>
     <div class="detail-head">
@@ -841,7 +843,7 @@ function planSchoolCard(id){
   const s=schoolsData.find(x=>x.id===id);if(!s)return"";
   return `<div class="school-card" style="animation:none;opacity:1" onclick="openSchool('${s.id}')">
     <div class="school-card-top">
-      <div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div>
+      ${schoolLogo(s)}
       <div class="save-btn on" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">bookmark</i></div>
     </div>
     <p class="school-name">${s.name}</p>
@@ -1064,7 +1066,7 @@ function renderSharedPlan(data){
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">work</i> អាជីពគោលដៅ</h3></div><div class="job-card" style="animation:none;opacity:1;cursor:default"><p class="job-name">${careerName}</p></div></div>`;
   }
   if(data.s&&data.s.length){
-    const cards=data.s.map(id=>{const s=schoolsData.find(x=>x.id===id);if(!s)return"";return `<div class="school-card" style="animation:none;opacity:1;cursor:default"><div class="school-card-top"><div class="school-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),false)}">${schoolAbbr(s)}</div></div><p class="school-name">${s.name}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span><span style="font-size:12px;color:var(--text-3)">${provinceLabel(s.province)} · ★ ${s.rating}</span></div><div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span></div></div>`;}).join("");
+    const cards=data.s.map(id=>{const s=schoolsData.find(x=>x.id===id);if(!s)return"";return `<div class="school-card" style="animation:none;opacity:1;cursor:default"><div class="school-card-top">${schoolLogo(s)}</div><p class="school-name">${s.name}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span><span style="font-size:12px;color:var(--text-3)">${provinceLabel(s.province)} · ★ ${s.rating}</span></div><div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span></div></div>`;}).join("");
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">school</i> សាលាដែលចាប់អារម្មណ៍</h3></div><div class="schools-grid">${cards}</div></div>`;
   }
   if(data.k){
