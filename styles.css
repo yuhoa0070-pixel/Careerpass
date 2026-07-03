@@ -40,6 +40,20 @@ body::before{
 @media(max-width:768px){
   body::before{ --grid-cell:40px; }
 }
+/* Animated light beams that travel along the grid lines (positions injected by initGridFlow) */
+.grid-flow{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.gline,.hline{position:absolute;overflow:hidden;}
+.gline{top:0;bottom:0;width:1px;}
+.hline{left:0;right:0;height:1px;}
+.gline::before,.hline::before{content:'';position:absolute;}
+.gline::before{left:0;top:-180px;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(98,78,188,0.5),transparent);animation:beamDown var(--d,6s) linear infinite;animation-delay:var(--delay,0s);}
+.gline.up::before{animation-name:beamUp;}
+.hline::before{top:0;left:-180px;height:1px;width:180px;background:linear-gradient(to right,transparent,rgba(98,78,188,0.5),transparent);animation:beamRight var(--d,6s) linear infinite;animation-delay:var(--delay,0s);}
+.hline.left::before{animation-name:beamLeft;background:linear-gradient(to left,transparent,rgba(98,78,188,0.5),transparent);}
+@keyframes beamDown{0%{transform:translateY(0);}100%{transform:translateY(calc(100vh + 180px));}}
+@keyframes beamUp{0%{transform:translateY(calc(100vh + 180px));}100%{transform:translateY(0);}}
+@keyframes beamRight{0%{transform:translateX(0);}100%{transform:translateX(calc(100vw + 180px));}}
+@keyframes beamLeft{0%{transform:translateX(calc(100vw + 180px));}100%{transform:translateX(0);}}
 a{text-decoration:none;color:inherit;}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}

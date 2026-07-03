@@ -1202,10 +1202,46 @@ function restoreView(){
 }
 if(!checkSharedPlan()&&!checkSharedCost())restoreView();
 
+/* ===== ANIMATED GRID BEAMS: light beams traveling along the background grid lines ===== */
+function initGridFlow(){
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  let host=document.getElementById("grid-flow");
+  if(!host){host=document.createElement("div");host.id="grid-flow";host.className="grid-flow";host.setAttribute("aria-hidden","true");document.body.appendChild(host);}
+  function build(){
+    const cell=parseInt(getComputedStyle(document.body).getPropertyValue("--grid-cell"))||52;
+    const cols=Math.floor(window.innerWidth/cell), rows=Math.floor(window.innerHeight/cell);
+    const vCount=Math.max(3,Math.min(6,Math.floor(cols/4)));
+    const hCount=Math.max(2,Math.min(4,Math.floor(rows/4)));
+    const pick=(n,max)=>{const s=new Set();let guard=0;while(s.size<Math.min(n,max-1)&&guard++<200)s.add(1+Math.floor(Math.random()*(max-1)));return[...s];};
+    host.innerHTML="";
+    const frag=document.createDocumentFragment();
+    pick(vCount,cols).forEach(c=>{
+      const el=document.createElement("span");
+      el.className="gline"+(Math.random()<0.5?" up":"");
+      el.style.left=(c*cell)+"px";
+      el.style.setProperty("--d",(5+Math.random()*4).toFixed(1)+"s");
+      el.style.setProperty("--delay",(Math.random()*5).toFixed(1)+"s");
+      frag.appendChild(el);
+    });
+    pick(hCount,rows).forEach(r=>{
+      const el=document.createElement("span");
+      el.className="hline"+(Math.random()<0.5?" left":"");
+      el.style.top=(r*cell)+"px";
+      el.style.setProperty("--d",(5+Math.random()*4).toFixed(1)+"s");
+      el.style.setProperty("--delay",(Math.random()*5).toFixed(1)+"s");
+      frag.appendChild(el);
+    });
+    host.appendChild(frag);
+  }
+  build();
+  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(build,250);});
+}
+
 /* ===== INIT (runs last, after all data/vars are declared) ===== */
 initQuiz();
 calcCost();
 typeHero();
+initGridFlow();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
