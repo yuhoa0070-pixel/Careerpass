@@ -1235,11 +1235,38 @@ function initHero3D(){
   host.dataset.built="1";
   const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const cards=[
-    {view:"quiz",   ic:"explore",  t:"តេស្តអាជីព",     s:"រកអាជីពដែលសម",     g:{tx:-300,ty:26,tz:-160,rx:4,ry:26, rz:-2,s:.86,w:150,h:190}, a:"h3dFloatA",d:7.5,dl:0,  pf:.7},
-    {view:"careers",ic:"work",     t:"អាជីព",           s:"អាជីពពេញនិយម",     g:{tx:-158,ty:-6,tz:-30, rx:2,ry:14, rz:1, s:.95,w:166,h:206}, a:"h3dFloatB",d:8.5,dl:.8, pf:.9},
-    {view:"schools",ic:"school",   t:"សាលា",            s:"៤១ សាកលវិទ្យាល័យ",  g:{tx:0,   ty:-30,tz:60,  rx:0,ry:0,  rz:0, s:1.06,w:182,h:226},a:"h3dFloatC",d:6.5,dl:.4, pf:1.2},
-    {view:"cost",   ic:"payments", t:"ថ្លៃសិក្សា",       s:"គណនាថ្លៃ + ROI",   g:{tx:158, ty:-4,tz:-30, rx:2,ry:-14,rz:-1,s:.95,w:166,h:206}, a:"h3dFloatA",d:9,  dl:1.2,pf:.9},
-    {view:"facts",  ic:"lightbulb",t:"តើអ្នកដឹងទេ?",   s:"ការពិត និងស្ថិតិ",  g:{tx:300, ty:28,tz:-160,rx:4,ry:-26,rz:2, s:.86,w:150,h:190}, a:"h3dFloatB",d:7,  dl:.6, pf:.7}
+    {view:"quiz", variant:"", g:{tx:-336,ty:16,tz:-172,rx:3,ry:24, rz:-2,s:.82,w:160,h:300}, a:"h3dFloatA",d:7.5,dl:0,  pf:.7,
+      html:`<div class="h3d-ic gA"><i class="material-symbols-outlined">psychology</i></div>
+        <div class="h3d-title">តេស្តអាជីព</div>
+        <div class="h3d-sub">ស្គាល់ខ្លួនឯង រកអាជីពដែលសម។</div>
+        <svg class="c-spark" viewBox="0 0 120 46"><defs><linearGradient id="spk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#bef264"/></linearGradient></defs><path class="c-spark-line" d="M2 38 L18 30 L32 34 L48 18 L64 24 L82 12 L100 16 L118 5"/><circle class="c-dot-lime" cx="118" cy="5" r="3"/></svg>`},
+    {view:"careers", variant:"", g:{tx:-176,ty:2,tz:-42,rx:2,ry:13, rz:1, s:.92,w:172,h:328}, a:"h3dFloatB",d:8.5,dl:.8, pf:.9,
+      html:`<div class="c-cap">ទិដ្ឋភាពរួម</div>
+        <div class="c-big">១០០+<span class="c-badge">អាជីព</span></div>
+        <div class="c-bar"><span style="width:74%"></span></div>
+        <div class="c-rows">
+          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">work</i></span><span class="c-rl">អាជីព</span><span class="c-rv">១០០+</span></div>
+          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">school</i></span><span class="c-rl">សាលា</span><span class="c-rv">៤១</span></div>
+          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">category</i></span><span class="c-rl">វិស័យ</span><span class="c-rv">១១</span></div>
+          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">quiz</i></span><span class="c-rl">តេស្ត</span><span class="c-rv">ឥតគិតថ្លៃ</span></div>
+        </div>`},
+    {view:"careers", variant:"", g:{tx:0,ty:-6,tz:52,rx:0,ry:0, rz:0, s:1.0,w:210,h:360}, a:"h3dFloatC",d:6.5,dl:.4, pf:1.15,
+      html:`<div class="c-top"><div class="c-h2">អាជីពកំពុងកើនឡើង</div><i class="c-more material-symbols-outlined">more_horiz</i></div>
+        <div class="c-sel">៥ ឆ្នាំខាងមុខ <i class="material-symbols-outlined">expand_more</i></div>
+        <div class="c-chart"><span class="c-chip">+៣៥%</span>
+          <svg class="c-area" viewBox="0 0 190 92"><defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(59,130,246,.35)"/><stop offset="1" stop-color="rgba(59,130,246,0)"/></linearGradient></defs><path d="M0 74 C22 66,32 52,46 54 C60 56,66 34,82 38 C98 42,112 20,128 26 C146 32,162 16,190 22 L190 92 L0 92 Z" fill="url(#ar)"/><path class="c-area-line" d="M0 74 C22 66,32 52,46 54 C60 56,66 34,82 38 C98 42,112 20,128 26 C146 32,162 16,190 22"/><circle class="c-dot" cx="128" cy="26" r="4"/></svg>
+          <div class="c-axis"><span>២៦</span><span>២៧</span><span>២៨</span><span>២៩</span><span>៣០</span></div>
+        </div>`},
+    {view:"quiz", variant:"dark", g:{tx:176,ty:2,tz:-42,rx:2,ry:-13, rz:-1,s:.92,w:172,h:328}, a:"h3dFloatA",d:9,dl:1.2, pf:.9,
+      html:`<div class="h3d-ic gLime"><i class="material-symbols-outlined">auto_awesome</i></div>
+        <div class="h3d-title on-dark">ណែនាំដែលនាំ <span class="c-accent">ជោគជ័យ</span></div>
+        <div class="h3d-sub on-dark">ណែនាំអាជីព សាលា និងថ្លៃសិក្សា។</div>
+        <div class="c-ava"><img src="https://randomuser.me/api/portraits/thumb/women/44.jpg" alt=""><img src="https://randomuser.me/api/portraits/thumb/men/32.jpg" alt=""><img src="https://randomuser.me/api/portraits/thumb/women/68.jpg" alt=""><span class="c-pill">+៩០០</span></div>`},
+    {view:"schools", variant:"blue", g:{tx:336,ty:16,tz:-172,rx:3,ry:-24, rz:2, s:.82,w:160,h:300}, a:"h3dFloatB",d:7,dl:.6, pf:.7,
+      html:`<div class="h3d-ic circW"><i class="material-symbols-outlined">school</i></div>
+        <div class="h3d-title on-dark">សាលា ៤១</div>
+        <div class="h3d-sub on-dark">សាកលវិទ្យាល័យ និងវិទ្យាស្ថាន។</div>
+        <div class="c-statbox"><div class="c-num">៤១+</div><div class="c-lbl">សាលាទាំងអស់</div></div>`}
   ];
   const glow=document.createElement("div");glow.className="h3d-glow";
   const stage=document.createElement("div");stage.className="h3d-stage h3d-scene";
@@ -1253,8 +1280,8 @@ function initHero3D(){
     const enter=document.createElement("div");enter.className="h3d-enter";enter.style.transitionDelay=(i*120)+"ms";
     const flo=document.createElement("div");flo.className="h3d-float";
     if(!reduce)flo.style.animation=`${c.a} ${c.d}s ease-in-out ${c.dl}s infinite`;
-    const face=document.createElement("div");face.className="h3d-face";
-    face.innerHTML=`<div class="h3d-ic"><i class="material-symbols-outlined">${c.ic}</i></div><div class="h3d-title">${c.t}</div><div class="h3d-sub">${c.s}</div>`;
+    const face=document.createElement("div");face.className="h3d-face"+(c.variant?(" "+c.variant):"");
+    face.innerHTML=c.html;
     flo.appendChild(face);enter.appendChild(flo);card.appendChild(enter);stage.appendChild(card);
     card.addEventListener("click",()=>{if(typeof showView==="function")showView(c.view);});
     cardEls.push(card);
