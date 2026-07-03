@@ -1209,9 +1209,8 @@ function initGridFlow(){
   if(!host){host=document.createElement("div");host.id="grid-flow";host.className="grid-flow";host.setAttribute("aria-hidden","true");document.body.appendChild(host);}
   function build(){
     const cell=parseInt(getComputedStyle(document.body).getPropertyValue("--grid-cell"))||52;
-    const cols=Math.floor(window.innerWidth/cell), rows=Math.floor(window.innerHeight/cell);
+    const cols=Math.floor(window.innerWidth/cell);
     const vCount=Math.max(3,Math.min(6,Math.floor(cols/4)));
-    const hCount=Math.max(2,Math.min(4,Math.floor(rows/4)));
     const pick=(n,max)=>{const s=new Set();let guard=0;while(s.size<Math.min(n,max-1)&&guard++<200)s.add(1+Math.floor(Math.random()*(max-1)));return[...s];};
     host.innerHTML="";
     const frag=document.createDocumentFragment();
@@ -1219,14 +1218,6 @@ function initGridFlow(){
       const el=document.createElement("span");
       el.className="gline"+(Math.random()<0.5?" up":"");
       el.style.left=(c*cell)+"px";
-      el.style.setProperty("--d",(5+Math.random()*4).toFixed(1)+"s");
-      el.style.setProperty("--delay",(Math.random()*5).toFixed(1)+"s");
-      frag.appendChild(el);
-    });
-    pick(hCount,rows).forEach(r=>{
-      const el=document.createElement("span");
-      el.className="hline"+(Math.random()<0.5?" left":"");
-      el.style.top=(r*cell)+"px";
       el.style.setProperty("--d",(5+Math.random()*4).toFixed(1)+"s");
       el.style.setProperty("--delay",(Math.random()*5).toFixed(1)+"s");
       frag.appendChild(el);
