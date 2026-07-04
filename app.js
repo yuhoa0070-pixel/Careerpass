@@ -1313,12 +1313,34 @@ function initHero3D(){
   document.addEventListener("mouseleave",()=>{tgx=tgy=tpx=tpy=0;loop();},{passive:true});
 }
 
+/* ===== HOMEPAGE: university logo marquee + featured growing careers ===== */
+function initHomeLogos(){
+  const track=document.getElementById("logo-track");
+  if(!track)return;
+  const ids=["rupp","num","uhs","itc","rua","npic","nie","era","ntti","nubb","aupp","paragon","puc","up","bbu","vanda","iu","acac"];
+  const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
+  track.innerHTML=items+items; // duplicate for a seamless loop
+}
+function initHomeFeatured(){
+  const host=document.getElementById("home-careers");
+  if(!host||typeof careersList==="undefined")return;
+  const growing=careersList.filter(j=>j.growing);
+  const list=(growing.length?growing:careersList).slice(0,4);
+  host.innerHTML=list.map(j=>{
+    const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
+    const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
+    return `<div class="hc-card" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងកើនឡើង</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
+  }).join("");
+}
+
 /* ===== INIT (runs last, after all data/vars are declared) ===== */
 initQuiz();
 calcCost();
 typeHero();
 initGridFlow();
 initHero3D();
+initHomeLogos();
+initHomeFeatured();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));

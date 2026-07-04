@@ -754,8 +754,44 @@ select.filter-select:focus{border-color:var(--accent);}
 .home-cta-btn:hover{background:#f4f2ff;}
 .home-cta-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.42);}
 .home-cta-ghost:hover{background:rgba(255,255,255,.24);}
+/* university logo strip */
+.home-logos{max-width:1100px;margin:0 auto;padding:34px 0 6px;text-align:center;}
+.logos-eyebrow{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;}
+.logo-marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.logo-track{display:flex;align-items:center;gap:44px;width:max-content;animation:logoScroll 42s linear infinite;}
+.logo-marquee:hover .logo-track{animation-play-state:paused;}
+.logo-item{flex:0 0 auto;width:52px;height:52px;display:flex;align-items:center;justify-content:center;}
+.logo-item img{max-width:100%;max-height:100%;object-fit:contain;filter:grayscale(1);opacity:.5;transition:filter .3s,opacity .3s;}
+.logo-item:hover img{filter:none;opacity:1;}
+@keyframes logoScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* featured growing careers */
+.home-careers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.hc-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:18px !important;padding:20px 18px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);}
+.hc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--accent);}
+.hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.hc-ic{width:42px;height:42px;border-radius:12px !important;display:flex;align-items:center;justify-content:center;background:var(--accent-tint);color:var(--accent);}
+.hc-ic .material-symbols-outlined{font-size:22px;}
+.hc-grow{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;color:#16a34a;background:rgba(34,197,94,.12);padding:3px 8px;border-radius:999px !important;}
+.hc-grow .material-symbols-outlined{font-size:12px;}
+.hc-name{font-size:14.5px;font-weight:800;margin:0 0 3px;color:var(--text);line-height:1.3;}
+.hc-cat{font-size:11.5px;color:var(--text-3);margin-bottom:12px;}
+.hc-skills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.hc-skill{font-size:10px;font-weight:600;color:var(--accent);background:var(--accent-tint);padding:3px 8px;border-radius:6px !important;}
+.hc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid var(--border);}
+.hc-salary{font-size:12.5px;font-weight:800;color:var(--text);}
+.hc-foot .material-symbols-outlined{font-size:16px;color:var(--accent);}
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px !important;padding:0 18px;box-shadow:var(--shadow-sm);}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;font-size:14px;font-weight:700;color:var(--text);}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary .material-symbols-outlined{font-size:20px;color:var(--text-3);transition:transform .25s;flex-shrink:0;}
+.faq-item[open] summary .material-symbols-outlined{transform:rotate(180deg);}
+.faq-item p{margin:0 0 16px;font-size:13px;color:var(--text-2);line-height:1.7;}
 @media(max-width:720px){
   .hs-grid{grid-template-columns:repeat(2,1fr);}
   .home-features{grid-template-columns:1fr;}
+  .home-careers{grid-template-columns:1fr 1fr;}
   .home-stats,.home-section{padding:40px 20px;}
 }
+@media(max-width:460px){.home-careers{grid-template-columns:1fr;}}
