@@ -627,9 +627,6 @@ select.filter-select:focus{border-color:var(--accent);}
 /* ============ HERO FLOATING 3D GLASS CARDS ============ */
 .hero-3d{position:relative;height:420px;margin:6px auto 46px;max-width:900px;
   perspective:1500px;perspective-origin:50% 44%;--h3d-scale:1;z-index:1;}
-.h3d-glow{position:absolute;left:50%;top:50%;width:600px;height:300px;transform:translate(-50%,-50%);
-  pointer-events:none;z-index:0;border-radius:50% !important;filter:blur(20px);
-  background:radial-gradient(58% 58% at 50% 42%, rgba(98,78,188,.24), rgba(74,132,255,.14) 46%, transparent 72%);}
 .h3d-stage{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;
   transform:scale(var(--h3d-scale)) rotateX(var(--gx,0deg)) rotateY(var(--gy,0deg));}
 .h3d-card{position:absolute;left:50%;top:50%;width:var(--w,170px);height:var(--h,210px);

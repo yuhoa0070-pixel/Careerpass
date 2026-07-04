@@ -1270,9 +1270,8 @@ function initHero3D(){
         <div class="h3d-sub on-dark">សាកលវិទ្យាល័យ និងវិទ្យាស្ថាន។</div>
         <div class="c-statbox"><div class="c-num">៤១+</div><div class="c-lbl">សាលាទាំងអស់</div></div>`}
   ];
-  const glow=document.createElement("div");glow.className="h3d-glow";
   const stage=document.createElement("div");stage.className="h3d-stage h3d-scene";
-  host.appendChild(glow);host.appendChild(stage);
+  host.appendChild(stage);
   const cardEls=[];
   cards.forEach((c,i)=>{
     const g=c.g;
