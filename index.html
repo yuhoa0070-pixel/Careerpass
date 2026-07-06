@@ -18,7 +18,21 @@
 
 <!-- Intro preloader -->
 <div class="preloader" id="preloader">
-  <img class="pre-anim" src="loading.svg" alt="Loading…">
+  <div class="pre-inner">
+    <div class="pre-compass">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="pc-ring" cx="50" cy="50" r="42"/>
+        <circle class="pc-arc" cx="50" cy="50" r="42"/>
+        <g class="pc-needle">
+          <path class="nd-n" d="M50 18 L56 50 L44 50 Z"/>
+          <path class="nd-s" d="M50 82 L56 50 L44 50 Z"/>
+        </g>
+        <circle class="pc-hub" cx="50" cy="50" r="4"/>
+      </svg>
+    </div>
+    <div class="pre-word">TREY VISAI</div>
+    <div class="pre-sub">កំពុងស្វែងរកផ្លូវរបស់អ្នក…</div>
+  </div>
 </div>
 <script>
   document.documentElement.style.overflow='hidden';
