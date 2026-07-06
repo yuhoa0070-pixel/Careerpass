@@ -560,7 +560,8 @@ const jobCats={
   agri:{label:"កសិកម្ម",icon:"agriculture"},
   law:{label:"ច្បាប់ និងរដ្ឋបាល",icon:"gavel"},
   media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"},
-  culinary:{label:"ចម្អិនអាហារ និងបដិសណ្ឋារកិច្ច",icon:"restaurant"}
+  culinary:{label:"ចម្អិនអាហារ និងបដិសណ្ឋារកិច្ច",icon:"restaurant"},
+  technician:{label:"ជាងបច្ចេកទេស និងសេវាកម្ម",icon:"home_repair_service"}
 };
 const careersList=[
   {id:"softeng",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","ab"]},
@@ -636,6 +637,10 @@ const careersList=[
   {id:"carpenter",name:"ជាងឈើ (Carpenter)",cat:"trades",icon:"carpenter",salary:"$300–$800",desc:"កាត់ តម្លើង និងផលិតគ្រឿងឈើ។",skills:["Woodwork"],schools:["ntti"]},
   {id:"automotive",name:"ជាងជួសជុលរថយន្ត",cat:"trades",icon:"car_repair",salary:"$300–$900",desc:"ជួសជុល និងថែទាំរថយន្ត។",skills:["Automotive","Diagnostics"],schools:["ntti","npic"]},
   {id:"solar",growing:true,name:"ជាងបច្ចេកទេសថាមពលព្រះអាទិត្យ",cat:"trades",icon:"solar_power",salary:"$350–$1,000",desc:"តម្លើងប្រព័ន្ធថាមពលព្រះអាទិត្យ។",skills:["Solar","Electrical"],schools:["itc","ntti"]},
+  {id:"carmechanic",name:"ជាងមេកានិករថយន្ត (Car Mechanic)",cat:"technician",icon:"car_repair",salary:"$300–$800",desc:"ពិនិត្យ ជួសជុល និងថែទាំម៉ាស៊ីន និងផ្នែកម៉េកានិចរបស់រថយន្ត។",skills:["Engine Repair","Diagnostics","Maintenance"],schools:["ntti","npic"]},
+  {id:"acrepairer",growing:true,name:"ជាងជួសជុលម៉ាស៊ីនត្រជាក់ (A/C Repairer)",cat:"technician",icon:"ac_unit",salary:"$300–$900",desc:"តម្លើង ថែទាំ និងជួសជុលម៉ាស៊ីនត្រជាក់ និងប្រព័ន្ធធ្វើត្រជាក់។",skills:["HVAC","Refrigeration","Electrical"],schools:["ntti"]},
+  {id:"servicecleaner",name:"បុគ្គលិកសម្អាតសេវាកម្ម (Service Cleaner)",cat:"technician",icon:"cleaning_services",salary:"$200–$500",desc:"សម្អាត និងថែទាំអគារ ការិយាល័យ និងទីតាំងសេវាកម្ម។",skills:["Cleaning","Hygiene","Time Management"],schools:[]},
+  {id:"repairer",name:"ជាងជួសជុលទូទៅ (Repairer)",cat:"technician",icon:"handyman",salary:"$250–$700",desc:"ជួសជុល និងថែទាំគ្រឿងបរិក្ខារ គ្រឿងអេឡិចត្រូនិច និងឧបករណ៍ក្នុងផ្ទះ។",skills:["Maintenance","Troubleshooting","Electronics"],schools:["ntti","npic"]},
   {id:"englishteacher",name:"គ្រូភាសាអង់គ្លេស",cat:"education",icon:"translate",salary:"$300–$1,000",desc:"បង្រៀនភាសាអង់គ្លេស។",skills:["English","Teaching"],schools:["nie","rupp"]},
   {id:"earlyedu",name:"គ្រូមត្តេយ្យ",cat:"education",icon:"child_care",salary:"$250–$600",desc:"អប់រំ និងថែទាំកុមារតូច។",skills:["Early Education","Patience"],schools:["nie"]},
   {id:"counselor",name:"អ្នកប្រឹក្សាការសិក្សា",cat:"education",icon:"psychology",salary:"$350–$900",desc:"ណែនាំសិស្សអំពីការសិក្សា និងអាជីព។",skills:["Counseling","Communication"],schools:["nie","rupp"]},
@@ -1249,7 +1254,7 @@ function initHero3D(){
         <div class="c-rows">
           <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">work</i></span><span class="c-rl">អាជីព</span><span class="c-rv">១០០+</span></div>
           <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">school</i></span><span class="c-rl">សាលា</span><span class="c-rv">៤១</span></div>
-          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">category</i></span><span class="c-rl">វិស័យ</span><span class="c-rv">១១</span></div>
+          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">category</i></span><span class="c-rl">វិស័យ</span><span class="c-rv">១២</span></div>
           <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">quiz</i></span><span class="c-rl">តេស្ត</span><span class="c-rv">ឥតគិតថ្លៃ</span></div>
         </div>`},
     {view:"careers", variant:"", g:{tx:0,ty:-6,tz:52,rx:0,ry:0, rz:0, s:1.0,w:210,h:360}, a:"h3dFloatC",d:6.5,dl:.4, pf:1.15,
