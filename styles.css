@@ -366,8 +366,8 @@ select.filter-select{border:1.5px solid var(--border);border-radius:10px;padding
 select.filter-select:focus{border-color:var(--accent);}
 .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
 .chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--border);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--text-2);cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
-.chip:hover{border-color:var(--border-strong);}
-.chip.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+.chip:hover{background:var(--accent-tint);border-color:var(--border-strong);}
+.chip.active{background:var(--accent-tint);border-color:var(--accent);color:var(--accent);font-weight:700;}
 .schools-grid{display:grid;grid-template-columns:1fr;gap:16px;}
 @media(min-width:600px){.schools-grid{grid-template-columns:repeat(2,1fr);}}
 @media(min-width:1000px){.schools-grid{grid-template-columns:repeat(3,1fr);}}
