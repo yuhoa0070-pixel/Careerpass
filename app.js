@@ -408,7 +408,7 @@ function openSchool(id){
   document.getElementById("school-detail").innerHTML=`
     <div class="detail-back" onclick="showView('schools')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅសាលា</div>
     <div class="detail-head">
-      <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}</div>
+      <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
       <div style="flex:1;min-width:220px">
         <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span>
         <h1 class="detail-title" style="margin-top:8px">${s.name}</h1>

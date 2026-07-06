@@ -383,7 +383,9 @@ select.filter-select:focus{border-color:var(--accent);}
 /* official logo overlays the initials placeholder; if it 404s, onerror removes it and the initials show */
 .school-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:11%;background:#fff;border-radius:inherit;}
 .school-logo.has-logo{background:#fff !important;color:transparent;}
-.detail-logo{width:60px;height:60px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.3px;flex-shrink:0;}
+.detail-logo{position:relative;overflow:hidden;width:60px;height:60px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:.3px;flex-shrink:0;}
+.detail-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:11%;background:#fff;}
+.detail-logo.has-logo{background:#fff !important;color:transparent;}
 .badge-public{background:rgba(34,197,94,.1);color:#16a34a;}
 .badge-private{background:rgba(234,179,8,.1);color:#b45309;}
 .badge-institute{background:rgba(59,130,246,.1);color:#2563eb;}
