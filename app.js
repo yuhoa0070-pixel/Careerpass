@@ -1240,82 +1240,66 @@ function initHero3D(){
   const host=document.getElementById("hero3d");
   if(!host||host.dataset.built)return;
   host.dataset.built="1";
-  const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const BAR=[1,2,1,1,3,1,2,1,1,3,1,1,2,1,2,1,3,1,1,2,1,3,1,2,1,1,2,1];
+  // scattered "label" cards — tap one to focus it to centre (Careerpass-themed)
   const cards=[
-    {view:"quiz", variant:"", g:{tx:-336,ty:16,tz:-172,rx:3,ry:24, rz:-2,s:.82,w:160,h:300}, a:"h3dFloatA",d:7.5,dl:0,  pf:.7,
-      html:`<div class="h3d-ic gA"><i class="material-symbols-outlined">psychology</i></div>
-        <div class="h3d-title">តេស្តអាជីព</div>
-        <div class="h3d-sub">ស្គាល់ខ្លួនឯង រកអាជីពដែលសម។</div>
-        <svg class="c-spark" viewBox="0 0 120 46"><defs><linearGradient id="spk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#bef264"/></linearGradient></defs><path class="c-spark-line" d="M2 38 L18 30 L32 34 L48 18 L64 24 L82 12 L100 16 L118 5"/><circle class="c-dot-lime" cx="118" cy="5" r="3"/></svg>`},
-    {view:"careers", variant:"", g:{tx:-176,ty:2,tz:-42,rx:2,ry:13, rz:1, s:.92,w:172,h:328}, a:"h3dFloatB",d:8.5,dl:.8, pf:.9,
-      html:`<div class="c-cap">ទិដ្ឋភាពរួម</div>
-        <div class="c-big">១០០+<span class="c-badge">អាជីព</span></div>
-        <div class="c-bar"><span style="width:74%"></span></div>
-        <div class="c-rows">
-          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">work</i></span><span class="c-rl">អាជីព</span><span class="c-rv">១០០+</span></div>
-          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">school</i></span><span class="c-rl">សាលា</span><span class="c-rv">៤១</span></div>
-          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">category</i></span><span class="c-rl">វិស័យ</span><span class="c-rv">១២</span></div>
-          <div class="c-row"><span class="c-ri"><i class="material-symbols-outlined">quiz</i></span><span class="c-rl">តេស្ត</span><span class="c-rv">ឥតគិតថ្លៃ</span></div>
-        </div>`},
-    {view:"careers", variant:"", g:{tx:0,ty:-6,tz:52,rx:0,ry:0, rz:0, s:1.0,w:210,h:360}, a:"h3dFloatC",d:6.5,dl:.4, pf:1.15,
-      html:`<div class="c-top"><div class="c-h2">អាជីពកំពុងកើនឡើង</div><i class="c-more material-symbols-outlined">more_horiz</i></div>
-        <div class="c-sel">៥ ឆ្នាំខាងមុខ <i class="material-symbols-outlined">expand_more</i></div>
-        <div class="c-chart"><span class="c-chip">+៣៥%</span>
-          <svg class="c-area" viewBox="0 0 190 92"><defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(59,130,246,.35)"/><stop offset="1" stop-color="rgba(59,130,246,0)"/></linearGradient></defs><path d="M0 74 C22 66,32 52,46 54 C60 56,66 34,82 38 C98 42,112 20,128 26 C146 32,162 16,190 22 L190 92 L0 92 Z" fill="url(#ar)"/><path class="c-area-line" d="M0 74 C22 66,32 52,46 54 C60 56,66 34,82 38 C98 42,112 20,128 26 C146 32,162 16,190 22"/><circle class="c-dot" cx="128" cy="26" r="4"/></svg>
-          <div class="c-axis"><span>២៦</span><span>២៧</span><span>២៨</span><span>២៩</span><span>៣០</span></div>
-        </div>`},
-    {view:"quiz", variant:"dark", g:{tx:176,ty:2,tz:-42,rx:2,ry:-13, rz:-1,s:.92,w:172,h:328}, a:"h3dFloatA",d:9,dl:1.2, pf:.9,
-      html:`<div class="h3d-ic gLime"><i class="material-symbols-outlined">auto_awesome</i></div>
-        <div class="h3d-title on-dark">ណែនាំដែលនាំ <span class="c-accent">ជោគជ័យ</span></div>
-        <div class="h3d-sub on-dark">ណែនាំអាជីព សាលា និងថ្លៃសិក្សា។</div>
-        <div class="c-ava"><img src="https://randomuser.me/api/portraits/thumb/women/44.jpg" alt=""><img src="https://randomuser.me/api/portraits/thumb/men/32.jpg" alt=""><img src="https://randomuser.me/api/portraits/thumb/women/68.jpg" alt=""><span class="c-pill">+៩០០</span></div>`},
-    {view:"schools", variant:"blue", g:{tx:336,ty:16,tz:-172,rx:3,ry:-24, rz:2, s:.82,w:160,h:300}, a:"h3dFloatB",d:7,dl:.6, pf:.7,
-      html:`<div class="h3d-ic circW"><i class="material-symbols-outlined">school</i></div>
-        <div class="h3d-title on-dark">សាលា ៤១</div>
-        <div class="h3d-sub on-dark">សាកលវិទ្យាល័យ និងវិទ្យាស្ថាន។</div>
-        <div class="c-statbox"><div class="c-num">៤១+</div><div class="c-lbl">សាលាទាំងអស់</div></div>`}
+    {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
+    {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៤១",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
+    {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
-  const stage=document.createElement("div");stage.className="h3d-stage h3d-scene";
-  host.appendChild(stage);
-  const cardEls=[];
-  cards.forEach((c,i)=>{
-    const g=c.g;
-    const card=document.createElement("div");
-    card.className="h3d-card";card.dataset.view=c.view;card.dataset.pf=c.pf;
-    card.style.cssText=`--tx:${g.tx};--ty:${g.ty};--tz:${g.tz};--rx:${g.rx};--ry:${g.ry};--rz:${g.rz};--s:${g.s};--w:${g.w}px;--h:${g.h}px;`;
-    const enter=document.createElement("div");enter.className="h3d-enter";enter.style.transitionDelay=(i*120)+"ms";
-    const flo=document.createElement("div");flo.className="h3d-float";
-    if(!reduce)flo.style.animation=`${c.a} ${c.d}s ease-in-out ${c.dl}s infinite`;
-    const face=document.createElement("div");face.className="h3d-face"+(c.variant?(" "+c.variant):"");
-    face.innerHTML=c.html;
-    flo.appendChild(face);enter.appendChild(flo);card.appendChild(enter);stage.appendChild(card);
-    card.addEventListener("click",()=>{if(typeof showView==="function")showView(c.view);});
-    cardEls.push(card);
-  });
-  // staggered entrance (setTimeout fires even if rAF is paused in a backgrounded tab)
-  setTimeout(()=>stage.classList.add("in"),80);
-  if(reduce)return;
-  // cursor parallax: group tilt + per-card follow, lerped at 60fps
-  let tgx=0,tgy=0,cgx=0,cgy=0,tpx=0,tpy=0,cpx=0,cpy=0,raf=null;
-  function loop(){
-    if(raf)return;
-    const step=()=>{
-      cgx+=(tgx-cgx)*.09;cgy+=(tgy-cgy)*.09;cpx+=(tpx-cpx)*.09;cpy+=(tpy-cpy)*.09;
-      stage.style.setProperty("--gx",cgx.toFixed(2)+"deg");
-      stage.style.setProperty("--gy",cgy.toFixed(2)+"deg");
-      for(const el of cardEls){const pf=+el.dataset.pf;el.style.setProperty("--px",(cpx*pf).toFixed(2));el.style.setProperty("--py",(cpy*pf).toFixed(2));}
-      if(Math.abs(tgx-cgx)+Math.abs(tgy-cgy)+Math.abs(tpx-cpx)+Math.abs(tpy-cpy)>0.04){raf=requestAnimationFrame(step);}else{raf=null;}
-    };
-    raf=requestAnimationFrame(step);
+  let selected=null;
+  const els=[];
+  function faceHTML(c,s){
+    const P=n=>+(n*s).toFixed(2);
+    const bars=BAR.map(w=>`<span style="width:${P(w*1.5)}px;background:${c.fg};opacity:.8"></span>`).join("");
+    return `<div class="lc-face" style="padding:${P(12)}px ${P(14)}px ${P(11)}px">
+      <div class="lc-top" style="margin-bottom:${P(9)}px">
+        <div class="lc-titlewrap" style="gap:${P(6)}px">
+          <span style="font-size:${P(16)}px;font-weight:900;color:${c.fg};opacity:.9;line-height:1">✳</span>
+          <span style="font-size:${P(18)}px;font-weight:800;color:${c.fg};letter-spacing:-.02em;line-height:1.05">${c.title}</span>
+        </div>
+        <span style="font-size:${P(9)}px;font-weight:600;color:${c.fg};opacity:.5;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">${c.since}</span>
+      </div>
+      <div style="height:1px;background:${c.fg};opacity:.22;margin-bottom:${P(9)}px;flex-shrink:0"></div>
+      <div class="lc-body">
+        <div>
+          <p style="margin:0;font-size:${P(11.5)}px;font-weight:600;color:${c.fg};line-height:1.35">${c.sub1}</p>
+          <p style="margin:${P(3)}px 0 0;font-size:${P(11)}px;font-weight:400;color:${c.fg};opacity:.6;line-height:1.35">${c.sub2}</p>
+        </div>
+        <div class="lc-bottom">
+          <div class="lc-bars" style="height:${P(28)}px;gap:${P(1.2)}px">${bars}</div>
+          <div class="lc-logo" style="gap:${P(3)}px">
+            <div class="lc-circle" style="width:${P(28)}px;height:${P(28)}px;border:${P(1.5)}px solid ${c.fg};opacity:.85">
+              <span style="font-size:${P(7.5)}px;font-weight:800;color:${c.fg};line-height:1">TV</span>
+            </div>
+            <span style="font-size:${P(6.5)}px;font-weight:700;color:${c.fg};letter-spacing:.1em;text-transform:uppercase;opacity:.7">VISAI</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }
-  window.addEventListener("mousemove",e=>{
-    if(document.getElementById("view-home")&&!document.getElementById("view-home").classList.contains("active"))return;
-    const r=host.getBoundingClientRect();
-    const nx=Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width/2))/(r.width/2)));
-    const ny=Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height/2))/(r.height/2)));
-    tgy=nx*8;tgx=-ny*5;tpx=nx*18;tpy=ny*14;loop();
-  },{passive:true});
-  document.addEventListener("mouseleave",()=>{tgx=tgy=tpx=tpy=0;loop();},{passive:true});
+  function apply(o){
+    const s=o.s;
+    if(selected===o.c.view){o.el.style.setProperty("--x","0px");o.el.style.setProperty("--y","0px");o.el.style.setProperty("--r","0deg");o.el.style.setProperty("--s","1.06");o.el.style.zIndex="20";}
+    else{o.el.style.setProperty("--x",(o.c.idle.x*s).toFixed(1)+"px");o.el.style.setProperty("--y",(o.c.idle.y*s).toFixed(1)+"px");o.el.style.setProperty("--r",o.c.idle.r+"deg");o.el.style.setProperty("--s","1");o.el.style.zIndex="2";}
+  }
+  function layout(){
+    const cw=Math.min(300,Math.floor((host.clientWidth||480)/1.56));
+    const s=cw/300, ch=Math.round(cw*9/16);
+    els.forEach(o=>{o.s=s;o.el.style.width=cw+"px";o.el.style.height=ch+"px";o.el.innerHTML=faceHTML(o.c,s);apply(o);});
+  }
+  cards.forEach(c=>{
+    const el=document.createElement("div");
+    el.className="lc-card";el.style.background=c.bg;el.dataset.view=c.view;
+    const o={el,c,s:1};
+    el.addEventListener("click",()=>{selected=(selected===c.view?null:c.view);els.forEach(apply);host.classList.toggle("lc-focused",selected!==null);});
+    host.appendChild(el);els.push(o);
+  });
+  const hint=document.createElement("div");hint.className="lc-hint";hint.textContent="ចុចលើកាតដើម្បីផ្ដោត";host.appendChild(hint);
+  layout();
+  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(layout,200);});
 }
 
 /* ===== HOMEPAGE: university logo marquee + featured growing careers ===== */
