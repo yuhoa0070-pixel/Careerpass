@@ -1322,7 +1322,7 @@ function initHero3D(){
 function initHomeLogos(){
   const track=document.getElementById("logo-track");
   if(!track)return;
-  const ids=["rupp","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","aupp","paragon","puc","up","bbu","vanda","iu","acac"];
+  const ids=["rupp","rule","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","aupp","paragon","puc","up","bbu","vanda","iu","acac"];
   const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
   track.innerHTML=items+items; // duplicate for a seamless loop
 }
