@@ -1288,6 +1288,9 @@ function initHero3D(){
   function layout(){
     const cw=Math.min(300,Math.floor((host.clientWidth||480)/1.56));
     const s=cw/300, ch=Math.round(cw*9/16);
+    // size the band to the rotated bounding box of the furthest-scattered card (no clipping)
+    const ext=Math.max.apply(null,cards.map(c=>{const rad=Math.abs(c.idle.r)*Math.PI/180;return Math.abs(c.idle.y)*s+(cw*Math.sin(rad)+ch*Math.cos(rad))/2;}));
+    host.style.height=Math.round(2*ext+18)+"px";
     els.forEach(o=>{o.s=s;o.el.style.width=cw+"px";o.el.style.height=ch+"px";o.el.innerHTML=faceHTML(o.c,s);apply(o);});
   }
   cards.forEach(c=>{
