@@ -497,28 +497,6 @@ select.filter-select:focus{border-color:var(--accent);}
 .job-desc{font-size:13px;color:var(--text-2);margin:0 0 14px;line-height:1.5;}
 .job-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);}
 .job-salary{font-size:14px;font-weight:700;color:var(--accent);}
-/* ticket-style career cards */
-.job-card.tk{padding:0;overflow:hidden;display:flex;flex-direction:column;}
-.tk-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 16px;background:var(--accent);color:#fff;}
-.tk-cat{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;letter-spacing:.2px;min-width:0;}
-.tk-cat .material-symbols-outlined{font-size:17px;flex-shrink:0;}
-.tk-code{font-size:11px;font-weight:700;letter-spacing:.05em;opacity:.85;white-space:nowrap;}
-.tk-body{flex:1;display:flex;flex-direction:column;padding:14px 16px 15px;background:var(--card);}
-.tk-org{margin:0 0 5px;font-size:11.5px;font-weight:500;color:var(--text-3);}
-.tk-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;}
-.tk-title{margin:0;font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--text);line-height:1.25;}
-.tk-badge{flex-shrink:0;font-size:9.5px;font-weight:700;padding:3px 9px;background:rgba(16,24,40,.06);color:var(--text-3);white-space:nowrap;}
-.tk-badge.up{background:rgba(34,197,94,.14);color:#16a34a;}
-.tk-divider{height:0;border-top:1px dashed var(--border-strong);margin:auto 0 12px;}
-.tk-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.tk-price{font-size:19px;font-weight:800;color:var(--text);letter-spacing:-.5px;}
-.tk-price small{font-size:11px;font-weight:600;color:var(--text-3);margin-left:1px;}
-.tk-btn{font-size:12.5px;font-weight:700;color:#fff;background:#14141c;padding:8px 16px;white-space:nowrap;transition:background .2s;}
-.job-card.tk:hover .tk-btn{background:var(--accent);}
-[data-theme="dark"] .tk-badge{background:rgba(255,255,255,.09);color:var(--text-2);}
-[data-theme="dark"] .tk-badge.up{background:rgba(34,197,94,.2);color:#4ade80;}
-[data-theme="dark"] .tk-btn{background:var(--accent);}
-[data-theme="dark"] .job-card.tk:hover .tk-btn{background:var(--accent-h);}
 .rel-schools{display:flex;flex-direction:column;gap:8px;}
 .rel-school{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:background .15s,border-color .15s;}
 .rel-school:hover{background:var(--accent-tint);border-color:var(--accent);}
