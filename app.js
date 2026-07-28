@@ -683,15 +683,22 @@ function renderCareers(){
   if(jobPage>pages)jobPage=pages;if(jobPage<1)jobPage=1;
   const start=(jobPage-1)*JOBS_PER_PAGE;
   const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
-  grid.innerHTML=pageItems.map((j,i)=>`
-    <div class="job-card" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
-      <div class="job-top">
-        <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
-        <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
+  grid.innerHTML=pageItems.map((j,i)=>{
+    const cat=jobCats[j.cat]?jobCats[j.cat].label:"";
+    const skills=(j.skills||[]).slice(0,3).join(" · ");
+    return `
+    <div class="job-card tk" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
+      <div class="tk-head">
+        <span class="tk-cat"><i class="material-symbols-outlined">${j.icon}</i>${cat}</span>
+        <span class="tk-code">TV·${j.id.slice(0,5).toUpperCase()}</span>
       </div>
-      <p class="job-desc">${j.desc}</p>
-      <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
-    </div>`).join("");
+      <div class="tk-body">
+        <p class="tk-org">${skills||cat}</p>
+        <div class="tk-title-row"><h3 class="tk-title">${j.name}</h3><span class="tk-badge${j.growing?" up":""}">${j.growing?"កំពុងកើនឡើង":"ស្ថិរភាព"}</span></div>
+        <div class="tk-divider"></div>
+        <div class="tk-foot"><span class="tk-price">${j.salary}${j.salary.indexOf("$")>=0?'<small>/ខែ</small>':''}</span><span class="tk-btn">មើលលម្អិត</span></div>
+      </div>
+    </div>`;}).join("");
   renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
   pageInfo("jobs-page-info",filtered.length,jobPage,JOBS_PER_PAGE);
 }
