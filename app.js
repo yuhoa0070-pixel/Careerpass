@@ -1190,6 +1190,15 @@ loadPlan();
 updatePlanBadge();
 populateCostSchools();
 enhanceAllSelects();
+/* ===== THEME TOGGLE (light / dark) ===== */
+(function(){
+  const btn=document.getElementById("theme-toggle");
+  const meta=document.querySelector('meta[name="theme-color"]');
+  function curTheme(){return document.documentElement.getAttribute("data-theme")==="dark"?"dark":"light";}
+  function sync(){const t=curTheme();if(btn)btn.querySelector("i").textContent=(t==="dark"?"light_mode":"dark_mode");if(meta)meta.setAttribute("content",t==="dark"?"#141419":"#624EBC");}
+  sync();
+  if(btn)btn.addEventListener("click",()=>{const next=curTheme()==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",next);try{localStorage.setItem("tv_theme",next);}catch(e){}sync();});
+})();
 function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
   document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});
