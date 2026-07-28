@@ -310,6 +310,30 @@ function pageInfo(elId,total,page,per){
 
 function filterSchoolsByCat(cat){schoolCareer=cat;schoolPage=1;const el=document.getElementById("school-career-filter");el.value=cat;if(el._csSync)el._csSync();renderSchools();}
 
+/* ===== scroll-triggered reveal (staggered) for dynamic card grids ===== */
+let __srObs;
+function srReveal(container,sel){
+  if(!container)return;
+  var items=Array.prototype.slice.call(container.querySelectorAll(sel));
+  if(!items.length)return;
+  items.forEach(function(el,i){el.classList.add("sr");el.style.transitionDelay=Math.min(i,7)*50+"ms";});
+  function show(el){if(el.classList.contains("sr-in"))return;el.classList.add("sr-in");if(__srObs)__srObs.unobserve(el);setTimeout(function(){el.classList.remove("sr","sr-in");el.style.transitionDelay="";el.style.willChange="";},840);}
+  function revealVisible(){for(var k=0;k<items.length;k++){var el=items[k];if(el.classList.contains("sr")&&!el.classList.contains("sr-in")&&el.getBoundingClientRect().top<window.innerHeight-8)show(el);}}
+  if("IntersectionObserver" in window){
+    if(!__srObs){
+      __srObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)show(e.target);});},{threshold:.06,rootMargin:"0px 0px -24px 0px"});
+      var onScroll=function(){var n=document.querySelectorAll(".sr:not(.sr-in)");for(var j=0;j<n.length;j++){if(n[j].getBoundingClientRect().top<window.innerHeight-8)show(n[j]);}};
+      window.addEventListener("scroll",onScroll,{passive:true});
+      window.addEventListener("resize",onScroll,{passive:true});
+    }
+    items.forEach(function(el){__srObs.observe(el);});
+  }
+  // reveal what's on-screen (retry across a few ticks in case layout isn't ready)
+  revealVisible();setTimeout(revealVisible,70);setTimeout(revealVisible,240);
+  // safety net: never leave a card hidden
+  setTimeout(function(){items.forEach(show);},2400);
+}
+
 function renderSchools(){
   const q=schoolSearch.toLowerCase();
   const filtered=schoolsData.filter(s=>{
@@ -344,6 +368,7 @@ function renderSchools(){
         <span class="school-view-more">មើលលម្អិត →</span>
       </div>
     </div>`).join("");
+  srReveal(grid,".school-card");
   renderPagination("schools-pagination",filtered.length,schoolPage,SCHOOLS_PER_PAGE,"gotoSchoolPage");
   pageInfo("schools-page-info",filtered.length,schoolPage,SCHOOLS_PER_PAGE);
   updateCompareBar();
@@ -692,6 +717,7 @@ function renderCareers(){
       <p class="job-desc">${j.desc}</p>
       <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
     </div>`).join("");
+  srReveal(grid,".job-card");
   renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
   pageInfo("jobs-page-info",filtered.length,jobPage,JOBS_PER_PAGE);
 }
