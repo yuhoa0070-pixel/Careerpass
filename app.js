@@ -586,7 +586,8 @@ const jobCats={
   law:{label:"ច្បាប់ និងរដ្ឋបាល",icon:"gavel"},
   media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"},
   culinary:{label:"ចម្អិនអាហារ និងបដិសណ្ឋារកិច្ច",icon:"restaurant"},
-  technician:{label:"ជាងបច្ចេកទេស និងសេវាកម្ម",icon:"home_repair_service"}
+  technician:{label:"ជាងបច្ចេកទេស និងសេវាកម្ម",icon:"home_repair_service"},
+  logistics:{label:"ដឹកជញ្ជូន និងខ្សែសង្វាក់ផ្គត់ផ្គង់",icon:"local_shipping"}
 };
 const careersList=[
   {id:"softeng",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","ab"]},
@@ -654,7 +655,11 @@ const careersList=[
   {id:"productdesign",growing:true,name:"អ្នករចនាផលិតផល (Product Designer)",cat:"design",icon:"widgets",salary:"$500–$1,400",desc:"រចនាផលិតផល និងបទពិសោធន៍អ្នកប្រើ។",skills:["Figma","Research","Prototyping"],schools:["tux","cadt"]},
   {id:"economist",name:"សេដ្ឋវិទូ",cat:"business",icon:"insights",salary:"$500–$1,600",desc:"វិភាគសេដ្ឋកិច្ច និងគោលនយោបាយ។",skills:["Economics","Statistics"],schools:["rule","num"]},
   {id:"salesmgr",name:"អ្នកគ្រប់គ្រងផ្នែកលក់",cat:"business",icon:"sell",salary:"$400–$1,500",desc:"ដឹកនាំក្រុមលក់ និងសម្រេចគោលដៅ។",skills:["Sales","Negotiation"],schools:["num","uc"]},
-  {id:"logistics",name:"អ្នកគ្រប់គ្រង Logistics",cat:"business",icon:"local_shipping",salary:"$400–$1,300",desc:"គ្រប់គ្រងខ្សែសង្វាក់ផ្គត់ផ្គង់ និងដឹកជញ្ជូន។",skills:["Supply Chain","Logistics"],schools:["num"]},
+  {id:"logistics",name:"អ្នកគ្រប់គ្រង Logistics",cat:"logistics",icon:"local_shipping",salary:"$400–$1,300",desc:"គ្រប់គ្រងខ្សែសង្វាក់ផ្គត់ផ្គង់ និងដឹកជញ្ជូន។",skills:["Supply Chain","Logistics"],schools:["num"]},
+  {id:"warehousemgr",name:"អ្នកគ្រប់គ្រងឃ្លាំង (Warehouse Manager)",cat:"logistics",icon:"warehouse",salary:"$350–$1,000",desc:"គ្រប់គ្រងស្តុកទំនិញ ការទទួល និងការចែកចាយពីឃ្លាំង។",skills:["Inventory","Warehouse Ops","Safety"],schools:["num"]},
+  {id:"supplychainanalyst",growing:true,name:"អ្នកវិភាគខ្សែសង្វាក់ផ្គត់ផ្គង់ (Supply Chain Analyst)",cat:"logistics",icon:"inventory_2",salary:"$450–$1,300",desc:"វិភាគទិន្នន័យ ដើម្បីបង្កើនប្រសិទ្ធភាពខ្សែសង្វាក់ផ្គត់ផ្គង់។",skills:["Data Analysis","Forecasting","Excel"],schools:["num","itc"]},
+  {id:"procurement",name:"មន្ត្រីលទ្ធកម្ម (Procurement Officer)",cat:"logistics",icon:"shopping_cart_checkout",salary:"$400–$1,100",desc:"ស្វែងរក និងចរចាទិញសម្ភារៈ និងសេវាកម្មសម្រាប់ស្ថាប័ន។",skills:["Negotiation","Vendor Management","Purchasing"],schools:["num"]},
+  {id:"customsbroker",name:"ភ្នាក់ងារពន្ធគយ (Customs Broker)",cat:"logistics",icon:"fact_check",salary:"$400–$1,200",desc:"សម្របសម្រួលការនាំចូល-នាំចេញ និងឯកសារគយ។",skills:["Customs Regulations","Documentation","Trade Law"],schools:["num","rule"]},
   {id:"realestate",name:"ភ្នាក់ងារអចលនទ្រព្យ",cat:"business",icon:"real_estate_agent",salary:"$300–$1,500",desc:"ទិញលក់ និងជួលអចលនទ្រព្យ។",skills:["Sales","Negotiation"],schools:["num"]},
   {id:"insurance",name:"ភ្នាក់ងារធានារ៉ាប់រង",cat:"business",icon:"shield",salary:"$300–$1,200",desc:"លក់ និងគ្រប់គ្រងផលិតផលធានារ៉ាប់រង។",skills:["Sales","Finance"],schools:["num"]},
   {id:"ecommerce",name:"អ្នកគ្រប់គ្រង E-commerce",cat:"business",icon:"shopping_cart",salary:"$400–$1,300",desc:"គ្រប់គ្រងហាងអនឡាញ និងលក់ឌីជីថល។",skills:["E-commerce","Digital Marketing"],schools:["dichi","num"]},
