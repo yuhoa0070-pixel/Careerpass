@@ -1357,7 +1357,12 @@ function initHomeFeatured(){
   const host=document.getElementById("home-careers");
   if(!host||typeof careersList==="undefined")return;
   const growing=careersList.filter(j=>j.growing);
-  const list=(growing.length?growing:careersList).slice(0,4);
+  const seenCats=new Set();
+  const diverse=[];
+  (growing.length?growing:careersList).forEach(j=>{
+    if(!seenCats.has(j.cat)){seenCats.add(j.cat);diverse.push(j);}
+  });
+  const list=diverse.slice(0,6);
   host.innerHTML=list.map(j=>{
     const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
     const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
