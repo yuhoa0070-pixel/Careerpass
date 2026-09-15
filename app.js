@@ -1,11 +1,4 @@
 /* ===== DATA ===== */
-const careers = {
-  technology: {name:"វិស្វករផ្នែកទន់",icon:"code",salary:"$500–$1,500",why:"ចំណូលចិត្តបច្ចេកទេស ជំនាញតក្កវិជ្ជា",skills:["JavaScript","Python","SQL"],tags:["ល្អ","ប្រាក់ខែខ្ពស់"],schools:["rupp","ite","norton"]},
-  healthcare:{name:"គ្រូពេទ្យ/អ្នកថែទាំ",icon:"cardiology",salary:"$400–$1,200",why:"ចំណូលចិត្តជួយមនុស្ស ចូលចិត្តវិទ្យាសាស្ត្រ",skills:["ជំនាញទំនាក់ទំនង","ការពិនិត្យ"],tags:["មានន័យ","ជំនាញ"],schools:["rupp","ppu"]},
-  design:{name:"អ្នករចនា UX/UI",icon:"palette",salary:"$350–$900",why:"ការគិតច្នៃប្រឌិត ចូលចិត្ដម្គប់ស្ថានភាព",skills:["Figma","ការរចនា","CSS"],tags:["ច្នៃប្រឌិត"],schools:["aic","puc"]},
-  business:{name:"អ្នកគ្រប់គ្រងទីផ្សារ",icon:"work",salary:"$400–$1,000",why:"ចូលចិត្ដគ្រប់គ្រង ចំណូលចិត្ដពាណិជ្ជកម្ម",skills:["ទីផ្សារ","ការលក់","Excel"],tags:["ល្អ","ឱកាស"],schools:["num","puc","norton"]},
-  trades:{name:"ជាងបច្ចេកទេស",icon:"construction",salary:"$300–$800",why:"ជំនាញជាក់ស្ដែង ចូលចិត្ដការងារដៃ",skills:["ជំនាញ","បច្ចេកទេស"],tags:["ជំនាញ"],schools:["ite"]}
-};
 const schoolsData = [
   {id:"rupp",website:"https://www.rupp.edu.kh",name:"សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",type:"public",province:"phnom-penh",tuition:600,duration:4,careers:["technology","healthcare","business","design","education","media"],programs:["ភាសា","វិស្វកម្ម","វិទ្យាសាស្ត្រ","សង្គមសាស្ត្រ","ប្រព័ន្ធផ្សព្វផ្សាយ","អប់រំ"],rating:"4.2",desc:"សាកលវិទ្យាល័យរដ្ឋធំជាងគេ និងជាមូលដ្ឋានសិក្សាស្នូលក្រោមរាជរដ្ឋាភិបាលកម្ពុជា។ រៀបចំតាមមហាវិទ្យាល័យ (Faculties) និងវិទ្យាស្ថាន (Institutes)។",scholarNote:"និស្សិតដែលទទួលអាហារូបករណ៍រដ្ឋ (Government Scholarship) ត្រូវបានលើកលែងថ្លៃសិក្សាទាំងស្រុង។ ការជ្រើសរើសផ្អែកលើលទ្ធផលប្រឡង (ចន្លោះខែតុលា–វិច្ឆិកា)។ តម្លៃខាងក្រោមសម្រាប់កម្មវិធីបង់ថ្លៃ (Fee-paying) ហើយអាចប្រែប្រួលតាមឆ្នាំ។",facPrices:["$500–$600/ឆ្នាំ","$1,200/ឆ្នាំ","$600/ឆ្នាំ","$600/ឆ្នាំ","$300–$650/ឆ្នាំ","$650/ឆ្នាំ","$500–$600/ឆ្នាំ","$500/ឆ្នាំ","$800/ឆ្នាំ"],faculties:["វិទ្យាស្ថានភាសាបរទេស (IFL) — អង់គ្លេស (B.Ed. International Studies), ចិន, ជប៉ុន, កូរ៉េ, បារាំង, ថៃ","វិទ្យាស្ថានសិក្សាអន្តរជាតិ និងគោលនយោបាយសាធារណៈ (IISPP) — ទំនាក់ទំនងអន្តរជាតិ (IR), វិទ្យាសាស្ត្រនយោបាយ","មហាវិទ្យាល័យវិស្វកម្ម — ព័ត៌មានវិទ្យា (ITE), ទូរគមនាគមន៍ និងអេឡិចត្រូនិក (TEED), ស្វ័យប្រវត្តិកម្ម (Automation)","មហាវិទ្យាល័យវិទ្យាសាស្ត្រ — កុំព្យូទ័រ, បច្ចេកវិទ្យាអាហារ, គណិត, រូប, គីមី, ជីវ, បរិស្ថាន","មហាវិទ្យាល័យសង្គមសាស្ត្រ និងមនុស្សសាស្ត្រ — ចិត្តវិទ្យា, សង្គមវិទ្យា, ទស្សនវិជ្ជា, ប្រវត្តិ, អក្សរសាស្ត្រខ្មែរ, ភូមិវិទ្យា","ដេប៉ាតឺម៉ង់ប្រព័ន្ធផ្សព្វផ្សាយ និងសារគមនាគមន៍ (DMC) — Media and Communications","មហាវិទ្យាល័យអភិវឌ្ឍន៍សហគមន៍ — ការអភិវឌ្ឍសហគមន៍, សេដ្ឋកិច្ចកសិកម្ម និងអភិវឌ្ឍជនបទ","មហាវិទ្យាល័យអប់រំ — ការអប់រំ (Lifelong Learning)","វិទ្យាស្ថានភាសាខ្មែរសម្រាប់ជនបរទេស — ភាសាខ្មែរ និងវប្បធម៌"]},
   {id:"rule",website:"https://rule.edu.kh",name:"សាកលវិទ្យាល័យភូមិន្ទនីតិសាស្ត្រ និងវិទ្យាសាស្ត្រសេដ្ឋកិច្ច (RULE)",type:"public",province:"phnom-penh",tuition:550,duration:4,careers:["business","law"],programs:["ច្បាប់","សេដ្ឋកិច្ច","គ្រប់គ្រង","រដ្ឋបាលសាធារណៈ","ទំនាក់ទំនងអន្តរជាតិ"],rating:"4.1",desc:"សាកលវិទ្យាល័យរដ្ឋដ៏ចំណាស់ និងឈានមុខផ្នែកច្បាប់ ទំនាក់ទំនងអន្តរជាតិ និងសេដ្ឋកិច្ច។",pricing:[{p:"កម្មវិធីថ្នាក់ជាតិ (Regular Program)",price:"$400–$600/ឆ្នាំ"},{p:"សញ្ញាបត្រទ្វេភាគី (Dual-Degree — បារាំង/អាមេរិក)",price:"$1,500–$2,500+/ឆ្នាំ"}],scholarNote:"អាហារូបករណ៍រដ្ឋ (Government Scholarship)៖ RULE ផ្តល់អាហារូបករណ៍រៀនមិនបង់ថ្លៃ (១០០% ពេញ ៤ ឆ្នាំ) ជូនសិស្សជាប់រៀងរាល់ឆ្នាំ តាមរយៈក្រសួងអប់រំ យុវជន និងកីឡា — ជ្រើសរើសផ្អែកលើនិទ្ទេស/លទ្ធផលបាក់ឌុប។ ថ្នាក់ជាតិទូទៅមិនតម្រូវឲ្យប្រឡងចូល (ចូលរៀនតាមនិទ្ទេសបាក់ឌុប)។ រីឯថ្នាក់សញ្ញាបត្រទ្វេភាគី (Dual-Degree) តម្រូវឲ្យប្រឡងវាស់ស្ទង់ភាសាបរទេស (អង់គ្លេស/បារាំង) និងចំណេះដឹងទូទៅ។",facPrices:["$400–$600/ឆ្នាំ","$400–$600/ឆ្នាំ","$400–$600/ឆ្នាំ"],faculties:["មហាវិទ្យាល័យនីតិសាស្ត្រ (Faculty of Law) — នីតិសាស្ត្រ (ច្បាប់ទូទៅ), ច្បាប់ពាណិជ្ជកម្មអន្តរជាតិ (International Business Law), ច្បាប់ឯកជន និងច្បាប់សាធារណៈ","មហាវិទ្យាល័យសេដ្ឋកិច្ច និងគ្រប់គ្រង (Faculty of Economics & Management) — សេដ្ឋកិច្ចវិទ្យា (Economics), គ្រប់គ្រងពាណិជ្ជកម្ម (Business Administration), គណនេយ្យ ហិរញ្ញវត្ថុ និងធនាគារ","មហាវិទ្យាល័យរដ្ឋបាលសាធារណៈ និងទំនាក់ទំនងអន្តរជាតិ — ទំនាក់ទំនងអន្តរជាតិ (International Relations), រដ្ឋបាលសាធារណៈ (Public Administration)"]},
@@ -829,8 +822,6 @@ const PLAN_KEY="compass_plan";
 let plan={careers:[],schools:[],quiz:null,cost:null};
 function loadPlan(){try{const raw=localStorage.getItem(PLAN_KEY);if(raw){const p=JSON.parse(raw);plan={careers:Array.isArray(p.careers)?p.careers:[],schools:Array.isArray(p.schools)?p.schools:[],quiz:p.quiz||null,cost:p.cost||null};}}catch(e){}}
 function savePlan(){try{localStorage.setItem(PLAN_KEY,JSON.stringify(plan));}catch(e){}}
-function isSavedCareer(id){return plan.careers.includes(id);}
-function isSavedSchool(id){return plan.schools.includes(id);}
 function toggleSaveCareer(id){
   if(plan.careers.includes(id))plan.careers=plan.careers.filter(x=>x!==id);
   else plan.careers.push(id);
@@ -999,57 +990,13 @@ function renderPlan(){
   c.innerHTML=html;
 }
 
-/* ===== SOCIAL MEDIA SHARE ===== */
-function shareText(){
-  let msg="Trey Visai — ស្វែងរកអាជីព សាលារៀន និងថ្លៃសិក្សា 🎓";
-  try{
-    if(typeof plan!=="undefined"&&plan.quiz&&plan.quiz.topCareers&&plan.quiz.topCareers.length){
-      const j=(typeof careersList!=="undefined")?careersList.find(x=>x.id===plan.quiz.topCareers[0].id):null;
-      if(j&&j.name)msg="ខ្ញុំបានរកឃើញអាជីពសមស្របរបស់ខ្ញុំ៖ "+j.name+" 🎯 តាមរយៈ Trey Visai";
-    }
-  }catch(e){}
-  return msg;
-}
-function shareTo(p){
-  const url=encodeURIComponent(window.location.href);
-  const text=encodeURIComponent(shareText());
-  const map={
-    facebook:"https://www.facebook.com/sharer/sharer.php?u="+url,
-    telegram:"https://t.me/share/url?url="+url+"&text="+text,
-    twitter:"https://twitter.com/intent/tweet?url="+url+"&text="+text,
-    whatsapp:"https://api.whatsapp.com/send?text="+text+"%20"+url
-  };
-  if(map[p])window.open(map[p],"_blank","noopener,noreferrer,width=600,height=560");
-}
-function copyShareLink(){
-  const url=window.location.href;
-  const done=()=>showShareToast("បានចម្លងតំណ ✓");
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done).catch(()=>fallbackCopy(url,done));}
-  else fallbackCopy(url,done);
-}
 function fallbackCopy(url,done){const ta=document.createElement("textarea");ta.value=url;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(ta);}
 function showShareToast(msg){let t=document.getElementById("share-toast");if(!t){t=document.createElement("div");t.id="share-toast";t.className="share-toast";document.body.appendChild(t);}t.textContent=msg;t.classList.add("show");clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove("show"),2200);}
-function shareBtnsHTML(){
-  return '<span class="share-label"><i class="material-symbols-outlined">share</i> ចែករំលែក</span>'+
-    '<div class="share-btns">'+
-    '<button class="share-btn fb" title="Facebook" onclick="shareTo(\'facebook\')"><i class="fa-brands fa-facebook-f"></i></button>'+
-    '<button class="share-btn tg" title="Telegram" onclick="shareTo(\'telegram\')"><i class="fa-brands fa-telegram"></i></button>'+
-    '<button class="share-btn x" title="X (Twitter)" onclick="shareTo(\'twitter\')"><i class="fa-brands fa-x-twitter"></i></button>'+
-    '<button class="share-btn wa" title="WhatsApp" onclick="shareTo(\'whatsapp\')"><i class="fa-brands fa-whatsapp"></i></button>'+
-    '<button class="share-btn copy" title="ចម្លងតំណ" onclick="copyShareLink()"><i class="fa-solid fa-link"></i></button>'+
-    '</div>';
-}
-
 /* ===== SHARE PLAN WITH PARENTS (encoded link + summary) ===== */
 function costData(){
   const g=id=>{const el=document.getElementById(id);return el?el.textContent.trim():"";};
   const sel=document.getElementById("cost-school");
   return {total:g("total-cost"),dur:g("cost-duration"),tu:g("breakdown-tuition"),rent:g("breakdown-rent"),food:g("breakdown-food"),tr:g("breakdown-transport"),mat:g("breakdown-materials"),sal:g("roi-salary"),ann:g("roi-annual"),pay:g("roi-payback"),sc:(sel&&sel.value&&sel.selectedOptions[0])?sel.selectedOptions[0].text:""};
-}
-function encodeCostUrl(){
-  let b64="";
-  try{b64=btoa(unescape(encodeURIComponent(JSON.stringify(costData()))));}catch(e){b64="";}
-  return location.origin+location.pathname+"#cost="+b64;
 }
 function costShareText(){
   const d=costData();
