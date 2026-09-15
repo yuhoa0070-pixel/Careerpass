@@ -293,6 +293,17 @@ function animCount(el,target,delay){if(!el)return;setTimeout(()=>{const dur=700,
 /* ===== GOAL 2: SCHOOLS ===== */
 let schoolSearch="",schoolProvince="all",schoolType="all",schoolCareer="all";
 let schoolPage=1,jobPage=1;
+function saveSchoolState(){try{sessionStorage.setItem("tv_schools_state",JSON.stringify({q:schoolSearch,p:schoolProvince,t:schoolType,c:schoolCareer,pg:schoolPage}));}catch(e){}}
+function restoreSchoolState(){
+  let st=null;try{st=JSON.parse(sessionStorage.getItem("tv_schools_state"));}catch(e){}
+  if(!st)return;
+  schoolSearch=st.q||"";schoolProvince=st.p||"all";schoolType=st.t||"all";schoolCareer=st.c||"all";schoolPage=st.pg||1;
+  const si=document.getElementById("school-search");if(si)si.value=schoolSearch;
+  const syncSel=(id,val)=>{const el=document.getElementById(id);if(!el)return;el.value=val;if(el._csSync)el._csSync();};
+  syncSel("school-province",schoolProvince);
+  syncSel("school-type",schoolType);
+  syncSel("school-career-filter",schoolCareer);
+}
 const SCHOOLS_PER_PAGE=9,JOBS_PER_PAGE=9;
 
 /* ===== PAGINATION HELPERS ===== */
@@ -362,7 +373,7 @@ function renderSchools(){
     return matchQ&&matchP&&matchT&&matchC;
   });
   const grid=document.getElementById("schools-grid");
-  if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;renderPagination("schools-pagination",0,1,SCHOOLS_PER_PAGE,"gotoSchoolPage");pageInfo("schools-page-info",0,1,SCHOOLS_PER_PAGE);return;}
+  if(!filtered.length){grid.innerHTML=`<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញ</p></div>`;renderPagination("schools-pagination",0,1,SCHOOLS_PER_PAGE,"gotoSchoolPage");pageInfo("schools-page-info",0,1,SCHOOLS_PER_PAGE);saveSchoolState();return;}
   const pages=Math.ceil(filtered.length/SCHOOLS_PER_PAGE);
   if(schoolPage>pages)schoolPage=pages;if(schoolPage<1)schoolPage=1;
   const start=(schoolPage-1)*SCHOOLS_PER_PAGE;
@@ -390,6 +401,7 @@ function renderSchools(){
   renderPagination("schools-pagination",filtered.length,schoolPage,SCHOOLS_PER_PAGE,"gotoSchoolPage");
   pageInfo("schools-page-info",filtered.length,schoolPage,SCHOOLS_PER_PAGE);
   updateCompareBar();
+  saveSchoolState();
 }
 function gotoSchoolPage(p){schoolPage=p;renderSchools();window.scrollTo({top:0,behavior:"smooth"});}
 
@@ -709,6 +721,13 @@ const careersList=[
 
 /* ===== CAREERS RENDER + DETAIL ===== */
 let jobSearch="",jobCat="all";
+function saveJobState(){try{sessionStorage.setItem("tv_jobs_state",JSON.stringify({q:jobSearch,c:jobCat,pg:jobPage}));}catch(e){}}
+function restoreJobState(){
+  let st=null;try{st=JSON.parse(sessionStorage.getItem("tv_jobs_state"));}catch(e){}
+  if(!st)return;
+  jobSearch=st.q||"";jobCat=st.c||"all";jobPage=st.pg||1;
+  const si=document.getElementById("career-search");if(si)si.value=jobSearch;
+}
 function renderCareerChips(){
   const row=document.getElementById("career-chips");
   if(!row)return;
@@ -726,7 +745,7 @@ function renderCareers(){
   const grid=document.getElementById("jobs-grid");
   if(!grid)return;
   const filtered=careersList.filter(j=>(jobCat==="all"||(jobCat==="growing"?j.growing:j.cat===jobCat))&&j.name.toLowerCase().includes(q));
-  if(!filtered.length){grid.innerHTML='<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញអាជីព</p></div>';renderPagination("jobs-pagination",0,1,JOBS_PER_PAGE,"gotoJobPage");pageInfo("jobs-page-info",0,1,JOBS_PER_PAGE);return;}
+  if(!filtered.length){grid.innerHTML='<div class="empty-state"><i class="material-symbols-outlined">search_off</i><p>រកមិនឃើញអាជីព</p></div>';renderPagination("jobs-pagination",0,1,JOBS_PER_PAGE,"gotoJobPage");pageInfo("jobs-page-info",0,1,JOBS_PER_PAGE);saveJobState();return;}
   const pages=Math.ceil(filtered.length/JOBS_PER_PAGE);
   if(jobPage>pages)jobPage=pages;if(jobPage<1)jobPage=1;
   const start=(jobPage-1)*JOBS_PER_PAGE;
@@ -743,6 +762,7 @@ function renderCareers(){
   srReveal(grid,".job-card");
   renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
   pageInfo("jobs-page-info",filtered.length,jobPage,JOBS_PER_PAGE);
+  saveJobState();
 }
 function gotoJobPage(p){jobPage=p;renderCareers();window.scrollTo({top:0,behavior:"smooth"});}
 function openCareer(id){
@@ -1263,6 +1283,8 @@ function restoreView(){
     }
     return;
   }
+  if(v==="schools")restoreSchoolState();
+  if(v==="careers")restoreJobState();
   if(document.getElementById("view-"+v))showView(v);
 }
 if(!checkSharedPlan()&&!checkSharedCost())restoreView();
