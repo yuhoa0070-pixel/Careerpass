@@ -1291,7 +1291,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"រៀនអីបានលុយក្រាស់? 💸",
       pill:"💸 រៀនអីបានលុយក្រាស់?",
       keywords:["លុយ","ប្រាក់ខែ","ចំណូល","ថ្លៃ","money","salary","rich"],
-      reply:"ចង់បានចំណូលក្រាស់មែនទេ? 😎 នេះជាអាជីពកំពូលៗដែលមានប្រាក់ខែខ្ពស់ ($1,000–$3,500+) និងតម្រូវការទីផ្សារខ្ពស់នៅកម្ពុជា៖",
+      reply:"ចង់បានលុយក្រាស់ តែថ្ងៃៗឃើញតែដេកអូស TikTok សោះ! 😂💸 ចង់រកបាន $1,000–$3,500+ មែនទែន រៀន Software Engineer, AI ឬ Cyber ទៅ Bro! តែប្រយ័ត្នជ្រុះសក់អស់មុនពេលក្លាយជាសេដ្ឋីណា៎ 🧑‍🦲💻៖",
       careers:["softeng","aieng","cyber","doctor","dataanalyst"],
       schools:["cadt","itc","rupp","uhs"]
     },
@@ -1299,7 +1299,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"អត់ពូកែគណិត រៀនអីកើតខ្លះ? 🥲",
       pill:"🥲 អត់ពូកែគណិត រៀនអី?",
       keywords:["គណិត","math","មិនចេះគណិត","ខ្សោយគណិត"],
-      reply:"កុំទាន់អស់សង្ឃឹម Bro/Sis! 😌 មិនបាច់ពូកែគណិត ក៏អាចជោគជ័យ និងរកចំណូលបានច្រើនដែរ លើជំនាញច្នៃប្រឌិត ភាសា និងទំនាក់ទំនង៖",
+      reply:"ឃើញលេខបូកដកវិលមុខដូចជិះរទេះភ្លើងមែនទេ? 🤣 កុំទាន់អស់សង្ឃឹម បើខួរក្បាលមិនស៊ីជាមួយគណិត ទៅរៀន Graphic, UX/UI, Content Creator ឬ Chef ទៅ! មិនបាច់គិតលេខ គិតតែរឿងកែ Design តាមចិត្តភ្ញៀវឲ្យទាន់ក៏វិលក្បាលដែរ! 🎨🤪៖",
       careers:["graphic","uxui","contentcreator","marketing","chef"],
       schools:["rufa","setec","puc","acac"]
     },
@@ -1307,7 +1307,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"ចង់ធ្វើការពីផ្ទះ (Work From Home) 🧑‍💻",
       pill:"🧑‍💻 ចង់ Work from Home",
       keywords:["remote","home","ផ្ទះ","wfh","កាហ្វេ","cafe"],
-      reply:"ចង់ Work From Home ស្ពាយ Laptop ទៅអង្គុយធ្វើការនៅ Cafe មែនទេ? ☕💻 អាជីព Digital & Tech ទាំងនេះស័ក្តិសមបំផុត៖",
+      reply:"ចង់ Work From Home ដើម្បីដេកដល់ម៉ោង ១១ ហើយធ្វើការលើពូកមែនទេ? ដឹងល្បិចអស់ហើយ! 🛌😜 តែបើចង់ស្ពាយ Laptop ធ្វើការនៅ Cafe ហ៊ីហាចង់មែនទែន មើលអាជីព Tech & Design ទាំងនេះទៅ៖",
       careers:["softeng","webdev","uxui","graphic","contentcreator"],
       schools:["cadt","itc","setec"]
     },
@@ -1315,7 +1315,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"សាលារដ្ឋណាថ្លៃសមរម្យ? 🏫",
       pill:"🏫 សាលារដ្ឋថ្លៃសមរម្យ",
       keywords:["សាលារដ្ឋ","រដ្ឋ","សមរម្យ","ថោក","អាហារូបករណ៍","scholarship","public"],
-      reply:"ចង់សន្សំលុយប៉ាម៉ាក់ តែបានគុណភាពល្អ? 👏 សាលារដ្ឋទាំងនេះមានតម្លៃសមរម្យ ($200–$600/ឆ្នាំ) ព្រមទាំងអាហារូបករណ៍រដ្ឋ និង TVET 1.5M៖",
+      reply:"ចង់សន្សំលុយប៉ាម៉ាក់ ឬសន្សំលុយដើរលេងផឹកកាហ្វេ? ☕👀 សាលារដ្ឋទាំងនេះថ្លៃសមរម្យមែនទែន ($200–$600/ឆ្នាំ) ថែមទាំងមានអាហារូបករណ៍រដ្ឋ MOEYS & TVET 1.5M រៀនឥតគិតថ្លៃទៀត៖",
       careers:[],
       schools:["rupp","itc","rule","npic","ppi"]
     },
@@ -1323,7 +1323,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"ខ្លាច AI ដណ្តើមការងារ? 🤖",
       pill:"🤖 ខ្លាច AI ដណ្តើមការងារ?",
       keywords:["ai","ដណ្តើម","ជំនួស","បាត់បង់","future"],
-      reply:"ខ្លាច AI ដណ្តើមបាយមែនទេ? 🤖 AI ជំនួសការងារច្រំដែល តែមិនអាចជំនួសបេះដូង ការច្នៃប្រឌិតខ្ពស់ និងជំនាញបញ្ជា AI របស់មនុស្សបានឡើយ៖",
+      reply:"កុំទាន់ភ័យរឿង AI ដណ្តើមការងារពេក សំខាន់ឥឡូវប្រឡងបាក់ឌុបជាប់នៅ? 😜 AI ឆ្លាតមែន តែវាមិនចេះសុំច្បាប់ឈប់សម្រាកពេលឈឺក្បាលដូចយើងទេ! រៀនជំនាញទាំងនេះទៅ គ្មានថ្ងៃ AI ដណ្តើមបានទេ៖",
       careers:["aieng","prompteng","cyber","doctor","contentcreator"],
       schools:["cadt","itc","uhs"]
     },
@@ -1331,10 +1331,38 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       q:"រៀន ២ ឆ្នាំ រកលុយបានលឿន ⚡",
       pill:"⚡ រៀន ២ ឆ្នាំ រកលុយលឿន",
       keywords:["២ ឆ្នាំ","2 ឆ្នាំ","លឿន","ខ្លី","tvet","បរិញ្ញាបត្ររង","associate"],
-      reply:"ចង់ចេញធ្វើការលឿន មិនចង់ចំណាយពេលយូរ? 🚀 វគ្គបច្ចេកទេស និងវិជ្ជាជីវៈ (TVET / Associate 2 ឆ្នាំ) មានការងារធ្វើលឿន និងទីផ្សារត្រូវការខ្លាំង៖",
+      reply:"ខ្ជិលរៀន ៤ ឆ្នាំមែនទេ? ចង់ឆាប់ចេញរកលុយទិញ iPhone ថ្មី? 📱😂 រៀន TVET / បរិញ្ញាបត្ររង ២ ឆ្នាំទៅ ចេញធ្វើការលឿន ជំនាញច្បាស់ ទីផ្សារស្វាគមន៍ភ្លាមៗ៖",
       careers:["electrician","carmechanic","graphic","barista","chef"],
       schools:["npic","ppi","ntti","acac"]
     }
+  ];
+
+  // Playful easter-egg trolling topics
+  const TROLL_TOPICS=[
+    {
+      keywords:["សង្សារ","ស្រឡាញ់","ស្នេហា","crush","love","date","bf","gf"],
+      reply:"ហ្អែងអើយ! មកសួររករឿងស្នេហាអីលើ Web រៀនសូត្រ? 😂💔 រកលុយបង់ថ្លៃសាលាសិនទៅ Bro/Sis! រៀនឱ្យចប់ ចេញធ្វើការមានលុយ ចាំគិតរឿង Crush! ឥឡូវមើលអាជីពទាំងនេះសិនទៅ ក្រែងបានប្រាក់ខែខ្ពស់ទាក់ទាញគេ 😜",
+      careers:["softeng","doctor","marketing"],
+      schools:[]
+    },
+    {
+      keywords:["ខ្ជិល","ដេក","ស្រួល","easy","lazy","មិនបាច់រៀន"],
+      reply:"ស្រួលបំផុតគឺដេកស្រមុកនៅផ្ទះហើយ Bro! 🛌😂 តែបើអត់ចង់ដាច់បាយ និងចង់មានលុយចាយ គ្មានអីស្រួលជាងខំរៀនជំនាញមួយឱ្យច្បាស់នោះទេ! មើលអាជីពទាំងនេះទៅ មិនសូវហត់កម្លាំងកាយទេ៖",
+      careers:["uxui","graphic","marketing"],
+      schools:[]
+    },
+    {
+      keywords:["game","ហ្គេម","លេងហ្គេម","streamer","ml","pubg"],
+      reply:"លេងហ្គេមដល់ម៉ោង ៣ ភ្លឺរាល់យប់មែនទេ? 🎮😂 បើចូលចិត្តលេងម្ល៉ឹងៗ កុំលេងចោល ទៅរៀន Game Developer ឬ Software Engineer ទៅ បង្កើតហ្គេមខ្លួនឯងលក់យកលុយវិញ!",
+      careers:["gamedev","softeng","animator"],
+      schools:["cadt","itc"]
+    }
+  ];
+
+  const TROLL_FALLBACKS=[
+    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ Trey Visai មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរ Gen Z» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
+    "អានសំណួរហើយ ខ្ញុំចង់គាំង CPU ដែរ! 😵‍💫💻 សួរឈ្មោះសាលា ឬអាជីពឱ្យស្រួលបួលមក ចាំជួយប្រាប់!",
+    "សំណួរនេះស៊ីអារម្មណ៍ពេក ខ្ញុំឆ្លើយអត់ត្រូវទេ! 🤣 សួររឿងប្រាក់ខែ សាលារៀន ឬអាជីពវិញមក ចាំឆ្លើយឱ្យចង់វិលមុខ!"
   ];
 
   function setPose(name){img.src=POSES[name]||POSES.idle;}
@@ -1380,7 +1408,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     btn.setAttribute("aria-expanded","true");
     setPose("idle");
     if(!messages.children.length){
-      addMessage("សួស្តី! ខ្ញុំជាជំនួយការ Trey Visai 🤖✨ មានសំណួរអី ឬចុចលើសំណួរ Gen Z ពេញនិយមខាងក្រោមនេះបានណា៎! 👇","bot");
+      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរ Gen Z ខាងក្រោមនេះក៏បានដែរ 👇","bot");
     }
     renderSuggestions();
     setTimeout(()=>input.focus(),200);
@@ -1444,12 +1472,32 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       return;
     }
 
+    const trollMatch = TROLL_TOPICS.find(t=>t.keywords.some(k=>q.toLowerCase().includes(k)));
+    if(trollMatch){
+      addMessage(trollMatch.reply,"bot");
+      if(trollMatch.careers&&trollMatch.careers.length){
+        trollMatch.careers.slice(0,3).forEach(cid=>{
+          const j=careersList.find(x=>x.id===cid);
+          if(j)addMessage(`🎯 អាជីព៖ ${j.name} (${j.salary||""}/ខែ)`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();});
+        });
+      }
+      if(trollMatch.schools&&trollMatch.schools.length){
+        trollMatch.schools.slice(0,2).forEach(sid=>{
+          const s=schoolsData.find(x=>x.id===sid);
+          if(s)addMessage(`🏫 សាលា៖ ${s.name} (${provinceLabel(s.province)} · ${tuitionLabel(s)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();});
+        });
+      }
+      return;
+    }
+
     const schools=findSchoolMatches(q);
     const careers=findCareerMatches(q);
     if(!schools.length&&!careers.length){
-      addMessage("សុំទោស ខ្ញុំរកមិនឃើញលទ្ធផលត្រូវគ្នាទេ។ សាកល្បងចុចលើ «សំណួរ Gen Z» ខាងក្រោម ឬសួរអំពីឈ្មោះសាលា ខេត្ត ឬអាជីពជាក់លាក់មើល! ✨","bot");
+      const randomTroll = TROLL_FALLBACKS[Math.floor(Math.random()*TROLL_FALLBACKS.length)];
+      addMessage(randomTroll,"bot");
       return;
     }
+    addMessage("រកឃើញហើយ! កុំថាខ្ញុំអត់ប្រាប់ណា៎ 🤩👇","bot");
     schools.forEach(s=>addMessage(`🏫 សាលា៖ ${s.name} (${typeLabel(s.type)}, ${provinceLabel(s.province)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();}));
     careers.forEach(j=>addMessage(`🎯 អាជីព៖ ${j.name} — ${j.salary||""}/ខែ`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();}));
   }
