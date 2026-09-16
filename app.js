@@ -1286,99 +1286,135 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
 
+  const SVG_ICONS={
+    roulette:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/><circle cx="12" cy="12" r="3"/></svg>`,
+    quiz:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    salary:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    calculator:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="16" y1="18" x2="16" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg>`,
+    home:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    school:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 10-10-5-10 5 10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/><path d="M22 10v6"/></svg>`,
+    ai:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16.01"/><line x1="16" y1="16" x2="16" y2="16.01"/></svg>`,
+    fast:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+    language:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    palette:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
+    doctor:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+    business:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+    law:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+    coffee:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+    target:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+    pin:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    flame:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 23c4.97 0 9-3.8 9-8.5C21 8.5 15.5 2 15.5 2S15 7.5 12 10C9.5 7.5 9 5 9 5S3 10 3 14.5 7.03 23 12 23z"/></svg>`,
+    star:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    arrowRight:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
+    refresh:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>`,
+    gamepad:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>`
+  };
+
   // Suggested questions with playful vibe and smart preset answers
   const SUGGESTED_QUESTIONS=[
     {
-      q:"រៀនអីបានលុយក្រាស់? 💸",
-      pill:"💸 រៀនអីបានលុយក្រាស់?",
+      q:"រៀនអីបានលុយក្រាស់?",
+      pill:"រៀនអីបានលុយក្រាស់?",
+      icon:"salary",
       keywords:["លុយ","ប្រាក់ខែ","ចំណូល","ថ្លៃ","money","salary","rich"],
       reply:"ចង់បានលុយក្រាស់ តែថ្ងៃៗឃើញតែដេកអូស TikTok សោះ! 😂💸 ចង់រកបាន $1,000–$3,500+ មែនទែន រៀន Software Engineer, AI ឬ Cyber ទៅ Bro! តែប្រយ័ត្នជ្រុះសក់អស់មុនពេលក្លាយជាសេដ្ឋីណា៎ 🧑‍🦲💻៖",
       careers:["softeng","aieng","cyber","doctor","dataanalyst"],
       schools:["cadt","itc","rupp","uhs"]
     },
     {
-      q:"អត់ពូកែគណិត រៀនអីកើតខ្លះ? 🥲",
-      pill:"🥲 អត់ពូកែគណិត រៀនអី?",
+      q:"អត់ពូកែគណិត រៀនអីកើតខ្លះ?",
+      pill:"អត់ពូកែគណិត រៀនអី?",
+      icon:"calculator",
       keywords:["គណិត","math","មិនចេះគណិត","ខ្សោយគណិត"],
       reply:"ឃើញលេខបូកដកវិលមុខដូចជិះរទេះភ្លើងមែនទេ? 🤣 កុំទាន់អស់សង្ឃឹម បើខួរក្បាលមិនស៊ីជាមួយគណិត ទៅរៀន Graphic, UX/UI, Content Creator ឬ Chef ទៅ! មិនបាច់គិតលេខ គិតតែរឿងកែ Design តាមចិត្តភ្ញៀវឲ្យទាន់ក៏វិលក្បាលដែរ! 🎨🤪៖",
       careers:["graphic","uxui","contentcreator","marketing","chef"],
       schools:["rufa","setec","puc","acac"]
     },
     {
-      q:"ចង់ធ្វើការពីផ្ទះ (Work From Home) 🧑‍💻",
-      pill:"🧑‍💻 ចង់ Work from Home",
+      q:"ចង់ធ្វើការពីផ្ទះ (Work From Home)",
+      pill:"ចង់ Work from Home",
+      icon:"home",
       keywords:["remote","home","ផ្ទះ","wfh","កាហ្វេ","cafe"],
       reply:"ចង់ Work From Home ដើម្បីដេកដល់ម៉ោង ១១ ហើយធ្វើការលើពូកមែនទេ? ដឹងល្បិចអស់ហើយ! 🛌😜 តែបើចង់ស្ពាយ Laptop ធ្វើការនៅ Cafe ហ៊ីហាចង់មែនទែន មើលអាជីព Tech & Design ទាំងនេះទៅ៖",
       careers:["softeng","webdev","uxui","graphic","contentcreator"],
       schools:["cadt","itc","setec"]
     },
     {
-      q:"សាលារដ្ឋណាថ្លៃសមរម្យ? 🏫",
-      pill:"🏫 សាលារដ្ឋថ្លៃសមរម្យ",
+      q:"សាលារដ្ឋណាថ្លៃសមរម្យ?",
+      pill:"សាលារដ្ឋថ្លៃសមរម្យ",
+      icon:"school",
       keywords:["សាលារដ្ឋ","រដ្ឋ","សមរម្យ","ថោក","អាហារូបករណ៍","scholarship","public"],
       reply:"ចង់សន្សំលុយប៉ាម៉ាក់ ឬសន្សំលុយដើរលេងផឹកកាហ្វេ? ☕👀 សាលារដ្ឋទាំងនេះថ្លៃសមរម្យមែនទែន ($200–$600/ឆ្នាំ) ថែមទាំងមានអាហារូបករណ៍រដ្ឋ MOEYS & TVET 1.5M រៀនឥតគិតថ្លៃទៀត៖",
       careers:[],
       schools:["rupp","itc","rule","npic","ppi"]
     },
     {
-      q:"ខ្លាច AI ដណ្តើមការងារ? 🤖",
-      pill:"🤖 ខ្លាច AI ដណ្តើមការងារ?",
+      q:"ខ្លាច AI ដណ្តើមការងារ?",
+      pill:"ខ្លាច AI ដណ្តើមការងារ?",
+      icon:"ai",
       keywords:["ai","ដណ្តើម","ជំនួស","បាត់បង់","future"],
       reply:"កុំទាន់ភ័យរឿង AI ដណ្តើមការងារពេក សំខាន់ឥឡូវប្រឡងបាក់ឌុបជាប់នៅ? 😜 AI ឆ្លាតមែន តែវាមិនចេះសុំច្បាប់ឈប់សម្រាកពេលឈឺក្បាលដូចយើងទេ! រៀនជំនាញទាំងនេះទៅ គ្មានថ្ងៃ AI ដណ្តើមបានទេ៖",
       careers:["aieng","prompteng","cyber","doctor","contentcreator"],
       schools:["cadt","itc","uhs"]
     },
     {
-      q:"រៀន ២ ឆ្នាំ រកលុយបានលឿន ⚡",
-      pill:"⚡ រៀន ២ ឆ្នាំ រកលុយលឿន",
+      q:"រៀន ២ ឆ្នាំ រកលុយបានលឿន",
+      pill:"រៀន ២ ឆ្នាំ រកលុយលឿន",
+      icon:"fast",
       keywords:["២ ឆ្នាំ","2 ឆ្នាំ","លឿន","ខ្លី","tvet","បរិញ្ញាបត្ររង","associate"],
       reply:"ខ្ជិលរៀន ៤ ឆ្នាំមែនទេ? ចង់ឆាប់ចេញរកលុយទិញ iPhone ថ្មី? 📱😂 រៀន TVET / បរិញ្ញាបត្ររង ២ ឆ្នាំទៅ ចេញធ្វើការលឿន ជំនាញច្បាស់ ទីផ្សារស្វាគមន៍ភ្លាមៗ៖",
       careers:["electrician","carmechanic","graphic","barista","chef"],
       schools:["npic","ppi","ntti","acac"]
     },
     {
-      q:"ពូកែភាសា រៀនអីល្អ? 🗣️",
-      pill:"🗣️ ពូកែភាសា រៀនអី?",
+      q:"ពូកែភាសា រៀនអីល្អ?",
+      pill:"ពូកែភាសា រៀនអី?",
+      icon:"language",
       keywords:["ភាសា","អង់គ្លេស","ចិន","បកប្រែ","language","english","chinese","ifl"],
       reply:"ចេះភាសាច្រើនដូចកាន់លិខិតឆ្លងដែនសកលលោកចឹង! 🌍✈️ បើពូកែខាងភាសា និងទំនាក់ទំនង កុំឱ្យទេពកោសល្យនៅស្ងៀម រៀនផ្នែកការទូត, បកប្រែ, ព័ត៌មាន ឬទំនាក់ទំនងសាធារណៈ ទៅ ទាំងឡូយទាំងចំណូលខ្ពស់៖",
       careers:["diplomat","journalist","pr","tourguide","englishteacher"],
       schools:["rupp","puc","rule"]
     },
     {
-      q:"ចូលចិត្តគូររូប & Design 🎨",
-      pill:"🎨 ចូលចិត្តគូរ & Design",
+      q:"ចូលចិត្តគូររូប & Design",
+      pill:"ចូលចិត្តគូរ & Design",
+      icon:"palette",
       keywords:["គូរ","គំនូរ","design","art","សិល្បៈ","គំនូរជីវចល","graphic"],
       reply:"ថ្ងៃៗឃើញតែអង្គុយគូររូបលើតុសាលាមែនទេ? 🎨🤣 ប្រែក្លាយស្នាដៃគំនូរឱ្យទៅជាលុយវិញ! ទីផ្សារឥឡូវត្រូវការអ្នកឌីហ្សាញ (Designers), ស្ថាបត្យករ និង Animator ខ្លាំងណាស់ មើលអាជីពទាំងនេះទៅ៖",
       careers:["graphic","uxui","animator","architect","videographer"],
       schools:["rufa","setec","limkokwing"]
     },
     {
-      q:"ចង់ធ្វើពេទ្យ ត្រូវត្រៀមអីខ្លះ? 🩺",
-      pill:"🩺 ចង់ធ្វើពេទ្យ ត្រៀមអី?",
+      q:"ចង់ធ្វើពេទ្យ ត្រូវត្រៀមអីខ្លះ?",
+      pill:"ចង់ធ្វើពេទ្យ ត្រៀមអី?",
+      icon:"doctor",
       keywords:["ពេទ្យ","doctor","វេជ្ជបណ្ឌិត","គិលានុបដ្ឋាក","ធ្មេញ","ថ្នាំ","nurse","pharma"],
       reply:"ចង់ពាក់អាវសជួយសង្គ្រោះជីវិតគេមែនទេ? 🩺❤️ គោរពទឹកចិត្តណាស់! តែត្រៀមចិត្តរៀនយ៉ាងតិច ៦–៨ ឆ្នាំណា៎ មិនមែនរឿងលេងសើចទេ! សាលាពេទ្យកំពូលៗនៅកម្ពុជាមាននៅទីនេះ៖",
       careers:["doctor","dentist","pharma","nurse","physio"],
       schools:["uhs","iu","up"]
     },
     {
-      q:"ចង់រកស៊ី ឬបង្កើត Startup 💼",
-      pill:"💼 ចង់រកស៊ី / Startup",
+      q:"ចង់រកស៊ី ឬបង្កើត Startup",
+      pill:"ចង់រកស៊ី / Startup",
+      icon:"business",
       keywords:["រកស៊ី","business","startup","entrepreneur","ក្រុមហ៊ុន","ថៅកែ","លក់"],
       reply:"ឈាមជ័រជាថៅកែគេមែន? 💼🔥 ចង់បង្កើត Brand ឬក្រុមហ៊ុនខ្លួនឯង ត្រូវតែចេះគ្រប់គ្រង, ទីផ្សារ និងហិរញ្ញវត្ថុឱ្យច្បាស់សិន កុំឱ្យរកស៊ីខាតដើម! មើលអាជីព និងសាលាធុរកិច្ចល្បីៗ៖",
       careers:["entrepreneur","marketing","ecommerce","accountant","fintecheng"],
       schools:["num","camed","rule","cadt"]
     },
     {
-      q:"ចង់ធ្វើមេធាវី ឬច្បាប់ ⚖️",
-      pill:"⚖️ ចង់ធ្វើមេធាវី/ច្បាប់",
+      q:"ចង់ធ្វើមេធាវី ឬច្បាប់",
+      pill:"ចង់ធ្វើមេធាវី/ច្បាប់",
+      icon:"law",
       keywords:["ច្បាប់","មេធាវី","ចៅក្រម","law","lawyer","justice","តុលាការ"],
       reply:"ពូកែវែកញែករកខុសត្រូវ និងចូលចិត្តយុត្តិធម៌មែនទេ? ⚖️🧐 រៀនច្បាប់ទាមទារការទន្ទេញ និងវិភាគច្បាប់ច្បាស់លាស់ តែចេញមកមានកិត្តិយស និងទីផ្សារការងារទូលំទូលាយ! សាលាច្បាប់កំពូលៗមាននៅទីនេះ៖",
       careers:["lawyer","legalcounsel","compliance","notary"],
       schools:["rule","rupp","puc"]
     },
     {
-      q:"ចូលចិត្តធ្វើម្ហូប & កាហ្វេ ☕",
-      pill:"☕ ធ្វើម្ហូប & កាហ្វេ",
+      q:"ចូលចិត្តធ្វើម្ហូប & កាហ្វេ",
+      pill:"ធ្វើម្ហូប & កាហ្វេ",
+      icon:"coffee",
       keywords:["កាហ្វេ","ម្ហូប","ចុងភៅ","chef","barista","cook","សណ្ឋាគារ","food"],
       reply:"ចូលចិត្តរៀបចំម្ហូបឆ្ងាញ់ៗ ឬឆុងកាហ្វេក្លិនឈ្ងុយមែនទេ? 🍳☕ មិនបាច់ឈឺក្បាលជាមួយទ្រឹស្តីច្រើន រៀនជំនាញបដិសណ្ឋារកិច្ច និងធ្វើម្ហូបកម្រិតស្តង់ដារអន្តរជាតិ រកចំណូលបានខ្ពស់ទាំងក្នុង និងក្រៅប្រទេស៖",
       careers:["chef","pastrychef","barista","hotel","fbmanager"],
@@ -1475,11 +1511,11 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
     const title=document.createElement("div");
     title.className="mascot-card-title";
-    title.innerHTML=`<span>🎯</span> <span>${career.name}</span>`;
+    title.innerHTML=`${SVG_ICONS.target} <span>${career.name}</span>`;
 
     const badge=document.createElement("span");
     badge.className="mascot-card-badge";
-    badge.textContent=career.growing?"🔥 កំពុងកើនឡើង":"⭐ ពេញនិយម";
+    badge.innerHTML=career.growing?`${SVG_ICONS.flame} កំពុងកើនឡើង`:`${SVG_ICONS.star} ពេញនិយម`;
 
     top.appendChild(title);
     top.appendChild(badge);
@@ -1489,15 +1525,15 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     meta.className="mascot-card-meta";
     const schoolCount=career.schools?career.schools.length:0;
     meta.innerHTML=`
-      <span class="mascot-card-meta-tag">💰 <strong>${career.salary||"សមរម្យ"}</strong>/ខែ</span>
-      ${schoolCount?`<span class="mascot-card-meta-tag">· 🏫 ${schoolCount} សាលា</span>`:""}
+      <span class="mascot-card-meta-tag">${SVG_ICONS.salary} <strong>${career.salary||"សមរម្យ"}</strong>/ខែ</span>
+      ${schoolCount?`<span class="mascot-card-meta-tag">· ${SVG_ICONS.school} ${schoolCount} សាលា</span>`:""}
     `;
     card.appendChild(meta);
 
     const btn=document.createElement("button");
     btn.type="button";
     btn.className="mascot-card-btn";
-    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> <span>→</span>`;
+    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> ${SVG_ICONS.arrowRight}`;
     btn.addEventListener("click",()=>{
       openCareer(career.id);
       closePanel();
@@ -1532,7 +1568,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
     const title=document.createElement("div");
     title.className="mascot-card-title";
-    title.innerHTML=`<span>🏫</span> <span>${school.name}</span>`;
+    title.innerHTML=`${SVG_ICONS.school} <span>${school.name}</span>`;
 
     const badge=document.createElement("span");
     badge.className="mascot-card-badge";
@@ -1545,15 +1581,15 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const meta=document.createElement("div");
     meta.className="mascot-card-meta";
     meta.innerHTML=`
-      <span class="mascot-card-meta-tag">📍 ${provinceLabel(school.province)}</span>
-      <span class="mascot-card-meta-tag">· 💵 ${tuitionLabel(school)}</span>
+      <span class="mascot-card-meta-tag">${SVG_ICONS.pin} ${provinceLabel(school.province)}</span>
+      <span class="mascot-card-meta-tag">· ${SVG_ICONS.salary} ${tuitionLabel(school)}</span>
     `;
     card.appendChild(meta);
 
     const btn=document.createElement("button");
     btn.type="button";
     btn.className="mascot-card-btn";
-    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> <span>→</span>`;
+    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> ${SVG_ICONS.arrowRight}`;
     btn.addEventListener("click",()=>{
       openSchool(school.id);
       closePanel();
@@ -1627,7 +1663,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       const spinBtn=document.createElement("button");
       spinBtn.type="button";
       spinBtn.className="mascot-game-action-btn";
-      spinBtn.innerHTML=`<span>🔄</span> <span>បង្វិលចាប់ឆ្នោតម្តងទៀត</span>`;
+      spinBtn.innerHTML=`${SVG_ICONS.refresh} <span>បង្វិលចាប់ឆ្នោតម្តងទៀត</span>`;
       spinBtn.addEventListener("click",()=>playCareerRoulette());
       bubbleWrap.appendChild(spinBtn);
       actionRow.appendChild(bubbleWrap);
@@ -1712,7 +1748,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
           const retryBtn=document.createElement("button");
           retryBtn.type="button";
           retryBtn.className="mascot-game-action-btn";
-          retryBtn.innerHTML=`<span>🎮</span> <span>ទាយអាជីពមួយទៀត</span>`;
+          retryBtn.innerHTML=`${SVG_ICONS.gamepad} <span>ទាយអាជីពមួយទៀត</span>`;
           retryBtn.addEventListener("click",()=>playSalaryQuiz());
           retryWrap.appendChild(retryBtn);
           retryRow.appendChild(retryWrap);
@@ -1733,10 +1769,10 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   function renderSuggestions(){
     if(!sugTrack||sugTrack.children.length)return;
     const gamePills = `
-      <button type="button" class="mascot-sug-pill game-pill" data-game="roulette">🎰 ចាប់ឆ្នោតអាជីព</button>
-      <button type="button" class="mascot-sug-pill game-pill" data-game="salary">💸 ល្បែងទាយប្រាក់ខែ</button>
+      <button type="button" class="mascot-sug-pill game-pill" data-game="roulette">${SVG_ICONS.roulette}<span>ចាប់ឆ្នោតអាជីព</span></button>
+      <button type="button" class="mascot-sug-pill game-pill" data-game="salary">${SVG_ICONS.quiz}<span>ល្បែងទាយប្រាក់ខែ</span></button>
     `;
-    const questionPills = SUGGESTED_QUESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
+    const questionPills = SUGGESTED_QUESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${SVG_ICONS[s.icon]||""}<span>${s.pill}</span></button>`).join("");
     sugTrack.innerHTML = gamePills + questionPills;
 
     sugTrack.querySelectorAll(".mascot-sug-pill").forEach(pill=>{
