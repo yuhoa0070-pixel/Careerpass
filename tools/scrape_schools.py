@@ -81,6 +81,9 @@ INSTITUTIONS = {
     "sabaicode": ("SabaiCode", "https://sabaicode.com/"),
     "dichi": ("DICHI Academy", "https://dichi.io/"),
     "khmercoders": ("Khmer Coders", "https://khmercoders.dev/"),
+    # K-12
+    "ggas": ("Golden Gate American School", "https://www.ggas.edu.kh/"),
+    "makson": ("MAKSON International Academy", "https://makson.education/"),
 }
 
 HEADERS = {
