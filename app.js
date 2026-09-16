@@ -756,7 +756,7 @@ const careersList=[
   {id:"warehousemgr",growing:true,name:"អ្នកគ្រប់គ្រងឃ្លាំង (Warehouse Manager)",cat:"logistics",icon:"warehouse",salary:"$350–$1,000",desc:"គ្រប់គ្រងស្តុកទំនិញ ការទទួល និងការចែកចាយពីឃ្លាំង។",skills:["Inventory","Warehouse Ops","Safety"],schools:["num","sru","biu"]},
   {id:"supplychainanalyst",growing:true,name:"អ្នកវិភាគខ្សែសង្វាក់ផ្គត់ផ្គង់ (Supply Chain Analyst)",cat:"logistics",icon:"inventory_2",salary:"$450–$1,300",desc:"វិភាគទិន្នន័យ ដើម្បីបង្កើនប្រសិទ្ធភាពខ្សែសង្វាក់ផ្គត់ផ្គង់។",skills:["Data Analysis","Forecasting","Excel"],schools:["num","itc","paragon","aub"]},
   {id:"procurement",name:"មន្ត្រីលទ្ធកម្ម (Procurement Officer)",cat:"logistics",icon:"shopping_cart_checkout",salary:"$400–$1,100",desc:"ស្វែងរក និងចរចាទិញសម្ភារៈ និងសេវាកម្មសម្រាប់ស្ថាប័ន។",skills:["Negotiation","Vendor Management","Purchasing"],schools:["num","rule","aub"]},
-  {id:"customsbroker",name:"ភ្នាក់ងារពន្ធគយ (Customs Broker)",cat:"logistics",icon:"fact_check",salary:"$400–$1,200",desc:"សម្របសម្រួលការនាំចូល-នាំចេញ និងឯកសារគយ។",skills:["Customs Regulations","Documentation","Trade Law"],schools:["num","rule","vanda"]},
+  {id:"customsbroker",growing:true,name:"ភ្នាក់ងារពន្ធគយ (Customs Broker)",cat:"logistics",icon:"fact_check",salary:"$400–$1,200",desc:"សម្របសម្រួលការនាំចូល-នាំចេញ និងឯកសារគយ។",skills:["Customs Regulations","Documentation","Trade Law"],schools:["num","rule","vanda"]},
   {id:"realestate",name:"ភ្នាក់ងារអចលនទ្រព្យ",cat:"business",icon:"real_estate_agent",salary:"$300–$1,500",desc:"ទិញលក់ និងជួលអចលនទ្រព្យ។",skills:["Sales","Negotiation"],schools:["num","uef"]},
   {id:"insurance",name:"ភ្នាក់ងារធានារ៉ាប់រង",cat:"business",icon:"shield",salary:"$300–$1,200",desc:"លក់ និងគ្រប់គ្រងផលិតផលធានារ៉ាប់រង។",skills:["Sales","Finance"],schools:["num","uef","aub"]},
   {id:"ecommerce",name:"អ្នកគ្រប់គ្រង E-commerce",cat:"business",icon:"shopping_cart",salary:"$400–$1,300",desc:"គ្រប់គ្រងហាងអនឡាញ និងលក់ឌីជីថល។",skills:["E-commerce","Digital Marketing"],schools:["num","dichi","cadt","setec"]},
@@ -837,7 +837,7 @@ function renderCareers(){
     <div class="job-card" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
       <div class="job-top">
         <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
-        <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
+        <div style="flex:1"><p class="job-name">${j.name}</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="job-cat">${jobCats[j.cat].label}</span>${j.growing?`<span class="hc-grow" style="padding:1px 6px;font-size:9.5px"><i class="material-symbols-outlined" style="font-size:11px">trending_up</i>កំពុងកើនឡើង</span>`:""}</div></div>
       </div>
       <p class="job-desc">${j.desc}</p>
       <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
@@ -859,6 +859,7 @@ function openCareer(id){
       <div class="detail-logo" style="background:var(--accent)"><i class="material-symbols-outlined" style="font-size:30px">${j.icon}</i></div>
       <div style="flex:1;min-width:220px">
         <span class="school-type-badge badge-digital">${jobCats[j.cat].label}</span>
+        ${j.growing?`<span class="school-type-badge" style="background:rgba(34,197,94,.12);color:#16a34a;margin-left:6px"><i class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px">trending_up</i> កំពុងកើនឡើង</span>`:""}
         <h1 class="detail-title" style="margin-top:8px">${j.name}</h1>
       </div>
     </div>
