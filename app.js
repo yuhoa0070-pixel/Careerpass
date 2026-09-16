@@ -83,6 +83,11 @@ const schoolsData = [
   {id:"kepis",website:"https://www.facebook.com/kepinternationalschool/",name:"Kep International School",type:"k12",province:"kep",tuition:900,duration:13,careers:[],programs:["International Early Years Curriculum (IEYC)","Cambridge Curriculum","កម្មវិធីជាតិខ្មែរ"],rating:"3.9",desc:"សាលាឯកជនតូចមួយនៅខេត្តកែប ស្ថាបនាឆ្នាំ ២០១៣ ផ្ដល់ការអប់រំពីរភាសា (ខ្មែរ-អង់គ្លេស) តាមកម្មវិធី IEYC និង Cambridge ចាប់ពីមត្តេយ្យដល់វិទ្យាល័យ។"},
   {id:"alis",website:"https://aliscambodia.com",name:"Abundant Life International School (ALIS)",type:"k12",province:"phnom-penh",tuition:800,duration:13,careers:[],programs:["កម្មវិធីអាមេរិកកាំង","ភាសាខ្មែរ-អង់គ្លេស-ចិន","សាលាគ្រិស្តសាសនា"],rating:"4.0",desc:"សាលាគ្រិស្តអន្តរជាតិត្រីភាសាទីមួយក្នុងកម្ពុជា ស្ថាបនាឆ្នាំ ២០១១ បង្រៀនកម្មវិធីអាមេរិកកាំង ជាភាសាខ្មែរ អង់គ្លេស និងចិន មានសាខា ៤ កន្លែងនៅភ្នំពេញ (ទទួលស្គាល់ដោយ ACSI និង WASC)។"},
   {id:"truevisions",website:"https://truevisions.edu.kh",name:"True VISIONS International School of Cambodia",type:"k12",province:"phnom-penh",tuition:1200,duration:13,careers:[],programs:["កម្មវិធីអន្តរជាតិ","ភាសាខ្មែរ-អង់គ្លេស-ចិន","Debate Club"],rating:"4.0",desc:"សាលាអន្តរជាតិនៅទួលគោក ភ្នំពេញ ស្ថាបនាឆ្នាំ ២០១៣ ដោយបណ្ឌិត សេង បូណា បង្រៀនកម្មវិធីអន្តរជាតិជាភាសាអង់គ្លេស ខ្មែរ និងចិន ចាប់ពីមត្តេយ្យដល់វិទ្យាល័យ។",facPrices:["$1,200–$1,700/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ — មត្តេយ្យ (K1-K3), បឋមសិក្សា (Grade 1-6), វិទ្យាល័យ (Grade 7-12)"]},
+  {id:"orangecrest",website:"https://www.orangecrestschool.com",name:"Orange Crest Preschool",type:"daycare",province:"phnom-penh",tuition:2500,duration:5,careers:[],programs:["Montessori","ការសិក្សាតាមការលេង (Play-Based)","English Immersion"],rating:"4.2",desc:"មណ្ឌលមត្តេយ្យសិក្សានៅទួលគោក ភ្នំពេញ សម្រាប់កុមារអាយុ ១៥ខែ–៦ឆ្នាំ ប្រើវិធីសាស្ត្រ Montessori និងការសិក្សាតាមការលេង។"},
+  {id:"acacia",website:"https://acacia-education.com",name:"Acacia International Pre-School Phnom Penh",type:"daycare",province:"phnom-penh",tuition:3000,duration:5,careers:[],programs:["កម្មវិធីបារាំង","ភាសាបារាំង-អង់គ្លេស-ខ្មែរ","Montessori"],rating:"4.1",desc:"សាលាមត្តេយ្យអន្តរជាតិបារាំងនៅភ្នំពេញ សម្រាប់កុមារអាយុ ១៨ខែ–៦ឆ្នាំ ក្នុងបរិយាកាសពហុភាសា (បារាំង-អង់គ្លេស-ខ្មែរ)។"},
+  {id:"kel",website:"https://kinderearlylearning.com",name:"Kinder Early Learning (KEL)",type:"daycare",province:"phnom-penh",tuition:2000,duration:4,careers:[],programs:["កម្មវិធីអន្តរជាតិ","ការថែទាំបត់បែនតាមម៉ោង","English Immersion"],rating:"4.0",desc:"មណ្ឌលថែទាំ និងអប់រំកុមារតូចដែលទុកចិត្តបាននៅភ្នំពេញ សម្រាប់កុមារអាយុ ១–៥ឆ្នាំ ជាមួយកម្មវិធីអន្តរជាតិ និងម៉ោងបត់បែន។"},
+  {id:"givingtree",website:"https://www.thegivingtreeschool.edu.kh",name:"The Giving Tree International School",type:"daycare",province:"phnom-penh",tuition:5200,duration:11,careers:[],programs:["IB PYP","Early Years","បរិស្ថានសិក្សា (Eco-conscious)"],rating:"4.3",desc:"សាលាមត្តេយ្យ និងបឋមសិក្សាអន្តរជាតិ ស្ថាបនាឆ្នាំ ២០០៨ មានសាខា៣កន្លែងនៅភ្នំពេញ សម្រាប់កុមារអាយុ ១២ខែ ដល់ថ្នាក់ទី៦ តាមកម្មវិធី IB PYP។",facPrices:["$5,200–$8,200/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ IB PYP — Baby Playgroup, Early Years, Primary (ដល់ថ្នាក់ទី៦)"]},
+  {id:"ipcgreen",website:"https://www.ipcgreen.com/siem-reap",name:"IPC Green Angkor",type:"daycare",province:"siem-reap",tuition:1800,duration:5,careers:[],programs:["កម្មវិធីអន្តរជាតិ","ការអប់រំមិត្តបរិស្ថាន","English Immersion"],rating:"4.0",desc:"សាលាមត្តេយ្យ និងមណ្ឌលថែទាំកុមារដំបូងគេ ដែលមិត្តបរិស្ថាននៅសៀមរាប សម្រាប់កុមារតូចមុនចូលបឋមសិក្សា។"},
 ];
 
 /* ===== QUIZ QUESTIONS (3 phases, weighted across all 10 career sectors) ===== */
@@ -423,8 +428,8 @@ function renderSchools(){
 function gotoSchoolPage(p){schoolPage=p;renderSchools();window.scrollTo({top:0,behavior:"smooth"});}
 
 function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម","svay-rieng":"ស្វាយរៀង","banteay-meanchey":"បន្ទាយមានជ័យ","prey-veng":"ព្រៃវែង",kampot:"កំពត","preah-sihanouk":"ព្រះសីហនុ",kep:"កែប",province:"ខេត្ត"};return m[p]||p;}
-function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល",k12:"K-12"}[t]||t;}
-function typeBadgeClass(t){return {public:"badge-public",private:"badge-private",institute:"badge-institute",digital:"badge-digital",k12:"badge-k12"}[t]||"badge-public";}
+function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល",k12:"K-12",daycare:"មណ្ឌលថែទាំកុមារ"}[t]||t;}
+function typeBadgeClass(t){return {public:"badge-public",private:"badge-private",institute:"badge-institute",digital:"badge-digital",k12:"badge-k12",daycare:"badge-daycare"}[t]||"badge-public";}
 function tuitionLabel(s){return s.tuition>0?("$"+s.tuition+"/ឆ្នាំ"):"ឥតគិតថ្លៃ";}
 function careerLabel(c){return {technology:"បច្ចេកវិទ្យា",healthcare:"សុខភាព",design:"ការរចនា",business:"ពាណិជ្ជកម្ម",trades:"ជំនាញការ",education:"អប់រំ",tourism:"ទេសចរណ៍",agriculture:"កសិកម្ម",law:"ច្បាប់",media:"ប្រព័ន្ធផ្សព្វផ្សាយ",culinary:"ចម្អិនអាហារ"}[c]||c;}
 const logoMap={rupp:"RUPP",rule:"RULE",num:"NUM",uhs:"UHS",itc:"ITC",rua:"RUA",cadt:"CADT",npic:"NPIC",nie:"NIE",era:"ERA",ntti:"NTTI",nubb:"NUBB",sru:"SRU",mcu:"MCU",csku:"CSKU",pnca:"PNCA",aupp:"AUPP",camed:"CamEd",paragon:"PIU",puc:"PUC",up:"UP",norton:"NU",bbu:"BBU",biu:"BIU",uc:"UC",vanda:"VI",iu:"IU",limkokwing:"LKW",ab:"A&B",tux:"TUX",camscience:"CS",camtech:"CT",sabaicode:"SC",dichi:"DICHI",khmercoders:"KC",acac:"ACAC",pauldubrule:"PD",salabai:"SB",egbok:"EGBOK",acdemyhosp:"CHC",western:"WU"};
@@ -869,6 +874,7 @@ function clearPlan(){if(!confirm("សម្អាតផែនការទាំ�
 
 /* ===== ADMISSION REQUIREMENTS + TIMELINE ===== */
 function admissionInfo(type){
+  if(type==="daycare")return["សំបុត្រកំណើត និងឯកសារបញ្ជាក់អាយុកុមារ","សៀវភៅចាក់វ៉ាក់សាំង/កំណត់ត្រាសុខភាព","ព័ត៌មានទំនាក់ទំនងអ្នកមើលថែ/ឪពុកម្ដាយ និងលេខទំនាក់ទំនងបន្ទាន់","រូបថត ៤×៦ និងពាក្យសុំចុះឈ្មោះ","ជួបសម្ភាសន៍/ទស្សនកិច្ចមណ្ឌលមុនចុះឈ្មោះ"];
   if(type==="k12")return["សំបុត្រកំណើត និងឯកសារបញ្ជាក់អាយុសិស្ស","សៀវភៅចាក់វ៉ាក់សាំង/កំណត់ត្រាសុខភាព","រូបថត ៤×៦ និងពាក្យសុំចូលរៀន","អាចមានតេស្តវាយតម្លៃកម្រិត សម្រាប់សិស្សផ្ទេរសាលា ឬចូលថ្នាក់ខ្ពស់","សំបុត្របញ្ជាក់ពីសាលាចាស់ (ករណីផ្ទេរ)"];
   const base=["សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ឬសមមូល","អត្តសញ្ញាណប័ណ្ណ ឬសំបុត្រកំណើត","រូបថត ៤×៦ និងពាក្យសុំចូលរៀន"];
   const map={
@@ -1314,7 +1320,7 @@ function initHero3D(){
   const cards=[
     {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៨៣",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៨៨",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
     {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
