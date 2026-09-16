@@ -114,91 +114,9 @@ const schoolsData = [
   {"id":"rpitssvr","website":"https://www.facebook.com/p/Regional-Polytechnic-Institute-Techo-Sen-Svay-Rieng-100054219038773/","name":"វិទ្យាស្ថានពហុបច្ចេកទេសតំបន់ តេជោសែន ស្វាយរៀង (RPITSSVR)","type":"institute","province":"svay-rieng","address":"National Road 1, Phum Me Pring, Sangkat Prey Chhlak, Krong Svay Rieng, Svay Rieng","tuition":200,"duration":2,"careers":["technology","trades","business"],"programs":["បច្ចេកវិទ្យាព័ត៌មាន","អគ្គិសនី","មេកានិច","គណនេយ្យ"],"rating":"3.7","desc":"វិទ្យាស្ថានរដ្ឋផ្នែកបណ្ដុះបណ្ដាលបច្ចេកទេស និងវិជ្ជាជីវៈនៅខេត្តស្វាយរៀង បច្ចុប្បន្នបណ្ដុះបណ្ដាលសិស្សជាង ២,៤០០នាក់ ជាមួយអត្រាការងារបន្ទាប់បញ្ចប់ការសិក្សា ៨០–៩០%។","facPrices":["$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ"],"faculties":["ដេប៉ាតឺម៉ង់ព័ត៌មានវិទ្យា — បច្ចេកវិទ្យាព័ត៌មាន (IT), វិស្វកម្មប្រព័ន្ធកុំព្យូទ័រ","ដេប៉ាតឺម៉ង់អគ្គិសនី និងអេឡិចត្រូនិក — អគ្គិសនីឧស្សាហកម្ម, អេឡិចត្រូនិកស្វ័យប្រវត្តិ","ដេប៉ាតឺម៉ង់មេកានិច និងយានយន្ត — បច្ចេកវិទ្យារថយន្ត, មេកានិចឧស្សាហកម្មតំបន់សេដ្ឋកិច្ចពិសេស","ដេប៉ាតឺម៉ង់ធុរកិច្ច និងគណនេយ្យ — គណនេយ្យ, គ្រប់គ្រងភស្តុភារកម្ម (Logistics)"],"altNames":["Regional Polytechnic Institute Techo Sen Svay Rieng","RPITSSVR","វិទ្យាស្ថានពហុបច្ចេកទេសតំបន់ តេជោសែន ស្វាយរៀង"],"scholarNote":"អាហារូបករណ៍ជាតិ TVET 1.5M៖ សិក្សាឥតគិតថ្លៃ និងមានប្រាក់ឧបត្ថម្ភប្រចាំខែ ២៨០,០០០៛ លើជំនាញបច្ចេកទេសឧស្សាហកម្ម និងបច្ចេកវិទ្យាក្នុងតំបន់សេដ្ឋកិច្ចពិសេសស្វាយរៀង។"},
 ];
 
-/* ===== QUIZ QUESTIONS (3 phases, weighted across all 10 career sectors) ===== */
-const phases = [
-  {
-    label:"ដំណាក់កាលទី ១: ចំណូលចិត្ត",
-    key:"interests",
-    questions:[
-      {text:"តើអ្នកចូលចិត្ដធ្វើអ្វីនៅពេលទំនេរ?",opts:[
-        {l:"សរសេរកូដ ឬលេងជាមួយបច្ចេកវិទ្យា",w:{tech:2}},
-        {l:"គូរ ថតរូប ឬបង្កើតមាតិកា",w:{design:2,media:1}},
-        {l:"ជួយ ឬថែទាំអ្នកដ៏ទៃ",w:{health:2,education:1}},
-        {l:"លក់ ចរចា ឬគ្រប់គ្រងលុយ",w:{business:2}},
-        {l:"ជួសជុល ដាំដុះ ឬធ្វើការដៃ",w:{trades:2,agri:1}}
-      ]},
-      {text:"មុខវិជ្ជាណាដែលអ្នកចូលចិត្ដជាងគេនៅសាលា?",opts:[
-        {l:"គណិត និងវិទ្យាសាស្ត្រ",w:{tech:2,agri:1}},
-        {l:"ជីវវិទ្យា និងគីមី",w:{health:2,agri:1}},
-        {l:"សិល្បៈ និងអក្សរសាស្ត្រ",w:{design:1,media:2}},
-        {l:"សេដ្ឋកិច្ច និងភូមិវិទ្យា",w:{business:2,tourism:1}},
-        {l:"ពលរដ្ឋវិជ្ជា និងប្រវត្តិសាស្ត្រ",w:{law:2,education:1}}
-      ]},
-      {text:"កន្លែងណាដែលអ្នកចង់ចំណាយពេលច្រើនជាងគេ?",opts:[
-        {l:"នៅមុខកុំព្យូទ័រ",w:{tech:2,media:1}},
-        {l:"ជាមួយមនុស្ស ឬអ្នកជំងឺ",w:{health:2}},
-        {l:"ក្នុងស្ទូឌីយោ ឬកន្លែងច្នៃប្រឌិត",w:{design:2,media:1}},
-        {l:"នៅខាងក្រៅ ធម្មជាតិ ឬកសិដ្ឋាន",w:{agri:2,tourism:1,trades:1}},
-        {l:"នៅកន្លែងធ្វើការជាមួយភ្ញៀវ",w:{tourism:2,business:1}}
-      ]}
-    ]
-  },
-  {
-    label:"ដំណាក់កាលទី ២: ជំនាញ",
-    key:"skills",
-    questions:[
-      {text:"ជំនាញណាដែលអ្នកគិតថាខ្លួនអ្នកខ្លាំងជាងគេ?",opts:[
-        {l:"តក្កវិជ្ជា និងការដោះស្រាយបញ្ហា",w:{tech:2,business:1}},
-        {l:"ការទំនាក់ទំនង និងការយកចិត្តទុកដាក់",w:{health:2,education:1}},
-        {l:"ការនិយាយ និងការបញ្ចុះបញ្ចូល",w:{business:1,law:2,media:1}},
-        {l:"ការច្នៃ និងការមើលឃើញសោភ័ណភាព",w:{design:2,media:1}},
-        {l:"ការងារដៃ និងភាពជាក់ស្ដែង",w:{trades:2,agri:1}}
-      ]},
-      {text:"នៅក្នុងក្រុម អ្នកតែងតែដើរតួជាអ្វី?",opts:[
-        {l:"អ្នកដោះស្រាយបញ្ហាបច្ចេកទេស",w:{tech:2}},
-        {l:"អ្នកមើលថែ និងសម្របសម្រួល",w:{health:1,education:2}},
-        {l:"អ្នកដឹកនាំ និងសម្រេចចិត្ត",w:{business:2,law:1}},
-        {l:"អ្នករចនា និងបង្កើតគំនិត",w:{design:2,media:1}},
-        {l:"អ្នកអនុវត្ត និងសាងសង់",w:{trades:2,agri:1}}
-      ]},
-      {text:"អ្នកចង់ធ្វើការជាមួយអ្វីជាចម្បង?",opts:[
-        {l:"ទិន្នន័យ ម៉ាស៊ីន និងកូដ",w:{tech:2}},
-        {l:"មនុស្ស សិស្ស ឬអ្នកជំងឺ",w:{health:2,education:1}},
-        {l:"គំនិត ការរចនា និងមាតិកា",w:{design:2,media:1}},
-        {l:"លុយ ទីផ្សារ និងច្បាប់",w:{business:2,law:1}},
-        {l:"ដី រុក្ខជាតិ និងភ្ញៀវទេសចរ",w:{agri:2,tourism:1,trades:1}}
-      ]}
-    ]
-  },
-  {
-    label:"ដំណាក់កាលទី ៣: តម្លៃ និងគោលដៅ",
-    key:"values",
-    questions:[
-      {text:"អ្វីសំខាន់ជាងគេសម្រាប់អ្នកក្នុងការងារ?",opts:[
-        {l:"ប្រាក់ខែខ្ពស់ និងបច្ចេកវិទ្យា",w:{tech:2,business:1}},
-        {l:"ជួយសង្គម និងមនុស្ស",w:{health:2,education:1}},
-        {l:"សេរីភាពក្នុងការច្នៃប្រឌិត",w:{design:2,media:1}},
-        {l:"យុត្តិធម៌ និងរបៀបរៀបរយ",w:{law:2}},
-        {l:"ធ្វើការជាមួយធម្មជាតិ និងជំនាញ",w:{agri:1,trades:2,tourism:1}}
-      ]},
-      {text:"គោលដៅរយៈពេលវែងរបស់អ្នក?",opts:[
-        {l:"បង្កើតផលិតផលបច្ចេកវិទ្យា ឬ startup",w:{tech:2,business:1}},
-        {l:"ព្យាបាល ឬអប់រំមនុស្ស",w:{health:2,education:2}},
-        {l:"ក្លាយជាសិល្បករ ឬអ្នកបង្កើតមាតិកា",w:{design:2,media:2}},
-        {l:"ការពារយុត្តិធម៌ ឬក្លាយជាអ្នកដឹកនាំ",w:{law:2,business:1}},
-        {l:"អភិវឌ្ឍកសិកម្ម ទេសចរណ៍ ឬជំនាញ",w:{agri:2,tourism:2,trades:1}}
-      ]}
-    ]
-  }
-];
-
 /* ===== APP STATE ===== */
-let menuOpen=false, phaseIdx=0, qIdx=0, selIdx=null;
+let menuOpen=false;
 let compareList=[];
-const allQs = phases.flatMap(p=>p.questions);
-const totalQs = allQs.length;
-let globalIdx=0;
-let answers=new Array(totalQs).fill(null);
 
 /* ===== SIDEBAR ===== */
 const hamburger=document.getElementById("hamburger");
@@ -217,7 +135,6 @@ function showView(v){
   document.querySelectorAll(".s-link").forEach(l=>l.classList.toggle("active",l.dataset.view===v&&!l.dataset.cat));
   window.scrollTo({top:0,behavior:"smooth"});
   closeSidebar();
-  if(v==="quiz")initQuiz();
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
@@ -235,106 +152,6 @@ document.querySelectorAll("[data-view]").forEach(el=>{
 });
 document.querySelector('.s-link[data-view="home"]').classList.add("active");
 
-/* ===== GOAL 1: QUIZ ===== */
-function initQuiz(){
-  phaseIdx=0;qIdx=0;globalIdx=0;selIdx=null;
-  answers=new Array(totalQs).fill(null);
-  renderQ();
-}
-function renderQ(){
-  const phase=phases[phaseIdx];
-  const q=phase.questions[qIdx];
-  document.getElementById("quiz-phase-lbl").textContent=phase.label;
-  document.getElementById("quiz-counter").textContent="សំណួរ "+(globalIdx+1)+" / "+totalQs;
-  document.getElementById("progress-fill").style.width=((globalIdx/totalQs)*100)+"%";
-  document.getElementById("q-text").textContent=q.text;
-  const prev=answers[globalIdx];
-  document.getElementById("options").innerHTML=q.opts.map((o,idx)=>`<div class="option${prev===idx?" selected":""}" data-idx="${idx}"><i class="material-symbols-outlined">${prev===idx?"task_alt":"radio_button_unchecked"}</i><span>${o.l}</span></div>`).join("");
-  document.querySelectorAll(".option").forEach(el=>el.addEventListener("click",()=>{
-    document.querySelectorAll(".option").forEach(e=>{e.classList.remove("selected");e.querySelector(".material-symbols-outlined").textContent="radio_button_unchecked";});
-    el.classList.add("selected");
-    el.querySelector(".material-symbols-outlined").textContent="task_alt";
-    selIdx=parseInt(el.dataset.idx,10);
-    document.getElementById("next-btn").disabled=false;
-  }));
-  selIdx=prev;
-  document.getElementById("next-btn").disabled=(prev==null);
-  document.getElementById("prev-btn").style.display=globalIdx>0?"inline-flex":"none";
-  document.getElementById("next-btn").textContent=globalIdx===totalQs-1?"មើលលទ្ធផល":"បន្ទាប់ ▶";
-  ["phase-1","phase-2","phase-3"].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    el.classList.remove("active","done");
-    if(i<phaseIdx)el.classList.add("done");
-    else if(i===phaseIdx)el.classList.add("active");
-  });
-}
-document.getElementById("next-btn").addEventListener("click",()=>{
-  if(selIdx==null)return;
-  answers[globalIdx]=selIdx;
-  qIdx++;globalIdx++;
-  if(qIdx>=phases[phaseIdx].questions.length){phaseIdx++;qIdx=0;}
-  if(phaseIdx>=phases.length){document.getElementById("progress-fill").style.width="100%";setTimeout(showResults,200);}
-  else renderQ();
-});
-function prevQ(){if(globalIdx===0)return;globalIdx--;let g=0;phaseIdx=0;qIdx=0;for(let pi=0;pi<phases.length;pi++){if(g+phases[pi].questions.length>globalIdx){phaseIdx=pi;qIdx=globalIdx-g;break;}g+=phases[pi].questions.length;}renderQ();}
-
-/* Compute sector scores + per-phase scores from the answers array */
-function computeScores(){
-  const sec={};Object.keys(jobCats).forEach(k=>sec[k]=0);
-  const phaseSec=phases.map(()=>({}));
-  let gi=0;
-  for(let pi=0;pi<phases.length;pi++){
-    for(let qi=0;qi<phases[pi].questions.length;qi++){
-      const a=answers[gi];
-      if(a!=null){
-        const w=phases[pi].questions[qi].opts[a].w||{};
-        for(const k in w){sec[k]=(sec[k]||0)+w[k];phaseSec[pi][k]=(phaseSec[pi][k]||0)+w[k];}
-      }
-      gi++;
-    }
-  }
-  return {sec,phaseSec};
-}
-
-function showResults(){
-  const {sec,phaseSec}=computeScores();
-  const sectors=Object.keys(jobCats);
-  const maxS=Math.max(1,...sectors.map(s=>sec[s]||0));
-  const norm={};sectors.forEach(s=>norm[s]=(sec[s]||0)/maxS);
-  const rankedSectors=sectors.slice().sort((a,b)=>(sec[b]||0)-(sec[a]||0));
-  // Build a match % for every career in the directory, based on its sector fit
-  const matches=[];
-  rankedSectors.forEach((s,si)=>{
-    if((sec[s]||0)<=0)return;
-    careersList.filter(c=>c.cat===s).forEach((c,ci)=>{
-      let pct=Math.round(52+norm[s]*47-ci*2-si*1.5);
-      pct=Math.max(45,Math.min(99,pct));
-      matches.push({c,pct,s});
-    });
-  });
-  matches.sort((a,b)=>b.pct-a.pct);
-  // Pick top 6, max 2 careers per sector for variety across the student's interests
-  const chosen=[],cnt={};
-  for(const m of matches){if(chosen.length>=6)break;if((cnt[m.s]||0)>=2)continue;cnt[m.s]=(cnt[m.s]||0)+1;chosen.push(m);}
-  if(chosen.length<6){for(const m of matches){if(chosen.length>=6)break;if(chosen.indexOf(m)<0)chosen.push(m);}}
-  // Profile summary (top sectors per phase)
-  const phaseTop=phaseSec.map(ps=>Object.keys(ps).sort((a,b)=>ps[b]-ps[a]).slice(0,2).map(k=>jobCats[k]?jobCats[k].label:k));
-  const traits=[
-    {icon:"favorite",label:"ចំណូលចិត្ត",tags:phaseTop[0].length?phaseTop[0]:["—"]},
-    {icon:"psychology",label:"ជំនាញ",tags:phaseTop[1].length?phaseTop[1]:["—"]},
-    {icon:"star",label:"តម្លៃ និងគោលដៅ",tags:phaseTop[2].length?phaseTop[2]:["—"]}
-  ];
-  document.getElementById("profile-grid").innerHTML=traits.map(t=>`<div class="profile-trait"><i class="material-symbols-outlined">${t.icon}</i><h4>${t.label}</h4><div class="tags">${t.tags.map(tg=>`<span class="tag">${tg||"—"}</span>`).join("")}</div></div>`).join("");
-  document.getElementById("results-list").innerHTML=chosen.map((m,i)=>{
-    const c=m.c;
-    const skills=(c.skills||[]).slice(0,3).map(t=>`<span class="match-tag">${t}</span>`).join("");
-    return`<div class="match-card" style="animation-delay:${i*.1}s;cursor:pointer" onclick="openCareer('${c.id}')"><div class="match-left"><div class="match-icon"><i class="material-symbols-outlined">${c.icon||"work"}</i></div><div><p class="match-name">${c.name}</p><p class="match-why">${jobCats[c.cat]?jobCats[c.cat].label:""}</p><div class="match-tags">${skills}</div><p class="match-salary">ប្រាក់ខែ: <b>${c.salary||"—"}</b></p></div></div><div class="match-pct"><div class="num" id="pct${i}">0%</div><div class="word">ផ្គូផ្គង</div></div></div>`;
-  }).join("");
-  chosen.forEach((m,i)=>animCount(document.getElementById("pct"+i),m.pct,i*120+300));
-  if(typeof plan!=="undefined"){plan.quiz={topCareers:chosen.slice(0,5).map(m=>({id:m.c.id,pct:m.pct})),sectors:sec,date:Date.now()};savePlan();updatePlanBadge();}
-  showView("results");
-}
-function animCount(el,target,delay){if(!el)return;setTimeout(()=>{const dur=700,st=performance.now();function step(now){const p=Math.min((now-st)/dur,1);el.textContent=Math.round(p*target)+"%";if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);},delay);}
 
 /* ===== GOAL 2: SCHOOLS ===== */
 let schoolSearch="",schoolProvince="all",schoolType="all",schoolCareer="all";
@@ -879,8 +696,8 @@ function openCareer(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">category</i> វិស័យ</span><span class="val">${jobCats[j.cat].label}</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">account_balance</i> សាលា</span><span class="val">${rel.length}</span></div>
         <div class="detail-actions">
-          <button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្ត</button>
-          <button class="btn btn-ghost btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ថ្លៃសិក្សា</button>
+          <button class="btn btn-primary btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> គណនាថ្លៃសិក្សា</button>
+          <button class="btn btn-ghost btn-sm" onclick="showView('schools')"><i class="material-symbols-outlined">school</i> ស្វែងរកសាលា</button>
         </div>
       </div>
     </div>`;
@@ -891,8 +708,8 @@ document.getElementById("career-search").addEventListener("input",e=>{jobSearch=
 
 /* ===== MY PLAN (localStorage persistence) ===== */
 const PLAN_KEY="compass_plan";
-let plan={careers:[],schools:[],quiz:null,cost:null};
-function loadPlan(){try{const raw=localStorage.getItem(PLAN_KEY);if(raw){const p=JSON.parse(raw);plan={careers:Array.isArray(p.careers)?p.careers:[],schools:Array.isArray(p.schools)?p.schools:[],quiz:p.quiz||null,cost:p.cost||null};}}catch(e){}}
+let plan={careers:[],schools:[],cost:null};
+function loadPlan(){try{const raw=localStorage.getItem(PLAN_KEY);if(raw){const p=JSON.parse(raw);plan={careers:Array.isArray(p.careers)?p.careers:[],schools:Array.isArray(p.schools)?p.schools:[],cost:p.cost||null};}}catch(e){}}
 function savePlan(){try{localStorage.setItem(PLAN_KEY,JSON.stringify(plan));}catch(e){}}
 function toggleSaveCareer(id){
   if(plan.careers.includes(id))plan.careers=plan.careers.filter(x=>x!==id);
@@ -910,10 +727,10 @@ function toggleSaveSchool(id){
 }
 function updatePlanBadge(){
   const b=document.getElementById("plan-badge");if(!b)return;
-  const n=plan.careers.length+plan.schools.length+(plan.quiz?1:0)+(plan.cost?1:0);
+  const n=plan.careers.length+plan.schools.length+(plan.cost?1:0);
   if(n>0){b.style.display="";b.textContent=n;}else b.style.display="none";
 }
-function clearPlan(){if(!confirm("សម្អាតផែនការទាំងអស់?"))return;plan={careers:[],schools:[],quiz:null,cost:null};savePlan();updatePlanBadge();renderPlan();}
+function clearPlan(){if(!confirm("សម្អាតផែនការទាំងអស់?"))return;plan={careers:[],schools:[],cost:null};savePlan();updatePlanBadge();renderPlan();}
 
 /* ===== ADMISSION REQUIREMENTS + TIMELINE ===== */
 function admissionInfo(type){
@@ -961,7 +778,6 @@ const subjectsByCat={
   culinary:["ភាសាអង់គ្លេស","សិល្បៈ","ជំនាញបច្ចេកទេស"]
 };
 const freeResources=["Khan Academy","Coursera / edX","YouTube","freeCodeCamp","Google Digital Garage"];
-const quizCatToJob={technology:"tech",healthcare:"health",design:"design",business:"business",trades:"trades"};
 
 function generateRoadmap(careerId){
   const j=careersList.find(x=>x.id===careerId);
@@ -1012,26 +828,19 @@ function planSchoolCard(id){
 }
 function renderPlan(){
   const c=document.getElementById("plan-content");if(!c)return;
-  const hasAny=plan.careers.length||plan.schools.length||plan.quiz||plan.cost;
+  const hasAny=plan.careers.length||plan.schools.length||plan.cost;
   if(!hasAny){
-    c.innerHTML=`<div class="plan-empty"><i class="material-symbols-outlined">bookmark_border</i><p>ផែនការរបស់អ្នកនៅទទេ។<br>ធ្វើតេស្តអាជីព រក្សាទុកអាជីព និងសាលា ដើម្បីបង្កើតផែនការផ្ទាល់ខ្លួន។</p><div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="showView('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តអាជីព</button><button class="btn btn-ghost btn-sm" onclick="showView('careers')"><i class="material-symbols-outlined">work</i> មើលអាជីព</button></div></div>`;
+    c.innerHTML=`<div class="plan-empty"><i class="material-symbols-outlined">bookmark_border</i><p>ផែនការរបស់អ្នកនៅទទេ។<br>រក្សាទុកអាជីព និងសាលា ដើម្បីបង្កើតផែនការផ្ទាល់ខ្លួន។</p><div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-primary btn-sm" onclick="showView('careers')"><i class="material-symbols-outlined">work</i> ស្វែងរកអាជីព</button><button class="btn btn-ghost btn-sm" onclick="showView('schools')"><i class="material-symbols-outlined">school</i> ស្វែងរកសាលា</button></div></div>`;
     return;
   }
   let html="";
-  if(plan.quiz&&plan.quiz.topCareers&&plan.quiz.topCareers.length){
-    const tc=plan.quiz.topCareers[0];
-    const tj=careersList.find(x=>x.id===tc.id)||{};
-    html+=`<div class="plan-hero"><p class="eyebrow">អាជីពសមស្របបំផុតរបស់អ្នក</p><h2>${tj.name||""}</h2><p>${tj.desc||""}</p>${tj.salary?`<div class="top-match"><i class="material-symbols-outlined">payments</i> ប្រាក់ខែ ${tj.salary} · ផ្គូផ្គង ${tc.pct}%</div>`:""}</div>`;
-  }
   html+=`<div class="plan-stats">
     <div class="plan-stat"><i class="material-symbols-outlined">work</i><div class="num">${plan.careers.length}</div><div class="lbl">អាជីពរក្សាទុក</div></div>
     <div class="plan-stat"><i class="material-symbols-outlined">school</i><div class="num">${plan.schools.length}</div><div class="lbl">សាលារក្សាទុក</div></div>
-    <div class="plan-stat"><i class="material-symbols-outlined">quiz</i><div class="num">${plan.quiz?"✓":"—"}</div><div class="lbl">តេស្តអាជីព</div></div>
     <div class="plan-stat"><i class="material-symbols-outlined">savings</i><div class="num">${plan.cost?("$"+Number(plan.cost.total).toLocaleString()):"—"}</div><div class="lbl">ថ្លៃប៉ាន់ស្មាន</div></div>
   </div>`;
   let targetId=null;
   if(plan.careers.length)targetId=plan.careers[0];
-  else if(plan.quiz&&plan.quiz.topCareers&&plan.quiz.topCareers.length)targetId=plan.quiz.topCareers[0].id;
   if(targetId){
     const tj=careersList.find(x=>x.id===targetId);
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">route</i> ផែនទីផ្លូវទៅ ${tj?tj.name:""}</h3></div>${generateRoadmap(targetId)}</div>`;
@@ -1113,7 +922,7 @@ function shareCostTo(p){
   if(map[p])window.open(map[p],"_blank","noopener,noreferrer,width=600,height=560");
 }
 function encodePlanUrl(){
-  const d={c:plan.careers||[],s:plan.schools||[],q:(plan.quiz&&plan.quiz.topCareers)?plan.quiz.topCareers.map(t=>t.id):null,k:plan.cost||null};
+  const d={c:plan.careers||[],s:plan.schools||[],k:plan.cost||null};
   let b64="";
   try{b64=btoa(unescape(encodeURIComponent(JSON.stringify(d))));}catch(e){b64="";}
   return location.origin+location.pathname+"#plan="+b64;
@@ -1125,7 +934,6 @@ function planShareText(){
   const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — Trey Visai",""];
   let careerName=null;
   if(plan.careers.length){const j=careersList.find(x=>x.id===plan.careers[0]);if(j)careerName=j.name;}
-  else if(plan.quiz&&plan.quiz.topCareers&&plan.quiz.topCareers.length){const j=careersList.find(x=>x.id===plan.quiz.topCareers[0].id);if(j)careerName=j.name;}
   if(careerName)lines.push("🎯 អាជីពគោលដៅ៖ "+careerName);
   if(plan.schools.length){const ns=plan.schools.map(id=>{const s=schoolsData.find(x=>x.id===id);return s?schoolAbbr(s):null;}).filter(Boolean);if(ns.length)lines.push("🏫 សាលា៖ "+ns.join(", "));}
   if(plan.cost)lines.push("💰 ថ្លៃសិក្សាប៉ាន់ស្មាន៖ $"+Number(plan.cost.total).toLocaleString()+" ("+plan.cost.years+" ឆ្នាំ)");
@@ -1168,7 +976,6 @@ function renderSharedPlan(data){
   const el=document.getElementById("shared-content");if(!el)return;
   let careerName=null,careerObj=null;
   if(data.c&&data.c.length){const j=careersList.find(x=>x.id===data.c[0]);if(j){careerName=j.name;careerObj=j;}}
-  else if(data.q&&data.q.length){const j=careersList.find(x=>x.id===data.q[0]);if(j){careerName=j.name;careerObj=j;}}
   let html="";
   html+=`<div class="shared-banner"><i class="material-symbols-outlined">family_restroom</i><div><p class="sb-eyebrow">ផែនការសិក្សារបស់សិស្ស</p><h2>${careerName?("គោលដៅ៖ "+careerName):"ផែនការសិក្សា"}</h2><p class="sb-sub">សូមឪពុកម្ដាយ/អាណាព្យាបាលពិនិត្យមើល ហើយពិភាក្សាជាមួយកូនអំពីជម្រើសសិក្សានេះ។</p></div></div>`;
   if(careerObj){
@@ -1186,14 +993,15 @@ function renderSharedPlan(data){
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">savings</i> ថ្លៃសិក្សាប៉ាន់ស្មាន</h3></div><div class="cost-result" style="max-width:440px"><div class="cost-total-box"><div class="label">ថ្លៃសិក្សាសរុប (ប៉ាន់ស្មាន)</div><div class="amount">${fmt(data.k.total)}</div><div class="sub">សម្រាប់ ${data.k.years} ឆ្នាំ${data.k.school?" · "+data.k.school:""}</div></div><div class="cost-breakdown"><div class="cost-line"><span class="label"><i class="material-symbols-outlined">school</i> ថ្លៃសិក្សា</span><span class="val">${fmt(data.k.tuition)}</span></div><div class="cost-line"><span class="label"><i class="material-symbols-outlined">home</i> ការរស់នៅ + សម្ភារ</span><span class="val">${fmt(data.k.living)}</span></div>${data.k.payback?`<div class="cost-line"><span class="label"><i class="material-symbols-outlined">trending_up</i> រយៈពេលសង (ROI)</span><span class="val">${data.k.payback} ឆ្នាំ</span></div>`:""}</div></div></div>`;
   }
   html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">workspace_premium</i> ជំនួយហិរញ្ញវត្ថុ</h3></div><div class="plan-empty" style="border-style:solid;text-align:left">មានអាហារូបករណ៍ជាច្រើន (រដ្ឋាភិបាល MOEYS, JICA, សាកលវិទ្យាល័យ) ដែលអាចជួយបន្ថយបន្ទុកចំណាយ។ ចុច «ស្វែងយល់បន្ថែម» ដើម្បីមើលព័ត៌មានពេញលេញ។</div></div>`;
-  const exploreBtn=careerObj?`<button class="btn btn-primary" onclick="exitShared('career','${careerObj.id}')"><i class="material-symbols-outlined">visibility</i> ស្វែងយល់អំពីអាជីពនេះ</button>`:`<button class="btn btn-primary" onclick="exitShared('home')"><i class="material-symbols-outlined">explore</i> ស្វែងយល់បន្ថែម</button>`;
-  html+=`<div class="shared-cta">${exploreBtn}<button class="btn btn-ghost" onclick="exitShared('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តដោយខ្លួនឯង</button></div>`;
+  const exploreBtn=careerObj?`<button class="btn btn-primary" onclick="exitShared('career','${careerObj.id}')"><i class="material-symbols-outlined">visibility</i> ស្វែងយល់អំពីអាជីពនេះ</button>`:`<button class="btn btn-primary" onclick="exitShared('careers')"><i class="material-symbols-outlined">work</i> ស្វែងរកអាជីព</button>`;
+  html+=`<div class="shared-cta">${exploreBtn}<button class="btn btn-ghost" onclick="exitShared('schools')"><i class="material-symbols-outlined">school</i> ស្វែងរកសាលា</button></div>`;
   el.innerHTML=html;
 }
 function exitShared(action,careerId){
   if(history.replaceState)history.replaceState(null,"",location.pathname);else location.hash="";
   if(action==="career"&&careerId)openCareer(careerId);
-  else if(action==="quiz")showView("quiz");
+  else if(action==="careers")showView("careers");
+  else if(action==="schools")showView("schools");
   else if(action==="cost")showView("cost");
   else showView("home");
 }
@@ -1224,7 +1032,7 @@ function renderSharedCost(d){
       <div class="roi-stat"><span class="label">ពេលវេលាសង (ឆ្នាំ)</span><span class="val">${d.pay||"—"}</span></div>
     </div>
   </div>`;
-  html+=`<div class="shared-cta"><button class="btn btn-primary" onclick="exitShared('cost')"><i class="material-symbols-outlined">calculate</i> គណនាដោយខ្លួនឯង</button><button class="btn btn-ghost" onclick="exitShared('quiz')"><i class="material-symbols-outlined">quiz</i> ធ្វើតេស្តអាជីព</button></div>`;
+  html+=`<div class="shared-cta"><button class="btn btn-primary" onclick="exitShared('cost')"><i class="material-symbols-outlined">calculate</i> គណនាដោយខ្លួនឯង</button><button class="btn btn-ghost" onclick="exitShared('careers')"><i class="material-symbols-outlined">work</i> ស្វែងរកអាជីព</button></div>`;
   el.innerHTML=html;
 }
 function checkSharedCost(){
@@ -1312,7 +1120,7 @@ function filterFacts(c){
 }
 function restoreView(){
   let v=null;try{v=sessionStorage.getItem("tv_view");}catch(e){}
-  if(!v||v==="home"||v==="results"||v==="shared")return;
+  if(!v||v==="home"||v==="shared")return;
   if(v==="school-detail"||v==="career-detail"){
     let d=null;try{d=sessionStorage.getItem("tv_detail");}catch(e){}
     if(d){const i=d.indexOf(":"),t=d.slice(0,i),id=d.slice(i+1);
@@ -1361,7 +1169,7 @@ function initHero3D(){
   const BAR=[1,2,1,1,3,1,2,1,1,3,1,1,2,1,2,1,3,1,1,2,1,3,1,2,1,1,2,1];
   // scattered "label" cards — tap one to focus it to centre (Careerpass-themed)
   const cards=[
-    {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
+    {view:"plan",   title:"ផែនការ",       sub1:"ផែនការផ្ទាល់ខ្លួន",   sub2:"សាលា និងអាជីព",     since:"ផ្ទាល់ខ្លួន",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
     {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១១២",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
@@ -1449,7 +1257,6 @@ function initHomeFeatured(){
 }
 
 /* ===== INIT (runs last, after all data/vars are declared) ===== */
-initQuiz();
 calcCost();
 typeHero();
 initGridFlow();
