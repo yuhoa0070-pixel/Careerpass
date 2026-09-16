@@ -1282,8 +1282,61 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const input=document.getElementById("mascot-chat-input");
   const sendBtn=form.querySelector(".mascot-chat-send");
   const messages=document.getElementById("mascot-chat-messages");
+  const sugTrack=document.getElementById("mascot-sug-track");
   const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
+
+  // Gen Z suggested questions with trendy youth vibe and smart preset answers
+  const GENZ_SUGGESTIONS=[
+    {
+      q:"រៀនអីបានលុយក្រាស់? 💸",
+      pill:"💸 រៀនអីបានលុយក្រាស់?",
+      keywords:["លុយ","ប្រាក់ខែ","ចំណូល","ថ្លៃ","money","salary","rich"],
+      reply:"ចង់បានចំណូលក្រាស់មែនទេ? 😎 នេះជាអាជីពកំពូលៗដែលមានប្រាក់ខែខ្ពស់ ($1,000–$3,500+) និងតម្រូវការទីផ្សារខ្ពស់នៅកម្ពុជា៖",
+      careers:["softeng","aieng","cyber","doctor","dataanalyst"],
+      schools:["cadt","itc","rupp","uhs"]
+    },
+    {
+      q:"អត់ពូកែគណិត រៀនអីកើតខ្លះ? 🥲",
+      pill:"🥲 អត់ពូកែគណិត រៀនអី?",
+      keywords:["គណិត","math","មិនចេះគណិត","ខ្សោយគណិត"],
+      reply:"កុំទាន់អស់សង្ឃឹម Bro/Sis! 😌 មិនបាច់ពូកែគណិត ក៏អាចជោគជ័យ និងរកចំណូលបានច្រើនដែរ លើជំនាញច្នៃប្រឌិត ភាសា និងទំនាក់ទំនង៖",
+      careers:["graphic","uxui","contentcreator","marketing","chef"],
+      schools:["rufa","setec","puc","acac"]
+    },
+    {
+      q:"ចង់ធ្វើការពីផ្ទះ (Work From Home) 🧑‍💻",
+      pill:"🧑‍💻 ចង់ Work from Home",
+      keywords:["remote","home","ផ្ទះ","wfh","កាហ្វេ","cafe"],
+      reply:"ចង់ Work From Home ស្ពាយ Laptop ទៅអង្គុយធ្វើការនៅ Cafe មែនទេ? ☕💻 អាជីព Digital & Tech ទាំងនេះស័ក្តិសមបំផុត៖",
+      careers:["softeng","webdev","uxui","graphic","contentcreator"],
+      schools:["cadt","itc","setec"]
+    },
+    {
+      q:"សាលារដ្ឋណាថ្លៃសមរម្យ? 🏫",
+      pill:"🏫 សាលារដ្ឋថ្លៃសមរម្យ",
+      keywords:["សាលារដ្ឋ","រដ្ឋ","សមរម្យ","ថោក","អាហារូបករណ៍","scholarship","public"],
+      reply:"ចង់សន្សំលុយប៉ាម៉ាក់ តែបានគុណភាពល្អ? 👏 សាលារដ្ឋទាំងនេះមានតម្លៃសមរម្យ ($200–$600/ឆ្នាំ) ព្រមទាំងអាហារូបករណ៍រដ្ឋ និង TVET 1.5M៖",
+      careers:[],
+      schools:["rupp","itc","rule","npic","ppi"]
+    },
+    {
+      q:"ខ្លាច AI ដណ្តើមការងារ? 🤖",
+      pill:"🤖 ខ្លាច AI ដណ្តើមការងារ?",
+      keywords:["ai","ដណ្តើម","ជំនួស","បាត់បង់","future"],
+      reply:"ខ្លាច AI ដណ្តើមបាយមែនទេ? 🤖 AI ជំនួសការងារច្រំដែល តែមិនអាចជំនួសបេះដូង ការច្នៃប្រឌិតខ្ពស់ និងជំនាញបញ្ជា AI របស់មនុស្សបានឡើយ៖",
+      careers:["aieng","prompteng","cyber","doctor","contentcreator"],
+      schools:["cadt","itc","uhs"]
+    },
+    {
+      q:"រៀន ២ ឆ្នាំ រកលុយបានលឿន ⚡",
+      pill:"⚡ រៀន ២ ឆ្នាំ រកលុយលឿន",
+      keywords:["២ ឆ្នាំ","2 ឆ្នាំ","លឿន","ខ្លី","tvet","បរិញ្ញាបត្ររង","associate"],
+      reply:"ចង់ចេញធ្វើការលឿន មិនចង់ចំណាយពេលយូរ? 🚀 វគ្គបច្ចេកទេស និងវិជ្ជាជីវៈ (TVET / Associate 2 ឆ្នាំ) មានការងារធ្វើលឿន និងទីផ្សារត្រូវការខ្លាំង៖",
+      careers:["electrician","carmechanic","graphic","barista","chef"],
+      schools:["npic","ppi","ntti","acac"]
+    }
+  ];
 
   function setPose(name){img.src=POSES[name]||POSES.idle;}
 
@@ -1307,6 +1360,19 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     return el;
   }
 
+  function renderSuggestions(){
+    if(!sugTrack||sugTrack.children.length)return;
+    sugTrack.innerHTML=GENZ_SUGGESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
+    sugTrack.querySelectorAll(".mascot-sug-pill").forEach(pill=>{
+      pill.addEventListener("click",()=>{
+        const idx=parseInt(pill.dataset.i,10);
+        const item=GENZ_SUGGESTIONS[idx];
+        if(!item)return;
+        askQuestion(item.q,item);
+      });
+    });
+  }
+
   function openPanel(){
     isOpen=true;
     clearTimeout(closeTimer);
@@ -1316,8 +1382,9 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     btn.setAttribute("aria-expanded","true");
     setPose("idle");
     if(!messages.children.length){
-      addMessage("សួស្តី! សួរខ្ញុំអំពីសាលារៀន ឬអាជីពដែលចង់ដឹងបាន។","bot");
+      addMessage("សួស្តី! ខ្ញុំជាជំនួយការ Trey Visai 🤖✨ មានសំណួរអី ឬចុចលើសំណួរ Gen Z ពេញនិយមខាងក្រោមនេះបានណា៎! 👇","bot");
     }
+    renderSuggestions();
     setTimeout(()=>input.focus(),200);
   }
   function closePanel(){
@@ -1362,20 +1429,36 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     }).slice(0,3);
   }
 
-  function respondTo(q){
+  function respondTo(q,preset){
+    const matchPreset = preset || GENZ_SUGGESTIONS.find(s=>s.q===q||s.pill===q||s.keywords.some(k=>q.toLowerCase().includes(k)));
+    if(matchPreset){
+      addMessage(matchPreset.reply,"bot");
+      if(matchPreset.careers&&matchPreset.careers.length){
+        matchPreset.careers.slice(0,4).forEach(cid=>{
+          const j=careersList.find(x=>x.id===cid);
+          if(j)addMessage(`🎯 អាជីព៖ ${j.name} (${j.salary||""}/ខែ)`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();});
+        });
+      }
+      if(matchPreset.schools&&matchPreset.schools.length){
+        matchPreset.schools.slice(0,3).forEach(sid=>{
+          const s=schoolsData.find(x=>x.id===sid);
+          if(s)addMessage(`🏫 សាលា៖ ${s.name} (${provinceLabel(s.province)} · ${tuitionLabel(s)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();});
+        });
+      }
+      return;
+    }
+
     const schools=findSchoolMatches(q);
     const careers=findCareerMatches(q);
     if(!schools.length&&!careers.length){
-      addMessage("សុំទោស ខ្ញុំរកមិនឃើញលទ្ធផលត្រូវគ្នាទេ។ សាកល្បងសួរអំពីឈ្មោះសាលា ខេត្ត ឬអាជីព (ឧ. \"វិស្វកម្ម\", \"ភ្នំពេញ\") មើល។","bot");
+      addMessage("សុំទោស ខ្ញុំរកមិនឃើញលទ្ធផលត្រូវគ្នាទេ។ សាកល្បងចុចលើ «សំណួរ Gen Z» ខាងក្រោម ឬសួរអំពីឈ្មោះសាលា ខេត្ត ឬអាជីពជាក់លាក់មើល! ✨","bot");
       return;
     }
-    schools.forEach(s=>addMessage(`សាលា៖ ${s.name} (${typeLabel(s.type)}, ${provinceLabel(s.province)})`,"bot","មើលព័ត៌មានលម្អិត",()=>{openSchool(s.id);closePanel();}));
-    careers.forEach(j=>addMessage(`អាជីព៖ ${j.name} — ${j.salary||""}/ខែ`,"bot","មើលព័ត៌មានលម្អិត",()=>{openCareer(j.id);closePanel();}));
+    schools.forEach(s=>addMessage(`🏫 សាលា៖ ${s.name} (${typeLabel(s.type)}, ${provinceLabel(s.province)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();}));
+    careers.forEach(j=>addMessage(`🎯 អាជីព៖ ${j.name} — ${j.salary||""}/ខែ`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();}));
   }
 
-  form.addEventListener("submit",e=>{
-    e.preventDefault();
-    const q=input.value.trim();
+  function askQuestion(q,preset){
     if(!q)return;
     addMessage(q,"user");
     input.value="";
@@ -1384,12 +1467,18 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     setPose("thinking");
     clearTimeout(celebrateTimer);
     setTimeout(()=>{
-      respondTo(q);
+      respondTo(q,preset);
       input.disabled=false;
       sendBtn.disabled=false;
       input.focus();
       setPose("celebrate");
       celebrateTimer=setTimeout(()=>setPose("idle"),1600);
-    },550);
+    },450);
+  }
+
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const q=input.value.trim();
+    if(q)askQuestion(q);
   });
 })();

@@ -643,10 +643,17 @@
 <div id="mascot-widget" class="mascot-widget">
   <div id="mascot-chat" class="mascot-chat" role="dialog" aria-modal="false" aria-label="ជំនួយការគេហទំព័រ Trey Visai" hidden>
     <div class="mascot-chat-header">
-      <span class="mascot-chat-title">ជំនួយការ Trey Visai</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="mascot-chat-title">ជំនួយការ Trey Visai</span>
+        <span class="mascot-badge-genz">Gen Z Vibe 🔥</span>
+      </div>
       <button type="button" id="mascot-chat-close" class="mascot-chat-close" aria-label="បិទបង្អួចជជែក">&times;</button>
     </div>
     <div id="mascot-chat-messages" class="mascot-chat-messages" aria-live="polite"></div>
+    <div id="mascot-suggestions" class="mascot-suggestions" aria-label="សំណួរណែនាំ">
+      <div class="mascot-sug-title"><i class="material-symbols-outlined" style="font-size:14px">local_fire_department</i> សំណួរពេញនិយម Gen Z៖</div>
+      <div class="mascot-sug-track" id="mascot-sug-track"></div>
+    </div>
     <form id="mascot-chat-form" class="mascot-chat-form">
       <input type="text" id="mascot-chat-input" class="mascot-chat-input" placeholder="សួរអំពីសាលា ឬអាជីព..." autocomplete="off" maxlength="200">
       <button type="submit" class="mascot-chat-send" aria-label="ផ្ញើសារ">➤</button>
