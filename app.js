@@ -515,13 +515,6 @@ function openSchool(id){
       <div class="map-embed"><iframe title="ផែនទី ${s.name}" src="https://maps.google.com/maps?q=${mapQ}&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       <a class="btn btn-ghost btn-sm map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=${mapQ}" target="_blank" rel="noopener noreferrer"><i class="material-symbols-outlined">map</i> បើកក្នុង Google Maps</a>
     </div>`;
-  const relCareers=careersList.filter(c=>(c.schools||[]).includes(s.id));
-  const relCareersHtml=relCareers.length?relCareers.map(c=>`<div class="rel-career" onclick="openCareer('${c.id}')"><div style="width:36px;height:36px;border-radius:var(--radius-sm);background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="material-symbols-outlined" style="font-size:20px">${c.icon}</i></div><div><div style="font-weight:700;font-size:13px">${c.name}</div><div style="font-size:11px;color:var(--text-3)">${jobCats[c.cat]?.label||""} · ${c.salary}${c.salary.indexOf("$")>=0?"/ខែ":""}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):"";
-  const careersCard=relCareers.length?`
-    <div class="detail-card">
-      <h3><i class="material-symbols-outlined">work</i> អាជីពគោលដៅពីសាលានេះ (${relCareers.length})</h3>
-      <div class="rel-careers">${relCareersHtml}</div>
-    </div>`:"";
   document.getElementById("school-detail").innerHTML=`
     <div class="detail-back" onclick="showView('schools')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅសាលា</div>
     <div class="detail-head">
@@ -539,7 +532,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}${careersCard}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
+      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type)}</span></div>
@@ -549,7 +542,6 @@ function openSchool(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">schedule</i> រយៈពេល</span><span class="val">${s.duration} ឆ្នាំ</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">star</i> វាយតម្លៃ</span><span class="val">★ ${s.rating}</span></div>
         ${s.website?`<div class="info-row"><span class="lbl"><i class="material-symbols-outlined">language</i> គេហទំព័រ</span><span class="val"><a href="${s.website}" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline">មើលគេហទំព័រ ↗</a></span></div>`:""}
-        ${relCareers.length?`<div class="info-row"><span class="lbl"><i class="material-symbols-outlined">work</i> អាជីពគោលដៅ</span><span class="val">${relCareers.length} អាជីព</span></div>`:""}
         ${s.careers&&s.careers.length?`<div style="margin-top:16px"><div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:8px">វិស័យពាក់ព័ន្ធ</div><div class="detail-tags">${s.careers.map(c=>'<span class="tag">'+careerLabel(c)+'</span>').join("")}</div></div>`:""}
         <div class="detail-actions">
           <button class="btn btn-primary btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
