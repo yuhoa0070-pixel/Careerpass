@@ -84,6 +84,15 @@ INSTITUTIONS = {
     # K-12
     "ggas": ("Golden Gate American School", "https://www.ggas.edu.kh/"),
     "makson": ("MAKSON International Academy", "https://makson.education/"),
+    "lfrd": ("Lycée Français René Descartes", "https://descartes-cambodge.com/"),
+    "footprints": ("Footprints International School", "https://footprintsschool.edu.kh/"),
+    "logos": ("Logos International School", "https://logoscambodia.org/"),
+    "sisc": ("Southbridge International School Cambodia", "https://www.sisc.edu.kh/"),
+    "wis": ("Western International School", "https://www.western.edu.kh/"),
+    "belteischool": ("Beltei International School", "https://www.beltei.edu.kh/"),
+    "shrewsbury": ("Shrewsbury International School Phnom Penh", "https://shrewsbury.edu.kh/"),
+    "hope": ("Hope International School", "https://hope.edu.kh/"),
+    "dewey": ("Dewey International School", "https://deweyinternational.com/"),
 }
 
 HEADERS = {
