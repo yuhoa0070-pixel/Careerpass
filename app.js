@@ -1277,6 +1277,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const closeBtn=document.getElementById("mascot-chat-close");
   const widget=document.getElementById("mascot-widget");
   const dismissBtn=document.getElementById("mascot-dismiss");
+  const backdrop=document.getElementById("mascot-backdrop");
   const form=document.getElementById("mascot-chat-form");
   const input=document.getElementById("mascot-chat-input");
   const sendBtn=form.querySelector(".mascot-chat-send");
@@ -1311,6 +1312,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     clearTimeout(closeTimer);
     panel.hidden=false;
     requestAnimationFrame(()=>panel.classList.add("is-open"));
+    if(backdrop)backdrop.classList.add("is-open");
     btn.setAttribute("aria-expanded","true");
     setPose("idle");
     if(!messages.children.length){
@@ -1321,6 +1323,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   function closePanel(){
     isOpen=false;
     panel.classList.remove("is-open");
+    if(backdrop)backdrop.classList.remove("is-open");
     btn.setAttribute("aria-expanded","false");
     setPose("idle");
     clearTimeout(closeTimer);
@@ -1329,6 +1332,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
   btn.addEventListener("click",()=>{isOpen?closePanel():openPanel();});
   closeBtn.addEventListener("click",closePanel);
+  if(backdrop)backdrop.addEventListener("click",closePanel);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&isOpen)closePanel();});
 
   if(dismissBtn&&widget){
