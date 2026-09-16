@@ -81,6 +81,8 @@ const schoolsData = [
   {id:"efb",website:"https://ecolefrancaisedebattambang.org",name:"École Française de Battambang",type:"k12",province:"battambang",tuition:500,duration:11,careers:[],programs:["កម្មវិធីជាតិបារាំង (CNED)","Montessori (មត្តេយ្យ)","ភាសាបារាំង"],rating:"4.2",desc:"សាលាបារាំងក្រៅរដ្ឋាភិបាលនៅបាត់ដំបង បង្រៀនតាមកម្មវិធីអប់រំជាតិបារាំង ចាប់ពីមត្តេយ្យ (Montessori) ដល់ថ្នាក់ទី៩ (Collège 3e) — មិនទាន់មានវិទ្យាល័យ (Lycée)។"},
   {id:"goglobal",website:"https://www.go-globalschool.com",name:"Go Global School",type:"k12",province:"siem-reap",tuition:1200,duration:9,careers:[],programs:["British National Curriculum","Early Years Foundation Stage (EYFS)","ភាសាខ្មែរ-អង់គ្លេស"],rating:"3.9",desc:"សាលាបឋមសិក្សាអន្តរជាតិនៅសៀមរាប បង្រៀនកម្មវិធីជាតិអង់គ្លេស (British National Curriculum) ជាភាសាខ្មែរ និងអង់គ្លេស ពី Nursery ដល់ថ្នាក់ទី៦ (មិនទាន់មានវិទ្យាល័យ)។"},
   {id:"kepis",website:"https://www.facebook.com/kepinternationalschool/",name:"Kep International School",type:"k12",province:"kep",tuition:900,duration:13,careers:[],programs:["International Early Years Curriculum (IEYC)","Cambridge Curriculum","កម្មវិធីជាតិខ្មែរ"],rating:"3.9",desc:"សាលាឯកជនតូចមួយនៅខេត្តកែប ស្ថាបនាឆ្នាំ ២០១៣ ផ្ដល់ការអប់រំពីរភាសា (ខ្មែរ-អង់គ្លេស) តាមកម្មវិធី IEYC និង Cambridge ចាប់ពីមត្តេយ្យដល់វិទ្យាល័យ។"},
+  {id:"alis",website:"https://aliscambodia.com",name:"Abundant Life International School (ALIS)",type:"k12",province:"phnom-penh",tuition:800,duration:13,careers:[],programs:["កម្មវិធីអាមេរិកកាំង","ភាសាខ្មែរ-អង់គ្លេស-ចិន","សាលាគ្រិស្តសាសនា"],rating:"4.0",desc:"សាលាគ្រិស្តអន្តរជាតិត្រីភាសាទីមួយក្នុងកម្ពុជា ស្ថាបនាឆ្នាំ ២០១១ បង្រៀនកម្មវិធីអាមេរិកកាំង ជាភាសាខ្មែរ អង់គ្លេស និងចិន មានសាខា ៤ កន្លែងនៅភ្នំពេញ (ទទួលស្គាល់ដោយ ACSI និង WASC)។"},
+  {id:"truevisions",website:"https://truevisions.edu.kh",name:"True VISIONS International School of Cambodia",type:"k12",province:"phnom-penh",tuition:1200,duration:13,careers:[],programs:["កម្មវិធីអន្តរជាតិ","ភាសាខ្មែរ-អង់គ្លេស-ចិន","Debate Club"],rating:"4.0",desc:"សាលាអន្តរជាតិនៅទួលគោក ភ្នំពេញ ស្ថាបនាឆ្នាំ ២០១៣ ដោយបណ្ឌិត សេង បូណា បង្រៀនកម្មវិធីអន្តរជាតិជាភាសាអង់គ្លេស ខ្មែរ និងចិន ចាប់ពីមត្តេយ្យដល់វិទ្យាល័យ។",facPrices:["$1,200–$1,700/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ — មត្តេយ្យ (K1-K3), បឋមសិក្សា (Grade 1-6), វិទ្យាល័យ (Grade 7-12)"]},
 ];
 
 /* ===== QUIZ QUESTIONS (3 phases, weighted across all 10 career sectors) ===== */
@@ -1312,7 +1314,7 @@ function initHero3D(){
   const cards=[
     {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៨១",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៨៣",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
     {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
