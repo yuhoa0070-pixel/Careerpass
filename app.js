@@ -1275,6 +1275,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   if(!btn||!img||!panel)return;
 
   const closeBtn=document.getElementById("mascot-chat-close");
+  const widget=document.getElementById("mascot-widget");
+  const dismissBtn=document.getElementById("mascot-dismiss");
   const form=document.getElementById("mascot-chat-form");
   const input=document.getElementById("mascot-chat-input");
   const sendBtn=form.querySelector(".mascot-chat-send");
@@ -1395,6 +1397,14 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   btn.addEventListener("click",()=>{isOpen?closePanel():openPanel();});
   closeBtn.addEventListener("click",closePanel);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&isOpen)closePanel();});
+
+  if(dismissBtn&&widget){
+    dismissBtn.addEventListener("click",e=>{
+      e.stopPropagation();
+      closePanel();
+      widget.classList.add("is-dismissed");
+    });
+  }
 
   function tokenize(s){return (s||"").toLowerCase().split(/[\s,·]+/).filter(Boolean);}
 
