@@ -492,7 +492,13 @@ function pricingCard(s){
   return `<div class="detail-card"><h3><i class="material-symbols-outlined">payments</i> តម្លៃសិក្សា និងអាហារូបករណ៍</h3>
     <div class="price-list">${rows}</div>
     <div class="price-scholar"><i class="material-symbols-outlined">workspace_premium</i><span>${scholarLine(s)}</span></div>
-    <p class="price-note">* សូមផ្ទៀងផ្ទាត់តម្លៃ និងលក្ខខណ្ឌអាហារូបករណ៍ជាមួយសាលាដោយផ្ទាល់។</p>
+    <div class="price-disclaimer">
+      <i class="material-symbols-outlined">info</i>
+      <div>
+        <strong>ចំណាំសំខាន់អំពីតម្លៃសិក្សា (Important Notice)៖</strong>
+        <span>តម្លៃខាងលើជាកម្រិតប៉ាន់ស្មានប្រចាំឆ្នាំ (Estimated Tuition) ផ្អែកលើព័ត៌មានទីផ្សារ និងការប្រកាសឆ្នាំសិក្សាថ្មីៗ។ តម្លៃជាក់ស្តែងអាចប្រែប្រួលតាមមហាវិទ្យាល័យ ជំនាញឯកទេស កម្រិតថ្នាក់ ឬការកែប្រែប្រចាំឆ្នាំរបស់សាលា — សូមទាក់ទងផ្ទៀងផ្ទាត់ដោយផ្ទាល់ជាមួយសាលាមុនពេលសម្រេចចិត្តចុះឈ្មោះ។</span>
+      </div>
+    </div>
   </div>`;
 }
 function openSchool(id){
