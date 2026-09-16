@@ -61,6 +61,11 @@ const schoolsData = [
   {id:"knia",name:"វិទ្យាស្ថានជាតិកសិកម្មកំពង់ចាម (KNIA)",type:"public",province:"kampong-cham",tuition:350,duration:4,careers:["agriculture","trades"],programs:["កសិកម្ម","សត្វពេទ្យ","ព្រៃឈើ"],rating:"3.8",desc:"វិទ្យាស្ថានសាធារណៈស្ថាបនាឆ្នាំ ១៩៩៥ ក្រោមឧបត្ថម្ភបច្ចេកទេសរបស់ក្រសួងកសិកម្ម ផ្ដោតលើជំនាញកសិកម្ម សត្វពេទ្យ និងព្រៃឈើនៅកំពង់ចាម។",scholarNote:"ជាវិទ្យាស្ថានសាធារណៈក្រោមឧបត្ថម្ភបច្ចេកទេសរបស់ក្រសួងកសិកម្ម រុក្ខាប្រមាញ់ និងនេសាទ សិស្សនិស្សិតមានសិទ្ធិដាក់ពាក្យសុំអាហារូបករណ៍រដ្ឋ ដូចវិទ្យាស្ថានសាធារណៈផ្សេងទៀត។"},
   {id:"camasean",website:"https://camasean.edu.kh",name:"CAM-ASEAN",type:"institute",province:"phnom-penh",tuition:200,duration:1,careers:["education","tourism","business"],programs:["ភាសាអង់គ្លេស","ភាសាចិន","បណ្ដុះបណ្ដាលសាជីវកម្ម","កម្មវិធីសិក្សាបរទេស"],rating:"4.0",desc:"សាលាភាសា និងបណ្ដុះបណ្ដាលជំនាញឈានមុខនៅភ្នំពេញ ជួយយុវជនខ្មែរត្រៀមខ្លួនចូលទីផ្សារការងារអាស៊ាន និងអន្តរជាតិ — មានសាខាច្រើននៅភ្នំពេញ។",scholarNote:"ផ្ដល់អាហារូបករណ៍ប្រចាំឆ្នាំសម្រាប់សិស្សពូកែ។ ថ្លៃសិក្សាគិតជាវគ្គ/ឆមាស សូមទាក់ទងសាលាដោយផ្ទាល់សម្រាប់ថ្លៃពិតប្រាកដតាមកម្មវិធី។"},
   {id:"springedu",website:"https://springedu.co",name:"Spring Education Center",type:"institute",province:"phnom-penh",tuition:170,duration:1,careers:["education","business","tourism"],programs:["ភាសាអង់គ្លេស","អង់គ្លេសពាណិជ្ជកម្ម","ភាសាចិន","ជំនាញទន់"],rating:"4.1",desc:"សាលាភាសា និងជំនាញនៅភ្នំពេញ ផ្ដល់កម្មវិធីភាសាអង់គ្លេស អង់គ្លេសពាណិជ្ជកម្ម និងភាសាចិន ព្រមទាំងកម្មវិធីកម្មសិក្សា និងប្រឹក្សាអាជីព។",facPrices:["$170–$230/៦០ម៉ោង","$210–$270/៦០ម៉ោង","$170–$190+/៦០ម៉ោង"],faculties:["កម្មវិធីភាសាអង់គ្លេសទូទៅ (General English) — កម្រិត GEP1-3 ដល់ GEP10-12","កម្មវិធីអង់គ្លេសពាណិជ្ជកម្ម (Business English) — កម្រិត BEP1-2 ដល់ BEP7-8","កម្មវិធីភាសាចិនទូទៅ (General Chinese) — កម្រិត GCP1-3 ឡើងទៅ"]},
+  {id:"ispp",website:"https://www.ispp.edu.kh",name:"International School of Phnom Penh (ISPP)",type:"k12",province:"phnom-penh",tuition:9300,duration:13,careers:[],programs:["IB Programme (PYP/MYP/DP)","កម្មវិធីអន្តរជាតិ","ភាសាអង់គ្លេស"],rating:"4.6",desc:"សាលាអន្តរជាតិឈានមុខគេនៅកម្ពុជា បង្រៀនកម្មវិធី IB (PYP, MYP, DP) ចាប់ពីមត្តេយ្យដល់ថ្នាក់ទី១២ ជាភាសាអង់គ្លេស។",facPrices:["$9,300–$30,700/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ IB — Early Years, Primary Years Programme (PYP), Middle Years Programme (MYP), Diploma Programme (DP)"]},
+  {id:"nisc",website:"https://www.nisc.edu.kh",name:"Northbridge International School Cambodia (NISC)",type:"k12",province:"phnom-penh",tuition:11340,duration:13,careers:[],programs:["កម្មវិធី Nord Anglia","ភាសាអង់គ្លេស","STEAM"],rating:"4.5",desc:"សាលាអន្តរជាតិក្រោមបណ្ដាញ Nord Anglia Education ជាសកល ផ្ដល់ការអប់រំពីមត្តេយ្យដល់ថ្នាក់ទី១២ ជាមួយភាពជាដៃគូជាមួយសាកលវិទ្យាល័យ និងសាលាសិល្បៈអន្តរជាតិ។",facPrices:["$11,340–$29,016/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ Nord Anglia — Early Learning, Primary, Secondary"]},
+  {id:"aispp",website:"https://aispp.edu.kh",name:"Australian International School Phnom Penh (AISPP)",type:"k12",province:"phnom-penh",tuition:9600,duration:13,careers:[],programs:["IB (PYP/MYP/DP/CP)","កម្មវិធីអូស្ត្រាលី","ភាសាអង់គ្លេស"],rating:"4.4",desc:"សាលាអន្តរជាតិនៅភ្នំពេញ បង្រៀនកម្មវិធី IB ពេញលេញ (PYP, MYP, DP, CP) រួមផ្សំជាមួយកម្មវិធីសិក្សាអូស្ត្រាលី។",facPrices:["$9,600–$27,700/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ IB — Early Learning, Primary Years, Middle Years, Diploma Programme, Career-related Programme"]},
+  {id:"paragonisc",website:"https://paragonisc.edu.kh",name:"Paragon International School Cambodia",type:"k12",province:"phnom-penh",tuition:4100,duration:13,careers:[],programs:["កម្មវិធីអង់គ្លេស (Cambridge)","IGCSE","A-Levels"],rating:"4.3",desc:"សាលាអន្តរជាតិនៅភ្នំពេញ ស្ថាបនាឆ្នាំ ១៩៩៧ បង្រៀនកម្មវិធីអង់គ្លេស Cambridge (EYFS, Primary, IGCSE, A-Levels)។",facPrices:["$4,100–$12,900/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអង់គ្លេស Cambridge — Early Years (EYFS), Cambridge Primary, IGCSE, A-Levels"]},
+  {id:"issr",website:"https://issr.edu.kh",name:"International School of Siem Reap (ISSR)",type:"k12",province:"siem-reap",tuition:2090,duration:13,careers:[],programs:["កម្មវិធីអង់គ្លេស","Cambridge","IB Prep"],rating:"4.2",desc:"សាលាអន្តរជាតិតែមួយគត់នៅសៀមរាប ផ្ដល់ការអប់រំជាភាសាអង់គ្លេសពីមត្តេយ្យដល់ថ្នាក់ទី១២។",facPrices:["$2,090–$8,250/ឆ្នាំ (អាស្រ័យលើកម្រិតថ្នាក់)"],faculties:["កម្មវិធីអន្តរជាតិ — Nursery, Primary, Secondary (Cambridge-aligned)"]},
 ];
 
 /* ===== QUIZ QUESTIONS (3 phases, weighted across all 10 career sectors) ===== */
@@ -401,8 +406,8 @@ function renderSchools(){
 function gotoSchoolPage(p){schoolPage=p;renderSchools();window.scrollTo({top:0,behavior:"smooth"});}
 
 function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម","svay-rieng":"ស្វាយរៀង","banteay-meanchey":"បន្ទាយមានជ័យ","prey-veng":"ព្រៃវែង",province:"ខេត្ត"};return m[p]||p;}
-function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល"}[t]||t;}
-function typeBadgeClass(t){return {public:"badge-public",private:"badge-private",institute:"badge-institute",digital:"badge-digital"}[t]||"badge-public";}
+function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល",k12:"K-12"}[t]||t;}
+function typeBadgeClass(t){return {public:"badge-public",private:"badge-private",institute:"badge-institute",digital:"badge-digital",k12:"badge-k12"}[t]||"badge-public";}
 function tuitionLabel(s){return s.tuition>0?("$"+s.tuition+"/ឆ្នាំ"):"ឥតគិតថ្លៃ";}
 function careerLabel(c){return {technology:"បច្ចេកវិទ្យា",healthcare:"សុខភាព",design:"ការរចនា",business:"ពាណិជ្ជកម្ម",trades:"ជំនាញការ",education:"អប់រំ",tourism:"ទេសចរណ៍",agriculture:"កសិកម្ម",law:"ច្បាប់",media:"ប្រព័ន្ធផ្សព្វផ្សាយ",culinary:"ចម្អិនអាហារ"}[c]||c;}
 const logoMap={rupp:"RUPP",rule:"RULE",num:"NUM",uhs:"UHS",itc:"ITC",rua:"RUA",cadt:"CADT",npic:"NPIC",nie:"NIE",era:"ERA",ntti:"NTTI",nubb:"NUBB",sru:"SRU",mcu:"MCU",csku:"CSKU",pnca:"PNCA",aupp:"AUPP",camed:"CamEd",paragon:"PIU",puc:"PUC",up:"UP",norton:"NU",bbu:"BBU",biu:"BIU",uc:"UC",vanda:"VI",iu:"IU",limkokwing:"LKW",ab:"A&B",tux:"TUX",camscience:"CS",camtech:"CT",sabaicode:"SC",dichi:"DICHI",khmercoders:"KC",acac:"ACAC",pauldubrule:"PD",salabai:"SB",egbok:"EGBOK",acdemyhosp:"CHC",western:"WU"};
@@ -481,7 +486,7 @@ function openSchool(id){
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">schedule</i> រយៈពេល</span><span class="val">${s.duration} ឆ្នាំ</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">star</i> វាយតម្លៃ</span><span class="val">★ ${s.rating}</span></div>
         ${s.website?`<div class="info-row"><span class="lbl"><i class="material-symbols-outlined">language</i> គេហទំព័រ</span><span class="val"><a href="${s.website}" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline">មើលគេហទំព័រ ↗</a></span></div>`:""}
-        <div style="margin-top:16px"><div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:8px">អាជីពពាក់ព័ន្ធ</div><div class="detail-tags">${s.careers.map(c=>'<span class="tag">'+careerLabel(c)+'</span>').join("")}</div></div>
+        ${s.careers&&s.careers.length?`<div style="margin-top:16px"><div style="font-size:12px;color:var(--text-3);font-weight:600;margin-bottom:8px">អាជីពពាក់ព័ន្ធ</div><div class="detail-tags">${s.careers.map(c=>'<span class="tag">'+careerLabel(c)+'</span>').join("")}</div></div>`:""}
         <div class="detail-actions">
           <button class="btn btn-primary btn-sm" onclick="showView('cost')"><i class="material-symbols-outlined">calculate</i> ប៉ាន់ស្មានថ្លៃ</button>
           <button class="btn btn-ghost btn-sm" onclick="showView('scholarship')"><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍</button>
@@ -847,6 +852,7 @@ function clearPlan(){if(!confirm("សម្អាតផែនការទាំ�
 
 /* ===== ADMISSION REQUIREMENTS + TIMELINE ===== */
 function admissionInfo(type){
+  if(type==="k12")return["សំបុត្រកំណើត និងឯកសារបញ្ជាក់អាយុសិស្ស","សៀវភៅចាក់វ៉ាក់សាំង/កំណត់ត្រាសុខភាព","រូបថត ៤×៦ និងពាក្យសុំចូលរៀន","អាចមានតេស្តវាយតម្លៃកម្រិត សម្រាប់សិស្សផ្ទេរសាលា ឬចូលថ្នាក់ខ្ពស់","សំបុត្របញ្ជាក់ពីសាលាចាស់ (ករណីផ្ទេរ)"];
   const base=["សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ឬសមមូល","អត្តសញ្ញាណប័ណ្ណ ឬសំបុត្រកំណើត","រូបថត ៤×៦ និងពាក្យសុំចូលរៀន"];
   const map={
     public:["ពិន្ទុបាក់ឌុបល្អ (ខ្លះមានប្រឡងចូល)","អាចមានការប្រឡងចូល ឬសម្ភាសន៍","ឯកសារបញ្ជាក់លទ្ធផលសិក្សា"],
@@ -1291,7 +1297,7 @@ function initHero3D(){
   const cards=[
     {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៦១",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ៦៦",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
     {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];

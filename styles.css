@@ -428,6 +428,7 @@ select.filter-select:focus{border-color:var(--accent);}
 .badge-private{background:rgba(234,179,8,.1);color:#b45309;}
 .badge-institute{background:rgba(59,130,246,.1);color:#2563eb;}
 .badge-digital{background:var(--accent-tint);color:var(--accent);}
+.badge-k12{background:rgba(236,72,153,.1);color:#db2777;}
 .compare-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:var(--text-3);cursor:pointer;transition:color .15s,background .15s;}
 .compare-btn:hover{color:var(--accent);background:var(--accent-tint);}
 .compare-btn.on{color:var(--accent);}
