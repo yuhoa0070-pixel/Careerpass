@@ -111,24 +111,51 @@ trades, education, tourism, agriculture, law, media, culinary`. The
   light background) — open the PNG and actually look at it before
   committing.
 
-## Git workflow
+## Git workflow: feature branches, no direct pushes to `main`
 
-- **Pull before you start work**, not just before you push — this project
-  has had two contributors add schools independently in the same session
-  before, and while it merged cleanly (no id collisions), that was partly
-  luck. `git pull` first avoids surprises.
-- Commit messages should explain **why**, not just what — future
-  contributors (human or AI) rely on this to know if a number was verified
-  or estimated, and why an entry was excluded.
-- Never force-push to `main`.
-- If a push is rejected because remote has new commits: `git fetch`, check
-  `git log HEAD..origin/main` for what changed, and specifically check for
-  id collisions before merging:
-  ```
-  grep -oE 'id:"[a-z0-9]+"' app.js | sort > /tmp/local_ids.txt
-  git show origin/main:app.js | grep -oE 'id:"[a-z0-9]+"' | sort > /tmp/remote_ids.txt
-  comm -12 /tmp/local_ids.txt /tmp/remote_ids.txt   # ids in both — inspect these
-  ```
+`main` is protected — pushes straight to it are rejected by GitHub, for
+everyone, no exceptions. This project has had two contributors (each with
+their own AI assistant) push to `main` independently in the same session
+more than once. It happened to merge cleanly every time, but that was luck,
+not a plan. Branches + PRs make collisions visible *before* they land
+instead of after.
+
+1. **Start from an up-to-date `main`:**
+   ```
+   git checkout main && git pull
+   git checkout -b <type>/<short-description>
+   ```
+   Branch prefixes: `feat/` (new schools/careers/features), `fix/` (bug
+   fixes), `docs/` (docs only), `data/` (data-only enrichment passes).
+   Example: `feat/add-kampot-schools`.
+2. **Commit on the branch** as usual — see "Before every commit" above.
+   Commit messages should explain **why**, not just what — future
+   contributors (human or AI) rely on this to know if a number was verified
+   or estimated, and why an entry was excluded.
+3. **Push the branch and open a PR:**
+   ```
+   git push -u origin <branch-name>
+   gh pr create --fill
+   ```
+4. **Merging:** a PR needs to exist (protection requires it) but does not
+   need a separate approver — solo/pair-maintained repo, so self-merge
+   after a final read of your own diff is fine:
+   ```
+   gh pr merge --squash --delete-branch
+   ```
+   Squash keeps `main`'s history to one commit per logical change instead
+   of every intermediate "wip" commit.
+5. **If GitHub reports your branch is behind `main`** (someone else's PR
+   merged first): `git fetch && git merge origin/main` on your branch,
+   resolve normally, push again. Check for `schoolsData`/`careersList` id
+   collisions before merging if the other PR also touched data:
+   ```
+   grep -oE '"?id"?:"[a-z0-9]+"' app.js | sort -u > /tmp/local_ids.txt
+   git show origin/main:app.js | grep -oE '"?id"?:"[a-z0-9]+"' | sort -u > /tmp/remote_ids.txt
+   comm -12 /tmp/local_ids.txt /tmp/remote_ids.txt   # ids in both — inspect these
+   ```
+6. Never force-push a shared branch, and never use `git push --force` to
+   route around branch protection.
 
 ## If you're using an AI coding assistant
 
