@@ -1286,8 +1286,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
 
-  // Gen Z suggested questions with trendy youth vibe and smart preset answers
-  const GENZ_SUGGESTIONS=[
+  // Suggested questions with playful vibe and smart preset answers
+  const SUGGESTED_QUESTIONS=[
     {
       q:"រៀនអីបានលុយក្រាស់? 💸",
       pill:"💸 រៀនអីបានលុយក្រាស់?",
@@ -1335,6 +1335,54 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       reply:"ខ្ជិលរៀន ៤ ឆ្នាំមែនទេ? ចង់ឆាប់ចេញរកលុយទិញ iPhone ថ្មី? 📱😂 រៀន TVET / បរិញ្ញាបត្ររង ២ ឆ្នាំទៅ ចេញធ្វើការលឿន ជំនាញច្បាស់ ទីផ្សារស្វាគមន៍ភ្លាមៗ៖",
       careers:["electrician","carmechanic","graphic","barista","chef"],
       schools:["npic","ppi","ntti","acac"]
+    },
+    {
+      q:"ពូកែភាសា រៀនអីល្អ? 🗣️",
+      pill:"🗣️ ពូកែភាសា រៀនអី?",
+      keywords:["ភាសា","អង់គ្លេស","ចិន","បកប្រែ","language","english","chinese","ifl"],
+      reply:"ចេះភាសាច្រើនដូចកាន់លិខិតឆ្លងដែនសកលលោកចឹង! 🌍✈️ បើពូកែខាងភាសា និងទំនាក់ទំនង កុំឱ្យទេពកោសល្យនៅស្ងៀម រៀនផ្នែកការទូត, បកប្រែ, ព័ត៌មាន ឬទំនាក់ទំនងសាធារណៈ ទៅ ទាំងឡូយទាំងចំណូលខ្ពស់៖",
+      careers:["diplomat","journalist","pr","tourguide","englishteacher"],
+      schools:["rupp","puc","rule"]
+    },
+    {
+      q:"ចូលចិត្តគូររូប & Design 🎨",
+      pill:"🎨 ចូលចិត្តគូរ & Design",
+      keywords:["គូរ","គំនូរ","design","art","សិល្បៈ","គំនូរជីវចល","graphic"],
+      reply:"ថ្ងៃៗឃើញតែអង្គុយគូររូបលើតុសាលាមែនទេ? 🎨🤣 ប្រែក្លាយស្នាដៃគំនូរឱ្យទៅជាលុយវិញ! ទីផ្សារឥឡូវត្រូវការអ្នកឌីហ្សាញ (Designers), ស្ថាបត្យករ និង Animator ខ្លាំងណាស់ មើលអាជីពទាំងនេះទៅ៖",
+      careers:["graphic","uxui","animator","architect","videographer"],
+      schools:["rufa","setec","limkokwing"]
+    },
+    {
+      q:"ចង់ធ្វើពេទ្យ ត្រូវត្រៀមអីខ្លះ? 🩺",
+      pill:"🩺 ចង់ធ្វើពេទ្យ ត្រៀមអី?",
+      keywords:["ពេទ្យ","doctor","វេជ្ជបណ្ឌិត","គិលានុបដ្ឋាក","ធ្មេញ","ថ្នាំ","nurse","pharma"],
+      reply:"ចង់ពាក់អាវសជួយសង្គ្រោះជីវិតគេមែនទេ? 🩺❤️ គោរពទឹកចិត្តណាស់! តែត្រៀមចិត្តរៀនយ៉ាងតិច ៦–៨ ឆ្នាំណា៎ មិនមែនរឿងលេងសើចទេ! សាលាពេទ្យកំពូលៗនៅកម្ពុជាមាននៅទីនេះ៖",
+      careers:["doctor","dentist","pharma","nurse","physio"],
+      schools:["uhs","iu","up"]
+    },
+    {
+      q:"ចង់រកស៊ី ឬបង្កើត Startup 💼",
+      pill:"💼 ចង់រកស៊ី / Startup",
+      keywords:["រកស៊ី","business","startup","entrepreneur","ក្រុមហ៊ុន","ថៅកែ","លក់"],
+      reply:"ឈាមជ័រជាថៅកែគេមែន? 💼🔥 ចង់បង្កើត Brand ឬក្រុមហ៊ុនខ្លួនឯង ត្រូវតែចេះគ្រប់គ្រង, ទីផ្សារ និងហិរញ្ញវត្ថុឱ្យច្បាស់សិន កុំឱ្យរកស៊ីខាតដើម! មើលអាជីព និងសាលាធុរកិច្ចល្បីៗ៖",
+      careers:["entrepreneur","marketing","ecommerce","accountant","fintecheng"],
+      schools:["num","camed","rule","cadt"]
+    },
+    {
+      q:"ចង់ធ្វើមេធាវី ឬច្បាប់ ⚖️",
+      pill:"⚖️ ចង់ធ្វើមេធាវី/ច្បាប់",
+      keywords:["ច្បាប់","មេធាវី","ចៅក្រម","law","lawyer","justice","តុលាការ"],
+      reply:"ពូកែវែកញែករកខុសត្រូវ និងចូលចិត្តយុត្តិធម៌មែនទេ? ⚖️🧐 រៀនច្បាប់ទាមទារការទន្ទេញ និងវិភាគច្បាប់ច្បាស់លាស់ តែចេញមកមានកិត្តិយស និងទីផ្សារការងារទូលំទូលាយ! សាលាច្បាប់កំពូលៗមាននៅទីនេះ៖",
+      careers:["lawyer","legalcounsel","compliance","notary"],
+      schools:["rule","rupp","puc"]
+    },
+    {
+      q:"ចូលចិត្តធ្វើម្ហូប & កាហ្វេ ☕",
+      pill:"☕ ធ្វើម្ហូប & កាហ្វេ",
+      keywords:["កាហ្វេ","ម្ហូប","ចុងភៅ","chef","barista","cook","សណ្ឋាគារ","food"],
+      reply:"ចូលចិត្តរៀបចំម្ហូបឆ្ងាញ់ៗ ឬឆុងកាហ្វេក្លិនឈ្ងុយមែនទេ? 🍳☕ មិនបាច់ឈឺក្បាលជាមួយទ្រឹស្តីច្រើន រៀនជំនាញបដិសណ្ឋារកិច្ច និងធ្វើម្ហូបកម្រិតស្តង់ដារអន្តរជាតិ រកចំណូលបានខ្ពស់ទាំងក្នុង និងក្រៅប្រទេស៖",
+      careers:["chef","pastrychef","barista","hotel","fbmanager"],
+      schools:["acac","pauldubrule","salabai"]
     }
   ];
 
@@ -1361,7 +1409,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   ];
 
   const TROLL_FALLBACKS=[
-    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ Trey Visai មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរ Gen Z» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
+    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ Trey Visai មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរពេញនិយម» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
     "អានសំណួរហើយ ខ្ញុំចង់គាំង CPU ដែរ! 😵‍💫💻 សួរឈ្មោះសាលា ឬអាជីពឱ្យស្រួលបួលមក ចាំជួយប្រាប់!",
     "សំណួរនេះស៊ីអារម្មណ៍ពេក ខ្ញុំឆ្លើយអត់ត្រូវទេ! 🤣 សួររឿងប្រាក់ខែ សាលារៀន ឬអាជីពវិញមក ចាំឆ្លើយឱ្យចង់វិលមុខ!"
   ];
@@ -1390,11 +1438,11 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
   function renderSuggestions(){
     if(!sugTrack||sugTrack.children.length)return;
-    sugTrack.innerHTML=GENZ_SUGGESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
+    sugTrack.innerHTML=SUGGESTED_QUESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
     sugTrack.querySelectorAll(".mascot-sug-pill").forEach(pill=>{
       pill.addEventListener("click",()=>{
         const idx=parseInt(pill.dataset.i,10);
-        const item=GENZ_SUGGESTIONS[idx];
+        const item=SUGGESTED_QUESTIONS[idx];
         if(!item)return;
         askQuestion(item.q,item);
       });
@@ -1410,7 +1458,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     btn.setAttribute("aria-expanded","true");
     setPose("idle");
     if(!messages.children.length){
-      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរ Gen Z ខាងក្រោមនេះក៏បានដែរ 👇","bot");
+      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរពេញនិយមខាងក្រោមនេះក៏បានដែរ 👇","bot");
     }
     renderSuggestions();
     setTimeout(()=>input.focus(),200);
@@ -1458,7 +1506,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   }
 
   function respondTo(q,preset){
-    const matchPreset = preset || GENZ_SUGGESTIONS.find(s=>s.q===q||s.pill===q||s.keywords.some(k=>q.toLowerCase().includes(k)));
+    const matchPreset = preset || SUGGESTED_QUESTIONS.find(s=>s.q===q||s.pill===q||s.keywords.some(k=>q.toLowerCase().includes(k)));
     if(matchPreset){
       addMessage(matchPreset.reply,"bot");
       if(matchPreset.careers&&matchPreset.careers.length){
