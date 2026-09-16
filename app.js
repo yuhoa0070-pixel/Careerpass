@@ -1420,32 +1420,353 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   btn.addEventListener("mouseleave",()=>{if(!isOpen)setPose("idle");});
 
   function addMessage(text,from,linkLabel,onLink){
-    const el=document.createElement("div");
-    el.className="mascot-msg from-"+from;
-    el.textContent=text;
+    const row=document.createElement("div");
+    row.className="mascot-msg-row from-"+from;
+
+    if(from==="bot"){
+      const avatar=document.createElement("img");
+      avatar.src=POSES.idle;
+      avatar.className="mascot-msg-avatar";
+      avatar.alt="Trey Visai";
+      row.appendChild(avatar);
+    }
+
+    const bubbleWrap=document.createElement("div");
+    bubbleWrap.className="mascot-msg-bubble-wrap";
+
+    const msg=document.createElement("div");
+    msg.className="mascot-msg from-"+from;
+    msg.textContent=text;
+    bubbleWrap.appendChild(msg);
+
     if(linkLabel&&onLink){
       const a=document.createElement("button");
       a.type="button";
       a.className="mascot-msg-link";
       a.textContent=linkLabel;
       a.addEventListener("click",onLink);
-      el.appendChild(a);
+      bubbleWrap.appendChild(a);
     }
-    messages.appendChild(el);
+
+    row.appendChild(bubbleWrap);
+    messages.appendChild(row);
     messages.scrollTop=messages.scrollHeight;
-    return el;
+    return row;
+  }
+
+  function addCareerCard(career){
+    const row=document.createElement("div");
+    row.className="mascot-msg-row from-bot";
+
+    const avatar=document.createElement("img");
+    avatar.src=POSES.celebrate;
+    avatar.className="mascot-msg-avatar";
+    avatar.alt="Trey Visai";
+    row.appendChild(avatar);
+
+    const bubbleWrap=document.createElement("div");
+    bubbleWrap.className="mascot-msg-bubble-wrap";
+
+    const card=document.createElement("div");
+    card.className="mascot-card";
+
+    const top=document.createElement("div");
+    top.className="mascot-card-top";
+
+    const title=document.createElement("div");
+    title.className="mascot-card-title";
+    title.innerHTML=`<span>🎯</span> <span>${career.name}</span>`;
+
+    const badge=document.createElement("span");
+    badge.className="mascot-card-badge";
+    badge.textContent=career.growing?"🔥 កំពុងកើនឡើង":"⭐ ពេញនិយម";
+
+    top.appendChild(title);
+    top.appendChild(badge);
+    card.appendChild(top);
+
+    const meta=document.createElement("div");
+    meta.className="mascot-card-meta";
+    const schoolCount=career.schools?career.schools.length:0;
+    meta.innerHTML=`
+      <span class="mascot-card-meta-tag">💰 <strong>${career.salary||"សមរម្យ"}</strong>/ខែ</span>
+      ${schoolCount?`<span class="mascot-card-meta-tag">· 🏫 ${schoolCount} សាលា</span>`:""}
+    `;
+    card.appendChild(meta);
+
+    const btn=document.createElement("button");
+    btn.type="button";
+    btn.className="mascot-card-btn";
+    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> <span>→</span>`;
+    btn.addEventListener("click",()=>{
+      openCareer(career.id);
+      closePanel();
+    });
+    card.appendChild(btn);
+
+    bubbleWrap.appendChild(card);
+    row.appendChild(bubbleWrap);
+    messages.appendChild(row);
+    messages.scrollTop=messages.scrollHeight;
+    return row;
+  }
+
+  function addSchoolCard(school){
+    const row=document.createElement("div");
+    row.className="mascot-msg-row from-bot";
+
+    const avatar=document.createElement("img");
+    avatar.src=POSES.celebrate;
+    avatar.className="mascot-msg-avatar";
+    avatar.alt="Trey Visai";
+    row.appendChild(avatar);
+
+    const bubbleWrap=document.createElement("div");
+    bubbleWrap.className="mascot-msg-bubble-wrap";
+
+    const card=document.createElement("div");
+    card.className="mascot-card";
+
+    const top=document.createElement("div");
+    top.className="mascot-card-top";
+
+    const title=document.createElement("div");
+    title.className="mascot-card-title";
+    title.innerHTML=`<span>🏫</span> <span>${school.name}</span>`;
+
+    const badge=document.createElement("span");
+    badge.className="mascot-card-badge";
+    badge.textContent=typeLabel(school.type);
+
+    top.appendChild(title);
+    top.appendChild(badge);
+    card.appendChild(top);
+
+    const meta=document.createElement("div");
+    meta.className="mascot-card-meta";
+    meta.innerHTML=`
+      <span class="mascot-card-meta-tag">📍 ${provinceLabel(school.province)}</span>
+      <span class="mascot-card-meta-tag">· 💵 ${tuitionLabel(school)}</span>
+    `;
+    card.appendChild(meta);
+
+    const btn=document.createElement("button");
+    btn.type="button";
+    btn.className="mascot-card-btn";
+    btn.innerHTML=`<span>មើលព័ត៌មានលម្អិត</span> <span>→</span>`;
+    btn.addEventListener("click",()=>{
+      openSchool(school.id);
+      closePanel();
+    });
+    card.appendChild(btn);
+
+    bubbleWrap.appendChild(card);
+    row.appendChild(bubbleWrap);
+    messages.appendChild(row);
+    messages.scrollTop=messages.scrollHeight;
+    return row;
+  }
+
+  let typingEl=null;
+  function showTyping(){
+    if(typingEl)return;
+    const row=document.createElement("div");
+    row.className="mascot-msg-row from-bot";
+    const avatar=document.createElement("img");
+    avatar.src=POSES.thinking;
+    avatar.className="mascot-msg-avatar";
+    avatar.alt="Trey Visai";
+    row.appendChild(avatar);
+
+    const bubbleWrap=document.createElement("div");
+    bubbleWrap.className="mascot-msg-bubble-wrap";
+
+    const bubble=document.createElement("div");
+    bubble.className="mascot-typing-bubble";
+    bubble.innerHTML='<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    bubbleWrap.appendChild(bubble);
+
+    row.appendChild(bubbleWrap);
+    messages.appendChild(row);
+    messages.scrollTop=messages.scrollHeight;
+    typingEl=row;
+  }
+
+  function hideTyping(){
+    if(typingEl){
+      typingEl.remove();
+      typingEl=null;
+    }
+  }
+
+  // Mini Games
+  const ROULETTE_FORTUNES=[
+    "ថ្ងៃនេះរាសីខ្ពស់ណាស់ Bro! ទេវតាទស្សន៍ទាយថា អាជីពនេះនឹងនាំលាភសំណាង និងប្រាក់ចំណូលក្រាស់ជូនអ្នក! 🌟",
+    "មើលទៅមុខមាត់សមជាអ្នកអាជីពនេះមែនទែន! មិនមែនចៃដន្យទេ នេះជាវាសនា! 🔮✨",
+    "អាជីពនេះឡូយខ្លាំង! បើខំរៀនជំនាញនេះពីឥឡូវ ធានាថានាពេលអនាគតដើរទៅណាគេស្គាល់គ្រប់គ្នា! 😎💼",
+    "ទាយត្រូវអត់? កុំប្រាប់ណា៎ថាធ្លាប់លួចស្រមើស្រមៃចង់ធ្វើអាជីពនេះពីមុនមក? 😜🎯",
+    "ថ្ងៃនេះរាសីការងារកំពុងរះ! បើចាប់អារម្មណ៍ កុំភ្លេចចូលមើលព័ត៌មានលម្អិតសាលាណា៎! 🚀"
+  ];
+
+  function playCareerRoulette(){
+    showTyping();
+    setPose("thinking");
+    setTimeout(()=>{
+      hideTyping();
+      const randomJob=careersList[Math.floor(Math.random()*careersList.length)];
+      const randomFortune=ROULETTE_FORTUNES[Math.floor(Math.random()*ROULETTE_FORTUNES.length)];
+      addMessage(`🎰 កង់សំណាងបានវិលឈប់ហើយ! 🎉\n${randomFortune}\n\n👉 អាជីពសំណាងថ្ងៃនេះគឺ៖ «${randomJob.name}»`,"bot");
+      addCareerCard(randomJob);
+      setPose("celebrate");
+      celebrateTimer=setTimeout(()=>setPose("idle"),2000);
+
+      const actionRow=document.createElement("div");
+      actionRow.className="mascot-msg-row from-bot";
+      const bubbleWrap=document.createElement("div");
+      bubbleWrap.className="mascot-msg-bubble-wrap";
+      const spinBtn=document.createElement("button");
+      spinBtn.type="button";
+      spinBtn.className="mascot-game-action-btn";
+      spinBtn.innerHTML=`<span>🔄</span> <span>បង្វិលចាប់ឆ្នោតម្តងទៀត</span>`;
+      spinBtn.addEventListener("click",()=>playCareerRoulette());
+      bubbleWrap.appendChild(spinBtn);
+      actionRow.appendChild(bubbleWrap);
+      messages.appendChild(actionRow);
+      messages.scrollTop=messages.scrollHeight;
+    },600);
+  }
+
+  function playSalaryQuiz(){
+    showTyping();
+    setPose("thinking");
+    setTimeout(()=>{
+      hideTyping();
+      const eligible=careersList.filter(c=>c.salary&&c.salary.includes("$"));
+      const targetJob=eligible[Math.floor(Math.random()*eligible.length)];
+      
+      const nums=targetJob.salary.match(/\d[\d,]*/g)||[300,800];
+      const realMin=parseInt(nums[0].replace(/,/g,""),10);
+      const realMax=nums[1]?parseInt(nums[1].replace(/,/g,""),10):realMin*2;
+      
+      const lowerMin=Math.max(120,Math.round((realMin*0.5)/50)*50);
+      const lowerMax=Math.max(250,Math.round((realMax*0.55)/50)*50);
+      const distractor1=`$${lowerMin}–$${lowerMax}`;
+
+      const higherMin=Math.round((realMin*1.8)/50)*50;
+      const higherMax=Math.round((realMax*2.2)/50)*50;
+      const distractor2=`$${higherMin}–$${higherMax}`;
+
+      const choices=[
+        {text:targetJob.salary,correct:true},
+        {text:distractor1,correct:false},
+        {text:distractor2,correct:false}
+      ].sort(()=>Math.random()-0.5);
+
+      const row=document.createElement("div");
+      row.className="mascot-msg-row from-bot";
+      const avatar=document.createElement("img");
+      avatar.src=POSES.thinking;
+      avatar.className="mascot-msg-avatar";
+      avatar.alt="Trey Visai";
+      row.appendChild(avatar);
+
+      const bubbleWrap=document.createElement("div");
+      bubbleWrap.className="mascot-msg-bubble-wrap";
+
+      const box=document.createElement("div");
+      box.className="mascot-game-box";
+
+      const qTitle=document.createElement("div");
+      qTitle.className="mascot-game-q";
+      qTitle.innerHTML=`💸 <strong>ល្បែងទាយប្រាក់ខែ៖</strong><br>តើអាជីព «<strong>${targetJob.name}</strong>» នៅកម្ពុជា អាចរកចំណូលជាមធ្យមបានប្រហែលប៉ុន្មានក្នុងមួយខែ?`;
+      box.appendChild(qTitle);
+
+      const choicesWrap=document.createElement("div");
+      choicesWrap.className="mascot-game-choices";
+
+      choices.forEach(c=>{
+        const cBtn=document.createElement("button");
+        cBtn.type="button";
+        cBtn.className="mascot-choice-btn";
+        cBtn.textContent=c.text;
+        cBtn.addEventListener("click",()=>{
+          choicesWrap.querySelectorAll(".mascot-choice-btn").forEach(b=>b.disabled=true);
+          if(c.correct){
+            cBtn.classList.add("is-correct");
+            setPose("celebrate");
+            addMessage(`🎉 ត្រឹមត្រូវបេះបិទ! ភ្នែកមុតមែនទែន Bro/Sis! 🤩\nប្រាក់ខែអាជីព «${targetJob.name}» គឺ ${targetJob.salary}/ខែ! មើលព័ត៌មានលម្អិតខាងក្រោមនេះ៖`,"bot");
+          } else {
+            cBtn.classList.add("is-wrong");
+            choicesWrap.querySelectorAll(".mascot-choice-btn").forEach(b=>{
+              if(b.textContent===targetJob.salary)b.classList.add("is-correct");
+            });
+            setPose("wave");
+            addMessage(`😜 ខុសបន្តិចហើយ! កុំទាន់អស់សង្ឃឹម! 😂\nប្រាក់ខែជាក់ស្តែងនៃអាជីព «${targetJob.name}» គឺ ${targetJob.salary}/ខែ! មើលព័ត៌មានលម្អិតខាងក្រោម៖`,"bot");
+          }
+          addCareerCard(targetJob);
+
+          const retryRow=document.createElement("div");
+          retryRow.className="mascot-msg-row from-bot";
+          const retryWrap=document.createElement("div");
+          retryWrap.className="mascot-msg-bubble-wrap";
+          const retryBtn=document.createElement("button");
+          retryBtn.type="button";
+          retryBtn.className="mascot-game-action-btn";
+          retryBtn.innerHTML=`<span>🎮</span> <span>ទាយអាជីពមួយទៀត</span>`;
+          retryBtn.addEventListener("click",()=>playSalaryQuiz());
+          retryWrap.appendChild(retryBtn);
+          retryRow.appendChild(retryWrap);
+          messages.appendChild(retryRow);
+          messages.scrollTop=messages.scrollHeight;
+        });
+        choicesWrap.appendChild(cBtn);
+      });
+
+      box.appendChild(choicesWrap);
+      bubbleWrap.appendChild(box);
+      row.appendChild(bubbleWrap);
+      messages.appendChild(row);
+      messages.scrollTop=messages.scrollHeight;
+    },600);
   }
 
   function renderSuggestions(){
     if(!sugTrack||sugTrack.children.length)return;
-    sugTrack.innerHTML=SUGGESTED_QUESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
+    const gamePills = `
+      <button type="button" class="mascot-sug-pill game-pill" data-game="roulette">🎰 ចាប់ឆ្នោតអាជីព</button>
+      <button type="button" class="mascot-sug-pill game-pill" data-game="salary">💸 ល្បែងទាយប្រាក់ខែ</button>
+    `;
+    const questionPills = SUGGESTED_QUESTIONS.map((s,i)=>`<button type="button" class="mascot-sug-pill" data-i="${i}">${s.pill}</button>`).join("");
+    sugTrack.innerHTML = gamePills + questionPills;
+
     sugTrack.querySelectorAll(".mascot-sug-pill").forEach(pill=>{
       pill.addEventListener("click",()=>{
+        const game=pill.dataset.game;
+        if(game==="roulette"){
+          addMessage("🎰 ចាប់ឆ្នោតអាជីពសំណាង","user");
+          playCareerRoulette();
+          return;
+        }
+        if(game==="salary"){
+          addMessage("💸 ល្បែងទាយប្រាក់ខែ","user");
+          playSalaryQuiz();
+          return;
+        }
         const idx=parseInt(pill.dataset.i,10);
         const item=SUGGESTED_QUESTIONS[idx];
         if(!item)return;
         askQuestion(item.q,item);
       });
+    });
+  }
+
+  const resetBtn=document.getElementById("mascot-chat-reset");
+  if(resetBtn){
+    resetBtn.addEventListener("click",()=>{
+      messages.innerHTML="";
+      setPose("wave");
+      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរពេញនិយម ឬលេងហ្គេមខាងក្រោមនេះក៏បានដែរ 👇","bot");
+      setTimeout(()=>setPose("idle"),1500);
     });
   }
 
@@ -1458,7 +1779,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     btn.setAttribute("aria-expanded","true");
     setPose("idle");
     if(!messages.children.length){
-      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរពេញនិយមខាងក្រោមនេះក៏បានដែរ 👇","bot");
+      addMessage("សួស្តី Bro/Sis! 🤖✨ មកសួររឿងសាលា ឬមកលួច Troll ខ្ញុំ? 😂 ចង់សួរអីសួរមក ចាំឆ្លើយឱ្យភ្ញាក់ផ្អើល! ចុចសំណួរពេញនិយម ឬលេងហ្គេមខាងក្រោមនេះក៏បានដែរ 👇","bot");
     }
     renderSuggestions();
     setTimeout(()=>input.focus(),200);
@@ -1510,15 +1831,15 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     if(matchPreset){
       addMessage(matchPreset.reply,"bot");
       if(matchPreset.careers&&matchPreset.careers.length){
-        matchPreset.careers.slice(0,4).forEach(cid=>{
+        matchPreset.careers.slice(0,3).forEach(cid=>{
           const j=careersList.find(x=>x.id===cid);
-          if(j)addMessage(`🎯 អាជីព៖ ${j.name} (${j.salary||""}/ខែ)`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();});
+          if(j)addCareerCard(j);
         });
       }
       if(matchPreset.schools&&matchPreset.schools.length){
         matchPreset.schools.slice(0,3).forEach(sid=>{
           const s=schoolsData.find(x=>x.id===sid);
-          if(s)addMessage(`🏫 សាលា៖ ${s.name} (${provinceLabel(s.province)} · ${tuitionLabel(s)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();});
+          if(s)addSchoolCard(s);
         });
       }
       return;
@@ -1530,13 +1851,13 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       if(trollMatch.careers&&trollMatch.careers.length){
         trollMatch.careers.slice(0,3).forEach(cid=>{
           const j=careersList.find(x=>x.id===cid);
-          if(j)addMessage(`🎯 អាជីព៖ ${j.name} (${j.salary||""}/ខែ)`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();});
+          if(j)addCareerCard(j);
         });
       }
       if(trollMatch.schools&&trollMatch.schools.length){
         trollMatch.schools.slice(0,2).forEach(sid=>{
           const s=schoolsData.find(x=>x.id===sid);
-          if(s)addMessage(`🏫 សាលា៖ ${s.name} (${provinceLabel(s.province)} · ${tuitionLabel(s)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();});
+          if(s)addSchoolCard(s);
         });
       }
       return;
@@ -1550,8 +1871,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       return;
     }
     addMessage("រកឃើញហើយ! កុំថាខ្ញុំអត់ប្រាប់ណា៎ 🤩👇","bot");
-    schools.forEach(s=>addMessage(`🏫 សាលា៖ ${s.name} (${typeLabel(s.type)}, ${provinceLabel(s.province)})`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openSchool(s.id);closePanel();}));
-    careers.forEach(j=>addMessage(`🎯 អាជីព៖ ${j.name} — ${j.salary||""}/ខែ`,"bot","មើលព័ត៌មានលម្អិត →",()=>{openCareer(j.id);closePanel();}));
+    schools.forEach(s=>addSchoolCard(s));
+    careers.forEach(j=>addCareerCard(j));
   }
 
   function askQuestion(q,preset){
@@ -1561,15 +1882,40 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     input.disabled=true;
     sendBtn.disabled=true;
     setPose("thinking");
+    showTyping();
     clearTimeout(celebrateTimer);
+
+    const lowerQ=q.toLowerCase();
+    if(lowerQ.includes("ចាប់ឆ្នោត")||lowerQ.includes("កង់សំណាង")||lowerQ.includes("roulette")){
+      setTimeout(()=>{
+        hideTyping();
+        playCareerRoulette();
+        input.disabled=false;
+        sendBtn.disabled=false;
+        input.focus();
+      },500);
+      return;
+    }
+    if(lowerQ.includes("ទាយប្រាក់ខែ")||lowerQ.includes("ល្បែងប្រាក់ខែ")||lowerQ.includes("guess salary")){
+      setTimeout(()=>{
+        hideTyping();
+        playSalaryQuiz();
+        input.disabled=false;
+        sendBtn.disabled=false;
+        input.focus();
+      },500);
+      return;
+    }
+
     setTimeout(()=>{
+      hideTyping();
       respondTo(q,preset);
       input.disabled=false;
       sendBtn.disabled=false;
       input.focus();
       setPose("celebrate");
       celebrateTimer=setTimeout(()=>setPose("idle"),1600);
-    },450);
+    },550);
   }
 
   form.addEventListener("submit",e=>{
