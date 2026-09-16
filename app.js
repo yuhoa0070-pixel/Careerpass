@@ -1344,7 +1344,7 @@ function initHero3D(){
   const cards=[
     {view:"quiz",   title:"តេស្តអាជីព",   sub1:"ស្គាល់ខ្លួនឯង",     sub2:"ចំណូលចិត្ត និងជំនាញ", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១០១",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១១២",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
     {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
