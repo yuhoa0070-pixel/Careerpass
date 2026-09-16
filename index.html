@@ -700,6 +700,23 @@
 
 </div><!-- /app-main -->
 
+<div id="mascot-widget" class="mascot-widget">
+  <div id="mascot-chat" class="mascot-chat" role="dialog" aria-modal="false" aria-label="ជំនួយការគេហទំព័រ Trey Visai" hidden>
+    <div class="mascot-chat-header">
+      <span class="mascot-chat-title">ជំនួយការ Trey Visai</span>
+      <button type="button" id="mascot-chat-close" class="mascot-chat-close" aria-label="បិទបង្អួចជជែក">&times;</button>
+    </div>
+    <div id="mascot-chat-messages" class="mascot-chat-messages" aria-live="polite"></div>
+    <form id="mascot-chat-form" class="mascot-chat-form">
+      <input type="text" id="mascot-chat-input" class="mascot-chat-input" placeholder="សួរអំពីសាលា ឬអាជីព..." autocomplete="off" maxlength="200">
+      <button type="submit" class="mascot-chat-send" aria-label="ផ្ញើសារ">➤</button>
+    </form>
+  </div>
+  <button type="button" id="mascot-btn" class="mascot-btn" aria-haspopup="dialog" aria-expanded="false" aria-label="បើក/បិទជំនួយការជជែក">
+    <img id="mascot-img" src="public/mascot/idle.png" alt="" class="mascot-img" width="64" height="64">
+  </button>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

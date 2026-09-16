@@ -1440,3 +1440,116 @@ initHomeFeatured();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* ===== Mascot widget ===== */
+(function(){
+  const btn=document.getElementById("mascot-btn");
+  const img=document.getElementById("mascot-img");
+  const panel=document.getElementById("mascot-chat");
+  if(!btn||!img||!panel)return;
+
+  const closeBtn=document.getElementById("mascot-chat-close");
+  const form=document.getElementById("mascot-chat-form");
+  const input=document.getElementById("mascot-chat-input");
+  const sendBtn=form.querySelector(".mascot-chat-send");
+  const messages=document.getElementById("mascot-chat-messages");
+  const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
+  let isOpen=false,closeTimer=null,celebrateTimer=null;
+
+  function setPose(name){img.src=POSES[name]||POSES.idle;}
+
+  btn.addEventListener("mouseenter",()=>{if(!isOpen)setPose("wave");});
+  btn.addEventListener("mouseleave",()=>{if(!isOpen)setPose("idle");});
+
+  function addMessage(text,from,linkLabel,onLink){
+    const el=document.createElement("div");
+    el.className="mascot-msg from-"+from;
+    el.textContent=text;
+    if(linkLabel&&onLink){
+      const a=document.createElement("button");
+      a.type="button";
+      a.className="mascot-msg-link";
+      a.textContent=linkLabel;
+      a.addEventListener("click",onLink);
+      el.appendChild(a);
+    }
+    messages.appendChild(el);
+    messages.scrollTop=messages.scrollHeight;
+    return el;
+  }
+
+  function openPanel(){
+    isOpen=true;
+    clearTimeout(closeTimer);
+    panel.hidden=false;
+    requestAnimationFrame(()=>panel.classList.add("is-open"));
+    btn.setAttribute("aria-expanded","true");
+    setPose("idle");
+    if(!messages.children.length){
+      addMessage("សួស្តី! សួរខ្ញុំអំពីសាលារៀន ឬអាជីពដែលចង់ដឹងបាន។","bot");
+    }
+    setTimeout(()=>input.focus(),200);
+  }
+  function closePanel(){
+    isOpen=false;
+    panel.classList.remove("is-open");
+    btn.setAttribute("aria-expanded","false");
+    setPose("idle");
+    clearTimeout(closeTimer);
+    closeTimer=setTimeout(()=>{panel.hidden=true;},220);
+  }
+
+  btn.addEventListener("click",()=>{isOpen?closePanel():openPanel();});
+  closeBtn.addEventListener("click",closePanel);
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&isOpen)closePanel();});
+
+  function tokenize(s){return (s||"").toLowerCase().split(/[\s,·]+/).filter(Boolean);}
+
+  function findSchoolMatches(q){
+    const terms=tokenize(q);
+    if(!terms.length)return [];
+    return schoolsData.filter(s=>{
+      const hay=[s.name,s.desc,s.province,typeLabel(s.type)].concat(s.programs||[],(s.careers||[]).map(careerLabel)).join(" ").toLowerCase();
+      return terms.some(t=>t.length>=2&&hay.includes(t));
+    }).slice(0,3);
+  }
+  function findCareerMatches(q){
+    const terms=tokenize(q);
+    if(!terms.length)return [];
+    return careersList.filter(j=>{
+      const hay=[j.name,j.desc].concat(j.skills||[]).join(" ").toLowerCase();
+      return terms.some(t=>t.length>=2&&hay.includes(t));
+    }).slice(0,3);
+  }
+
+  function respondTo(q){
+    const schools=findSchoolMatches(q);
+    const careers=findCareerMatches(q);
+    if(!schools.length&&!careers.length){
+      addMessage("សុំទោស ខ្ញុំរកមិនឃើញលទ្ធផលត្រូវគ្នាទេ។ សាកល្បងសួរអំពីឈ្មោះសាលា ខេត្ត ឬអាជីព (ឧ. \"វិស្វកម្ម\", \"ភ្នំពេញ\") មើល។","bot");
+      return;
+    }
+    schools.forEach(s=>addMessage(`សាលា៖ ${s.name} (${typeLabel(s.type)}, ${provinceLabel(s.province)})`,"bot","មើលព័ត៌មានលម្អិត",()=>{openSchool(s.id);closePanel();}));
+    careers.forEach(j=>addMessage(`អាជីព៖ ${j.name} — ${j.salary||""}/ខែ`,"bot","មើលព័ត៌មានលម្អិត",()=>{openCareer(j.id);closePanel();}));
+  }
+
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const q=input.value.trim();
+    if(!q)return;
+    addMessage(q,"user");
+    input.value="";
+    input.disabled=true;
+    sendBtn.disabled=true;
+    setPose("thinking");
+    clearTimeout(celebrateTimer);
+    setTimeout(()=>{
+      respondTo(q);
+      input.disabled=false;
+      sendBtn.disabled=false;
+      input.focus();
+      setPose("celebrate");
+      celebrateTimer=setTimeout(()=>setPose("idle"),1600);
+    },550);
+  });
+})();
