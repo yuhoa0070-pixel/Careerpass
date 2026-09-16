@@ -644,9 +644,18 @@
   <div id="mascot-chat" class="mascot-chat" role="dialog" aria-modal="false" aria-label="ជំនួយការគេហទំព័រ Trey Visai" hidden>
     <div class="mascot-chat-header">
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="mascot-chat-title">ជំនួយការ Trey Visai</span>
+        <img src="public/mascot/idle.png" alt="" class="mascot-header-avatar" width="28" height="28">
+        <div>
+          <div class="mascot-chat-title">ជំនួយការ Trey Visai</div>
+          <div class="mascot-chat-status"><span class="mascot-online-dot"></span> កំពុងដំណើរការ</div>
+        </div>
       </div>
-      <button type="button" id="mascot-chat-close" class="mascot-chat-close" aria-label="បិទបង្អួចជជែក">&times;</button>
+      <div style="display:flex;align-items:center;gap:4px">
+        <button type="button" id="mascot-chat-reset" class="mascot-chat-header-btn" title="ចាប់ផ្តើមសារថ្មី" aria-label="ចាប់ផ្តើមសារថ្មី">
+          <i class="material-symbols-outlined" style="font-size:18px">refresh</i>
+        </button>
+        <button type="button" id="mascot-chat-close" class="mascot-chat-close" aria-label="បិទបង្អួចជជែក">&times;</button>
+      </div>
     </div>
     <div id="mascot-chat-messages" class="mascot-chat-messages" aria-live="polite"></div>
     <div id="mascot-suggestions" class="mascot-suggestions" aria-label="សំណួរណែនាំ">

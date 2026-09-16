@@ -807,14 +807,60 @@ select.filter-select:focus{border-color:var(--accent);}
 .mascot-chat{position:fixed;right:var(--mgutter);bottom:calc(var(--mgutter) + var(--mbtn) + 10px);width:350px;max-width:calc(100vw - 2*var(--mgutter));height:500px;max-height:min(74vh,600px);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;overflow:hidden;z-index:2001;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease);}
 .mascot-chat.is-open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
 .mascot-backdrop{display:none;}
-.mascot-chat-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--accent);color:#fff;flex-shrink:0;}
-.mascot-chat-title{font-size:14px;font-weight:700;}
-.mascot-chat-close{background:none;border:none;color:#fff;font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;opacity:.9;}
-.mascot-chat-close:hover{opacity:1;}
-.mascot-chat-messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
-.mascot-msg{max-width:90%;padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.6;white-space:pre-wrap;}
+.mascot-chat-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--accent);color:#fff;flex-shrink:0;}
+.mascot-header-avatar{width:28px;height:28px;border-radius:50%;object-fit:contain;background:rgba(255,255,255,.2);padding:2px;flex-shrink:0;}
+.mascot-chat-title{font-size:13.5px;font-weight:700;line-height:1.2;}
+.mascot-chat-status{font-size:10.5px;opacity:.88;display:inline-flex;align-items:center;gap:4px;margin-top:1px;}
+.mascot-online-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;display:inline-block;}
+.mascot-chat-header-btn{background:none;border:none;color:#fff;cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;opacity:.88;transition:all .15s var(--ease);}
+.mascot-chat-header-btn:hover{opacity:1;background:rgba(255,255,255,.18);}
+.mascot-chat-close{background:none;border:none;color:#fff;font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;opacity:.88;border-radius:6px;transition:all .15s var(--ease);}
+.mascot-chat-close:hover{opacity:1;background:rgba(255,255,255,.18);}
+.mascot-chat-messages{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px;}
+
+/* Message row and avatars */
+.mascot-msg-row{display:flex;gap:8px;align-items:flex-end;width:100%;animation:msg-slide-up .2s var(--ease);}
+.mascot-msg-row.from-bot{justify-content:flex-start;}
+.mascot-msg-row.from-user{justify-content:flex-end;}
+.mascot-msg-avatar{width:28px;height:28px;border-radius:50%;background:var(--card);border:1px solid var(--border);flex-shrink:0;object-fit:contain;padding:2px;box-shadow:var(--shadow-sm);}
+.mascot-msg-bubble-wrap{display:flex;flex-direction:column;gap:4px;max-width:86%;}
+.mascot-msg-row.from-user .mascot-msg-bubble-wrap{align-items:flex-end;max-width:88%;}
+
+.mascot-msg{padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
 .mascot-msg.from-bot{align-self:flex-start;background:var(--accent-tint);color:var(--text);border-bottom-left-radius:4px;}
 .mascot-msg.from-user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px;}
+
+/* Typing indicator */
+.mascot-typing-bubble{display:inline-flex;align-items:center;gap:4px;padding:9px 13px;background:var(--accent-tint);border-radius:14px;border-bottom-left-radius:4px;}
+.mascot-typing-bubble .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.6;animation:typing-bounce 1.2s infinite ease-in-out;}
+.mascot-typing-bubble .dot:nth-child(2){animation-delay:.2s;}
+.mascot-typing-bubble .dot:nth-child(3){animation-delay:.4s;}
+@keyframes typing-bounce{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-5px);opacity:1;}}
+@keyframes msg-slide-up{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* Rich mini-cards in chat */
+.mascot-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 11px;margin-top:4px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:5px;transition:all .15s var(--ease);}
+.mascot-card:hover{border-color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.mascot-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px;}
+.mascot-card-title{font-size:12px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:5px;line-height:1.3;}
+.mascot-card-badge{font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--accent-tint);color:var(--accent);white-space:nowrap;}
+.mascot-card-meta{font-size:11px;color:var(--text-2);display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.mascot-card-meta-tag{display:inline-flex;align-items:center;gap:3px;}
+.mascot-card-btn{margin-top:2px;padding:5px 9px;border-radius:6px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--bg);color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;transition:all .15s var(--ease);align-self:flex-start;}
+.mascot-card-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* Mini games UI */
+.mascot-sug-pill.game-pill{border-color:var(--accent);background:var(--accent-tint);color:var(--accent);font-weight:700;}
+.mascot-game-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-top:4px;display:flex;flex-direction:column;gap:7px;}
+.mascot-game-q{font-size:12.5px;font-weight:700;color:var(--text);line-height:1.4;}
+.mascot-game-choices{display:flex;flex-direction:column;gap:5px;}
+.mascot-choice-btn{padding:7px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-size:11.5px;font-weight:600;color:var(--text);text-align:left;cursor:pointer;transition:all .15s var(--ease);display:flex;align-items:center;justify-content:space-between;}
+.mascot-choice-btn:hover:not(:disabled){border-color:var(--accent);background:var(--accent-tint);color:var(--accent);transform:translateX(2px);}
+.mascot-choice-btn.is-correct{border-color:#10b981;background:rgba(16,185,129,.12);color:#059669;font-weight:700;}
+.mascot-choice-btn.is-wrong{border-color:#ef4444;background:rgba(239,68,68,.12);color:#dc2626;text-decoration:line-through;}
+.mascot-game-action-btn{margin-top:4px;padding:6px 10px;border-radius:6px;font-size:11.5px;font-weight:600;border:1px dashed var(--accent);background:var(--accent-tint);color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:4px;align-self:flex-start;}
+.mascot-game-action-btn:hover{background:var(--accent);color:#fff;}
+
 .mascot-msg-link{display:block;margin-top:6px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;text-align:left;}
 .mascot-msg.from-bot .mascot-msg-link{color:var(--accent-h);}
 
