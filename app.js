@@ -131,16 +131,16 @@ hamburger.addEventListener("click",toggleSidebar);
 
 /* ===== NAVIGATION ===== */
 const VIEW_TITLES = {
-  home: "treyvisai | ត្រីវិស័យ — ស្វែងរកអាជីព & សាកលវិទ្យាល័យ",
-  schools: "សាលារៀន & សាកលវិទ្យាល័យ ១១៦+ — treyvisai",
-  careers: "បញ្ជីអាជីព និងការងារ — treyvisai",
-  cost: "គណនាថ្លៃសិក្សា — treyvisai",
-  quiz: "តេស្តស្វែងរកអាជីព — treyvisai",
-  scholarship: "អាហារូបករណ៍រដ្ឋ — treyvisai",
-  compare: "ប្រៀបធៀបសាលារៀន — treyvisai",
-  plan: "ផែនការសិក្សាផ្ទាល់ខ្លួន — treyvisai",
-  facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ — treyvisai",
-  terms: "លក្ខខណ្ឌប្រើប្រាស់ — treyvisai"
+  home: "TreyVisai",
+  schools: "សាលារៀន & សាកលវិទ្យាល័យ ១១៦+ — TreyVisai",
+  careers: "បញ្ជីអាជីព និងការងារ — TreyVisai",
+  cost: "គណនាថ្លៃសិក្សា — TreyVisai",
+  quiz: "តេស្តស្វែងរកអាជីព — TreyVisai",
+  scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
+  compare: "ប្រៀបធៀបសាលារៀន — TreyVisai",
+  plan: "ផែនការសិក្សាផ្ទាល់ខ្លួន — TreyVisai",
+  facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ — TreyVisai",
+  terms: "លក្ខខណ្ឌប្រើប្រាស់ — TreyVisai"
 };
 
 function showView(v){
@@ -435,7 +435,7 @@ function openSchool(id){
       </div>
     </div>`;
   showView("school-detail");
-  document.title = `${s.name} — មហាវិទ្យាល័យ & ថ្លៃសិក្សា | treyvisai`;
+  document.title = `${s.name} — មហាវិទ្យាល័យ & ថ្លៃសិក្សា | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
 }
 
@@ -763,7 +763,7 @@ function openCareer(id){
       </div>
     </div>`;
   showView("career-detail");
-  document.title = `${j.name} — ប្រាក់ខែ & ជំនាញ | treyvisai`;
+  document.title = `${j.name} — ប្រាក់ខែ & ជំនាញ | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
@@ -946,7 +946,7 @@ function costData(){
 function costShareText(){
   const d=costData();
   const bar="━━━━━━━━━━━━━";
-  const L=["🧾 វិក្កយបត្រថ្លៃសិក្សា — treyvisai",bar];
+  const L=["🧾 វិក្កយបត្រថ្លៃសិក្សា — TreyVisai",bar];
   if(d.sc)L.push("🏫 "+d.sc);
   if(d.dur)L.push("🎓 "+d.dur);
   L.push(bar);
@@ -959,7 +959,7 @@ function costShareText(){
   L.push("💰 សរុប៖ "+(d.total||"$0"));
   if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
   L.push(bar);
-  L.push("🔗 គណនាដោយខ្លួនឯងនៅ treyvisai");
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai");
   return L.join("\n");
 }
 function shareCostTo(p){
@@ -970,7 +970,7 @@ function shareCostTo(p){
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — treyvisai",text:costShareText(),url:shareUrl}).catch(()=>{});}else shareCostTo("copy");
+    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — TreyVisai",text:costShareText(),url:shareUrl}).catch(()=>{});}else shareCostTo("copy");
     return;
   }
   const url=encodeURIComponent(shareUrl);
@@ -993,7 +993,7 @@ function decodePlanHash(b64){
   try{return JSON.parse(decodeURIComponent(escape(atob(b64))));}catch(e){return null;}
 }
 function planShareText(){
-  const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — treyvisai",""];
+  const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — TreyVisai",""];
   let careerName=null;
   if(plan.careers.length){const j=careersList.find(x=>x.id===plan.careers[0]);if(j)careerName=j.name;}
   if(careerName)lines.push("🎯 អាជីពគោលដៅ៖ "+careerName);
@@ -1010,7 +1010,7 @@ function sharePlanTo(p){
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ផែនការសិក្សា — treyvisai",text:planShareText(),url:encodePlanUrl()}).catch(()=>{});}else sharePlanTo("copy");
+    if(navigator.share){navigator.share({title:"ផែនការសិក្សា — TreyVisai",text:planShareText(),url:encodePlanUrl()}).catch(()=>{});}else sharePlanTo("copy");
     return;
   }
   const url=encodeURIComponent(encodePlanUrl());
@@ -1526,7 +1526,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   ];
 
   const TROLL_FALLBACKS=[
-    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ treyvisai មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរពេញនិយម» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
+    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ TreyVisai មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរពេញនិយម» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
     "អានសំណួរហើយ ខ្ញុំចង់គាំង CPU ដែរ! 😵‍💫💻 សួរឈ្មោះសាលា ឬអាជីពឱ្យស្រួលបួលមក ចាំជួយប្រាប់!",
     "សំណួរនេះស៊ីអារម្មណ៍ពេក ខ្ញុំឆ្លើយអត់ត្រូវទេ! 🤣 សួររឿងប្រាក់ខែ សាលារៀន ឬអាជីពវិញមក ចាំឆ្លើយឱ្យចង់វិលមុខ!"
   ];
@@ -1544,7 +1544,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       const avatar=document.createElement("img");
       avatar.src=POSES.idle;
       avatar.className="mascot-msg-avatar";
-      avatar.alt="treyvisai";
+      avatar.alt="TreyVisai";
       row.appendChild(avatar);
     }
 
@@ -1578,7 +1578,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.celebrate;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai";
+    avatar.alt="TreyVisai";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1635,7 +1635,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.celebrate;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai";
+    avatar.alt="TreyVisai";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1692,7 +1692,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.thinking;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai";
+    avatar.alt="TreyVisai";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1784,7 +1784,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       const avatar=document.createElement("img");
       avatar.src=POSES.thinking;
       avatar.className="mascot-msg-avatar";
-      avatar.alt="treyvisai";
+      avatar.alt="TreyVisai";
       row.appendChild(avatar);
 
       const bubbleWrap=document.createElement("div");
