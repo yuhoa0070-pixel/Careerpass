@@ -112,6 +112,10 @@ const schoolsData = [
   {"id":"kkis","website":"https://www.facebook.com/kohkonginternationalschool/","name":"សាលាអន្តរជាតិកោះកុង (KKIS)","type":"k12","province":"koh-kong","address":"Phum 3, Sangkat Smach Mean Chey, Krong Khemarak Phoumin, Koh Kong","tuition":600,"duration":13,"careers":[],"programs":["ភាសាអង់គ្លេស","កម្មវិធីជាតិ-អន្តរជាតិ"],"rating":"3.7","desc":"សាលាឯកជននៅក្រុងខេត្តកោះកុង ផ្ដល់ការអប់រំជាភាសាអង់គ្លេស និងខ្មែរ សម្រាប់សិស្សតាំងពីមត្តេយ្យដល់វិទ្យាល័យ។","altNames":["Koh Kong International School","KKIS","សាលាអន្តរជាតិកោះកុង"],"faculties":["Kindergarten & Primary School — Kindergarten, Grade 1–6 (Bilingual English-Khmer)","Secondary School — Grade 7–12, General English & ICT"],"pricing":[{"p":"មត្តេយ្យ និងបឋមសិក្សា","price":"$600–$900/ឆ្នាំ"},{"p":"អនុវិទ្យាល័យ និងវិទ្យាល័យ","price":"$850–$1,250/ឆ្នាំ"}],"scholarNote":"ការបញ្ចុះតម្លៃ KKIS (Koh Kong)៖ បញ្ចុះតម្លៃ ៥%–១០% សម្រាប់បងប្អូនបង្កើត និងការគាំទ្រសិស្សានុសិស្សក្នុងខេត្តកោះកុង។"},
   {"id":"harika","website":"https://www.facebook.com/School.kampongcham/","name":"សាលាអន្តរជាតិហារីកា (Harika)","type":"k12","province":"kampong-cham","address":"Phum 7, Sangkat Veal Vong, Krong Kampong Cham, Kampong Cham","tuition":400,"duration":13,"careers":[],"programs":["ភាសាអង់គ្លេស","កម្មវិធីទ្វេភាសា"],"rating":"3.6","desc":"សាលាឯកជនបង្រៀនពីរភាសានៅខេត្តកំពង់ចាម បើកបង្រៀនចាប់ពីឆ្នាំ ២០២២ ក្នុងគោលបំណងផ្ដល់ការអប់រំគុណភាព និងសមរម្យតម្លៃដល់សហគមន៍មូលដ្ឋាន។","altNames":["Harika International School","Harika","សាលាអន្តរជាតិហារីកា"],"faculties":["មត្តេយ្យ និងបឋមសិក្សា — ថ្នាក់កុមារដ្ឋាន, ថ្នាក់ទី១ ដល់ទី៦","អនុវិទ្យាល័យ និងភាសាអង់គ្លេស — ថ្នាក់ទី៧ ដល់ទី៩, English Training Program"],"pricing":[{"p":"មត្តេយ្យ និងបឋមសិក្សា","price":"$400–$650/ឆ្នាំ"},{"p":"អនុវិទ្យាល័យ","price":"$600–$900/ឆ្នាំ"}],"scholarNote":"ការបញ្ចុះតម្លៃ Harika (Siem Reap)៖ បញ្ចុះតម្លៃ ៥%–១០% សម្រាប់បងប្អូនបង្កើត និងការបញ្ចុះតម្លៃសិក្សាភាសាអង់គ្លេស។"},
   {"id":"rpitssvr","website":"https://www.facebook.com/p/Regional-Polytechnic-Institute-Techo-Sen-Svay-Rieng-100054219038773/","name":"វិទ្យាស្ថានពហុបច្ចេកទេសតំបន់ តេជោសែន ស្វាយរៀង (RPITSSVR)","type":"institute","province":"svay-rieng","address":"National Road 1, Phum Me Pring, Sangkat Prey Chhlak, Krong Svay Rieng, Svay Rieng","tuition":200,"duration":2,"careers":["technology","trades","business"],"programs":["បច្ចេកវិទ្យាព័ត៌មាន","អគ្គិសនី","មេកានិច","គណនេយ្យ"],"rating":"3.7","desc":"វិទ្យាស្ថានរដ្ឋផ្នែកបណ្ដុះបណ្ដាលបច្ចេកទេស និងវិជ្ជាជីវៈនៅខេត្តស្វាយរៀង បច្ចុប្បន្នបណ្ដុះបណ្ដាលសិស្សជាង ២,៤០០នាក់ ជាមួយអត្រាការងារបន្ទាប់បញ្ចប់ការសិក្សា ៨០–៩០%។","facPrices":["$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ","$200–$300/ឆ្នាំ"],"faculties":["ដេប៉ាតឺម៉ង់ព័ត៌មានវិទ្យា — បច្ចេកវិទ្យាព័ត៌មាន (IT), វិស្វកម្មប្រព័ន្ធកុំព្យូទ័រ","ដេប៉ាតឺម៉ង់អគ្គិសនី និងអេឡិចត្រូនិក — អគ្គិសនីឧស្សាហកម្ម, អេឡិចត្រូនិកស្វ័យប្រវត្តិ","ដេប៉ាតឺម៉ង់មេកានិច និងយានយន្ត — បច្ចេកវិទ្យារថយន្ត, មេកានិចឧស្សាហកម្មតំបន់សេដ្ឋកិច្ចពិសេស","ដេប៉ាតឺម៉ង់ធុរកិច្ច និងគណនេយ្យ — គណនេយ្យ, គ្រប់គ្រងភស្តុភារកម្ម (Logistics)"],"altNames":["Regional Polytechnic Institute Techo Sen Svay Rieng","RPITSSVR","វិទ្យាស្ថានពហុបច្ចេកទេសតំបន់ តេជោសែន ស្វាយរៀង"],"scholarNote":"អាហារូបករណ៍ជាតិ TVET 1.5M៖ សិក្សាឥតគិតថ្លៃ និងមានប្រាក់ឧបត្ថម្ភប្រចាំខែ ២៨០,០០០៛ លើជំនាញបច្ចេកទេសឧស្សាហកម្ម និងបច្ចេកវិទ្យាក្នុងតំបន់សេដ្ឋកិច្ចពិសេសស្វាយរៀង។"},
+  {"id":"uhst","website":"https://www.uhst.edu.kh","name":"សាកលវិទ្យាល័យ ហេង សំរិន ត្បូងឃ្មុំ (UHST)","type":"public","province":"tboung-khmum","address":"Phum Nikom Leu, Sangkat Sralop, Tboung Khmum District, Tboung Khmum","tuition":350,"duration":4,"careers":["agriculture","technology","business","education"],"programs":["កសិកម្ម","វិទ្យាសាស្ត្រកុំព្យូទ័រ","គ្រប់គ្រង","គណនេយ្យ","អក្សរសាស្ត្រ"],"rating":"4.0","desc":"សាកលវិទ្យាល័យរដ្ឋប្រចាំខេត្តត្បូងឃ្មុំ បង្កើតឡើងដោយអនុក្រឹត្យរាជរដ្ឋាភិបាលក្នុងឆ្នាំ២០១៦ ផ្ដោតលើការបណ្ដុះបណ្ដាលកម្រិតឧត្តមសិក្សាផ្នែកកសិកម្ម ព័ត៌មានវិទ្យា ធុរកិច្ច និងវិទ្យាសាស្ត្រសង្គម ឆ្លើយតបនឹងការអភិវឌ្ឍតំបន់ភូមិភាគបូព៌ា។","facPrices":["$350–$420/ឆ្នាំ","$350–$450/ឆ្នាំ","$350–$400/ឆ្នាំ","$350–$400/ឆ្នាំ","$350–$400/ឆ្នាំ"],"faculties":["មហាវិទ្យាល័យកសិកម្ម និងកែច្នៃអាហារ — ក្សេត្រសាស្ត្រ, សេដ្ឋកិច្ចកសិកម្ម, បច្ចេកវិទ្យាកែច្នៃអាហារ","មហាវិទ្យាល័យវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា — វិទ្យាសាស្ត្រកុំព្យូទ័រ, បច្ចេកវិទ្យាព័ត៌មានធុរកិច្ច (BIT)","មហាវិទ្យាល័យគ្រប់គ្រងពាណិជ្ជកម្ម — គ្រប់គ្រង, គណនេយ្យ និងហិរញ្ញវត្ថុ, ធនាគារ","មហាវិទ្យាល័យសង្គមសាស្ត្រ និងមនុស្សសាស្ត្រ — រដ្ឋបាលសាធារណៈ, អក្សរសាស្ត្រខ្មែរ, ប្រវត្តិវិទ្យា","វិទ្យាស្ថានភាសាបរទេស — ភាសាអង់គ្លេស (TEFL), ភាសាចិន"],"altNames":["University of Heng Samrin Thbongkhmum","UHST","HSTU","សាកលវិទ្យាល័យហេងសំរិនត្បូងឃ្មុំ","ត្បូងឃ្មុំ"],"scholarNote":"អាហារូបករណ៍រដ្ឋ ១០០% MoEYS៖ ផ្ដល់ជូនសិស្សនិស្សិតឆ្នើមប្រចាំខេត្តត្បូងឃ្មុំ និងខេត្តជិតខាង តាមរយៈការបំពេញទម្រង់អាហារូបករណ៍ថ្នាក់ជាតិ។ សាកលវិទ្យាល័យមានកន្លែងស្នាក់នៅអន្តេវាសិកដ្ឋាន និងអាហារូបករណ៍លើកទឹកចិត្តជាច្រើន។"},
+  {"id":"uok","website":"http://universityofkratie.edu.kh","name":"សាកលវិទ្យាល័យក្រចេះ (UOK)","type":"public","province":"kratie","address":"National Road 7, Phum O-Russei 2, Sangkat O-Russei, Krong Kratie, Kratie","tuition":350,"duration":4,"careers":["agriculture","technology","trades"],"programs":["កសិកម្ម","វារីវប្បកម្ម","បសុសត្វ","កែច្នៃកសិ-ឧស្សាហកម្ម","IT"],"rating":"4.1","desc":"សាកលវិទ្យាល័យរដ្ឋធំប្រចាំភូមិភាគឦសាន សម្ពោធដាក់ឱ្យប្រើប្រាស់ក្នុងឆ្នាំ២០១៨ ក្រោមទុនវិនិយោគ ១២លានដុល្លារ ផ្ដោតលើការស្រាវជ្រាវ និងបណ្ដុះបណ្ដាលជំនាញកសិកម្មទំនើប វារីវប្បកម្ម ការដាំដុះ និងបច្ចេកវិទ្យាកែច្នៃ។","facPrices":["$300–$400/ឆ្នាំ","$300–$400/ឆ្នាំ","$350–$420/ឆ្នាំ","$300–$400/ឆ្នាំ"],"faculties":["មហាវិទ្យាល័យក្សេត្រសាស្ត្រ និងវិទ្យាសាស្ត្រដំណាំ — បច្ចេកទេសដាំដុះដំណាំ, ការពារដំណាំ, ជី និងដី","មហាវិទ្យាល័យវិទ្យាសាស្ត្រសត្វ និងវារីវប្បកម្ម — បច្ចេកទេសចិញ្ចឹមសត្វ, វារីវប្បកម្ម និងជលផល","មហាវិទ្យាល័យកែច្នៃកសិ-ឧស្សាហកម្ម — បច្ចេកវិទ្យាកែច្នៃផលិតផលកសិកម្ម, ស្តង់ដារសុវត្ថិភាពចំណីអាហារ","មហាវិទ្យាល័យបច្ចេកវិទ្យា និងគ្រប់គ្រង — ព័ត៌មានវិទ្យាកសិកម្ម, គ្រប់គ្រងអាជីវកម្មកសិកម្ម (Agribusiness)"],"altNames":["University of Kratie","UOK","UK","សាកលវិទ្យាល័យក្រចេះ","ក្រចេះ"],"scholarNote":"អាហារូបករណ៍រដ្ឋ ១០០%៖ ផ្តល់កូតាអាហារូបករណ៍រដ្ឋពេញលេញតាមរយៈក្រសួងអប់រំសម្រាប់សិស្សខេត្តក្រចេះ ស្ទឹងត្រែង រតនគិរី មណ្ឌលគិរី និងកំពង់ចាម ព្រមទាំងមានអន្តេវាសិកដ្ឋានទំនើបបំពាក់សម្ភារៈពេញលេញ។"},
+  {"id":"sbu","website":"https://www.sbu.edu.kh","name":"ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហនុរាជ (SBU)","type":"public","province":"phnom-penh","address":"Wat Langka Preah Kossomaram, Sangkat Boeng Keng Kang I, Khan Boeng Keng Kang, Phnom Penh","tuition":0,"duration":4,"careers":["education","law","technology"],"programs":["ពុទ្ធិកវិទ្យា","ទស្សនវិជ្ជា","អប់រំ","ព័ត៌មានវិទ្យា","ភាសា"],"rating":"4.2","desc":"គ្រឹះស្ថានឧត្តមសិក្សារដ្ឋចំណាស់បង្កើតឡើងតាំងពីឆ្នាំ១៩៥៤ ក្រោមព្រះរាជតម្រិះសម្តេចព្រះនរោត្តម សីហនុ ស្ថិតក្រោមក្រសួងធម្មការ និងសាសនា បណ្ដុះបណ្ដាលសមណនិស្សិត និងនិស្សិតឥតគិតថ្លៃលើផ្នែកពុទ្ធសាសនា ទស្សនវិជ្ជា អប់រំ និងវិទ្យាសាស្ត្រ។","facPrices":["ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)"],"faculties":["មហាវិទ្យាល័យពុទ្ធសាស្ត្រ និងទស្សនវិជ្ជា — ពុទ្ធិកវិទ្យា, ទស្សនវិជ្ជាសាសនា, សីលធម៌ និងសង្គម","មហាវិទ្យាល័យវិទ្យាសាស្ត្រអប់រំ និងព័ត៌មានវិទ្យា — វិទ្យាសាស្ត្រអប់រំ, បច្ចេកវិទ្យាព័ត៌មាន (IT)","មហាវិទ្យាល័យភាសាបាលី សំស្ក្រឹត និងភាសាបរទេស — ភាសាបាលី-សំស្ក្រឹត, អក្សរសាស្ត្រអង់គ្លេស","មហាវិទ្យាល័យមនុស្សសាស្ត្រ និងវិទ្យាសាស្ត្រសង្គម — នីតិសាស្ត្រ, រដ្ឋបាលសាធារណៈ, ទំនាក់ទំនងសង្គម"],"altNames":["Preah Sihanouk Raja Buddhist University","SBU","ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហនុរាជ","សីហនុរាជ","វត្តលង្កា"],"scholarNote":"អាហារូបករណ៍ ១០០% ឥតគិតថ្លៃពេញ ៤ ឆ្នាំ៖ ផ្តល់ការសិក្សាឥតបង់ប្រាក់ជូនសមណនិស្សិត និងនិស្សិតទូទៅគ្រប់មហាវិទ្យាល័យ ក្រោមការឧបត្ថម្ភគាំទ្រពីរាជរដ្ឋាភិបាលកម្ពុជា និងក្រសួងធម្មការ និងសាសនា។"},
+  {"id":"psbu","website":"https://www.psbu.edu.kh","name":"ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា (PSBU)","type":"public","province":"phnom-penh","address":"Wat Svay Pope, Sangkat Tonle Bassac, Khan Chamkarmon, Phnom Penh","tuition":0,"duration":4,"careers":["education","technology","business","law"],"programs":["ទស្សនវិជ្ជា","អប់រំ","ព័ត៌មានវិទ្យា","គ្រប់គ្រង","នីតិសាស្ត្រ"],"rating":"4.1","desc":"គ្រឹះស្ថានឧត្តមសិក្សារដ្ឋបង្កើតឡើងក្នុងឆ្នាំ២០០៧ ស្ថិតក្រោមក្រសួងធម្មការ និងសាសនា ផ្ដល់ការអប់រំឥតគិតថ្លៃដល់សមណនិស្សិត និងនិស្សិតក្រីក្រលើមុខជំនាញសាសនា អប់រំ បច្ចេកវិទ្យាព័ត៌មាន និងគ្រប់គ្រង។","facPrices":["ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)","ឥតគិតថ្លៃ (100% អាហារូបករណ៍)"],"faculties":["មហាវិទ្យាល័យពុទ្ធសាសនវិជ្ជា — ពុទ្ធិកសាសនា និងទស្សនវិជ្ជាពុទ្ធសាសនា","មហាវិទ្យាល័យអប់រំ និងព័ត៌មានវិទ្យា — វិទ្យាសាស្ត្រអប់រំ, វិទ្យាសាស្ត្រកុំព្យូទ័រ (IT)","មហាវិទ្យាល័យគ្រប់គ្រងពាណិជ្ជកម្ម និងសេដ្ឋកិច្ច — គ្រប់គ្រងទូទៅ, គណនេយ្យ","មហាវិទ្យាល័យមនុស្សសាស្ត្រ — នីតិសាស្ត្រ, ភាសាអង់គ្លេស"],"altNames":["Preah Sihamoniraja Buddhist University","PSBU","ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា","សីហមុនីរាជា","វត្តស្វាយពពែ"],"scholarNote":"អាហារូបករណ៍ ១០០% ឥតគិតថ្លៃ៖ សិក្សាដោយឥតគិតថ្លៃ ៤ ឆ្នាំពេញសម្រាប់គ្រប់កម្រិតបរិញ្ញាបត្រ ក្រោមព្រះរាជូបត្ថម្ភ និងការគាំទ្រពីរាជរដ្ឋាភិបាលកម្ពុជា។"}
 ];
 
 /* ===== APP STATE ===== */
@@ -166,6 +170,7 @@ function restoreSchoolState(){
   syncSel("school-province",schoolProvince);
   syncSel("school-type",schoolType);
   syncSel("school-career-filter",schoolCareer);
+  renderSchoolChips();
 }
 const SCHOOLS_PER_PAGE=9,JOBS_PER_PAGE=9;
 
@@ -226,7 +231,45 @@ function srReveal(container,sel){
   setTimeout(function(){items.forEach(show);},2400);
 }
 
+const PUBLIC_SCHOOL_IDS = new Set([
+  "rupp","rule","num","uhs","itc","rua","nubb","sru","mcu","csku","rufa",
+  "uhst","uok","sbu","psbu",
+  "cadt","npic","nie","era","ntti","pnca","nipes","nib","ppi","knia","ksit",
+  "rpitst","pipp","rpitsb","rpitssvr"
+]);
+
+const schoolCategories = [
+  { id: "all", label: "ទាំងអស់" },
+  { id: "public", label: "សាកលវិទ្យាល័យរដ្ឋ", icon: "account_balance" },
+  { id: "private", label: "សាកលវិទ្យាល័យឯកជន", icon: "domain" },
+  { id: "institute", label: "វិទ្យាស្ថាន", icon: "science" },
+  { id: "digital", label: "បច្ចេកវិទ្យា & ឌីជីថល", icon: "code" },
+  { id: "k12", label: "សាលា K-12", icon: "school" },
+  { id: "daycare", label: "មណ្ឌលកុមារ", icon: "child_care" }
+];
+
+function renderSchoolChips(){
+  const row = document.getElementById("school-chips");
+  if(!row) return;
+  let html = '';
+  schoolCategories.forEach(c => {
+    const iconHtml = c.icon ? `<i class="material-symbols-outlined">${c.icon}</i>` : '';
+    html += `<div class="chip${schoolType === c.id ? ' active' : ''}" onclick="setSchoolType('${c.id}')">${iconHtml}${c.label}</div>`;
+  });
+  row.innerHTML = html;
+}
+
+function setSchoolType(t){
+  schoolType = t;
+  schoolPage = 1;
+  const sel = document.getElementById("school-type");
+  if(sel){ sel.value = t; if(sel._csSync) sel._csSync(); }
+  renderSchoolChips();
+  renderSchools();
+}
+
 function renderSchools(){
+  renderSchoolChips();
   const q=schoolSearch.toLowerCase().trim();
   const filtered=schoolsData.filter(s=>{
     const matchQ=!q ||
@@ -237,9 +280,13 @@ function renderSchools(){
       (s.faculties && s.faculties.some(f=>f.toLowerCase().includes(q))) ||
       (s.desc && s.desc.toLowerCase().includes(q));
     const matchP=schoolProvince==="all"||s.province===schoolProvince;
-    const matchT=schoolType==="all"||s.type===schoolType ||
+    const matchT=schoolType==="all"||
+      (schoolType==="public" && (s.type==="public" || PUBLIC_SCHOOL_IDS.has(s.id))) ||
       (schoolType==="institute" && (s.type==="institute" || s.name.includes("វិទ្យាស្ថាន") || s.name.toLowerCase().includes("institute"))) ||
-      (schoolType==="private" && (s.type==="private" || (s.type==="institute" && !["npic","nie","era","ntti","pnca","nipes","nib","ppi","knia","ksit","rpitst","pipp","rpitsb","rpitssvr"].includes(s.id))));
+      (schoolType==="private" && (s.type==="private" || (s.type==="institute" && !PUBLIC_SCHOOL_IDS.has(s.id)))) ||
+      (schoolType==="digital" && s.type==="digital") ||
+      (schoolType==="k12" && s.type==="k12") ||
+      (schoolType==="daycare" && s.type==="daycare");
     const matchC=schoolCareer==="all"||s.careers.includes(schoolCareer);
     return matchQ&&matchP&&matchT&&matchC;
   });
@@ -259,7 +306,7 @@ function renderSchools(){
       </div>
       <p class="school-name">${s.name}</p>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-        <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span>
+        <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type, s)}</span>
         <span style="font-size:12px;color:var(--text-3)"><i class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px">location_on</i>${provinceLabel(s.province)} · ★ ${s.rating}</span>
       </div>
       <div class="school-programs">${s.programs.map(p=>`<span class="school-prog-tag">${p}</span>`).join("")}</div>
@@ -276,12 +323,15 @@ function renderSchools(){
 }
 function gotoSchoolPage(p){schoolPage=p;renderSchools();window.scrollTo({top:0,behavior:"smooth"});}
 
-function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម","svay-rieng":"ស្វាយរៀង","banteay-meanchey":"បន្ទាយមានជ័យ","prey-veng":"ព្រៃវែង",kampot:"កំពត","preah-sihanouk":"ព្រះសីហនុ",kep:"កែប","kampong-speu":"កំពង់ស្ពឺ",kandal:"កណ្ដាល",takeo:"តាកែវ",pursat:"ពោធិ៍សាត់",kratie:"ក្រចេះ","koh-kong":"កោះកុង",province:"ខេត្ត"};return m[p]||p;}
-function typeLabel(t){return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល",k12:"K-12",daycare:"មណ្ឌលថែទាំកុមារ"}[t]||t;}
+function provinceLabel(p){const m={pp:"ភ្នំពេញ","phnom-penh":"ភ្នំពេញ","siem-reap":"សៀមរាប",battambang:"បាត់ដំបង","kampong-cham":"កំពង់ចាម","svay-rieng":"ស្វាយរៀង","banteay-meanchey":"បន្ទាយមានជ័យ","prey-veng":"ព្រៃវែង",kampot:"កំពត","preah-sihanouk":"ព្រះសីហនុ",kep:"កែប","kampong-speu":"កំពង់ស្ពឺ",kandal:"កណ្ដាល",takeo:"តាកែវ",pursat:"ពោធិ៍សាត់",kratie:"ក្រចេះ","koh-kong":"កោះកុង","tboung-khmum":"ត្បូងឃ្មុំ",province:"ខេត្ត"};return m[p]||p;}
+function typeLabel(t, s){
+  if(s && PUBLIC_SCHOOL_IDS.has(s.id) && s.type==="institute") return "វិទ្យាស្ថានរដ្ឋ";
+  return {public:"រដ្ឋ",private:"ឯកជន",institute:"វិទ្យាស្ថាន",digital:"ឌីជីថល",k12:"K-12",daycare:"មណ្ឌលថែទាំកុមារ"}[t]||t;
+}
 function typeBadgeClass(t){return {public:"badge-public",private:"badge-private",institute:"badge-institute",digital:"badge-digital",k12:"badge-k12",daycare:"badge-daycare"}[t]||"badge-public";}
 function tuitionLabel(s){return s.tuition>0?("$"+s.tuition+"/ឆ្នាំ"):"ឥតគិតថ្លៃ";}
 function careerLabel(c){return {technology:"បច្ចេកវិទ្យា",healthcare:"សុខភាព",design:"ការរចនា",business:"ពាណិជ្ជកម្ម",trades:"ជំនាញការ",education:"អប់រំ",tourism:"ទេសចរណ៍",agriculture:"កសិកម្ម",law:"ច្បាប់ និងរដ្ឋបាល",media:"ប្រព័ន្ធផ្សព្វផ្សាយ",culinary:"ចម្អិនអាហារ"}[c]||c;}
-const logoMap={rupp:"RUPP",rule:"RULE",num:"NUM",uhs:"UHS",itc:"ITC",rua:"RUA",cadt:"CADT",npic:"NPIC",nie:"NIE",era:"ERA",ntti:"NTTI",nubb:"NUBB",sru:"SRU",mcu:"MCU",csku:"CSKU",pnca:"PNCA",aupp:"AUPP",camed:"CamEd",paragon:"PIU",puc:"PUC",up:"UP",norton:"NU",bbu:"BBU",biu:"BIU",uc:"UC",vanda:"VI",iu:"IU",limkokwing:"LKW",ab:"A&B",tux:"TUX",camscience:"CS",camtech:"CT",sabaicode:"SC",dichi:"DICHI",khmercoders:"KC",acac:"ACAC",pauldubrule:"PD",salabai:"SB",egbok:"EGBOK",acdemyhosp:"CHC",western:"WU",ggas:"GGAS",makson:"MIA",lfrd:"LFRD",footprints:"FIS",logos:"LIS",sisc:"SISC",wis:"WIS",belteischool:"BIS",shrewsbury:"SISP",hope:"HIS",dewey:"DIS",westland:"WIS",ksit:"KSIT",rpitsb:"RPITSB",rpitssvr:"RPITSSVR",pipp:"PIPP",ppi:"PPI",nekry:"NIS",kkis:"KKIS"};
+const logoMap={rupp:"RUPP",rule:"RULE",num:"NUM",uhs:"UHS",itc:"ITC",rua:"RUA",cadt:"CADT",npic:"NPIC",nie:"NIE",era:"ERA",ntti:"NTTI",nubb:"NUBB",sru:"SRU",mcu:"MCU",csku:"CSKU",pnca:"PNCA",aupp:"AUPP",camed:"CamEd",paragon:"PIU",puc:"PUC",up:"UP",norton:"NU",bbu:"BBU",biu:"BIU",uc:"UC",vanda:"VI",iu:"IU",limkokwing:"LKW",ab:"A&B",tux:"TUX",camscience:"CS",camtech:"CT",sabaicode:"SC",dichi:"DICHI",khmercoders:"KC",acac:"ACAC",pauldubrule:"PD",salabai:"SB",egbok:"EGBOK",acdemyhosp:"CHC",western:"WU",ggas:"GGAS",makson:"MIA",lfrd:"LFRD",footprints:"FIS",logos:"LIS",sisc:"SISC",wis:"WIS",belteischool:"BIS",shrewsbury:"SISP",hope:"HIS",dewey:"DIS",westland:"WIS",ksit:"KSIT",rpitsb:"RPITSB",rpitssvr:"RPITSSVR",pipp:"PIPP",ppi:"PPI",nekry:"NIS",kkis:"KKIS",uhst:"UHST",uok:"UOK",sbu:"SBU",psbu:"PSBU"};
 const logoColors=["#624EBC","#2563eb","#16a34a","#d4860b","#e5484d","#0ea5e9","#7c3aed","#db2777","#0d9488","#ca8a04"];
 function schoolAbbr(s){if(logoMap[s.id])return logoMap[s.id];const m=s.name.match(/\(([^)]+)\)/);if(m)return m[1];return s.name.replace(/[^A-Za-z]/g,"").slice(0,2).toUpperCase();}
 function schoolColor(s){let h=0;for(let i=0;i<s.id.length;i++)h=(h*31+s.id.charCodeAt(i))>>>0;return logoColors[h%logoColors.length];}
@@ -343,7 +393,7 @@ function openSchool(id){
     <div class="detail-head">
       <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
       <div style="flex:1;min-width:220px">
-        <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span>
+        <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type, s)}</span>
         <h1 class="detail-title" style="margin-top:8px">${s.name}</h1>
       </div>
     </div>
@@ -358,7 +408,7 @@ function openSchool(id){
       <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
-        <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type)}</span></div>
+        <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type, s)}</span></div>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">location_on</i> ខេត្ត</span><span class="val">${provinceLabel(s.province)}</span></div>
         ${s.address?`<div class="info-row"><span class="lbl"><i class="material-symbols-outlined">pin_drop</i> អាសយដ្ឋាន</span><span class="val" style="font-size:12px;text-align:right;max-width:60%">${s.address}</span></div>`:""}
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">payments</i> ថ្លៃ/ឆ្នាំ</span><span class="val">${tuitionLabel(s)}</span></div>
@@ -393,7 +443,7 @@ function showCompare(){
   const sel=schoolsData.filter(s=>compareList.includes(s.id));
   const rows=[
     ["ឈ្មោះ",s=>s.name],
-    ["ប្រភេទ",s=>typeLabel(s.type)],
+    ["ប្រភេទ",s=>typeLabel(s.type, s)],
     ["ខេត្ត",s=>provinceLabel(s.province)],
     ["ថ្លៃ/ឆ្នាំ",s=>tuitionLabel(s)],
     ["រយៈពេល",s=>s.duration+" ឆ្នាំ"],
@@ -534,14 +584,14 @@ const careersList=[
   {id:"mechanic",name:"ជាងម៉ាស៊ីន",cat:"trades",icon:"build",salary:"$300–$800",desc:"ជួសជុលម៉ាស៊ីន និងយានយន្ត។",skills:["Mechanics"],schools:["ntti","npic","rpitst","rpitsb","pipp","rpitssvr","ppi"]},
   {id:"construction",name:"ជាងបច្ចេកទេសសំណង់",cat:"trades",icon:"construction",salary:"$300–$900",desc:"ការងារសំណង់ និងហេដ្ឋារចនាសម្ព័ន្ធ។",skills:["Construction","Safety"],schools:["npic","itc","ntti","norton","paragon","rufa","nubb","biu","rpitst","rpitsb","lifeu","cus","ppi"]},
   {id:"hvac",name:"ជាងម៉ាស៊ីនត្រជាក់",cat:"trades",icon:"ac_unit",salary:"$300–$800",desc:"តម្លើង និងជួសជុលម៉ាស៊ីនត្រជាក់។",skills:["HVAC"],schools:["ntti","npic","pipp"]},
-  {id:"teacher",name:"គ្រូបង្រៀន",cat:"education",icon:"school",salary:"$250–$700",desc:"បង្រៀន និងអប់រំសិស្ស។",skills:["Teaching","Communication"],schools:["nie","rupp","puc","biu","bbu","csku","diu","aeu","usea","aic","nipes"]},
+  {id:"teacher",name:"គ្រូបង្រៀន",cat:"education",icon:"school",salary:"$250–$700",desc:"បង្រៀន និងអប់រំសិស្ស។",skills:["Teaching","Communication"],schools:["nie","rupp","puc","biu","bbu","csku","diu","aeu","usea","aic","nipes","sbu","psbu","uhst"]},
   {id:"lecturer",name:"សាស្ត្រាចារ្យ",cat:"education",icon:"history_edu",salary:"$500–$1,500",desc:"បង្រៀននៅឧត្តមសិក្សា និងស្រាវជ្រាវ។",skills:["Research","Teaching"],schools:["nie","rupp","puc","uc","rule"]},
   {id:"eduadmin",name:"អ្នកគ្រប់គ្រងអប់រំ",cat:"education",icon:"admin_panel_settings",salary:"$400–$1,000",desc:"គ្រប់គ្រងសាលា និងកម្មវិធីសិក្សា។",skills:["Management"],schools:["nie","puc","uc"]},
   {id:"tourguide",name:"អ្នកនាំភ្ញៀវទេសចរណ៍",cat:"tourism",icon:"tour",salary:"$300–$800",desc:"នាំភ្ញៀវទេសចរណ៍ទស្សនាកម្សាន្ត។",skills:["ភាសា","ការទំនាក់ទំនង"],schools:["pauldubrule","salabai","num","usea","angkor","cus"]},
   {id:"hotel",name:"អ្នកគ្រប់គ្រងសណ្ឋាគារ",cat:"tourism",icon:"hotel",salary:"$500–$1,500",desc:"គ្រប់គ្រងប្រតិបត្តិការសណ្ឋាគារ។",skills:["Hospitality","Management"],schools:["pauldubrule","salabai","acac","num","usea","angkor","bbu","biu","puc","lifeu","cus","cmu"]},
-  {id:"agrieng",growing:true,name:"វិស្វករកសិកម្ម",cat:"agri",icon:"agriculture",salary:"$400–$1,000",desc:"អភិវឌ្ឍបច្ចេកទេស និងផលិតកម្មកសិកម្ម។",skills:["Agronomy"],schools:["rua","pnca","ksit","nubb","csku","mcu"]},
+  {id:"agrieng",growing:true,name:"វិស្វករកសិកម្ម",cat:"agri",icon:"agriculture",salary:"$400–$1,000",desc:"អភិវឌ្ឍបច្ចេកទេស និងផលិតកម្មកសិកម្ម។",skills:["Agronomy"],schools:["rua","pnca","ksit","nubb","csku","mcu","uhst","uok"]},
   {id:"vet",name:"សត្វពេទ្យ",cat:"agri",icon:"pets",salary:"$400–$1,200",desc:"ព្យាបាល និងថែទាំសត្វ។",skills:["Veterinary"],schools:["rua","pnca","knia","rpitst","mcu"]},
-  {id:"aqua",name:"អ្នកជំនាញវារីវប្បកម្ម",cat:"agri",icon:"water",salary:"$350–$900",desc:"គ្រប់គ្រងការចិញ្ចឹមត្រី និងវារីវប្បកម្ម។",skills:["Aquaculture"],schools:["rua","pnca","ksit"]},
+  {id:"aqua",name:"អ្នកជំនាញវារីវប្បកម្ម",cat:"agri",icon:"water",salary:"$350–$900",desc:"គ្រប់គ្រងការចិញ្ចឹមត្រី និងវារីវប្បកម្ម។",skills:["Aquaculture"],schools:["rua","pnca","ksit","uok"]},
   {id:"lawyer",growing:true,name:"មេធាវី (Lawyer / Attorney)",cat:"law",icon:"gavel",salary:"$500–$2,000",desc:"ផ្ដល់ប្រឹក្សា និងតំណាងកូនក្ដីផ្នែកច្បាប់នៅចំពោះមុខតុលាការ។",skills:["Legal Research","Litigation","Court Advocacy","Legal Writing"],schools:["rule","puc","num","uc","bbu","biu","aeu","norton"]},
   {id:"legalcounsel",growing:true,name:"នីតិករ / ទីប្រឹក្សាច្បាប់ (Legal Officer)",cat:"law",icon:"policy",salary:"$450–$1,800",desc:"ពិនិត្យកិច្ចសន្យា ធានាអនុលោមភាពច្បាប់ និងផ្ដល់ប្រឹក្សាច្បាប់ដល់ស្ថាប័នឯកជន និងរដ្ឋ។",skills:["Contract Drafting","Corporate Law","Compliance","Labor Law"],schools:["rule","num","puc","uc","aupp","aub","bbu"]},
   {id:"civil",name:"មន្ត្រីរាជការ (Civil Servant)",cat:"law",icon:"badge",salary:"$250–$800",desc:"បម្រើការក្នុងស្ថាប័នរដ្ឋ និងគ្រប់គ្រងរដ្ឋបាលសាធារណៈ។",skills:["Public Administration","Public Policy","Governance","Administrative Law"],schools:["era","rule","num","uc","aeu"]},
@@ -583,19 +633,19 @@ const careersList=[
   {id:"acrepairer",growing:true,name:"ជាងជួសជុលម៉ាស៊ីនត្រជាក់ (A/C Repairer)",cat:"technician",icon:"ac_unit",salary:"$300–$900",desc:"តម្លើង ថែទាំ និងជួសជុលម៉ាស៊ីនត្រជាក់ និងប្រព័ន្ធធ្វើត្រជាក់។",skills:["HVAC","Refrigeration","Electrical"],schools:["ntti","npic","pipp"]},
   {id:"servicecleaner",name:"បុគ្គលិកសម្អាតសេវាកម្ម (Service Cleaner)",cat:"technician",icon:"cleaning_services",salary:"$200–$500",desc:"សម្អាត និងថែទាំអគារ ការិយាល័យ និងទីតាំងសេវាកម្ម។",skills:["Cleaning","Hygiene","Time Management"],schools:["salabai","pauldubrule","ntti"]},
   {id:"repairer",name:"ជាងជួសជុលទូទៅ (Repairer)",cat:"technician",icon:"handyman",salary:"$250–$700",desc:"ជួសជុល និងថែទាំគ្រឿងបរិក្ខារ គ្រឿងអេឡិចត្រូនិច និងឧបករណ៍ក្នុងផ្ទះ។",skills:["Maintenance","Troubleshooting","Electronics"],schools:["ntti","npic","rpitst"]},
-  {id:"englishteacher",name:"គ្រូភាសាអង់គ្លេស",cat:"education",icon:"translate",salary:"$300–$1,000",desc:"បង្រៀនភាសាអង់គ្លេស។",skills:["English","Teaching"],schools:["nie","rupp","puc","biu","bbu","usea","diu","aeu","camasean","springedu","aic","mcu","khemarak"]},
+  {id:"englishteacher",name:"គ្រូភាសាអង់គ្លេស",cat:"education",icon:"translate",salary:"$300–$1,000",desc:"បង្រៀនភាសាអង់គ្លេស។",skills:["English","Teaching"],schools:["nie","rupp","puc","biu","bbu","usea","diu","aeu","camasean","springedu","aic","mcu","khemarak","sbu","psbu","uhst"]},
   {id:"earlyedu",name:"គ្រូមត្តេយ្យ",cat:"education",icon:"child_care",salary:"$250–$600",desc:"អប់រំ និងថែទាំកុមារតូច។",skills:["Early Education","Patience"],schools:["nie","rupp"]},
   {id:"counselor",name:"អ្នកប្រឹក្សាការសិក្សា",cat:"education",icon:"psychology",salary:"$350–$900",desc:"ណែនាំសិស្សអំពីការសិក្សា និងអាជីព។",skills:["Counseling","Communication"],schools:["nie","rupp","puc","uc","cu"]},
   {id:"travelagent",name:"ភ្នាក់ងារទេសចរណ៍",cat:"tourism",icon:"flight",salary:"$300–$900",desc:"រៀបចំដំណើរកម្សាន្ត និងកញ្ចប់ទេសចរណ៍។",skills:["Booking","Customer Service"],schools:["num","usea","angkor","pauldubrule","salabai"]},
   {id:"eventplanner",name:"អ្នករៀបចំព្រឹត្តិការណ៍",cat:"tourism",icon:"celebration",salary:"$350–$1,200",desc:"រៀបចំកម្មវិធី និងព្រឹត្តិការណ៍។",skills:["Planning","Coordination"],schools:["num","kit","puc","pauldubrule","salabai"]},
   {id:"flightattendant",name:"បុគ្គលិកអាកាសចរណ៍ (Flight Attendant)",cat:"tourism",icon:"airlines",salary:"$500–$1,500",desc:"បម្រើសេវា និងសុវត្ថិភាពលើយន្តហោះ។",skills:["Service","Languages","Safety"],schools:["biu"]},
-  {id:"foodtech",name:"បច្ចេកវិទ្យាចំណីអាហារ",cat:"agri",icon:"factory",salary:"$400–$1,100",desc:"កែច្នៃ និងធានាគុណភាពចំណីអាហារ។",skills:["Food Science","QA"],schools:["rua","itc","ksit","nubb","pnca"]},
-  {id:"agribusiness",name:"អ្នកគ្រប់គ្រងអាជីវកម្មកសិកម្ម",cat:"agri",icon:"storefront",salary:"$400–$1,200",desc:"គ្រប់គ្រងអាជីវកម្ម និងទីផ្សារកសិផល។",skills:["Agribusiness","Management"],schools:["rua","num","pnca","knia","khemarak","mcu","cu"]},
+  {id:"foodtech",name:"បច្ចេកវិទ្យាចំណីអាហារ",cat:"agri",icon:"factory",salary:"$400–$1,100",desc:"កែច្នៃ និងធានាគុណភាពចំណីអាហារ។",skills:["Food Science","QA"],schools:["rua","itc","ksit","nubb","pnca","uhst","uok"]},
+  {id:"agribusiness",name:"អ្នកគ្រប់គ្រងអាជីវកម្មកសិកម្ម",cat:"agri",icon:"storefront",salary:"$400–$1,200",desc:"គ្រប់គ្រងអាជីវកម្ម និងទីផ្សារកសិផល។",skills:["Agribusiness","Management"],schools:["rua","num","pnca","knia","khemarak","mcu","cu","uhst","uok"]},
   {id:"forestry",name:"អ្នកជំនាញព្រៃឈើ",cat:"agri",icon:"forest",salary:"$350–$1,000",desc:"គ្រប់គ្រង និងអភិរក្សព្រៃឈើ។",skills:["Forestry","Conservation"],schools:["rua","knia"]},
   {id:"compliance",growing:true,name:"មន្ត្រីអនុលោមភាព (Compliance Officer)",cat:"law",icon:"verified_user",salary:"$450–$1,600",desc:"ធានាថាប្រតិបត្តិការអាជីវកម្មអនុវត្តស្របតាមច្បាប់ បទបញ្ជាធនាគារជាតិ និងស្ដង់ដារអន្តរជាតិ។",skills:["Regulatory Compliance","AML/CFT","Risk Assessment","Banking Law"],schools:["rule","num","aub","uef","puc"]},
   {id:"notary",name:"សារការី (Notary)",cat:"law",icon:"contract",salary:"$500–$1,500",desc:"បញ្ជាក់ និងផ្ទៀងផ្ទាត់ភាពស្របច្បាប់នៃកិច្ចសន្យា និងលិខិតគតិយុត្ត។",skills:["Notarial Law","Contract Drafting","Civil Code","Authentication"],schools:["rule"]},
   {id:"police",name:"នគរបាល (Police Officer)",cat:"law",icon:"local_police",salary:"$250–$800",desc:"រក្សាសន្តិសុខ សណ្ដាប់ធ្នាប់សាធារណៈ និងអនុវត្តច្បាប់។",skills:["Criminal Law","Public Order","Investigation","Security Administration"],schools:["era","rule"]},
-  {id:"socialworker",name:"អ្នកសង្គមកិច្ច (Social Worker)",cat:"law",icon:"volunteer_activism",salary:"$300–$900",desc:"ជួយសហគមន៍ ដោះស្រាយបញ្ហាសង្គម និងគាំពារក្រុមងាយរងគ្រោះ។",skills:["Social Work","Case Management","Community Development","Counseling"],schools:["rupp","uc"]},
+  {id:"socialworker",name:"អ្នកសង្គមកិច្ច (Social Worker)",cat:"law",icon:"volunteer_activism",salary:"$300–$900",desc:"ជួយសហគមន៍ ដោះស្រាយបញ្ហាសង្គម និងគាំពារក្រុមងាយរងគ្រោះ។",skills:["Social Work","Case Management","Community Development","Counseling"],schools:["rupp","uc","sbu","psbu"]},
   {id:"contentcreator",growing:true,name:"អ្នកបង្កើតមាតិកា (Content Creator)",cat:"media",icon:"video_camera_front",salary:"$300–$1,500",desc:"បង្កើតវីដេអូ និងមាតិកាលើ digital platforms។",skills:["Video","Storytelling","Editing"],schools:["limkokwing","cadt","tux","puc"]},
   {id:"broadcaster",name:"អ្នកនាំកម្មវិធី (Broadcaster)",cat:"media",icon:"podcasts",salary:"$300–$1,200",desc:"នាំកម្មវិធីទូរទស្សន៍ និងវិទ្យុ។",skills:["Presenting","Voice"],schools:["rupp","uc","puc"]},
   {id:"copywriter",name:"អ្នកសរសេរពាណិជ្ជកម្ម (Copywriter)",cat:"media",icon:"edit_note",salary:"$300–$1,000",desc:"សរសេរអត្ថបទផ្សាយពាណិជ្ជកម្ម។",skills:["Writing","Marketing"],schools:["rupp","puc","uc","limkokwing"]},
@@ -613,7 +663,7 @@ const careersList=[
   {id:"frontofficemgr",name:"អ្នកគ្រប់គ្រងផ្នែកទទួលភ្ញៀវ (Front Office Manager)",cat:"tourism",icon:"meeting_room",salary:"$400–$1,200",desc:"គ្រប់គ្រងផ្នែកទទួលភ្ញៀវ ការកក់បន្ទប់ និងសេវាភ្ញៀវនៅសណ្ឋាគារ។",skills:["Guest Relations","Reservations","Team Leadership"],schools:["pauldubrule","salabai","acac","num"]},
   {id:"micecoordinator",name:"អ្នកសម្របសម្រួលព្រឹត្តិការណ៍អាជីវកម្ម (MICE Coordinator)",cat:"tourism",icon:"groups",salary:"$400–$1,300",desc:"រៀបចំសន្និសីទ ពិព័រណ៍ និងព្រឹត្តិការណ៍អាជីវកម្មធំៗ។",skills:["Event Management","Negotiation","Vendor Coordination"],schools:["num","pauldubrule","puc"]},
   {id:"electronicstech",growing:true,name:"អ្នកបច្ចេកទេសផលិតកម្មអេឡិចត្រូនិក (Electronics Manufacturing Technician)",cat:"technician",icon:"memory",salary:"$300–$900",desc:"ដំឡើង ត្រួតពិនិត្យគុណភាព និងថែទាំបន្ទាត់ផលិតកម្មនៅរោងចក្រអេឡិចត្រូនិក/ស្វ័យប្រវត្តិកម្ម។",skills:["PCB Assembly","Quality Control","Automation Basics"],schools:["itc","ntti","npic","rpitssvr","rpitsb"]},
-  {id:"agritech",growing:true,name:"អ្នកឯកទេសកសិកម្មឆ្លាតវៃ (Agri-Tech Specialist)",cat:"agri",icon:"sensors",salary:"$350–$1,000",desc:"អនុវត្តឧបករណ៍ IoT ទិន្នន័យ និងបច្ចេកវិទ្យាឆ្លាតវៃ ដើម្បីបង្កើនផលិតភាពកសិកម្ម។",skills:["IoT","Data Analysis","Precision Agriculture"],schools:["rua","knia","pnca","ksit"]},
+  {id:"agritech",growing:true,name:"អ្នកឯកទេសកសិកម្មឆ្លាតវៃ (Agri-Tech Specialist)",cat:"agri",icon:"sensors",salary:"$350–$1,000",desc:"អនុវត្តឧបករណ៍ IoT ទិន្នន័យ និងបច្ចេកវិទ្យាឆ្លាតវៃ ដើម្បីបង្កើនផលិតភាពកសិកម្ម។",skills:["IoT","Data Analysis","Precision Agriculture"],schools:["rua","knia","pnca","ksit","uhst","uok"]},
   {id:"fintecheng",growing:true,name:"វិស្វករ Fintech",cat:"tech",icon:"account_balance_wallet",salary:"$600–$1,800",desc:"អភិវឌ្ឍប្រព័ន្ធទូទាត់ឌីជីថល ការពារការក្លែងបន្លំ និងសេវាធនាគារឆ្លាតវៃ។",skills:["APIs","Security","Payments","Data Engineering"],schools:["cadt","itc","num","aub","camtech"]}
 ];
 
@@ -820,7 +870,7 @@ function planSchoolCard(id){
     </div>
     <p class="school-name">${s.name}</p>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
-      <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span>
+      <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type, s)}</span>
       <span style="font-size:12px;color:var(--text-3)"><i class="material-symbols-outlined" style="font-size:14px;vertical-align:-2px">location_on</i>${provinceLabel(s.province)} · ★ ${s.rating}</span>
     </div>
     <div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span><span class="school-view-more">មើលលម្អិត →</span></div>
@@ -985,7 +1035,7 @@ function renderSharedPlan(data){
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">work</i> អាជីពគោលដៅ</h3></div><div class="job-card" style="animation:none;opacity:1;cursor:default"><p class="job-name">${careerName}</p></div></div>`;
   }
   if(data.s&&data.s.length){
-    const cards=data.s.map(id=>{const s=schoolsData.find(x=>x.id===id);if(!s)return"";return `<div class="school-card" style="animation:none;opacity:1;cursor:default"><div class="school-card-top">${schoolLogo(s)}</div><p class="school-name">${s.name}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type)}</span><span style="font-size:12px;color:var(--text-3)">${provinceLabel(s.province)} · ★ ${s.rating}</span></div><div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span></div></div>`;}).join("");
+    const cards=data.s.map(id=>{const s=schoolsData.find(x=>x.id===id);if(!s)return"";return `<div class="school-card" style="animation:none;opacity:1;cursor:default"><div class="school-card-top">${schoolLogo(s)}</div><p class="school-name">${s.name}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px"><span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type, s)}</span><span style="font-size:12px;color:var(--text-3)">${provinceLabel(s.province)} · ★ ${s.rating}</span></div><div class="school-footer"><span class="school-tuition">${tuitionLabel(s)}</span></div></div>`;}).join("");
     html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">school</i> សាលាដែលចាប់អារម្មណ៍</h3></div><div class="schools-grid">${cards}</div></div>`;
   }
   if(data.k){
@@ -1171,7 +1221,7 @@ function initHero3D(){
   const cards=[
     {view:"plan",   title:"ផែនការ",       sub1:"ផែនការផ្ទាល់ខ្លួន",   sub2:"សាលា និងអាជីព",     since:"ផ្ទាល់ខ្លួន",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
     {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១១២",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១១៦",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
     {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
     {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
@@ -1235,7 +1285,7 @@ function initHero3D(){
 function initHomeLogos(){
   const track=document.getElementById("logo-track");
   if(!track)return;
-  const ids=["rupp","rule","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","aupp","paragon","puc","up","bbu","vanda","iu","acac","angkor","hru","rufa","cmu","aub","khemarak","cus","dmuc","pcu","cu","setec"];
+  const ids=["rupp","rule","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","uhst","uok","sbu","psbu","aupp","paragon","puc","up","bbu","vanda","iu","acac","angkor","hru","rufa","cmu","aub","khemarak","cus","dmuc","pcu","cu","setec"];
   const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
   track.innerHTML=items+items; // duplicate for a seamless loop
 }
@@ -1340,13 +1390,13 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       schools:["cadt","itc","setec"]
     },
     {
-      q:"សាលារដ្ឋណាថ្លៃសមរម្យ?",
-      pill:"សាលារដ្ឋថ្លៃសមរម្យ",
+      q:"សាកលវិទ្យាល័យរដ្ឋមានអ្វីខ្លះ?",
+      pill:"សាកលវិទ្យាល័យរដ្ឋ",
       icon:"school",
-      keywords:["សាលារដ្ឋ","រដ្ឋ","សមរម្យ","ថោក","អាហារូបករណ៍","scholarship","public"],
-      reply:"ចង់សន្សំលុយប៉ាម៉ាក់ ឬសន្សំលុយដើរលេងផឹកកាហ្វេ? ☕👀 សាលារដ្ឋទាំងនេះថ្លៃសមរម្យមែនទែន ($200–$600/ឆ្នាំ) ថែមទាំងមានអាហារូបករណ៍រដ្ឋ MOEYS & TVET 1.5M រៀនឥតគិតថ្លៃទៀត៖",
+      keywords:["សាកលវិទ្យាល័យរដ្ឋ","សាលារដ្ឋ","រដ្ឋ","សមរម្យ","ថោក","អាហារូបករណ៍","scholarship","public","uhst","uok"],
+      reply:"ចង់រៀនសាកលវិទ្យាល័យរដ្ឋមែនទេ? 🏛️🇰🇭 នៅកម្ពុជាមានគ្រឹះស្ថានឧត្តមសិក្សារដ្ឋធំៗចំនួន ៣០ (សាកលវិទ្យាល័យ ១៥ និងវិទ្យាស្ថាន ១៥) ទាំងនៅរាជធានី និងតាមបណ្តាខេត្ត ថ្លៃសមរម្យ ($200–$600/ឆ្នាំ) ព្រមទាំងមានអាហារូបករណ៍រដ្ឋ MOEYS & TVET 1.5M ជាច្រើន៖",
       careers:[],
-      schools:["rupp","itc","rule","npic","ppi"]
+      schools:["rupp","itc","rule","rua","uhs","cadt","nubb","uhst","uok","sbu"]
     },
     {
       q:"ខ្លាច AI ដណ្តើមការងារ?",
@@ -1572,7 +1622,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
     const badge=document.createElement("span");
     badge.className="mascot-card-badge";
-    badge.textContent=typeLabel(school.type);
+    badge.textContent=typeLabel(school.type, school);
 
     top.appendChild(title);
     top.appendChild(badge);
