@@ -1,0 +1,8 @@
+# Robots.txt for Trey Visai (Careerpass)
+# https://careerpass-lemon.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://careerpass-lemon.vercel.app/sitemap.xml

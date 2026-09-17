@@ -130,6 +130,19 @@ function closeSidebar(){if(menuOpen)toggleSidebar();}
 hamburger.addEventListener("click",toggleSidebar);
 
 /* ===== NAVIGATION ===== */
+const VIEW_TITLES = {
+  home: "Trey Visai (ត្រីវិស័យ) — ស្វែងរកអាជីព សាកលវិទ្យាល័យ និងថ្លៃសិក្សានៅកម្ពុជា",
+  schools: "ស្វែងរកសាលារៀន និងសាកលវិទ្យាល័យ ១១៦+ នៅកម្ពុជា — Trey Visai",
+  careers: "បញ្ជីអាជីព និងការងារពេញនិយមនៅកម្ពុជា — Trey Visai",
+  cost: "ប៉ាន់ស្មានថ្លៃសិក្សា & ជីវភាពរស់នៅ — Trey Visai",
+  quiz: "តេស្តស្វែងរកអាជីពដែលស័ក្តិសម — Trey Visai",
+  scholarship: "អាហារូបករណ៍រដ្ឋ និងជំនួយហិរញ្ញវត្ថុ — Trey Visai",
+  compare: "ប្រៀបធៀបសាកលវិទ្យាល័យនៅកម្ពុជា — Trey Visai",
+  plan: "ផែនការអប់រំ និងអាជីពផ្ទាល់ខ្លួន — Trey Visai",
+  facts: "តើអ្នកដឹងទេ? ការពិត និងស្ថិតិអប់រំ — Trey Visai",
+  terms: "លក្ខខណ្ឌប្រើប្រាស់ និងគោលការណ៍ឯកជនភាព — Trey Visai"
+};
+
 function showView(v){
   document.querySelectorAll(".view").forEach(el=>el.classList.remove("active","fade-in"));
   const t=document.getElementById("view-"+v);
@@ -139,6 +152,7 @@ function showView(v){
   document.querySelectorAll(".s-link").forEach(l=>l.classList.toggle("active",l.dataset.view===v&&!l.dataset.cat));
   window.scrollTo({top:0,behavior:"smooth"});
   closeSidebar();
+  if(VIEW_TITLES[v]) document.title = VIEW_TITLES[v];
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
@@ -421,6 +435,7 @@ function openSchool(id){
       </div>
     </div>`;
   showView("school-detail");
+  document.title = `${s.name} — មហាវិទ្យាល័យ ថ្លៃសិក្សា & អាហារូបករណ៍ | Trey Visai`;
   try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
 }
 
@@ -748,6 +763,7 @@ function openCareer(id){
       </div>
     </div>`;
   showView("career-detail");
+  document.title = `${j.name} — ប្រាក់ខែ ជំនាញ & សាលា | Trey Visai`;
   try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
