@@ -1354,22 +1354,41 @@ function initHero3D(){
     if(selected===o.c.view){o.el.style.setProperty("--x","0px");o.el.style.setProperty("--y","0px");o.el.style.setProperty("--r","0deg");o.el.style.setProperty("--s","1.06");o.el.style.zIndex="20";}
     else{o.el.style.setProperty("--x",(o.c.idle.x*s).toFixed(1)+"px");o.el.style.setProperty("--y",(o.c.idle.y*s).toFixed(1)+"px");o.el.style.setProperty("--r",o.c.idle.r+"deg");o.el.style.setProperty("--s","1");o.el.style.zIndex="2";}
   }
+  // rotated bounding half-extent of the furthest-scattered card, per unit of scale (s=1, cw=300) —
+  // scales linearly with s, so it lets us solve for the largest s that fits a height budget
+  function extentPerUnitScale(){
+    const cw0 = 300, ch0 = Math.round(cw0 * 9 / 16);
+    return Math.max.apply(null, cards.map(c => {
+      const rad = Math.abs(c.idle.r) * Math.PI / 180;
+      return Math.abs(c.idle.y) + (cw0 * Math.sin(rad) + ch0 * Math.cos(rad)) / 2;
+    }));
+  }
   function layout(){
+    const PAD = 16; // breathing room baked into the host's own height, top+bottom combined
     const hostW = host.clientWidth || host.parentElement?.clientWidth || window.innerWidth || 360;
-    const hCap = window.innerHeight<820?210:(window.innerHeight<950?245:300);
-    const cw = Math.min(hCap, Math.max(150, Math.floor((hostW - 24) / 1.76)));
+    let cw = Math.min(300, Math.max(150, Math.floor((hostW - 24) / 1.76)));
+    const ext1 = extentPerUnitScale();
+    if (window.innerWidth >= 769) {
+      // hero is vertically centered as one block on desktop — shrink the cards so the whole
+      // cluster fits in whatever space is left below the hero text, at any screen height
+      const landing = document.getElementById("hero-landing");
+      const heroEl = document.querySelector(".hero");
+      if (landing && heroEl && ext1 > 0) {
+        // getBoundingClientRect is in on-screen (post page-zoom) pixels, but cards are
+        // sized in raw pre-zoom px — convert the budget back to raw px before comparing,
+        // and subtract this element's own margin (also raw px) from the leftover space
+        const zoom = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--page-zoom")) || 1;
+        const hostCS = getComputedStyle(host);
+        const hostMargin = parseFloat(hostCS.marginTop) + parseFloat(hostCS.marginBottom);
+        const availH = (landing.getBoundingClientRect().height - heroEl.getBoundingClientRect().height) / zoom - hostMargin - PAD;
+        if (availH > 0) {
+          const sMax = (availH / (2 * ext1)) * 0.96; // small safety margin for rounding/measurement slack
+          cw = Math.min(cw, Math.max(150, Math.floor(300 * sMax)));
+        }
+      }
+    }
     const s = cw / 300, ch = Math.round(cw * 9 / 16);
-    // size the band to the rotated bounding box of the furthest-scattered card + clearance for hint
-    const extTop = Math.max.apply(null, cards.map(c => {
-      const rad = Math.abs(c.idle.r) * Math.PI / 180;
-      return Math.max(0, -c.idle.y) * s + (cw * Math.sin(rad) + ch * Math.cos(rad)) / 2;
-    }));
-    const extBottom = Math.max.apply(null, cards.map(c => {
-      const rad = Math.abs(c.idle.r) * Math.PI / 180;
-      return Math.max(0, c.idle.y) * s + (cw * Math.sin(rad) + ch * Math.cos(rad)) / 2;
-    }));
-    const ext = Math.max(extTop, extBottom);
-    host.style.height = Math.round(2 * ext + 38) + "px";
+    host.style.height = Math.round(2 * s * ext1 + PAD) + "px";
     els.forEach(o => {
       o.s = s;
       o.el.style.width = cw + "px";
@@ -1385,11 +1404,9 @@ function initHero3D(){
     el.addEventListener("click", () => {
       selected = (selected === c.view ? null : c.view);
       els.forEach(apply);
-      host.classList.toggle("lc-focused", selected !== null);
     });
     host.appendChild(el); els.push(o);
   });
-  const hint = document.createElement("div"); hint.className = "lc-hint"; hint.textContent = "ចុចលើកាតដើម្បីផ្ដោត"; host.appendChild(hint);
   layout();
   window.__layoutHero3D = layout;
   let t; window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(layout, 150); });
