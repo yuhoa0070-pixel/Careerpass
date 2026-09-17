@@ -139,7 +139,7 @@ const VIEW_TITLES = {
   scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
   bacii: "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប & បើធ្លាក់រៀនអ្វី? — TreyVisai",
   compare: "ប្រៀបធៀបសាលារៀន — TreyVisai",
-  facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ — TreyVisai",
+  facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ & មតិយោបល់ — TreyVisai",
   terms: "លក្ខខណ្ឌប្រើប្រាស់ — TreyVisai"
 };
 
@@ -156,6 +156,7 @@ function showView(v){
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
+  if(v==="facts")renderHomeVoices();
   if(v==="home"){
     typeHero();
     if(window.__layoutHero3D)window.__layoutHero3D();
@@ -434,7 +435,8 @@ function schoolCommentsCard(s){
   `;
 }
 function quickCommentForSchool(schoolName){
-  showView('home');
+  showView('facts');
+  if(typeof filterFacts === 'function') filterFacts('voices');
   setTimeout(()=>{
     const form = document.getElementById('voice-form');
     const select = document.getElementById('voice-school');
@@ -1271,6 +1273,7 @@ enhanceAllSelects();
 function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
   document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});
+  if(c==="all"||c==="voices") renderHomeVoices();
 }
 function parseRouteFromUrl(){
   const raw=(location.hash||"").replace(/^#/,"").trim();
@@ -1629,7 +1632,7 @@ async function fetchComments(){
 }
 
 function renderHomeVoices(){
-  const host=document.getElementById("home-voices");
+  const host=document.getElementById("facts-voices") || document.getElementById("home-voices");
   const chipsHost=document.getElementById("voice-filter-chips");
   if(!host)return;
 
