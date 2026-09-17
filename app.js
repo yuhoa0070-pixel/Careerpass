@@ -1434,6 +1434,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const panel=document.getElementById("mascot-chat");
   if(!btn||!img||!panel)return;
 
+  const btnWrap=document.getElementById("mascot-btn-wrap");
   const closeBtn=document.getElementById("mascot-chat-close");
   const widget=document.getElementById("mascot-widget");
   const dismissBtn=document.getElementById("mascot-dismiss");
@@ -1445,6 +1446,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const sugTrack=document.getElementById("mascot-sug-track");
   const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
+  let isDragging=false,hasDragged=false,currentTx=0,currentTy=0,isDockedLeft=false;
 
   const SVG_ICONS={
     roulette:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/><circle cx="12" cy="12" r="3"/></svg>`,
@@ -1612,8 +1614,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
   function setPose(name){img.src=POSES[name]||POSES.idle;}
 
-  btn.addEventListener("mouseenter",()=>{if(!isOpen)setPose("wave");});
-  btn.addEventListener("mouseleave",()=>{if(!isOpen)setPose("idle");});
+  btn.addEventListener("mouseenter",()=>{if(!isOpen&&!isDragging)setPose("wave");});
+  btn.addEventListener("mouseleave",()=>{if(!isOpen&&!isDragging)setPose("idle");});
 
   function addMessage(text,from,linkLabel,onLink){
     const row=document.createElement("div");
@@ -1990,7 +1992,169 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     closeTimer=setTimeout(()=>{panel.hidden=true;},220);
   }
 
-  btn.addEventListener("click",()=>{isOpen?closePanel():openPanel();});
+  function getGutter(){
+    if(!widget)return 16;
+    const cs=window.getComputedStyle(widget);
+    return parseFloat(cs.getPropertyValue("--mgutter"))||16;
+  }
+
+  function getBounds(){
+    if(!btnWrap)return {minTx:0,maxTx:0,minTy:0,maxTy:0,defaultLeft:0,defaultTop:0,width:80,height:80};
+    const rect=btnWrap.getBoundingClientRect();
+    const defaultLeft=rect.left-currentTx;
+    const defaultTop=rect.top-currentTy;
+    const gutter=getGutter();
+    const w=rect.width;
+    const h=rect.height;
+    const minTx=gutter-defaultLeft;
+    const maxTx=window.innerWidth-gutter-w-defaultLeft;
+    const minTy=gutter-defaultTop;
+    const maxTy=window.innerHeight-gutter-h-defaultTop;
+    return {minTx,maxTx,minTy,maxTy,defaultLeft,defaultTop,width:w,height:h};
+  }
+
+  function snapToEdge(){
+    const bounds=getBounds();
+    const centerScreenX=bounds.defaultLeft+currentTx+bounds.width/2;
+    isDockedLeft=centerScreenX<window.innerWidth/2;
+    currentTx=isDockedLeft?bounds.minTx:bounds.maxTx;
+    currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,currentTy));
+
+    if(btnWrap){
+      btnWrap.classList.add("is-snapping");
+      btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
+      btnWrap.classList.toggle("dock-left",isDockedLeft);
+    }
+    panel.classList.toggle("dock-left",isDockedLeft);
+
+    setPose("celebrate");
+    setTimeout(()=>{
+      if(!isOpen&&!isDragging)setPose("idle");
+    },1000);
+
+    try{
+      const hRange=bounds.maxTy-bounds.minTy;
+      const heightRatio=hRange>0?(currentTy-bounds.minTy)/hRange:1;
+      sessionStorage.setItem("tv_mascot_dock",JSON.stringify({isDockedLeft,heightRatio}));
+    }catch(_){}
+  }
+
+  function finishDrag(e){
+    if(btn.hasPointerCapture&&e.pointerId!==undefined){
+      try{if(btn.hasPointerCapture(e.pointerId))btn.releasePointerCapture(e.pointerId);}catch(_){}
+    }
+    if(isDragging){
+      isDragging=false;
+      if(btnWrap)btnWrap.classList.remove("is-dragging");
+      snapToEdge();
+    }
+  }
+
+  btn.addEventListener("pointerdown",e=>{
+    if(e.target.closest("#mascot-dismiss"))return;
+    if(e.button!==undefined&&e.button!==0)return;
+    hasDragged=false;
+    isDragging=false;
+    startX=e.clientX;
+    startY=e.clientY;
+    startTx=currentTx;
+    startTy=currentTy;
+    if(btnWrap)btnWrap.classList.remove("is-snapping");
+    try{btn.setPointerCapture(e.pointerId);}catch(_){}
+  });
+
+  btn.addEventListener("pointermove",e=>{
+    const dx=e.clientX-startX;
+    const dy=e.clientY-startY;
+    if(!isDragging){
+      if(Math.hypot(dx,dy)>6){
+        isDragging=true;
+        hasDragged=true;
+        if(btnWrap)btnWrap.classList.add("is-dragging");
+        setPose("wave");
+      }else{
+        return;
+      }
+    }
+    const bounds=getBounds();
+    const rawTx=startTx+dx;
+    const rawTy=startTy+dy;
+    currentTx=Math.max(bounds.minTx,Math.min(bounds.maxTx,rawTx));
+    currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,rawTy));
+    if(btnWrap)btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
+  });
+
+  btn.addEventListener("pointerup",finishDrag);
+  btn.addEventListener("pointercancel",finishDrag);
+
+  if(btnWrap){
+    btnWrap.addEventListener("transitionend",e=>{
+      if(e.propertyName==="transform")btnWrap.classList.remove("is-snapping");
+    });
+  }
+
+  btn.addEventListener("click",e=>{
+    if(hasDragged){
+      hasDragged=false;
+      e.stopPropagation();
+      e.preventDefault();
+      return;
+    }
+    isOpen?closePanel():openPanel();
+  });
+
+  window.addEventListener("resize",()=>{
+    if(isDragging)return;
+    const bounds=getBounds();
+    currentTx=isDockedLeft?bounds.minTx:bounds.maxTx;
+    currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,currentTy));
+    if(btnWrap)btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
+  });
+
+  // Restore docking position from sessionStorage
+  try{
+    const saved=sessionStorage.getItem("tv_mascot_dock");
+    if(saved){
+      const parsed=JSON.parse(saved);
+      isDockedLeft=!!parsed.isDockedLeft;
+      requestAnimationFrame(()=>{
+        const bounds=getBounds();
+        currentTx=isDockedLeft?bounds.minTx:bounds.maxTx;
+        if(typeof parsed.heightRatio==="number"&&!isNaN(parsed.heightRatio)){
+          const hRange=bounds.maxTy-bounds.minTy;
+          currentTy=bounds.minTy+parsed.heightRatio*hRange;
+          currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,currentTy));
+        }
+        if(btnWrap){
+          btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
+          btnWrap.classList.toggle("dock-left",isDockedLeft);
+        }
+        panel.classList.toggle("dock-left",isDockedLeft);
+      });
+    }
+  }catch(_){}
+
+  // Scroll reactivity: Mascot tilts playfully in scroll direction
+  let scrollTimer=null,lastScrollY=window.scrollY||0;
+  window.addEventListener("scroll",()=>{
+    if(isDragging)return;
+    const curY=window.scrollY||0;
+    const diff=curY-lastScrollY;
+    if(Math.abs(diff)>4){
+      if(diff>0){
+        btn.classList.add("is-scrolling-down");
+        btn.classList.remove("is-scrolling-up");
+      }else{
+        btn.classList.add("is-scrolling-up");
+        btn.classList.remove("is-scrolling-down");
+      }
+      clearTimeout(scrollTimer);
+      scrollTimer=setTimeout(()=>{
+        btn.classList.remove("is-scrolling-down","is-scrolling-up");
+      },220);
+    }
+    lastScrollY=curY;
+  },{passive:true});
   closeBtn.addEventListener("click",closePanel);
   if(backdrop)backdrop.addEventListener("click",closePanel);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&isOpen)closePanel();});
