@@ -60,19 +60,24 @@ schools. Every school/tuition/logo claim must be verifiable.
                                               // degree-level/credit rather
                                               // than by faculty (see "uc")
   studentVoices:[{name:"Real Name",program:"Real program/year",quote:"..."}]
-                                // optional, renders as "Student Highlights" on
-                                // the detail page. THE SAME GOLDEN RULE APPLIES
-                                // HERE, HARD: a quote attributed to a named
-                                // person is a testimonial, not a data point —
-                                // fabricating one is a fake review, not a
-                                // placeholder. Only add an entry with a real,
-                                // sourced, ideally-consented quote (e.g.
-                                // something a student actually posted publicly,
-                                // with attribution, or submitted directly).
-                                // Leave the field out entirely otherwise — the
-                                // UI already shows a clean "no stories yet"
-                                // empty state, which is the honest state for
-                                // every school right now.
+                                // optional, aggregated across all schools and
+                                // rendered as "Student Highlights" on the
+                                // HOMEPAGE (not the school detail page —
+                                // moved there so it reads as one shared wall
+                                // of stories instead of a per-school stat).
+                                // THE SAME GOLDEN RULE APPLIES HERE, HARD: a
+                                // quote attributed to a named person is a
+                                // testimonial, not a data point — fabricating
+                                // one is a fake review, not a placeholder.
+                                // The homepage has a "ចែករំលែករឿងរបស់អ្នក"
+                                // form students can use to submit their own
+                                // story; submissions go to the maintainer's
+                                // email (mailto, no backend) for manual
+                                // review, and only get added to this array
+                                // here once verified. Never add an entry
+                                // sourced any other way. Leave the field out
+                                // entirely for schools with no verified
+                                // submissions yet.
 }
 ```
 

@@ -554,6 +554,19 @@ button.faculty-item{cursor:pointer;}
 .voice-quote{font-size:13.5px;line-height:1.7;color:var(--text);margin:0 0 8px;font-style:italic;}
 .voice-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3);}
 .voice-name{font-weight:700;color:var(--text-2);}
+#home-voices.voice-list{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:32px;}
+@media(min-width:768px){#home-voices.voice-list{grid-template-columns:1fr 1fr;}}
+@media(min-width:1100px){#home-voices.voice-list{grid-template-columns:1fr 1fr 1fr;}}
+.voice-submit{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);}
+.voice-submit h3{display:flex;align-items:center;gap:8px;font-size:16px;margin:0 0 8px;}
+.voice-submit h3 .material-symbols-outlined{color:var(--accent);}
+.voice-submit-note{font-size:13px;color:var(--text-3);line-height:1.6;margin:0 0 18px;}
+.voice-form{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:640px){.voice-form{grid-template-columns:1fr 1fr;}.voice-form-row-full{grid-column:1/-1;}}
+.voice-form-row label{font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:7px;display:block;}
+.voice-form-row input,.voice-form-row select,.voice-form-row textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;resize:vertical;}
+.voice-form-row input:focus,.voice-form-row select:focus,.voice-form-row textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+.voice-form button{grid-column:1/-1;justify-self:start;}
 
 /* ===== GOAL 3 — COST ESTIMATOR ===== */
 .cost-layout{display:grid;grid-template-columns:1fr;gap:24px;}
