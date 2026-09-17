@@ -2067,7 +2067,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const dx=e.clientX-startX;
     const dy=e.clientY-startY;
     if(!isDragging){
-      if(Math.hypot(dx,dy)>6){
+      if(Math.hypot(dx,dy)>5){
         isDragging=true;
         hasDragged=true;
         if(btnWrap)btnWrap.classList.add("is-dragging");
@@ -2076,6 +2076,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
         return;
       }
     }
+    if(e.cancelable)e.preventDefault();
     const bounds=getBounds();
     const rawTx=startTx+dx;
     const rawTy=startTy+dy;
@@ -2083,6 +2084,10 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,rawTy));
     if(btnWrap)btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
   });
+
+  btn.addEventListener("touchmove",e=>{
+    if(isDragging&&e.cancelable)e.preventDefault();
+  },{passive:false});
 
   btn.addEventListener("pointerup",finishDrag);
   btn.addEventListener("pointercancel",finishDrag);
@@ -2133,28 +2138,6 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       });
     }
   }catch(_){}
-
-  // Scroll reactivity: Mascot tilts playfully in scroll direction
-  let scrollTimer=null,lastScrollY=window.scrollY||0;
-  window.addEventListener("scroll",()=>{
-    if(isDragging)return;
-    const curY=window.scrollY||0;
-    const diff=curY-lastScrollY;
-    if(Math.abs(diff)>4){
-      if(diff>0){
-        btn.classList.add("is-scrolling-down");
-        btn.classList.remove("is-scrolling-up");
-      }else{
-        btn.classList.add("is-scrolling-up");
-        btn.classList.remove("is-scrolling-down");
-      }
-      clearTimeout(scrollTimer);
-      scrollTimer=setTimeout(()=>{
-        btn.classList.remove("is-scrolling-down","is-scrolling-up");
-      },220);
-    }
-    lastScrollY=curY;
-  },{passive:true});
   closeBtn.addEventListener("click",closePanel);
   if(backdrop)backdrop.addEventListener("click",closePanel);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&isOpen)closePanel();});
