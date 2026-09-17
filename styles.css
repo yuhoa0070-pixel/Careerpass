@@ -813,6 +813,43 @@ button.faculty-item{cursor:pointer;}
 }
 @media(max-width:460px){.home-careers{grid-template-columns:1fr;}}
 
+/* ===== BAC II & GRADE GUIDANCE ===== */
+.gD{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;}
+.bacii-hero{text-align:center;max-width:760px;margin:0 auto 28px;}
+.bacii-tabs{justify-content:center;flex-wrap:wrap;gap:8px;}
+.bacii-tabs .chip{font-size:13px;padding:8px 14px;}
+.bacii-panel{animation:fadeIn .25s var(--ease);}
+.bacii-banner{display:flex;gap:18px;align-items:flex-start;background:var(--accent-tint);border:1.5px solid var(--accent);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;}
+.bacii-banner-icon{width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bacii-banner-icon .material-symbols-outlined{font-size:26px;}
+.bacii-banner-body h3{font-size:17px;font-weight:800;color:var(--text);margin:0 0 8px;}
+.bacii-banner-body p{font-size:13.5px;color:var(--text-2);line-height:1.75;margin:0;}
+.bacii-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:32px;}
+@media(min-width:768px){.bacii-grid{grid-template-columns:1fr 1fr;}}
+.bacii-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 22px;display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow-sm);transition:transform .2s var(--ease),box-shadow .2s var(--ease);}
+.bacii-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.bacii-card.highlighted{border:2px solid var(--accent);background:linear-gradient(180deg,var(--card) 0%,rgba(124,58,237,.03) 100%);}
+.bacii-card-badge{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--accent-tint);color:var(--accent);margin-bottom:14px;}
+.bacii-card-badge.free{background:rgba(2,132,199,.12);color:#0284c7;}
+.bacii-card-badge.fast{background:rgba(217,119,6,.12);color:#b45309;}
+.bacii-card-badge.retry{background:rgba(126,34,206,.12);color:#7e22ce;}
+.bacii-card-badge.scholar{background:rgba(22,163,74,.12);color:#16a34a;}
+.bacii-card-head{display:flex;gap:14px;align-items:center;margin-bottom:12px;}
+.bacii-card-icon{width:42px;height:42px;border-radius:10px;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bacii-card-icon .material-symbols-outlined{font-size:22px;}
+.bacii-card-head h3{font-size:15.5px;font-weight:800;color:var(--text);margin:0 0 3px;line-height:1.35;}
+.bacii-card-sub{font-size:12px;color:var(--text-3);font-weight:600;}
+.bacii-card-desc{font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 16px;}
+.bacii-keypoint{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:var(--radius);padding:12px 14px;font-size:12.5px;color:var(--text-2);line-height:1.6;margin-bottom:16px;}
+.bacii-keypoint .material-symbols-outlined{font-size:18px;color:#16a34a;flex-shrink:0;margin-top:2px;}
+.bacii-list{display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--text-2);margin-bottom:16px;}
+.bacii-list div{display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.bacii-list .material-symbols-outlined{font-size:16px;color:var(--accent);flex-shrink:0;margin-top:2px;}
+.bacii-schools-title{font-size:12px;font-weight:700;color:var(--text-3);margin-bottom:8px;}
+.bacii-school-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+.bacii-school-tags .tag{cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--accent);font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:6px;transition:all .15s;}
+.bacii-school-tags .tag:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
 /* ===== Mascot widget ===== */
 .mascot-widget{--mgutter:20px;--mbtn:112px;position:fixed;right:calc(var(--mgutter) + env(safe-area-inset-right));bottom:calc(var(--mgutter) + env(safe-area-inset-bottom));z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
 .mascot-dismiss,.mascot-sug-pill,.mascot-chat-send,.mascot-chat-close,.mascot-chat-header-btn,.mascot-card-btn,.mascot-choice-btn,.mascot-game-action-btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}

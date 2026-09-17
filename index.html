@@ -104,7 +104,8 @@
         {"@type": "ListItem", "position": 4, "name": "គណនាថ្លៃសិក្សា & ជីវភាព", "item": "https://treyvisai.com/#cost"},
         {"@type": "ListItem", "position": 5, "name": "អាហារូបករណ៍រដ្ឋ", "item": "https://treyvisai.com/#scholarship"},
         {"@type": "ListItem", "position": 6, "name": "តេស្តស្វែងរកអាជីព", "item": "https://treyvisai.com/#quiz"},
-        {"@type": "ListItem", "position": 7, "name": "ប្រៀបធៀបសាលារៀន", "item": "https://treyvisai.com/#compare"}
+        {"@type": "ListItem", "position": 7, "name": "ប្រៀបធៀបសាលារៀន", "item": "https://treyvisai.com/#compare"},
+        {"@type": "ListItem", "position": 8, "name": "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប", "item": "https://treyvisai.com/#bacii"}
       ]
     },
     {
@@ -156,6 +157,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "អាហារូបករណ៍រដ្ឋ MoEYS ត្រូវបានផ្តល់ជូនសិស្សនិស្សិតតាមរយៈការប្រឡងសញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ផ្អែកលើនិទ្ទេស និងការជ្រើសរើសមុខជំនាញអាទិភាព។ ចំណែកកម្មវិធី TVET 1.5 លាននាក់ របស់រាជរដ្ឋាភិបាល ផ្តល់ការបណ្តុះបណ្តាលវិជ្ជាជីវៈ និងបច្ចេកទេសឥតគិតថ្លៃ ១០០% ព្រមទាំងមានប្រាក់ឧបត្ថម្ភប្រចាំខែសម្រាប់យុវជនមកពីគ្រួសារក្រីក្រ និងងាយរងគ្រោះ។"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ចុះបើខ្ញុំមិនបានប្រឡងជាប់បាក់ឌុប (ធ្លាក់បាក់ឌុប) តើខ្ញុំនៅតែអាចរៀនបន្ត ឬយកសញ្ញាបត្របានទេ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "បានយ៉ាងពិតប្រាកដ! ក្រសួងការងារ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ (MLVT) ផ្តល់ជម្រើសថ្នាក់បរិញ្ញាបត្ររង (TVET កម្រិត ៤ & ៥) រយៈពេល ២ ឆ្នាំនៅវិទ្យាស្ថានបច្ចេកទេសរដ្ឋ (ដូចជា NPIC, PPI, NTTI) ដោយមិនតម្រូវឱ្យមានសញ្ញាបត្របាក់ឌុបឡើយ។ បន្ទាប់ពីបញ្ចប់បរិញ្ញាបត្ររង អ្នកអាចបន្តឡើងឆ្នាំទី ៣ ថ្នាក់បរិញ្ញាបត្រនៅសាកលវិទ្យាល័យដៃគូបានដូចគ្នា ឬចូលរួមកម្មវិធីបណ្តុះបណ្តាល ១,៥ លាននាក់ដោយឥតគិតថ្លៃ ១០០% និងទទួលបានប្រាក់ឧបត្ថម្ភ ២៨០,០០០ រៀល/ខែ។"
           }
         },
         {
@@ -260,6 +269,7 @@
         <button type="button" class="s-link" data-view="careers"><i class="material-symbols-outlined s-link-icon">work</i>អាជីព</button>
         <button type="button" class="s-link" data-view="schools"><i class="material-symbols-outlined s-link-icon">school</i>សាលា <span class="badge">116</span></button>
         <button type="button" class="s-link" data-view="cost"><i class="material-symbols-outlined s-link-icon">payments</i>ថ្លៃសិក្សា</button>
+        <button type="button" class="s-link" data-view="bacii"><i class="material-symbols-outlined s-link-icon">verified</i>ណែនាំបាក់ឌុប</button>
         <button type="button" class="s-link" data-view="facts"><i class="material-symbols-outlined s-link-icon">lightbulb</i>តើអ្នកដឹងទេ?</button>
         <button type="button" class="s-link" data-view="plan"><i class="material-symbols-outlined s-link-icon">bookmark</i>ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></button>
       </nav>
@@ -327,6 +337,7 @@
     <div class="home-features">
       <div class="feat-card" data-view="careers"><div class="feat-ic gA"><i class="material-symbols-outlined">work</i></div><h3>ស្វែងរកអាជីព</h3><p>ស្វែងរកអាជីពជាង ១០០+ មុខ ស្គាល់ជំនាញដែលត្រូវការ និងប្រាក់ខែប៉ាន់ស្មាន។</p><span class="feat-link">មើលអាជីព →</span></div>
       <div class="feat-card" data-view="scholarship"><div class="feat-ic gB"><i class="material-symbols-outlined">workspace_premium</i></div><h3>អាហារូបករណ៍</h3><p>MOEYS, JICA, ADB, Chevening… អាហារូបករណ៍បញ្ចុះ ២០–១០០% នៃថ្លៃសិក្សា។</p><span class="feat-link">មើលអាហារូបករណ៍ →</span></div>
+      <div class="feat-card" data-view="bacii"><div class="feat-ic gD"><i class="material-symbols-outlined">school</i></div><h3>ណែនាំបាក់ឌុប & បើធ្លាក់រៀនអ្វី?</h3><p>ដឹងពីជម្រើសតាមនិទ្ទេស A–E និងផ្លូវបន្តការសិក្សា TVET / បរិញ្ញាបត្ររង ២ ឆ្នាំ បើមិនទាន់ជាប់បាក់ឌុប។</p><span class="feat-link">មើលការណែនាំ →</span></div>
       <div class="feat-card" data-view="careers"><div class="feat-ic gC"><i class="material-symbols-outlined">trending_up</i></div><h3>អាជីពនាពេលអនាគត</h3><p>អាជីពដែលនឹងកើនឡើងក្នុង ៥ ឆ្នាំខាងមុខ និងជំនាញដែលត្រូវរៀនតាំងពីឥឡូវ។</p><span class="feat-link">មើលអាជីព →</span></div>
     </div>
   </div>
@@ -350,6 +361,7 @@
       <details class="faq-item"><summary>តើ TreyVisai ឥតគិតថ្លៃមែនទេ?<i class="material-symbols-outlined">expand_more</i></summary><p>មែនហើយ។ មុខងារទាំងអស់ — ស្វែងរកអាជីព ស្វែងរកសាលា និងគណនាថ្លៃសិក្សា — ឥតគិតថ្លៃទាំងស្រុង ដោយមិនចាំបាច់បង្កើតគណនី ឬបង់ប្រាក់។</p></details>
       <details class="faq-item"><summary>សិស្សទើបចប់បាក់ឌុប (BacII) តើគួរជ្រើសរើសជំនាញ និងសាកលវិទ្យាល័យបែបណា?<i class="material-symbols-outlined">expand_more</i></summary><p>ដើម្បីជ្រើសរើសជំនាញឱ្យបានត្រឹមត្រូវ សិស្សគួរពិចារណាលើកត្តា ៣ សំខាន់៖ ១. ចំណង់ចំណូលចិត្ត និងសមត្ថភាពពិត (អាចធ្វើតេស្តស្វែងរកអាជីពនៅលើ TreyVisai), ២. តម្រូវការទីផ្សារការងារ និងកម្រិតប្រាក់ខែនាពេលអនាគត, និង ៣. លទ្ធភាពហិរញ្ញវត្ថុគ្រួសារ និងជម្រើសអាហារូបករណ៍រដ្ឋ។</p></details>
       <details class="faq-item"><summary>តើអាហារូបករណ៍រដ្ឋ MoEYS និងកម្មវិធី TVET 1.5M ទទួលបានដោយរបៀបណា?<i class="material-symbols-outlined">expand_more</i></summary><p>អាហារូបករណ៍រដ្ឋ MoEYS ត្រូវបានផ្តល់ជូនសិស្សនិស្សិតតាមរយៈការប្រឡងសញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ផ្អែកលើនិទ្ទេស និងការជ្រើសរើសមុខជំនាញអាទិភាព។ ចំណែកកម្មវិធី TVET 1.5 លាននាក់ របស់រាជរដ្ឋាភិបាល ផ្តល់ការបណ្តុះបណ្តាលវិជ្ជាជីវៈ និងបច្ចេកទេសឥតគិតថ្លៃ ១០០% ព្រមទាំងមានប្រាក់ឧបត្ថម្ភប្រចាំខែសម្រាប់យុវជនមកពីគ្រួសារក្រីក្រ និងងាយរងគ្រោះ។</p></details>
+      <details class="faq-item"><summary>ចុះបើខ្ញុំមិនបានប្រឡងជាប់បាក់ឌុប តើខ្ញុំនៅតែអាចរៀនបន្ត ឬយកសញ្ញាបត្របានទេ?<i class="material-symbols-outlined">expand_more</i></summary><p>បានយ៉ាងពិតប្រាកដ! ក្រសួងការងារ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ (MLVT) ផ្តល់ជម្រើសថ្នាក់បរិញ្ញាបត្ររង (TVET កម្រិត ៤ & ៥) រយៈពេល ២ ឆ្នាំនៅវិទ្យាស្ថានបច្ចេកទេសរដ្ឋ (ដូចជា NPIC, PPI, NTTI) ដោយមិនតម្រូវឱ្យមានសញ្ញាបត្របាក់ឌុបឡើយ។ បន្ទាប់ពីបញ្ចប់បរិញ្ញាបត្ររង អ្នកអាចបន្តឡើងឆ្នាំទី ៣ ថ្នាក់បរិញ្ញាបត្រនៅសាកលវិទ្យាល័យដៃគូបានដូចគ្នា ឬចូលរួមកម្មវិធីបណ្តុះបណ្តាល ១,៥ លាននាក់ដោយឥតគិតថ្លៃ ១០០% និងទទួលបានប្រាក់ឧបត្ថម្ភ ២៨០,០០០ រៀល/ខែ។</p></details>
       <details class="faq-item"><summary>តើសាកលវិទ្យាល័យរដ្ឋ និងឯកជន ខុសគ្នាយ៉ាងណាខ្លះលើថ្លៃសិក្សា?<i class="material-symbols-outlined">expand_more</i></summary><p>សាកលវិទ្យាល័យរដ្ឋ (ដូចជា RUPP, ITC, RULE, NUM) ជាទូទៅមានថ្លៃសិក្សាចន្លោះពី ៤០០$ ដល់ ៨០០$/ឆ្នាំ សម្រាប់ថ្នាក់ទូទៅ និងមានអាហារូបករណ៍រដ្ឋច្រើន។ រីឯសាកលវិទ្យាល័យឯកជន និងអន្តរជាតិ (ដូចជា AUPP, Paragon, CamEd) ថ្លៃសិក្សាអាចចាប់ពី ៨០០$ ដល់ជាង ៥,០០០$/ឆ្នាំ អាស្រ័យលើកម្មវិធីសិក្សា និងស្តង់ដារអន្តរជាតិ។ TreyVisai មានតារាងប្រៀបធៀបថ្លៃសិក្សាយ៉ាងលម្អិត។</p></details>
       <details class="faq-item"><summary>តើធ្វើដូចម្តេចទើបដឹងថាខ្លួនឯងសមស្របនឹងជំនាញ ឬអាជីពណា?<i class="material-symbols-outlined">expand_more</i></summary><p>អ្នកអាចប្រើប្រាស់មុខងារ «តេស្តស្វែងរកអាជីព» លើគេហទំព័រ TreyVisai ដោយឆ្លើយសំណួរងាយៗដើម្បីវិភាគបុគ្គលិកលក្ខណៈ ចំណូលចិត្ត និងសមត្ថភាពរបស់អ្នក។ ប្រព័ន្ធនឹងគណនាភាគរយផ្គូផ្គងជាមួយអាជីពជាង ១០០+ មុខ ព្រមទាំងបង្ហាញសាលាដែលបង្រៀនជំនាញនោះភ្លាមៗ។</p></details>
       <details class="faq-item"><summary>តើខ្ញុំគួរចាប់ផ្ដើមស្វែងរកដោយរបៀបណា?<i class="material-symbols-outlined">expand_more</i></summary><p>អ្នកអាចចាប់ផ្ដើមដោយការរុករកទំព័រ «អាជីព» ដើម្បីស្វែងយល់ពីទីផ្សារការងារ ឬទំព័រ «សាលា» ដើម្បីស្វែងរកគ្រឹះស្ថានឧត្តមសិក្សា និងកម្មវិធីសិក្សាដែលត្រូវចិត្ត។</p></details>
@@ -639,6 +651,342 @@
         <h3>អាហារូបករណ៍សាកលវិទ្យាល័យ</h3>
         <p>បញ្ចុះតម្លៃសិក្សាផ្ទាល់ពីសាកលវិទ្យាល័យឯកជន តាមលទ្ធផលសិក្សា</p>
         <div class="scholar-meta"><span class="scholar-amount">បញ្ចុះ ២០–១០០%</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> រាល់ឆមាស</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== BAC II & GRADE GUIDANCE ======================== -->
+<section id="view-bacii" class="view">
+  <div class="page-wrap">
+    <div class="bacii-hero">
+      <div class="hero-badge" style="margin-bottom:12px"><i class="material-symbols-outlined" style="font-size:14px">verified</i> មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប (BacII)</div>
+      <h2 class="page-title">ផែនទីបង្ហាញផ្លូវក្រោយប្រឡងបាក់ឌុប</h2>
+      <p class="page-sub">មិនថាអ្នកទទួលបាននិទ្ទេស A, B, C, D, E ឬមិនទាន់បានប្រឡងជាប់ទេ — អ្នកតែងតែមានជម្រើស និងផ្លូវជោគជ័យទៅមុខជានិច្ច!</p>
+      
+      <div class="chip-row bacii-tabs" id="bacii-tabs" role="tablist">
+        <button type="button" class="chip active" data-bacii="fail" onclick="switchBaciiTab('fail')">🚀 បើមិនទាន់ជាប់បាក់ឌុប</button>
+        <button type="button" class="chip" data-bacii="ab" onclick="switchBaciiTab('ab')">🏆 និទ្ទេស A & B</button>
+        <button type="button" class="chip" data-bacii="cd" onclick="switchBaciiTab('cd')">🥈 និទ្ទេស C & D</button>
+        <button type="button" class="chip" data-bacii="e" onclick="switchBaciiTab('e')">🥉 និទ្ទេស E</button>
+        <button type="button" class="chip" data-bacii="streams" onclick="switchBaciiTab('streams')">⚖️ វិទ្យាសាស្ត្រ vs សង្គម</button>
+      </div>
+    </div>
+
+    <!-- PANEL: FAIL BAC II (HIGHLIGHTED & EMPATHETIC) -->
+    <div class="bacii-panel active" id="bacii-panel-fail" role="tabpanel">
+      <div class="bacii-banner">
+        <div class="bacii-banner-icon"><i class="material-symbols-outlined">lightbulb</i></div>
+        <div class="bacii-banner-body">
+          <h3>ការធ្លាក់បាក់ឌុប មិនមែនជាទីបញ្ចប់នៃក្តីស្រមៃឡើយ!</h3>
+          <p>ប្រព័ន្ធអប់រំកម្ពុជាបច្ចុប្បន្នបើកចំហផ្លូវតភ្ជាប់ច្រើនជម្រើស។ សិស្សមិនជាប់បាក់ឌុប នៅតែអាចរៀនថ្នាក់បរិញ្ញាបត្ររង ២ ឆ្នាំ (Associate Degree / TVET កម្រិត ៤ & ៥) ហើយអាចបន្តឡើងឆ្នាំទី ៣ បរិញ្ញាបត្រ ឬចេញធ្វើការរកចំណូលបានភ្លាមៗ ជាមួយនឹងជំនាញឯកទេសច្បាស់លាស់។</p>
+        </div>
+      </div>
+
+      <div class="bacii-grid">
+        <!-- Option 1: TVET Level 4 / Associate Degree (Bridge to Bachelor) -->
+        <div class="bacii-card highlighted">
+          <span class="bacii-card-badge fast">ជម្រើសពេញនិយមបំផុត · តភ្ជាប់បរិញ្ញាបត្រ</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">engineering</i></div>
+            <div>
+              <h3>បរិញ្ញាបត្ររង / សញ្ញាបត្រជាន់ខ្ពស់បច្ចេកទេស (TVET Level 4)</h3>
+              <span class="bacii-card-sub">រយៈពេល ២ ឆ្នាំ · មិនត្រូវការសញ្ញាបត្របាក់ឌុប</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">ចុះឈ្មោះចូលរៀនថ្នាក់បរិញ្ញាបត្ររង (TVET កម្រិត ៤ & ៥) នៅវិទ្យាស្ថានបច្ចេកទេសរដ្ឋ និងឯកជន។ បន្ទាប់ពីបញ្ចប់ ២ ឆ្នាំ អ្នកទទួលបានសញ្ញាបត្រស្របច្បាប់ពេញលេញ និងអាចផ្ទេរក្រេឌីតឡើងរៀនឆ្នាំទី ៣ បរិញ្ញាបត្រ (Bachelor Degree) នៅសាកលវិទ្យាល័យដៃគូបាន!</p>
+          <div class="bacii-keypoint">
+            <i class="material-symbols-outlined">check_circle</i>
+            <div><strong>ចំណុចពិសេស៖</strong> សញ្ញាបត្រស្មើនឹងអ្នករៀនចប់ឆ្នាំទី ២ បរិញ្ញាបត្រ។ មិនខាតពេល ទទួលបានជំនាញបច្ចេកទេសជាក់ស្តែង។</div>
+          </div>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>ជំនាញ៖ ព័ត៌មានវិទ្យា (IT), អគ្គិសនី, មេកានិច, សំណង់, គណនេយ្យ, ទេសចរណ៍</div>
+            <div><i class="material-symbols-outlined">check</i>ការងារ៖ អាចចេញធ្វើការជាអ្នកបច្ចេកទេសជំនាញ ឬបន្តបរិញ្ញាបត្រភ្លាមៗ</div>
+          </div>
+          <div class="bacii-schools-title">សាលាណែនាំកំពូល៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('npic')">NPIC (ពោធិ៍សែនជ័យ)</button>
+            <button type="button" class="tag" onclick="openSchool('ppi')">PPI (កុសុមៈ)</button>
+            <button type="button" class="tag" onclick="openSchool('ntti')">NTTI (បណ្តុះបណ្តាលបច្ចេកទេស)</button>
+            <button type="button" class="tag" onclick="openSchool('setec')">SETEC Institute</button>
+          </div>
+        </div>
+
+        <!-- Option 2: Free Gov TVET 1.5M Program -->
+        <div class="bacii-card highlighted">
+          <span class="bacii-card-badge free">ឥតគិតថ្លៃ ១០០% + ប្រាក់ឧបត្ថម្ភ</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon" style="background:rgba(2,132,199,.1);color:#0284c7"><i class="material-symbols-outlined">payments</i></div>
+            <div>
+              <h3>កម្មវិធីបណ្តុះបណ្តាលជាតិ TVET ១,៥ លាននាក់</h3>
+              <span class="bacii-card-sub">ថ្នាក់ C3 / កម្រិតវិជ្ជាជីវៈ ១-៣ · ឥតគិតថ្លៃ</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">កម្មវិធីថ្នាក់ជាតិរបស់រាជរដ្ឋាភិបាលកម្ពុជា (ក្រសួងការងារ MLVT) សម្រាប់យុវជនទូទាំងប្រទេស។ រៀនឥតគិតថ្លៃ ១០០% លើជំនាញវិជ្ជាជីវៈ និងបច្ចេកទេស ចុះកម្មសិក្សាផ្ទាល់នៅរោងចក្រ/សហគ្រាស និងមានការធានាជួយរកការងារធ្វើ។</p>
+          <div class="bacii-keypoint">
+            <i class="material-symbols-outlined">verified</i>
+            <div><strong>អត្ថប្រយោជន៍ពិសេស៖</strong> យុវជនមកពីគ្រួសារមានប័ណ្ណក្រីក្រ ឬងាយរងគ្រោះ ទទួលបានប្រាក់ឧបត្ថម្ភ ២៨០,០០០ រៀល/ខែ។</div>
+          </div>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>រយៈពេល៖ ៤ ខែ ទៅ ១ ឆ្នាំ (ទ្រឹស្តី ៣០% + អនុវត្តផ្ទាល់ ៧០%)</div>
+            <div><i class="material-symbols-outlined">check</i>ជំនាញ៖ ជួសជុលរថយន្ត, ម៉ាស៊ីនត្រជាក់, តម្លើងបណ្តាញអគ្គិសនី, ចុងភៅ, សេវាកម្មកុំព្យូទ័រ</div>
+          </div>
+          <div class="bacii-schools-title">គ្រឹះស្ថានបណ្តុះបណ្តាល៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('npic')">NPIC</button>
+            <button type="button" class="tag" onclick="openSchool('ppi')">PPI</button>
+            <button type="button" class="tag" onclick="openSchool('ntti')">NTTI</button>
+            <button type="button" class="tag" onclick="openSchool('acac')">ACAC (សិល្បៈធ្វើម្ហូប)</button>
+          </div>
+        </div>
+
+        <!-- Option 3: Short-term Vocational & Practical Careers -->
+        <div class="bacii-card">
+          <span class="bacii-card-badge fast">ជំនាញរហ័ស · រកចំណូលលឿន</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon" style="background:rgba(217,119,6,.1);color:#b45309"><i class="material-symbols-outlined">bolt</i></div>
+            <div>
+              <h3>វគ្គជំនាញខ្លី និងសិល្បៈជាក់ស្តែង (៣–៦ ខែ)</h3>
+              <span class="bacii-card-sub">ជំនាញទីផ្សារខ្ពស់ · ធ្វើការឯករាជ្យ (Freelance)</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">ផ្តោតលើជំនាញដែលមានតម្រូវការទីផ្សាររហ័ស ដូចជា Graphic Design, ថតរូប & កាត់តវីដេអូ, Barista (ឆុងកាហ្វេ), ឬការគ្រប់គ្រង Social Media Marketing។ សិក្សារយៈពេលខ្លី តម្លៃសមរម្យ និងអាចចាប់ផ្តើមរកចំណូលបានភ្លាមៗ។</p>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>ចំណុចខ្លាំង៖ ទីផ្សារការងារមិនទាមទារសញ្ញាបត្រ តែទាមទារស្នាដៃជាក់ស្តែង (Portfolio)</div>
+            <div><i class="material-symbols-outlined">check</i>អាជីពសក្តានុពល៖ ឌីហ្សាញឡូហ្គោ, អ្នកកាត់តវីដេអូ TikTok/Reels, ជាងថតរូប, មេជាងម៉ាស៊ីនត្រជាក់</div>
+          </div>
+          <div class="bacii-schools-title">ស្វែងយល់អាជីពពាក់ព័ន្ធ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" data-view="careers">🎨 Graphic Designer</button>
+            <button type="button" class="tag" data-view="careers">☕ Barista</button>
+            <button type="button" class="tag" data-view="careers">📱 Digital Marketer</button>
+          </div>
+        </div>
+
+        <!-- Option 4: Retake BacII Exam as Self-Study (បេក្ខជនស្វៃរិន) -->
+        <div class="bacii-card">
+          <span class="bacii-card-badge retry">សាងឱកាសថ្មី · តាំងចិត្តសាជាថ្មី</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon" style="background:rgba(126,34,206,.1);color:#7e22ce"><i class="material-symbols-outlined">replay</i></div>
+            <div>
+              <h3>ប្រឡងឡើងវិញជា «បេក្ខជនស្វៃរិន» នៅឆ្នាំបន្ទាប់</h3>
+              <span class="bacii-card-sub">ឱកាសកែខៃនិទ្ទេស និងដណ្តើមអាហារូបករណ៍</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">ប្រសិនបើអ្នកមានបំណងប្រាថ្នាច្បាស់លាស់ក្នុងការចូលរៀនមហាវិទ្យាល័យដែលទាមទារសញ្ញាបត្របាក់ឌុប (ដូចជា ពេទ្យ UHS, វិស្វកម្ម ITC ឬអាហារូបករណ៍រដ្ឋ) អ្នកអាចចុះឈ្មោះប្រឡងបាក់ឌុបសារជាថ្មីនៅឆ្នាំបន្ទាប់ជាបេក្ខជនស្វៃរិន។</p>
+          <div class="bacii-keypoint">
+            <i class="material-symbols-outlined">tips_and_updates</i>
+            <div><strong>គន្លឹះជោគជ័យ៖</strong> ពិនិត្យមើលមុខវិជ្ជាណាដែលធ្លាក់ពិន្ទុខ្លាំង ផ្តោតពង្រឹងមុខវិជ្ជានោះតាមរយៈការរៀនបំប៉ន និងធ្វើលំហាត់វិញ្ញាសាចាស់ៗ។</div>
+          </div>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>អាចធ្វើការងារក្រៅម៉ោង (Part-time) បណ្តើរ និងឆ្លៀតរៀនបំប៉នពេលល្ងាច</div>
+            <div><i class="material-symbols-outlined">check</i>មិនមានកំណត់ចំនួនដងនៃការចូលរួមប្រឡងស្វៃរិនឡើយ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: GRADE A & B -->
+    <div class="bacii-panel" id="bacii-panel-ab" role="tabpanel" hidden>
+      <div class="bacii-banner" style="background:rgba(22,163,74,.08);border-color:#16a34a">
+        <div class="bacii-banner-icon" style="background:#16a34a"><i class="material-symbols-outlined">emoji_events</i></div>
+        <div class="bacii-banner-body">
+          <h3>អបអរសាទរ! អ្នកជាបេក្ខជនឆ្នើមលំដាប់ប្រទេស</h3>
+          <p>និទ្ទេស A & B បើកទ្វារស្ទើរតែ ១០០% ទៅកាន់អាហារូបករណ៍រដ្ឋ MoEYS, អាហារូបករណ៍អន្តរជាតិ និងការប្រឡងចូលគ្រឹះស្ថានឧត្តមសិក្សាឈានមុខគេនៅកម្ពុជា។</p>
+        </div>
+      </div>
+      <div class="bacii-grid">
+        <div class="bacii-card">
+          <span class="bacii-card-badge scholar">អាហារូបករណ៍ពេញលេញ ១០០%</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon" style="background:rgba(22,163,74,.1);color:#16a34a"><i class="material-symbols-outlined">workspace_premium</i></div>
+            <div>
+              <h3>អាហារូបករណ៍រដ្ឋ MoEYS & បច្ចេកវិទ្យា CADT / ITC</h3>
+              <span class="bacii-card-sub">រៀនឥតគិតថ្លៃ ៤–៥ ឆ្នាំ</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">និទ្ទេស A & B ស្ទើរតែទទួលបានកន្លែងអាហារូបករណ៍រដ្ឋពេញលេញដោយស្វ័យប្រវត្តិនៅតាមសាកលវិទ្យាល័យរដ្ឋធំៗ។ លើសពីនេះ អាចដាក់ពាក្យអាហារូបករណ៍ទេពកោសល្យឌីជីថលតេជោ (CADT) ឬអាហារូបករណ៍វិស្វករ ITC។</p>
+          <div class="bacii-schools-title">គ្រឹះស្ថានអាទិភាព៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('cadt')">CADT (ឌីជីថល)</button>
+            <button type="button" class="tag" onclick="openSchool('itc')">ITC (តិចណូ)</button>
+            <button type="button" class="tag" onclick="openSchool('rupp')">RUPP (ភូមិន្ទភ្នំពេញ)</button>
+            <button type="button" class="tag" onclick="openSchool('rule')">RULE (ច្បាប់-សេដ្ឋកិច្ច)</button>
+          </div>
+        </div>
+
+        <div class="bacii-card">
+          <span class="bacii-card-badge">ការប្រឡងប្រជែងខ្ពស់</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">local_hospital</i></div>
+            <div>
+              <h3>វិស័យសុខាភិបាល (UHS) & អាហារូបករណ៍ក្រៅប្រទេស</h3>
+              <span class="bacii-card-sub">វេជ្ជបណ្ឌិត, ទន្តបណ្ឌិត, ឱសថការី</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">និទ្ទេស A & B មានអត្ថប្រយោជន៍ដ៏ធំធេងក្នុងការប្រឡងចូលមហាវិទ្យាល័យវេជ្ជសាស្ត្រ UHS ឬដាក់ពាក្យអាហារូបករណ៍ទៅសិក្សានៅប្រទេសជប៉ុន (MEXT), ចិន (CSC), ថៃ, សិង្ហបុរី, ហុងគ្រី និងអឺរ៉ុប។</p>
+          <div class="bacii-schools-title">គ្រឹះស្ថានអាទិភាព៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('uhs')">UHS (វិទ្យាសាស្ត្រសុខាភិបាល)</button>
+            <button type="button" class="tag" onclick="openSchool('rupp')">RUPP (វិទ្យាសាស្ត្រ)</button>
+            <button type="button" class="tag" data-view="scholarship">មើលអាហារូបករណ៍ក្រៅប្រទេស →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: GRADE C & D -->
+    <div class="bacii-panel" id="bacii-panel-cd" role="tabpanel" hidden>
+      <div class="bacii-banner">
+        <div class="bacii-banner-icon"><i class="material-symbols-outlined">trending_up</i></div>
+        <div class="bacii-banner-body">
+          <h3>និទ្ទេស C & D៖ មូលដ្ឋានរឹងមាំ និងមានជម្រើសទូលំទូលាយ</h3>
+          <p>អ្នកមានសិទ្ធិចុះឈ្មោះចូលរៀនថ្នាក់បរិញ្ញាបត្រ (Bachelor Degree) នៅគ្រប់សាកលវិទ្យាល័យរដ្ឋ និងឯកជនទាំងអស់នៅកម្ពុជា។</p>
+        </div>
+      </div>
+      <div class="bacii-grid">
+        <div class="bacii-card">
+          <span class="bacii-card-badge">ថ្លៃសិក្សាសមរម្យ</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">account_balance</i></div>
+            <div>
+              <h3>ថ្នាក់បង់ថ្លៃនៅសាកលវិទ្យាល័យរដ្ឋ</h3>
+              <span class="bacii-card-sub">ថ្លៃសិក្សា ៥០០$ – ៨០០$/ឆ្នាំ</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">ជ្រើសរើសជំនាញសេដ្ឋកិច្ច, គ្រប់គ្រង, ព័ត៌មានវិទ្យា, ភាសាបរទេស ឬច្បាប់ នៅសាកលវិទ្យាល័យរដ្ឋល្បីៗដូចជា RUPP, RULE, NUM ដោយចំណាយថវិកាសមរម្យ និងទទួលបានសញ្ញាបត្រមានការទទួលស្គាល់ទូទាំងប្រទេស។</p>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('rupp')">RUPP</button>
+            <button type="button" class="tag" onclick="openSchool('rule')">RULE</button>
+            <button type="button" class="tag" onclick="openSchool('num')">NUM</button>
+          </div>
+        </div>
+
+        <div class="bacii-card">
+          <span class="bacii-card-badge scholar">បញ្ចុះ ២០% – ៥០%</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon" style="background:rgba(22,163,74,.1);color:#16a34a"><i class="material-symbols-outlined">card_membership</i></div>
+            <div>
+              <h3>អាហារូបករណ៍សាកលវិទ្យាល័យឯកជន</h3>
+              <span class="bacii-card-sub">ជំនាញទីផ្សារការងារខ្ពស់</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">សាកលវិទ្យាល័យឯកជនជាច្រើនផ្តល់អាហារូបករណ៍លើកទឹកចិត្តនិទ្ទេស C & D ចន្លោះពី ២០% ដល់ ៥០% សម្រាប់ឆ្នាំទី ១។ ផ្តោតលើជំនាញបច្ចេកវិទ្យា ឌីហ្សាញ ធុរកិច្ច និងភាសា។</p>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('setec')">SETEC Institute</button>
+            <button type="button" class="tag" onclick="openSchool('nubb')">សាកលវិទ្យាល័យជាតិបាត់ដំបង</button>
+            <button type="button" class="tag" data-view="cost">គណនាថ្លៃសិក្សា & ជីវភាព →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: GRADE E -->
+    <div class="bacii-panel" id="bacii-panel-e" role="tabpanel" hidden>
+      <div class="bacii-banner">
+        <div class="bacii-banner-icon"><i class="material-symbols-outlined">check_circle</i></div>
+        <div class="bacii-banner-body">
+          <h3>និទ្ទេស E៖ អ្នកបានប្រឡងជាប់សញ្ញាបត្របាក់ឌុបផ្លូវការ!</h3>
+          <p>សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ និទ្ទេស E មានតម្លៃស្របច្បាប់ពេញលេញក្នុងការចុះឈ្មោះចូលរៀនថ្នាក់បរិញ្ញាបត្រ ៤ ឆ្នាំ និងថ្នាក់បច្ចេកទេសជាន់ខ្ពស់។</p>
+        </div>
+      </div>
+      <div class="bacii-grid">
+        <div class="bacii-card">
+          <span class="bacii-card-badge">បរិញ្ញាបត្រពេញលេញ</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">school</i></div>
+            <div>
+              <h3>សាកលវិទ្យាល័យរដ្ឋតាមបណ្តាខេត្ត & សាកលវិទ្យាល័យឯកជន</h3>
+              <span class="bacii-card-sub">បរិញ្ញាបត្រ ៤ ឆ្នាំ</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">សាកលវិទ្យាល័យរដ្ឋតាមខេត្តដូចជា NUBB (បាត់ដំបង), SRU (ស្វាយរៀង), MCU (មានជ័យ), CSKSU (កំពង់ស្ពឺ) ផ្តល់ឱកាសសិក្សាទូលំទូលាយ តម្លៃសមរម្យ និងបរិយាកាសសិក្សាល្អប្រសើរ។</p>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('nubb')">NUBB (បាត់ដំបង)</button>
+            <button type="button" class="tag" onclick="openSchool('sru')">SRU (ស្វាយរៀង)</button>
+            <button type="button" class="tag" onclick="openSchool('mcu')">MCU (មានជ័យ)</button>
+            <button type="button" class="tag" onclick="openSchool('csku')">CSKSU (កំពង់ស្ពឺ)</button>
+          </div>
+        </div>
+
+        <div class="bacii-card">
+          <span class="bacii-card-badge fast">ជម្រើសជំនាញជាក់ស្តែង</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">build</i></div>
+            <div>
+              <h3>បច្ចេកទេស និងវិជ្ជាជីវៈជាន់ខ្ពស់ (TVET Level 5)</h3>
+              <span class="bacii-card-sub">ជំនាញជាក់ស្តែង · ការងាររហ័ស</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">ការជ្រើសរើសរៀន TVET ជាមួយនិទ្ទេស E ជួយឱ្យអ្នកមានប្រៀបខ្លាំងលើទីផ្សារការងារ ព្រោះអ្នកទទួលបានជំនាញអនុវត្តជាក់ស្តែងមុនគេ និងឆាប់ចេញធ្វើការរកចំណូល។</p>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('npic')">NPIC</button>
+            <button type="button" class="tag" onclick="openSchool('ppi')">PPI</button>
+            <button type="button" class="tag" onclick="openSchool('ntti')">NTTI</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: SCIENCE VS SOCIAL STREAM -->
+    <div class="bacii-panel" id="bacii-panel-streams" role="tabpanel" hidden>
+      <div class="bacii-banner">
+        <div class="bacii-banner-icon"><i class="material-symbols-outlined">compare_arrows</i></div>
+        <div class="bacii-banner-body">
+          <h3>ថ្នាក់វិទ្យាសាស្ត្រ vs ថ្នាក់វិទ្យាសាស្ត្រសង្គម៖ តើជ្រើសរើសជំនាញអ្វីបានខ្លះ?</h3>
+          <p>សំណួរពេញនិយមបំផុត៖ <em>«តើសិស្សថ្នាក់សង្គម អាចរៀន IT ឬ Design បានទេ?»</em> — <strong>បាន ១០០%!</strong></p>
+        </div>
+      </div>
+      <div class="bacii-grid">
+        <div class="bacii-card">
+          <span class="bacii-card-badge">ថ្នាក់វិទ្យាសាស្ត្រ (Science Stream)</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">science</i></div>
+            <div>
+              <h3>វិទ្យាសាស្ត្រពិត & វិស្វកម្ម</h3>
+              <span class="bacii-card-sub">គណិត, រូប, គីមី, ជីវៈ</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">មានជម្រើសបើកទូលាយបំផុតលើគ្រប់វិស័យ រួមទាំងវិស័យសុខាភិបាល (ពេទ្យ) និងវិស្វកម្មបច្ចេកវិទ្យាសុទ្ធ។</p>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>ជំនាញផ្តាច់មុខ៖ វេជ្ជបណ្ឌិត, ទន្តបណ្ឌិត, ឱសថការី (UHS), វិស្វកម្មសំណង់ស៊ីវិល/អគ្គិសនីកម្រិតស៊ីជម្រៅ (ITC)</div>
+            <div><i class="material-symbols-outlined">check</i>ជំនាញបច្ចេកវិទ្យា៖ Software Engineering, Data Science, Cybersecurity</div>
+          </div>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('uhs')">UHS</button>
+            <button type="button" class="tag" onclick="openSchool('itc')">ITC</button>
+            <button type="button" class="tag" onclick="openSchool('cadt')">CADT</button>
+            <button type="button" class="tag" onclick="openSchool('rupp')">RUPP</button>
+          </div>
+        </div>
+
+        <div class="bacii-card">
+          <span class="bacii-card-badge">ថ្នាក់សង្គម (Social Stream)</span>
+          <div class="bacii-card-head">
+            <div class="bacii-card-icon"><i class="material-symbols-outlined">history_edu</i></div>
+            <div>
+              <h3>សង្គម, ធុរកិច្ច & ឌីជីថលអនុវត្ត</h3>
+              <span class="bacii-card-sub">អក្សរសាស្ត្រ, ប្រវត្តិ, ភូមិ, សីលធម៌</span>
+            </div>
+          </div>
+          <p class="bacii-card-desc">មិនជាប់កម្រិតរៀនតែច្បាប់ ឬសេដ្ឋកិច្ចឡើយ! សិស្សថ្នាក់សង្គមអាចរៀនបច្ចេកវិទ្យាព័ត៌មាន (IT), Graphic Design, UX/UI, និង Digital Marketing បានយ៉ាងជោគជ័យ។</p>
+          <div class="bacii-list">
+            <div><i class="material-symbols-outlined">check</i>ជំនាញបច្ចេកវិទ្យាអនុវត្ត៖ IT & Network Support, Web Development, Multimedia & Design</div>
+            <div><i class="material-symbols-outlined">check</i>ជំនាញសង្គម & ធុរកិច្ច៖ ច្បាប់ (RULE), ទំនាក់ទំនងអន្តរជាតិ (IR), គ្រប់គ្រងពាណិជ្ជកម្ម (NUM), ទេសចរណ៍</div>
+          </div>
+          <div class="bacii-schools-title">សាលាណែនាំ៖</div>
+          <div class="bacii-school-tags">
+            <button type="button" class="tag" onclick="openSchool('setec')">SETEC (IT & Design)</button>
+            <button type="button" class="tag" onclick="openSchool('rule')">RULE</button>
+            <button type="button" class="tag" onclick="openSchool('num')">NUM</button>
+            <button type="button" class="tag" onclick="openSchool('npic')">NPIC</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
