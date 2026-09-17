@@ -2085,7 +2085,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     try{btn.setPointerCapture(e.pointerId);}catch(_){}
   });
 
-  btn.addEventListener("pointermove",e=>{
+  function onPointerMove(e){
     if(!isPointerDown)return;
     if(activePointerId!==null&&e.pointerId!==activePointerId)return;
     if(e.pointerType==="mouse"&&(e.buttons&1)!==1){
@@ -2111,7 +2111,10 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     currentTx=Math.max(bounds.minTx,Math.min(bounds.maxTx,rawTx));
     currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,rawTy));
     if(btnWrap)btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
-  });
+  }
+
+  btn.addEventListener("pointermove",onPointerMove);
+  window.addEventListener("pointermove",onPointerMove);
 
   btn.addEventListener("touchmove",e=>{
     if(isDragging&&e.cancelable)e.preventDefault();
