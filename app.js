@@ -139,7 +139,6 @@ const VIEW_TITLES = {
   scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
   bacii: "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប & បើធ្លាក់រៀនអ្វី? — TreyVisai",
   compare: "ប្រៀបធៀបសាលារៀន — TreyVisai",
-  plan: "ផែនការសិក្សាផ្ទាល់ខ្លួន — TreyVisai",
   facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ — TreyVisai",
   terms: "លក្ខខណ្ឌប្រើប្រាស់ — TreyVisai"
 };
@@ -157,7 +156,6 @@ function showView(v){
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
-  if(v==="plan")renderPlan();
   if(v==="home"){
     typeHero();
     if(window.__layoutHero3D)window.__layoutHero3D();
@@ -554,11 +552,6 @@ function calcCost(){
   document.getElementById("roi-salary").textContent=fmt(monthSalary)+"/ខែ";
   document.getElementById("roi-annual").textContent=fmt(annualSalary)+"/ឆ្នាំ";
   document.getElementById("roi-payback").textContent=payback+" ឆ្នាំ";
-  if(typeof plan!=="undefined"&&total>0){
-    const schName=schoolSel.selectedOptions[0]?.text||"";
-    plan.cost={total:total,years:years,tuition:tuitionTotal,living:livingTotal+materialsTotal,school:schName,major:document.getElementById("cost-major").value,payback:payback};
-    savePlan();
-  }
 }
 
 /* ===== HERO TYPING ANIMATION ===== */
