@@ -1356,7 +1356,8 @@ function initHero3D(){
   }
   function layout(){
     const hostW = host.clientWidth || host.parentElement?.clientWidth || window.innerWidth || 360;
-    const cw = Math.min(300, Math.max(150, Math.floor((hostW - 24) / 1.76)));
+    const hCap = window.innerHeight<820?210:(window.innerHeight<950?245:300);
+    const cw = Math.min(hCap, Math.max(150, Math.floor((hostW - 24) / 1.76)));
     const s = cw / 300, ch = Math.round(cw * 9 / 16);
     // size the band to the rotated bounding box of the furthest-scattered card + clearance for hint
     const extTop = Math.max.apply(null, cards.map(c => {

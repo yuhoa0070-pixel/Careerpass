@@ -334,6 +334,13 @@ input,select{font-family:inherit;}
 .hero .cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;opacity:0;animation:fadeUp .7s ease forwards .4s;}
 .hero .browse-link{font-size:13px;color:var(--accent);cursor:pointer;border-bottom:1px solid transparent;transition:border-color .15s;}
 .hero .browse-link:hover{border-bottom-color:var(--accent);}
+@media(max-height:950px) and (min-width:769px){
+  .hero{padding:24px 20px 16px;}
+  .hero-badge{margin-bottom:10px;}
+  .hero h1{margin:0 0 8px;}
+  .hero p.sub{margin:0 auto 16px;}
+  .hero-3d{margin:0 auto 12px;}
+}
 
 /* ===== HOME VIEW ===== */
 .goals-row{display:flex;flex-direction:column;align-items:stretch;gap:16px;max-width:980px;margin:0 auto 60px;padding:0 20px;}
