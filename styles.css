@@ -920,3 +920,25 @@ button.faculty-item{cursor:pointer;}
   /* iOS Safari zooms the page on focus when an input's font-size is under 16px */
   .mascot-chat-input{font-size:16px;}
 }
+
+/* ===== SEO CAMBODIA KNOWLEDGE DIRECTORY ===== */
+.seo-directory{margin-top:48px;}
+.seo-dir-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-top:24px;}
+.seo-dir-card{background:var(--card);border:1px solid var(--border);padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow-sm);transition:border-color .2s var(--ease),box-shadow .2s var(--ease);}
+.seo-dir-card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-md);}
+.seo-dir-card-head{display:flex;flex-direction:column;gap:6px;}
+.seo-dir-badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:4px 10px;align-self:flex-start;}
+.seo-dir-badge .material-symbols-outlined{font-size:16px;}
+.seo-dir-badge.public{background:rgba(16,185,129,0.1);color:#059669;border:1px solid rgba(16,185,129,0.25);}
+.seo-dir-badge.private{background:rgba(98,78,188,0.1);color:var(--accent);border:1px solid rgba(98,78,188,0.25);}
+.seo-dir-badge.tvet{background:rgba(245,158,11,0.1);color:#d97706;border:1px solid rgba(245,158,11,0.25);}
+.seo-dir-badge.careers{background:rgba(6,182,212,0.1);color:#0891b2;border:1px solid rgba(6,182,212,0.25);}
+.seo-dir-desc{font-size:12px;color:var(--text-3);line-height:1.45;margin:0;}
+.seo-dir-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.seo-tag{background:var(--bg);border:1px solid var(--border);padding:5px 9px;font-size:11.5px;color:var(--text-2);cursor:pointer;text-align:left;line-height:1.4;display:inline-flex;align-items:center;gap:4px;transition:all .15s var(--ease);}
+.seo-tag strong{color:var(--accent);font-weight:700;}
+.seo-tag:hover{border-color:var(--accent);background:var(--accent-tint);color:var(--accent);transform:translateY(-1px);}
+[data-theme="dark"] .seo-dir-card{background:var(--card);border-color:var(--border);}
+[data-theme="dark"] .seo-tag{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:var(--text-2);}
+[data-theme="dark"] .seo-tag:hover{background:var(--accent-tint);border-color:var(--accent);color:#fff;}
+
