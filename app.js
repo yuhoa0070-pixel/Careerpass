@@ -1463,6 +1463,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
   let isDragging=false,hasDragged=false,currentTx=0,currentTy=0,isDockedLeft=false;
+  let isPointerDown=false,activePointerId=null;
 
   const SVG_ICONS={
     roulette:`<svg class="mascot-svg-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/><circle cx="12" cy="12" r="3"/></svg>`,
@@ -2056,7 +2057,10 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   }
 
   function finishDrag(e){
-    if(btn.hasPointerCapture&&e.pointerId!==undefined){
+    if(!isPointerDown&&!isDragging)return;
+    isPointerDown=false;
+    activePointerId=null;
+    if(btn.hasPointerCapture&&e&&e.pointerId!==undefined){
       try{if(btn.hasPointerCapture(e.pointerId))btn.releasePointerCapture(e.pointerId);}catch(_){}
     }
     if(isDragging){
@@ -2069,6 +2073,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   btn.addEventListener("pointerdown",e=>{
     if(e.target.closest("#mascot-dismiss"))return;
     if(e.button!==undefined&&e.button!==0)return;
+    isPointerDown=true;
+    activePointerId=e.pointerId;
     hasDragged=false;
     isDragging=false;
     startX=e.clientX;
@@ -2079,11 +2085,17 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     try{btn.setPointerCapture(e.pointerId);}catch(_){}
   });
 
-  btn.addEventListener("pointermove",e=>{
+  function onPointerMove(e){
+    if(!isPointerDown)return;
+    if(activePointerId!==null&&e.pointerId!==activePointerId)return;
+    if(e.pointerType==="mouse"&&(e.buttons&1)!==1){
+      finishDrag(e);
+      return;
+    }
     const dx=e.clientX-startX;
     const dy=e.clientY-startY;
     if(!isDragging){
-      if(Math.hypot(dx,dy)>5){
+      if(Math.hypot(dx,dy)>6){
         isDragging=true;
         hasDragged=true;
         if(btnWrap)btnWrap.classList.add("is-dragging");
@@ -2099,7 +2111,10 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     currentTx=Math.max(bounds.minTx,Math.min(bounds.maxTx,rawTx));
     currentTy=Math.max(bounds.minTy,Math.min(bounds.maxTy,rawTy));
     if(btnWrap)btnWrap.style.transform=`translate3d(${currentTx}px,${currentTy}px,0)`;
-  });
+  }
+
+  btn.addEventListener("pointermove",onPointerMove);
+  window.addEventListener("pointermove",onPointerMove);
 
   btn.addEventListener("touchmove",e=>{
     if(isDragging&&e.cancelable)e.preventDefault();
@@ -2107,6 +2122,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
   btn.addEventListener("pointerup",finishDrag);
   btn.addEventListener("pointercancel",finishDrag);
+  window.addEventListener("pointerup",finishDrag);
+  window.addEventListener("pointercancel",finishDrag);
 
   if(btnWrap){
     btnWrap.addEventListener("transitionend",e=>{
