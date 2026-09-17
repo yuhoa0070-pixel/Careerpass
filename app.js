@@ -137,6 +137,7 @@ const VIEW_TITLES = {
   cost: "គណនាថ្លៃសិក្សា — TreyVisai",
   quiz: "តេស្តស្វែងរកអាជីព — TreyVisai",
   scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
+  bacii: "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប & បើធ្លាក់រៀនអ្វី? — TreyVisai",
   compare: "ប្រៀបធៀបសាលារៀន — TreyVisai",
   plan: "ផែនការសិក្សាផ្ទាល់ខ្លួន — TreyVisai",
   facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ — TreyVisai",
@@ -180,6 +181,19 @@ document.querySelectorAll("[data-view]").forEach(el=>{
   });
 });
 document.querySelector('.s-link[data-view="home"]').classList.add("active");
+
+/* ===== BAC II GUIDANCE TABS ===== */
+function switchBaciiTab(tabId){
+  document.querySelectorAll("#bacii-tabs .chip").forEach(c=>{
+    c.classList.toggle("active", c.dataset.bacii===tabId);
+  });
+  document.querySelectorAll(".bacii-panel").forEach(p=>{
+    const match = p.id === "bacii-panel-" + tabId;
+    p.hidden = !match;
+    p.classList.toggle("active", match);
+  });
+}
+window.switchBaciiTab = switchBaciiTab;
 
 
 /* ===== GOAL 2: SCHOOLS ===== */
@@ -1535,6 +1549,15 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       reply:"កុំទាន់ភ័យរឿង AI ដណ្តើមការងារពេក សំខាន់ឥឡូវប្រឡងបាក់ឌុបជាប់នៅ? 😜 AI ឆ្លាតមែន តែវាមិនចេះសុំច្បាប់ឈប់សម្រាកពេលឈឺក្បាលដូចយើងទេ! រៀនជំនាញទាំងនេះទៅ គ្មានថ្ងៃ AI ដណ្តើមបានទេ៖",
       careers:["aieng","prompteng","cyber","doctor","contentcreator"],
       schools:["cadt","itc","uhs"]
+    },
+    {
+      q:"បើធ្លាក់បាក់ឌុប រៀនអីបាន?",
+      pill:"បើធ្លាក់បាក់ឌុប រៀនអី?",
+      icon:"school",
+      keywords:["ធ្លាក់","បាក់ឌុប","ធ្លាក់បាក់ឌុប","fail","bacii","មិនជាប់","ធ្លាក់សញ្ញាបត្រ"],
+      reply:"ធ្លាក់បាក់ឌុប កុំទាន់អស់សង្ឃឹម! ជីវិតនៅវែងឆ្ងាយណាស់ Bro/Sis! 🚀✨ នៅកម្ពុជាមានផ្លូវរាប់សិប៖ រៀនបរិញ្ញាបត្ររង / សញ្ញាបត្រជាន់ខ្ពស់បច្ចេកទេស (TVET Level 4) រយៈពេល ២ ឆ្នាំ ចេញធ្វើការភ្លាមៗ ហើយអាចបន្តយកបរិញ្ញាបត្រពេញលេញបានទៀត! ឬរៀន TVET 1.5M ឥតគិតថ្លៃ ១០០%៖",
+      careers:["electrician","carmechanic","graphic","barista","webdev"],
+      schools:["npic","ppi","ntti","acac","setec"]
     },
     {
       q:"រៀន ២ ឆ្នាំ រកលុយបានលឿន",
