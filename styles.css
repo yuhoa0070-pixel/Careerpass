@@ -549,6 +549,11 @@ button.faculty-item{cursor:pointer;}
 .compare-table tr:hover td{background:var(--accent-tint);}
 .empty-state{text-align:center;padding:60px 0;color:var(--text-3);font-size:14px;}
 .empty-state .material-symbols-outlined{font-size:48px;margin-bottom:12px;opacity:.4;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;}
+.voice-list{display:flex;flex-direction:column;gap:12px;}
+.voice-item{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:14px 16px;}
+.voice-quote{font-size:13.5px;line-height:1.7;color:var(--text);margin:0 0 8px;font-style:italic;}
+.voice-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3);}
+.voice-name{font-weight:700;color:var(--text-2);}
 
 /* ===== GOAL 3 — COST ESTIMATOR ===== */
 .cost-layout{display:grid;grid-template-columns:1fr;gap:24px;}

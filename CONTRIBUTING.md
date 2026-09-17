@@ -55,10 +55,24 @@ schools. Every school/tuition/logo claim must be verifiable.
   facPrices:["$X/ឆ្នាំ",...],  // optional: parallel to faculties[]
   faculties:["Name — Major1, Major2",...], // optional: "Faculty — majors"
                                              // format, em dash separator
-  pricing:[{p:"tier name",price:"$X/ឆ្នាំ"}] // optional alternative to
+  pricing:[{p:"tier name",price:"$X/ឆ្នាំ"}], // optional alternative to
                                               // facPrices when pricing is by
                                               // degree-level/credit rather
                                               // than by faculty (see "uc")
+  studentVoices:[{name:"Real Name",program:"Real program/year",quote:"..."}]
+                                // optional, renders as "Student Highlights" on
+                                // the detail page. THE SAME GOLDEN RULE APPLIES
+                                // HERE, HARD: a quote attributed to a named
+                                // person is a testimonial, not a data point —
+                                // fabricating one is a fake review, not a
+                                // placeholder. Only add an entry with a real,
+                                // sourced, ideally-consented quote (e.g.
+                                // something a student actually posted publicly,
+                                // with attribution, or submitted directly).
+                                // Leave the field out entirely otherwise — the
+                                // UI already shows a clean "no stories yet"
+                                // empty state, which is the honest state for
+                                // every school right now.
 }
 ```
 

@@ -390,6 +390,22 @@ function pricingCard(s){
     </div>
   </div>`;
 }
+function studentVoicesCard(s){
+  const voices=s.studentVoices;
+  if(voices&&voices.length){
+    return `<div class="detail-card">
+      <h3><i class="material-symbols-outlined">forum</i> សំឡេងនិស្សិត (Student Highlights)</h3>
+      <div class="voice-list">${voices.map(v=>`<div class="voice-item"><p class="voice-quote">“${v.quote}”</p><div class="voice-meta"><span class="voice-name">${v.name}</span>${v.program?`<span class="voice-sep">•</span><span class="voice-program">${v.program}</span>`:""}</div></div>`).join("")}</div>
+    </div>`;
+  }
+  return `<div class="detail-card">
+    <h3><i class="material-symbols-outlined">forum</i> សំឡេងនិស្សិត (Student Highlights)</h3>
+    <div class="empty-state" style="padding:28px 0">
+      <i class="material-symbols-outlined">forum</i>
+      <p>មិនទាន់មានការចែករំលែកពីនិស្សិតសម្រាប់សាលានេះនៅឡើយទេ។</p>
+    </div>
+  </div>`;
+}
 function openSchool(id){
   const s=schoolsData.find(x=>x.id===id);
   if(!s)return;
@@ -427,7 +443,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
+      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${studentVoicesCard(s)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type, s)}</span></div>
