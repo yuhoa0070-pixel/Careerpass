@@ -402,6 +402,57 @@ function pricingCard(s){
     </div>
   </div>`;
 }
+function schoolCommentsCard(s){
+  const comments = (typeof allComments !== "undefined" ? allComments : []).filter(c => {
+    return (c.schoolId && c.schoolId === s.id) || (c.schoolName && (c.schoolName === s.name || c.schoolName.includes(s.name) || s.name.includes(c.schoolName)));
+  });
+  const stars = n => "★".repeat(Math.max(1, Math.min(5, n || 5))) + "☆".repeat(Math.max(0, 5 - Math.max(1, Math.min(5, n || 5))));
+  
+  let listHtml = "";
+  if (comments.length) {
+    listHtml = comments.map(c => `
+      <div class="detail-comment-card">
+        <div class="detail-comment-head">
+          <div><strong>${c.name}</strong> ${c.program ? `<span style="color:var(--text-3);font-size:11.5px">· ${c.program}</span>` : ""}</div>
+          <span class="voice-stars">${stars(c.rating)}</span>
+        </div>
+        <p class="detail-comment-quote">"${c.quote}"</p>
+      </div>
+    `).join("");
+  } else {
+    listHtml = `<div class="detail-comments-empty">មិនទាន់មានការវាយតម្លៃ ឬមតិយោបល់លើសាលានេះនៅឡើយទេ។ ក្លាយជាអ្នកទីមួយដែលចែករំលែក!</div>`;
+  }
+
+  return `
+    <div class="detail-card detail-comments">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <h3 style="margin:0"><i class="material-symbols-outlined">rate_review</i> មតិយោបល់ & ការវាយតម្លៃ (${comments.length})</h3>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="quickCommentForSchool('${s.name}')"><i class="material-symbols-outlined">add_comment</i> បញ្ចេញមតិ (មិនបាច់ Log In)</button>
+      </div>
+      <div class="detail-comments-list">${listHtml}</div>
+    </div>
+  `;
+}
+function quickCommentForSchool(schoolName){
+  showView('home');
+  setTimeout(()=>{
+    const form = document.getElementById('voice-form');
+    const select = document.getElementById('voice-school');
+    if(select && schoolName){
+      for(let i=0; i<select.options.length; i++){
+        if(select.options[i].value === schoolName || select.options[i].text.includes(schoolName) || schoolName.includes(select.options[i].text)){
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    if(form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const quote = document.getElementById('voice-quote');
+    if(quote) quote.focus();
+  }, 200);
+}
+window.quickCommentForSchool = quickCommentForSchool;
+
 function openSchool(id){
   const s=schoolsData.find(x=>x.id===id);
   if(!s)return;
@@ -439,7 +490,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
+      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${schoolCommentsCard(s)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type, s)}</span></div>
@@ -1424,37 +1475,331 @@ function initHomeFeatured(){
   }).join("");
 }
 
-function initHomeVoices(){
+/* ===== STUDENT VOICES & COMMUNITY COMMENTS (Backend data & No login required) ===== */
+const SEED_COMMENTS = [
+  {
+    id: "c1",
+    name: "ជា សុភ័ក្ត្រ",
+    schoolId: "itc",
+    schoolName: "វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា (ITC)",
+    program: "វិស្វកម្មព័ត៌មានវិទ្យា (IT) · ឆ្នាំទី ៤",
+    quote: "ITC មានការបង្រៀនមូលដ្ឋានគ្រឹះគណិត និងរូបវិទ្យារឹងមាំខ្លាំងនៅឆ្នាំទី១-២ (ថ្នាក់ត្រៀម)។ ពេលឡើងដល់ដេប៉ាតឺម៉ង់ IT លោកគ្រូអ្នកគ្រូជំរុញឱ្យអនុវត្តគម្រោងពិតច្រើន។ អ្នករៀននៅទីនេះ ត្រូវត្រៀមស្មារតីខិតខំស្រាវជ្រាវដោយខ្លួនឯងច្រើន ទើបដើរទាន់។",
+    rating: 5,
+    createdAt: "2026-08-15T09:30:00.000Z"
+  },
+  {
+    id: "c2",
+    name: "សុខ សុវណ្ណារ៉ា",
+    schoolId: "cadt",
+    schoolName: "បណ្ឌិត្យសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា (CADT)",
+    program: "Software Engineering · ឆ្នាំទី ៣",
+    quote: "បរិយាកាសសិក្សានៅ CADT ទំនើបខ្លាំង សម្ភារៈនិងបន្ទប់ Lab បច្ចេកវិទ្យាស្អាត និងមានកម្មវិធីអាហារូបករណ៍ទេពកោសល្យឌីជីថលតេជោ។ សាលាមានបណ្តាញភ្ជាប់ជាមួយក្រុមហ៊ុន Tech ក្នុងស្រុក និងក្រៅស្រុកច្រើន ដែលជួយដល់ឱកាសចុះកម្មសិក្សា (Internship)។",
+    rating: 5,
+    createdAt: "2026-08-20T14:15:00.000Z"
+  },
+  {
+    id: "c3",
+    name: "លី ស្រីមុំ",
+    schoolId: "rupp",
+    schoolName: "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP)",
+    program: "វិទ្យាសាស្ត្រកុំព្យូទ័រ · ឆ្នាំទី ៣",
+    quote: "នៅ RUPP (FE) ថ្លៃសិក្សាសមរម្យមែនទែន ហើយមានសកម្មភាពនិស្សិតច្រើន។ ក្លឹបសិក្សា IT និងការប្រកួតប្រជែង Hackathon ជួយឱ្យយើងរៀនពីគ្នាបានច្រើន។ សាស្ត្រាចារ្យមានបទពិសោធន៍យូរឆ្នាំ និងផ្តល់ការប្រឹក្សាយ៉ាងកក់ក្តៅ។",
+    rating: 4,
+    createdAt: "2026-08-28T11:00:00.000Z"
+  },
+  {
+    id: "c4",
+    name: "ហេង ចាន់រិទ្ធ",
+    schoolId: "npic",
+    schoolName: "វិទ្យាស្ថានជាតិពហុបច្ចេកទេសកម្ពុជា (NPIC)",
+    program: "អគ្គិសនី និងស្វ័យប្រវត្តិកម្ម · បរិញ្ញាបត្ររង",
+    quote: "ខ្ញុំរៀនថ្នាក់បរិញ្ញាបត្ររង ២ ឆ្នាំនៅ NPIC ព្រោះមិនបានប្រឡងជាប់បាក់ឌុប។ នៅទីនេះអនុវត្តផ្ទាល់ក្នុងរោងជាងដល់ទៅ ៧០%។ រៀនចប់ភ្លាម រោងចក្រមកជ្រើសរើសយកធ្វើការភ្លាមៗ ហើយឥឡូវខ្ញុំកំពុងបន្តបរិញ្ញាបត្រឆ្នាំទី៣ ពេលល្ងាច។ ពិតជាមិនខកបំណងទេ!",
+    rating: 5,
+    createdAt: "2026-09-02T16:45:00.000Z"
+  },
+  {
+    id: "c5",
+    name: "អ៊ុ វឌ្ឍនា",
+    schoolId: "rule",
+    schoolName: "សាកលវិទ្យាល័យភូមិន្ទនីតិសាស្ត្រ និងវិទ្យាសាស្ត្រសេដ្ឋកិច្ច (RULE)",
+    program: "នីតិសាស្ត្រ (ច្បាប់) · ឆ្នាំទី ៤",
+    quote: "សម្រាប់អ្នកស្រឡាញ់ច្បាប់ RULE គឺជាជម្រើសលេខមួយ។ បណ្ណាល័យមានសៀវភៅ និងឯកសារច្បាប់សម្បូរបែប ហើយមានការប្រកួតជជែកដេញដោលតុលាការត្រាប់ (Moot Court) ញឹកញាប់ ជួយពង្រឹងភាពក្លាហាន និងជំនាញវិភាគ។",
+    rating: 5,
+    createdAt: "2026-09-05T08:20:00.000Z"
+  },
+  {
+    id: "c6",
+    name: "ម៉េង សុខណា",
+    schoolId: "setec",
+    schoolName: "វិទ្យាស្ថានសេធិក (SETEC Institute)",
+    program: "Graphic Design & Multimedia · ឆ្នាំទី ២",
+    quote: "នៅ SETEC ផ្តោតលើជំនាញជាក់ស្តែងលើ Design និង Animation ខ្លាំង។ គ្រូបង្រៀនភាគច្រើនកំពុងធ្វើការជាក់ស្តែងក្នុងវិស័យ Agency ឬ Studio ដូច្នេះពួកគាត់បង្រៀនពី Trend និងតម្រូវការទីផ្សារពិតៗ។",
+    rating: 4,
+    createdAt: "2026-09-08T13:10:00.000Z"
+  },
+  {
+    id: "c7",
+    name: "កែវ ពិសិដ្ឋ",
+    schoolId: "uhs",
+    schoolName: "សាកលវិទ្យាល័យវិទ្យាសាស្ត្រសុខាភិបាល (UHS)",
+    program: "វេជ្ជបណ្ឌិតទូទៅ · ឆ្នាំទី ៥",
+    quote: "ការរៀនពេទ្យនៅ UHS ទាមទារការលះបង់ និងការតស៊ូខ្ពស់ណាស់ មេរៀនច្រើន និងត្រូវចុះកម្មសិក្សានៅមន្ទីរពេទ្យរដ្ឋញឹកញាប់។ ប៉ុន្តែអារម្មណ៍ពេលបានជួយមើលថែ និងព្យាបាលអ្នកជំងឺពិតជាមានតម្លៃដែលមិនអាចកាត់ថ្លៃបាន។",
+    rating: 5,
+    createdAt: "2026-09-10T10:05:00.000Z"
+  },
+  {
+    id: "c8",
+    name: "ឈួន ធីតា",
+    schoolId: "nubb",
+    schoolName: "សាកលវិទ្យាល័យជាតិបាត់ដំបង (NUBB)",
+    program: "គ្រប់គ្រងពាណិជ្ជកម្ម និងកសិ-ធុរកិច្ច · ឆ្នាំទី ៣",
+    quote: "សម្រាប់សិស្សនៅខេត្តបាត់ដំបង និងខេត្តជិតខាង NUBB មានបរិវេណសាលាធំទូលាយ បរិយាកាសល្អ និងថ្លៃសិក្សាសមរម្យខ្លាំង។ សាលាមានកិច្ចសហការអន្តរជាតិច្រើនជាមួយ Erasmus+ និងសាកលវិទ្យាល័យដៃគូនៅបារាំង និងថៃ។",
+    rating: 4,
+    createdAt: "2026-09-12T15:40:00.000Z"
+  }
+];
+
+let allComments = [...SEED_COMMENTS];
+let activeVoiceSchoolFilter = "all";
+
+function loadLocalComments(){
+  try{
+    const raw=localStorage.getItem("tv_community_comments");
+    if(raw){
+      const parsed=JSON.parse(raw);
+      if(Array.isArray(parsed)) return parsed;
+    }
+  }catch(e){}
+  return [];
+}
+
+function saveLocalComment(comment){
+  try{
+    const existing=loadLocalComments();
+    existing.unshift(comment);
+    localStorage.setItem("tv_community_comments",JSON.stringify(existing.slice(0,100)));
+  }catch(e){}
+}
+
+async function fetchComments(){
+  const localList=loadLocalComments();
+  let serverList=[];
+  try{
+    const res=await fetch("/api/comments");
+    if(res.ok){
+      const data=await res.json();
+      if(data&&Array.isArray(data.comments)){
+        serverList=data.comments;
+      }
+    }
+  }catch(e){}
+
+  // Collect any hardcoded studentVoices in schoolsData
+  const embeddedVoices=[];
+  schoolsData.forEach(s=>{(s.studentVoices||[]).forEach(v=>embeddedVoices.push({...v,schoolName:s.name,schoolId:s.id,rating:5,id:"emb_"+s.id}))});
+
+  const combined=[];
+  const seenIds=new Set();
+  [...localList, ...serverList, ...embeddedVoices, ...SEED_COMMENTS].forEach(item=>{
+    if(item && item.id && !seenIds.has(item.id)){
+      seenIds.add(item.id);
+      combined.push(item);
+    }
+  });
+
+  allComments=combined;
+  renderHomeVoices();
+}
+
+function renderHomeVoices(){
   const host=document.getElementById("home-voices");
+  const chipsHost=document.getElementById("voice-filter-chips");
   if(!host)return;
-  const entries=[];
-  schoolsData.forEach(s=>{(s.studentVoices||[]).forEach(v=>entries.push({...v,schoolName:s.name}))});
-  if(!entries.length){
-    host.innerHTML=`<div class="empty-state" style="padding:28px 0">
+
+  if(chipsHost){
+    const popularSchools=[
+      {id:"all",label:"ទាំងអស់"},
+      {id:"itc",label:"ITC (តិចណូ)"},
+      {id:"cadt",label:"CADT (ឌីជីថល)"},
+      {id:"rupp",label:"RUPP (ភូមិន្ទ)"},
+      {id:"npic",label:"NPIC (ពោធិ៍សែនជ័យ)"},
+      {id:"rule",label:"RULE (ច្បាប់)"},
+      {id:"setec",label:"SETEC"},
+      {id:"uhs",label:"UHS (ពេទ្យ)"},
+      {id:"nubb",label:"NUBB (បាត់ដំបង)"}
+    ];
+
+    chipsHost.innerHTML=popularSchools.map(ps=>`
+      <button type="button" class="chip ${activeVoiceSchoolFilter===ps.id?'active':''}" onclick="filterVoices('${ps.id}')">${ps.label}</button>
+    `).join("");
+  }
+
+  let filtered=allComments;
+  if(activeVoiceSchoolFilter!=="all"){
+    filtered=allComments.filter(c=>{
+      return (c.schoolId && c.schoolId.toLowerCase()===activeVoiceSchoolFilter) ||
+             (c.schoolName && c.schoolName.toLowerCase().includes(activeVoiceSchoolFilter));
+    });
+  }
+
+  if(!filtered.length){
+    host.innerHTML=`<div class="empty-state" style="padding:28px 0;grid-column:1/-1">
       <i class="material-symbols-outlined">forum</i>
-      <p>មិនទាន់មានការចែករំលែកពីនិស្សិតនៅឡើយទេ — ចែករំលែករឿងរបស់អ្នកខាងក្រោម ជាដំបូងគេ!</p>
+      <p>មិនទាន់មានមតិយោបល់សម្រាប់ផ្នែកនេះនៅឡើយទេ — បញ្ចេញមតិដំបូងគេខាងក្រោម!</p>
     </div>`;
     return;
   }
-  host.innerHTML=entries.map(v=>`<div class="voice-item"><p class="voice-quote">"${v.quote}"</p><div class="voice-meta"><span class="voice-name">${v.name}</span><span class="voice-sep">•</span><span class="voice-program">${v.schoolName}${v.program?" — "+v.program:""}</span></div></div>`).join("");
+
+  const stars=n=>"★".repeat(Math.max(1,Math.min(5,n||5)))+"☆".repeat(Math.max(0,5-Math.max(1,Math.min(5,n||5))));
+  const getInitial=name=>(name?name.trim().charAt(0):"U");
+
+  host.innerHTML=filtered.map(v=>{
+    const schoolObj=schoolsData.find(s=>(v.schoolId&&s.id===v.schoolId)||(v.schoolName&&s.name===v.schoolName));
+    const schoolClick=schoolObj?`onclick="openSchool('${schoolObj.id}')"`:"";
+    const dateStr=v.createdAt?new Date(v.createdAt).toLocaleDateString('km-KH',{month:'short',day:'numeric'}):"";
+
+    return `
+      <div class="voice-item">
+        <div class="voice-head">
+          <div class="voice-author">
+            <div class="voice-avatar">${getInitial(v.name)}</div>
+            <div class="voice-author-text">
+              <span class="voice-name">${v.name}</span>
+              ${v.program?`<span class="voice-program">${v.program}</span>`:""}
+            </div>
+          </div>
+          <span class="voice-stars" title="${v.rating||5} ផ្កាយ">${stars(v.rating)}</span>
+        </div>
+        <p class="voice-quote">"${v.quote}"</p>
+        <div class="voice-foot">
+          <button type="button" class="voice-school-tag" ${schoolClick} title="មើលព័ត៌មាន ${v.schoolName}">
+            <i class="material-symbols-outlined" style="font-size:13px">school</i>
+            <span>${v.schoolName}</span>
+          </button>
+          ${dateStr?`<span class="voice-date">${dateStr}</span>`:""}
+        </div>
+      </div>
+    `;
+  }).join("");
 }
+
+function filterVoices(schoolId){
+  activeVoiceSchoolFilter=schoolId;
+  renderHomeVoices();
+}
+window.filterVoices=filterVoices;
+
 function initVoiceForm(){
   const form=document.getElementById("voice-form");
   const select=document.getElementById("voice-school");
+  const alertBox=document.getElementById("voice-alert");
+  const submitBtn=document.getElementById("voice-submit-btn");
   if(!form||!select)return;
-  select.innerHTML=`<option value="" disabled selected>ជ្រើសរើសសាលា</option>`+schoolsData.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(s=>`<option value="${s.name}">${s.name}</option>`).join("");
-  form.addEventListener("submit",e=>{
+
+  // Populate school select options
+  select.innerHTML=`<option value="" disabled selected>ជ្រើសរើសសាកលវិទ្យាល័យ / វិទ្យាស្ថាន</option>`+
+    schoolsData.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(s=>`<option value="${s.name}" data-id="${s.id}">${s.name}</option>`).join("");
+
+  // Star rating selector styling
+  const ratingGroup=document.getElementById("voice-rating-group");
+  if(ratingGroup){
+    ratingGroup.querySelectorAll("input[name='voice-rating']").forEach(radio=>{
+      radio.addEventListener("change",()=>{
+        ratingGroup.querySelectorAll(".rating-label").forEach(l=>l.classList.remove("selected"));
+        radio.closest(".rating-label")?.classList.add("selected");
+      });
+    });
+  }
+
+  function showAlert(type, msg){
+    if(!alertBox)return;
+    alertBox.className=`voice-alert ${type} show`;
+    const icon=type==="success"?"check_circle":(type==="error"?"error":"sync");
+    alertBox.innerHTML=`<i class="material-symbols-outlined">${icon}</i><span>${msg}</span>`;
+  }
+
+  form.addEventListener("submit",async e=>{
     e.preventDefault();
     const name=document.getElementById("voice-name").value.trim();
     const school=select.value;
+    const selectedOpt=select.selectedOptions[0];
+    const schoolId=selectedOpt?(selectedOpt.dataset.id||""):"";
     const program=document.getElementById("voice-program").value.trim();
     const quote=document.getElementById("voice-quote").value.trim();
-    if(!name||!school||!quote)return;
-    const subject=encodeURIComponent(`Student Highlight submission — ${school}`);
-    const body=encodeURIComponent(`ឈ្មោះ / Name: ${name}\nសាលា / School: ${school}\nជំនាញ/ឆ្នាំ / Program: ${program||"—"}\n\nរឿងរបស់អ្នក / Story:\n${quote}`);
-    window.location.href=`mailto:thearitso935@gmail.com?subject=${subject}&body=${body}`;
+    const ratingRadio=form.querySelector("input[name='voice-rating']:checked");
+    const rating=ratingRadio?parseInt(ratingRadio.value,10):5;
+
+    if(!name||!school||!quote){
+      showAlert("error","សូមបំពេញឈ្មោះ សាកលវិទ្យាល័យ និងមតិយោបល់របស់អ្នក។");
+      return;
+    }
+
+    if(submitBtn){
+      submitBtn.disabled=true;
+      submitBtn.innerHTML=`<i class="material-symbols-outlined" style="animation:spin 1s linear infinite">sync</i> កំពុងបង្ហោះ...`;
+    }
+    showAlert("loading","កំពុងរក្សាទុកមតិយោបល់របស់អ្នក...");
+
+    const payload={
+      name,
+      schoolName:school,
+      schoolId,
+      program,
+      quote,
+      rating
+    };
+
+    let savedComment=null;
+    try{
+      const res=await fetch("/api/comments",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      });
+      if(res.ok){
+        const result=await res.json();
+        if(result&&result.comment) savedComment=result.comment;
+      }
+    }catch(err){}
+
+    if(!savedComment){
+      savedComment={
+        id:"c_local_"+Date.now(),
+        name,
+        schoolName:school,
+        schoolId:schoolId||school.toLowerCase().replace(/[^a-z0-9]/g,""),
+        program,
+        quote,
+        rating,
+        createdAt:new Date().toISOString()
+      };
+    }
+
+    saveLocalComment(savedComment);
+    allComments.unshift(savedComment);
+    renderHomeVoices();
+
+    if(submitBtn){
+      submitBtn.disabled=false;
+      submitBtn.innerHTML=`<i class="material-symbols-outlined">send</i> បង្ហោះមតិយោបល់`;
+    }
+    showAlert("success","មតិយោបល់របស់អ្នកត្រូវបានបង្ហោះជោគជ័យ! អរគុណសម្រាប់ការចូលរួមចែករំលែក។");
+
     form.reset();
+    if(ratingGroup){
+      ratingGroup.querySelectorAll(".rating-label").forEach(l=>l.classList.remove("selected"));
+      const def=ratingGroup.querySelector("input[value='5']");
+      if(def){def.checked=true;def.closest(".rating-label")?.classList.add("selected");}
+    }
+
+    setTimeout(()=>{
+      if(alertBox)alertBox.classList.remove("show");
+    },5000);
   });
+}
+
+function initHomeVoices(){
+  fetchComments();
 }
 
 /* ===== INIT (runs last, after all data/vars are declared) ===== */

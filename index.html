@@ -375,32 +375,52 @@
 
   <div class="home-section reveal">
     <div class="home-head">
-      <span class="hs-eyebrow">សំឡេងពិតប្រាកដ</span>
-      <h2 class="home-h2">សំឡេងនិស្សិត (Student Highlights)</h2>
-      <p class="home-lead">រឿងរ៉ាវពិតពីនិស្សិត និងអតីតនិស្សិត អំពីបទពិសោធន៍រៀននៅសាកលវិទ្យាល័យផ្សេងៗ។</p>
+      <span class="hs-eyebrow">សំឡេងពិតប្រាកដ & មតិយោបល់</span>
+      <h2 class="home-h2">សំឡេងនិស្សិត & មតិយោបល់ (Student Voices)</h2>
+      <p class="home-lead">រឿងរ៉ាវពិត និងការវាយតម្លៃពីនិស្សិត អំពីការរៀននៅសាកលវិទ្យាល័យនានា — អាចបញ្ចេញមតិ ឬសួរសំណួរបានដោយសេរី មិនបាច់ Log In!</p>
     </div>
+
+    <!-- School Filter Chips -->
+    <div class="chip-row voice-filter-chips" id="voice-filter-chips" role="tablist"></div>
+
+    <!-- Comments List -->
     <div class="voice-list" id="home-voices"></div>
+
+    <!-- Instant Comment Form (No login required) -->
     <div class="voice-submit">
-      <h3><i class="material-symbols-outlined">edit_note</i> ចែករំលែករឿងរបស់អ្នក</h3>
-      <p class="voice-submit-note">សរសេររឿងរបស់អ្នកខាងក្រោម។ រាល់ការចែករំលែកនឹងត្រូវផ្ទៀងផ្ទាត់ដោយក្រុមការងារមុននឹងបង្ហាញនៅលើគេហទំព័រ — ដូច្នេះវានឹងមិនបង្ហាញភ្លាមៗទេ។</p>
+      <h3><i class="material-symbols-outlined">rate_review</i> បញ្ចេញមតិ ឬចែករំលែកបទពិសោធន៍ (មិនបាច់ Log In)</h3>
+      <p class="voice-submit-note">ចូលរួមចែករំលែកចំណាប់អារម្មណ៍ ការវាយតម្លៃ ឬដំបូន្មានដល់ប្អូនៗជំនាន់ក្រោយ។ មតិរបស់អ្នកនឹងត្រូវបានបង្ហោះចូលប្រព័ន្ធភ្លាមៗ ដោយមិនចាំបាច់មានគណនី ឬ Log In ឡើយ។</p>
+      
+      <div id="voice-alert" class="voice-alert" role="alert"></div>
+
       <form id="voice-form" class="voice-form">
         <div class="voice-form-row">
-          <label for="voice-name">ឈ្មោះ</label>
-          <input type="text" id="voice-name" required maxlength="60" placeholder="ឈ្មោះរបស់អ្នក">
+          <label for="voice-name">ឈ្មោះ ឬឈ្មោះហៅក្រៅ</label>
+          <input type="text" id="voice-name" required maxlength="60" placeholder="ឧ. សុខា, និស្សិត IT, ឬ Anonymous">
         </div>
         <div class="voice-form-row">
-          <label for="voice-school">សាលា</label>
+          <label for="voice-school">សាកលវិទ្យាល័យ / វិទ្យាស្ថាន</label>
           <select id="voice-school" required></select>
         </div>
         <div class="voice-form-row">
-          <label for="voice-program">ជំនាញ/ឆ្នាំ (ស្រេចចិត្ត)</label>
-          <input type="text" id="voice-program" maxlength="60" placeholder="ឧ. IT ឆ្នាំទី៣">
+          <label for="voice-program">ជំនាញ / ឆ្នាំសិក្សា (ស្រេចចិត្ត)</label>
+          <input type="text" id="voice-program" maxlength="60" placeholder="ឧ. IT ឆ្នាំទី៣, ស្ថាបត្យកម្ម ឆ្នាំទី២">
+        </div>
+        <div class="voice-form-row">
+          <label>កម្រិតការពេញចិត្ត (Rating)</label>
+          <div class="rating-options" id="voice-rating-group">
+            <label class="rating-label selected"><input type="radio" name="voice-rating" value="5" checked> ⭐ 5/5</label>
+            <label class="rating-label"><input type="radio" name="voice-rating" value="4"> ⭐ 4/5</label>
+            <label class="rating-label"><input type="radio" name="voice-rating" value="3"> ⭐ 3/5</label>
+            <label class="rating-label"><input type="radio" name="voice-rating" value="2"> ⭐ 2/5</label>
+            <label class="rating-label"><input type="radio" name="voice-rating" value="1"> ⭐ 1/5</label>
+          </div>
         </div>
         <div class="voice-form-row voice-form-row-full">
-          <label for="voice-quote">រឿងរបស់អ្នក</label>
-          <textarea id="voice-quote" required maxlength="500" rows="4" placeholder="បទពិសោធន៍រៀនរបស់អ្នកនៅសាលានេះ..."></textarea>
+          <label for="voice-quote">មតិយោបល់ ឬរឿងរ៉ាវរបស់អ្នក</label>
+          <textarea id="voice-quote" required maxlength="600" rows="4" placeholder="ចែករំលែកពីការបង្រៀនរបស់លោកគ្រូអ្នកគ្រូ បរិយាកាសសាលា សម្ភារៈ Lab ឱកាសការងារ ឬដំបូន្មានសម្រាប់សិស្សថ្មី..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="material-symbols-outlined">send</i> ផ្ញើរឿងរបស់អ្នក</button>
+        <button type="submit" id="voice-submit-btn" class="btn btn-primary"><i class="material-symbols-outlined">send</i> បង្ហោះមតិយោបល់</button>
       </form>
     </div>
   </div>
