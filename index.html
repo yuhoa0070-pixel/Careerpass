@@ -66,15 +66,15 @@
     </div>
     <div class="nav-right">
       <nav class="nav-links" id="nav-links">
-        <div class="s-link active" data-view="home"><i class="material-symbols-outlined s-link-icon">home</i>ទំព័រដើម</div>
-        <div class="s-link" data-view="careers"><i class="material-symbols-outlined s-link-icon">work</i>អាជីព</div>
-        <div class="s-link" data-view="schools"><i class="material-symbols-outlined s-link-icon">school</i>សាលា <span class="badge">116</span></div>
-        <div class="s-link" data-view="cost"><i class="material-symbols-outlined s-link-icon">payments</i>ថ្លៃសិក្សា</div>
-        <div class="s-link" data-view="facts"><i class="material-symbols-outlined s-link-icon">lightbulb</i>តើអ្នកដឹងទេ?</div>
-        <div class="s-link" data-view="plan"><i class="material-symbols-outlined s-link-icon">bookmark</i>ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></div>
+        <button type="button" class="s-link active" data-view="home"><i class="material-symbols-outlined s-link-icon">home</i>ទំព័រដើម</button>
+        <button type="button" class="s-link" data-view="careers"><i class="material-symbols-outlined s-link-icon">work</i>អាជីព</button>
+        <button type="button" class="s-link" data-view="schools"><i class="material-symbols-outlined s-link-icon">school</i>សាលា <span class="badge">116</span></button>
+        <button type="button" class="s-link" data-view="cost"><i class="material-symbols-outlined s-link-icon">payments</i>ថ្លៃសិក្សា</button>
+        <button type="button" class="s-link" data-view="facts"><i class="material-symbols-outlined s-link-icon">lightbulb</i>តើអ្នកដឹងទេ?</button>
+        <button type="button" class="s-link" data-view="plan"><i class="material-symbols-outlined s-link-icon">bookmark</i>ផែនការខ្ញុំ <span class="badge" id="plan-badge" style="display:none">0</span></button>
       </nav>
       <button class="theme-toggle" id="theme-toggle" aria-label="ប្ដូររចនាបទ ភ្លឺ/ងងឹត" title="ភ្លឺ / ងងឹត"><i class="material-symbols-outlined">dark_mode</i></button>
-      <div class="hamburger" id="hamburger"><i class="material-symbols-outlined">menu</i></div>
+      <button type="button" class="hamburger" id="hamburger" aria-label="បើក/បិទម៉ឺនុយ" aria-expanded="false" aria-controls="nav-links"><i class="material-symbols-outlined">menu</i></button>
     </div>
   </div>
 </header>
@@ -184,9 +184,9 @@
     <div class="filter-bar">
       <div class="search-box">
         <i class="material-symbols-outlined">search</i>
-        <input type="text" id="school-search" placeholder="ស្វែងរកឈ្មោះសាលា...">
+        <input type="text" id="school-search" aria-label="ស្វែងរកឈ្មោះសាលា" placeholder="ស្វែងរកឈ្មោះសាលា...">
       </div>
-      <select class="filter-select" id="school-province">
+      <select class="filter-select" id="school-province" aria-label="ខេត្ត">
         <option value="all">ទាំងអស់ (ខេត្ត)</option>
         <option value="phnom-penh">ភ្នំពេញ</option>
         <option value="siem-reap">សៀមរាប</option>
@@ -206,7 +206,7 @@
         <option value="koh-kong">កោះកុង</option>
         <option value="tboung-khmum">ត្បូងឃ្មុំ</option>
       </select>
-      <select class="filter-select" id="school-type">
+      <select class="filter-select" id="school-type" aria-label="ប្រភេទសាលា">
         <option value="all">ប្រភេទទាំងអស់</option>
         <option value="public">សាកលវិទ្យាល័យរដ្ឋ / គ្រឹះស្ថានរដ្ឋ</option>
         <option value="private">សាកលវិទ្យាល័យឯកជន</option>
@@ -215,7 +215,7 @@
         <option value="k12">សាលាមត្តេយ្យ-ទី១២ (K-12)</option>
         <option value="daycare">មណ្ឌលថែទាំកុមារ (Daycare)</option>
       </select>
-      <select class="filter-select" id="school-career-filter">
+      <select class="filter-select" id="school-career-filter" aria-label="វិស័យអាជីព">
         <option value="all">អាជីពទាំងអស់</option>
         <option value="technology">បច្ចេកវិទ្យា</option>
         <option value="healthcare">សុខភាព</option>
@@ -261,7 +261,7 @@
     <div class="filter-bar">
       <div class="search-box">
         <i class="material-symbols-outlined">search</i>
-        <input type="text" id="career-search" placeholder="ស្វែងរកឈ្មោះអាជីព...">
+        <input type="text" id="career-search" aria-label="ស្វែងរកឈ្មោះអាជីព" placeholder="ស្វែងរកឈ្មោះអាជីព...">
       </div>
     </div>
     <div class="chip-row" id="career-chips"></div>
@@ -287,7 +287,7 @@
       <div class="cost-form">
         <p class="section-title">ព័ត៌មានសិក្សា</p>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">account_balance</i> ជ្រើសសាកលវិទ្យាល័យ</div>
+          <label class="form-label" for="cost-school"><i class="material-symbols-outlined">account_balance</i> ជ្រើសសាកលវិទ្យាល័យ</label>
           <select class="form-input" id="cost-school" onchange="calcCost()">
             <!-- options populated from schoolsData by populateCostSchools() in app.js -->
             <option value="">-- ជ្រើសសាលា --</option>
@@ -295,7 +295,7 @@
         </div>
         <div class="form-row-2">
           <div class="form-row" style="margin-bottom:0">
-            <div class="form-label"><i class="material-symbols-outlined">school</i> ផ្នែកសិក្សា</div>
+            <label class="form-label" for="cost-major"><i class="material-symbols-outlined">school</i> ផ្នែកសិក្សា</label>
             <select class="form-input" id="cost-major" onchange="calcCost()">
               <option value="cs">វិទ្យាសាស្ត្រកុំព្យូទ័រ</option>
               <option value="business">ពាណិជ្ជកម្ម</option>
@@ -306,7 +306,7 @@
             </select>
           </div>
           <div class="form-row" style="margin-bottom:0">
-            <div class="form-label"><i class="material-symbols-outlined">calendar_today</i> រយៈពេល (ឆ្នាំ)</div>
+            <label class="form-label" for="cost-years"><i class="material-symbols-outlined">calendar_today</i> រយៈពេល (ឆ្នាំ)</label>
             <select class="form-input" id="cost-years" onchange="calcCost()">
               <option value="2">២ ឆ្នាំ</option>
               <option value="3">៣ ឆ្នាំ</option>
@@ -317,7 +317,7 @@
         </div>
         <p class="section-title" style="margin-top:24px">ជម្រើសរស់នៅ</p>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">location_city</i> ទីកន្លែង</div>
+          <label class="form-label" for="cost-city"><i class="material-symbols-outlined">location_city</i> ទីកន្លែង</label>
           <select class="form-input" id="cost-city" onchange="calcCost()">
             <option value="pp">ភ្នំពេញ</option>
             <option value="sr">សៀមរាប</option>
@@ -325,28 +325,28 @@
           </select>
         </div>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">home</i> ថ្លៃស្នាក់នៅ ($/ខែ)</div>
+          <label class="form-label" for="cost-rent"><i class="material-symbols-outlined">home</i> ថ្លៃស្នាក់នៅ ($/ខែ)</label>
           <div class="range-wrap">
             <input type="range" id="cost-rent" min="30" max="300" value="80" step="10" oninput="calcCost()">
             <span class="range-val" id="rent-val">$80</span>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">restaurant</i> ថ្លៃម្ហូបអាហារ ($/ខែ)</div>
+          <label class="form-label" for="cost-food"><i class="material-symbols-outlined">restaurant</i> ថ្លៃម្ហូបអាហារ ($/ខែ)</label>
           <div class="range-wrap">
             <input type="range" id="cost-food" min="30" max="200" value="60" step="5" oninput="calcCost()">
             <span class="range-val" id="food-val">$60</span>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">directions_bus</i> ថ្លៃធ្វើដំណើរ ($/ខែ)</div>
+          <label class="form-label" for="cost-transport"><i class="material-symbols-outlined">directions_bus</i> ថ្លៃធ្វើដំណើរ ($/ខែ)</label>
           <div class="range-wrap">
             <input type="range" id="cost-transport" min="10" max="100" value="30" step="5" oninput="calcCost()">
             <span class="range-val" id="transport-val">$30</span>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-label"><i class="material-symbols-outlined">menu_book</i> ថ្លៃសម្ភារ + ថ្នាក់ ($/ឆ្នាំ)</div>
+          <label class="form-label" for="cost-materials"><i class="material-symbols-outlined">menu_book</i> ថ្លៃសម្ភារ + ថ្នាក់ ($/ឆ្នាំ)</label>
           <div class="range-wrap">
             <input type="range" id="cost-materials" min="50" max="500" value="150" step="25" oninput="calcCost()">
             <span class="range-val" id="materials-val">$150</span>
@@ -478,9 +478,9 @@
     <p class="page-sub">ការពិត និងតួលេខគួរឲ្យចាប់អារម្មណ៍អំពីការអប់រំ និងអាជីពនៅកម្ពុជា</p>
 
     <div class="chip-row" id="facts-tabs" style="margin-bottom:22px">
-      <div class="chip" data-fc="truth" onclick="filterFacts('truth')"><i class="material-symbols-outlined">history_edu</i>ការពិតអប់រំ</div>
-      <div class="chip" data-fc="stats" onclick="filterFacts('stats')"><i class="material-symbols-outlined">insights</i>ស្ថិតិ</div>
-      <div class="chip" data-fc="scholarship" onclick="filterFacts('scholarship')"><i class="material-symbols-outlined">workspace_premium</i>អាហារូបករណ៍</div>
+      <button type="button" class="chip" data-fc="truth" onclick="filterFacts('truth')"><i class="material-symbols-outlined">history_edu</i>ការពិតអប់រំ</button>
+      <button type="button" class="chip" data-fc="stats" onclick="filterFacts('stats')"><i class="material-symbols-outlined">insights</i>ស្ថិតិ</button>
+      <button type="button" class="chip" data-fc="scholarship" onclick="filterFacts('scholarship')"><i class="material-symbols-outlined">workspace_premium</i>អាហារូបករណ៍</button>
     </div>
     <div class="fact-section" data-fc="stats">
     <div class="facts-cat"><i class="material-symbols-outlined">insights</i> ស្ថិតិការអប់រំនៅកម្ពុជា</div>

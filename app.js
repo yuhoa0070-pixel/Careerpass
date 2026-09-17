@@ -125,7 +125,7 @@ let compareList=[];
 /* ===== SIDEBAR ===== */
 const hamburger=document.getElementById("hamburger");
 const navLinks=document.getElementById("nav-links");
-function toggleSidebar(){menuOpen=!menuOpen;navLinks.classList.toggle("open",menuOpen);hamburger.classList.toggle("open",menuOpen);hamburger.querySelector("i").textContent=menuOpen?"close":"menu";}
+function toggleSidebar(){menuOpen=!menuOpen;navLinks.classList.toggle("open",menuOpen);hamburger.classList.toggle("open",menuOpen);hamburger.setAttribute("aria-expanded",menuOpen?"true":"false");hamburger.querySelector("i").textContent=menuOpen?"close":"menu";}
 function closeSidebar(){if(menuOpen)toggleSidebar();}
 hamburger.addEventListener("click",toggleSidebar);
 
@@ -254,7 +254,7 @@ function renderSchoolChips(){
   let html = '';
   schoolCategories.forEach(c => {
     const iconHtml = c.icon ? `<i class="material-symbols-outlined">${c.icon}</i>` : '';
-    html += `<div class="chip${schoolType === c.id ? ' active' : ''}" onclick="setSchoolType('${c.id}')">${iconHtml}${c.label}</div>`;
+    html += `<button type="button" class="chip${schoolType === c.id ? ' active' : ''}" onclick="setSchoolType('${c.id}')">${iconHtml}${c.label}</button>`;
   });
   row.innerHTML = html;
 }
@@ -297,11 +297,11 @@ function renderSchools(){
   const start=(schoolPage-1)*SCHOOLS_PER_PAGE;
   const pageItems=filtered.slice(start,start+SCHOOLS_PER_PAGE);
   grid.innerHTML=pageItems.map((s,i)=>`
-    <div class="school-card" style="animation-delay:${i*.06}s" onclick="openSchool('${s.id}')">
+    <div class="school-card" style="animation-delay:${i*.06}s" role="button" tabindex="0" onclick="openSchool('${s.id}')">
       <div class="school-card-top">
         ${schoolLogo(s)}
         <div class="card-actions">
-          <div class="compare-btn ${compareList.includes(s.id)?'on':''}" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></div>
+          <button type="button" class="compare-btn ${compareList.includes(s.id)?'on':''}" aria-label="ប្រៀបធៀប" title="ប្រៀបធៀប" onclick="event.stopPropagation();toggleCompare('${s.id}')"><i class="material-symbols-outlined">${compareList.includes(s.id)?'check_box':'add_box'}</i></button>
         </div>
       </div>
       <p class="school-name">${s.name}</p>
@@ -339,7 +339,7 @@ function logoFont(abbr,big){const n=abbr.length;if(big)return n>4?"13px":n>3?"16
 /* renders the school logo: official image from public/logos/<id>.png, falling back to coloured initials if missing */
 function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
 
-function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>x.classList.remove("open"));if(!wasOpen)el.classList.add("open");}
+function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>{x.classList.remove("open");x.setAttribute("aria-expanded","false");});if(!wasOpen){el.classList.add("open");el.setAttribute("aria-expanded","true");}}
 function scholarLine(s){
   if(s.scholarNote)return s.scholarNote;
   if(s.tuition===0)return "អាហារូបករណ៍ពេញ / ឥតគិតថ្លៃ — ត្រូវឆ្លងកាត់ការជ្រើសរើស (កម្រិតជីវភាព ឬការសម្ភាសន៍)។";
@@ -374,7 +374,7 @@ function openSchool(id){
   const facHtml=(s.faculties&&s.faculties.length)?`
     <div class="detail-card">
       <h3><i class="material-symbols-outlined">account_tree</i> មហាវិទ្យាល័យ និងផ្នែក</h3>
-      <div class="faculty-list">${s.faculties.map((f,i)=>{const p=f.split(" — ");const name=p[0];const majors=p[1]?p[1].split(/,\s*/):[];const has=majors.length>0;const open=(has&&i===0)?' open':'';const price=(s.facPrices&&s.facPrices[i])?s.facPrices[i]:'';return '<div class="faculty-item'+(has?'':' no-detail')+open+'"'+(has?' onclick="toggleFaculty(this)"':'')+'>'+'<div class="fac-head"><div class="fac-head-left"><div class="fac-name">'+name+'</div>'+(has?'<div class="fac-count"><i class="material-symbols-outlined">menu_book</i> '+majors.length+' ផ្នែកសិក្សា</div>':'')+'</div><div class="fac-head-right">'+(price?'<span class="fac-price">'+price+'</span>':'')+(has?'<i class="material-symbols-outlined fac-chevron">expand_more</i>':'')+'</div></div>'+(has?'<div class="fac-body"><div class="fac-majors-tags">'+majors.map(m=>'<span class="fac-major-tag"><i class="material-symbols-outlined">school</i>'+m+'</span>').join("")+'</div></div>':'')+'</div>';}).join("")}</div>
+      <div class="faculty-list">${s.faculties.map((f,i)=>{const p=f.split(" — ");const name=p[0];const majors=p[1]?p[1].split(/,\s*/):[];const has=majors.length>0;const open=(has&&i===0)?' open':'';const price=(s.facPrices&&s.facPrices[i])?s.facPrices[i]:'';const tag=has?'button type="button" aria-expanded="'+(open?'true':'false')+'"':'div';const closeTag=has?'button':'div';return '<'+tag+' class="faculty-item'+(has?'':' no-detail')+open+'"'+(has?' onclick="toggleFaculty(this)"':'')+'>'+'<div class="fac-head"><div class="fac-head-left"><div class="fac-name">'+name+'</div>'+(has?'<div class="fac-count"><i class="material-symbols-outlined">menu_book</i> '+majors.length+' ផ្នែកសិក្សា</div>':'')+'</div><div class="fac-head-right">'+(price?'<span class="fac-price">'+price+'</span>':'')+(has?'<i class="material-symbols-outlined fac-chevron">expand_more</i>':'')+'</div></div>'+(has?'<div class="fac-body"><div class="fac-majors-tags">'+majors.map(m=>'<span class="fac-major-tag"><i class="material-symbols-outlined">school</i>'+m+'</span>').join("")+'</div></div>':'')+'</'+closeTag+'>';}).join("")}</div>
     </div>`:`
     <div class="detail-card">
       <h3><i class="material-symbols-outlined">menu_book</i> កម្មវិធីសិក្សា</h3>
@@ -679,10 +679,10 @@ function restoreJobState(){
 function renderCareerChips(){
   const row=document.getElementById("career-chips");
   if(!row)return;
-  let html='<div class="chip'+(jobCat==="all"?" active":"")+'" onclick="setJobCat(\'all\')">ទាំងអស់</div>';
-  html+='<div class="chip'+(jobCat==="growing"?" active":"")+'" onclick="setJobCat(\'growing\')"><i class="material-symbols-outlined">rocket_launch</i>អាជីពដែលនឹងកើនឡើង</div>';
+  let html='<button type="button" class="chip'+(jobCat==="all"?" active":"")+'" onclick="setJobCat(\'all\')">ទាំងអស់</button>';
+  html+='<button type="button" class="chip'+(jobCat==="growing"?" active":"")+'" onclick="setJobCat(\'growing\')"><i class="material-symbols-outlined">rocket_launch</i>អាជីពដែលនឹងកើនឡើង</button>';
   Object.keys(jobCats).forEach(k=>{
-    html+='<div class="chip'+(jobCat===k?" active":"")+'" onclick="setJobCat(\''+k+'\')"><i class="material-symbols-outlined">'+jobCats[k].icon+'</i>'+jobCats[k].label+'</div>';
+    html+='<button type="button" class="chip'+(jobCat===k?" active":"")+'" onclick="setJobCat(\''+k+'\')"><i class="material-symbols-outlined">'+jobCats[k].icon+'</i>'+jobCats[k].label+'</button>';
   });
   row.innerHTML=html;
 }
@@ -699,7 +699,7 @@ function renderCareers(){
   const start=(jobPage-1)*JOBS_PER_PAGE;
   const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
   grid.innerHTML=pageItems.map((j,i)=>`
-    <div class="job-card" style="animation-delay:${i*.04}s" onclick="openCareer('${j.id}')">
+    <div class="job-card" style="animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
       <div class="job-top">
         <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
         <div style="flex:1"><p class="job-name">${j.name}</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="job-cat">${jobCats[j.cat].label}</span>${j.growing?`<span class="hc-grow" style="padding:1px 6px;font-size:9.5px"><i class="material-symbols-outlined" style="font-size:11px">trending_up</i>កំពុងកើនឡើង</span>`:""}</div></div>
@@ -717,7 +717,7 @@ function openCareer(id){
   const j=careersList.find(x=>x.id===id);
   if(!j)return;
   const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
-  const relHtml=rel.length?rel.map(s=>`<div class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
+  const relHtml=rel.length?rel.map(s=>`<button type="button" class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></button>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
     <button type="button" class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
     <div class="detail-head">
@@ -851,11 +851,11 @@ function generateRoadmap(careerId){
 /* ===== MY PLAN DASHBOARD RENDER ===== */
 function planCareerCard(id){
   const j=careersList.find(x=>x.id===id);if(!j)return"";
-  return `<div class="job-card" style="animation:none;opacity:1" onclick="openCareer('${j.id}')">
+  return `<div class="job-card" style="animation:none;opacity:1" role="button" tabindex="0" onclick="openCareer('${j.id}')">
     <div class="job-top">
       <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
       <div><p class="job-name">${j.name}</p><span class="job-cat">${jobCats[j.cat].label}</span></div>
-      <div class="save-btn on" style="margin-left:auto" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveCareer('${j.id}')"><i class="material-symbols-outlined">bookmark</i></div>
+      <button type="button" class="save-btn on" style="margin-left:auto" aria-label="ដកចេញ" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveCareer('${j.id}')"><i class="material-symbols-outlined">bookmark</i></button>
     </div>
     <p class="job-desc">${j.desc}</p>
     <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
@@ -863,10 +863,10 @@ function planCareerCard(id){
 }
 function planSchoolCard(id){
   const s=schoolsData.find(x=>x.id===id);if(!s)return"";
-  return `<div class="school-card" style="animation:none;opacity:1" onclick="openSchool('${s.id}')">
+  return `<div class="school-card" style="animation:none;opacity:1" role="button" tabindex="0" onclick="openSchool('${s.id}')">
     <div class="school-card-top">
       ${schoolLogo(s)}
-      <div class="save-btn on" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">bookmark</i></div>
+      <button type="button" class="save-btn on" aria-label="ដកចេញ" title="ដកចេញ" onclick="event.stopPropagation();toggleSaveSchool('${s.id}')"><i class="material-symbols-outlined">bookmark</i></button>
     </div>
     <p class="school-name">${s.name}</p>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
@@ -1117,12 +1117,31 @@ function enhanceSelect(sel){
   function sync(){const o=sel.options[sel.selectedIndex];label.textContent=o?o.textContent:"";Array.from(panel.querySelectorAll(".cs-option")).forEach((el,i)=>el.classList.toggle("sel",i===sel.selectedIndex));}
   sel._csSync=sync;
   trigger.addEventListener("click",e=>{e.stopPropagation();const open=wrap.classList.contains("cs-open");closeAllSelects();if(!open){build();sync();wrap.classList.add("cs-open");}});
+  /* The real <select> stays in the tab order (visually hidden, not display:none) so
+     screen readers and keyboard-only users can operate it directly with full native
+     select behavior. Two gaps that leaves for a sighted keyboard user: the visible
+     trigger's label didn't update when they changed the hidden select directly
+     (only clicks on the custom panel called sync()), and focus landing on the
+     invisible select was invisible on screen. */
+  sel.addEventListener("change",sync);
+  sel.addEventListener("focus",()=>wrap.classList.add("cs-native-focus"));
+  sel.addEventListener("blur",()=>wrap.classList.remove("cs-native-focus"));
   wrap.appendChild(trigger);wrap.appendChild(panel);
   build();sync();
 }
 function closeAllSelects(){document.querySelectorAll(".cs-wrap.cs-open").forEach(w=>w.classList.remove("cs-open"));}
 document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))closeAllSelects();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAllSelects();});
+/* Activate role="button" cards (school-card/job-card/hc-card) with Enter/Space,
+   same as a native <button> -- these can't be real <button>s because they contain
+   nested interactive children (compare/save buttons) or heading elements. */
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const el=e.target.closest('[role="button"]');
+  if(!el||e.target!==el)return;
+  e.preventDefault();
+  el.click();
+});
 function enhanceAllSelects(){document.querySelectorAll("select.form-input,select.filter-select").forEach(enhanceSelect);}
 
 /* ===== NEWS ALERT MODAL ===== */
@@ -1302,7 +1321,7 @@ function initHomeFeatured(){
   host.innerHTML=list.map(j=>{
     const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
     const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
-    return `<div class="hc-card" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងកើនឡើង</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
+    return `<div class="hc-card" role="button" tabindex="0" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងកើនឡើង</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
   }).join("");
 }
 
