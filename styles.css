@@ -708,7 +708,7 @@ button.faculty-item{cursor:pointer;}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
 /* ============ HERO SCATTER LABEL CARDS (tap to focus) ============ */
-.hero-3d{position:relative;height:360px;margin:6px auto 30px;max-width:660px;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden;}
+.hero-3d{position:relative;height:360px;margin:6px auto 30px;max-width:660px;display:flex;align-items:center;justify-content:center;z-index:1;overflow:visible;}
 .lc-card{position:absolute;left:50%;top:50%;overflow:hidden;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
   box-shadow:0 10px 34px rgba(0,0,0,.26);will-change:transform;
   transform:translate(-50%,-50%) translate(var(--x,0),var(--y,0)) rotate(var(--r,0deg)) scale(var(--s,1));
@@ -723,9 +723,9 @@ button.faculty-item{cursor:pointer;}
 .lc-bars span{display:block;flex-shrink:0;}
 .lc-logo{display:flex;flex-direction:column;align-items:center;}
 .lc-circle{border-radius:50% !important;display:flex;align-items:center;justify-content:center;box-sizing:border-box;}
-.lc-hint{position:absolute;bottom:-2px;font-size:11px;letter-spacing:.05em;color:var(--text-3);pointer-events:none;transition:opacity .3s ease;}
+.lc-hint{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.05em;color:var(--text-3);pointer-events:none;transition:opacity .3s ease;}
 .hero-3d.lc-focused .lc-hint{opacity:0;}
-@media(max-width:768px){ .hero-3d{height:300px;margin-bottom:10px;} }
+@media(max-width:768px){ .hero-3d{min-height:270px;height:auto;margin:4px auto 16px;overflow:visible;} }
 
 /* ============ HOMEPAGE — curated "Did You Know" content ============ */
 .home-stats,.home-section{max-width:1040px;margin:0 auto;padding:56px 24px;}
