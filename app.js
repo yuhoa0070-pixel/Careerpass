@@ -390,22 +390,6 @@ function pricingCard(s){
     </div>
   </div>`;
 }
-function studentVoicesCard(s){
-  const voices=s.studentVoices;
-  if(voices&&voices.length){
-    return `<div class="detail-card">
-      <h3><i class="material-symbols-outlined">forum</i> សំឡេងនិស្សិត (Student Highlights)</h3>
-      <div class="voice-list">${voices.map(v=>`<div class="voice-item"><p class="voice-quote">“${v.quote}”</p><div class="voice-meta"><span class="voice-name">${v.name}</span>${v.program?`<span class="voice-sep">•</span><span class="voice-program">${v.program}</span>`:""}</div></div>`).join("")}</div>
-    </div>`;
-  }
-  return `<div class="detail-card">
-    <h3><i class="material-symbols-outlined">forum</i> សំឡេងនិស្សិត (Student Highlights)</h3>
-    <div class="empty-state" style="padding:28px 0">
-      <i class="material-symbols-outlined">forum</i>
-      <p>មិនទាន់មានការចែករំលែកពីនិស្សិតសម្រាប់សាលានេះនៅឡើយទេ។</p>
-    </div>
-  </div>`;
-}
 function openSchool(id){
   const s=schoolsData.find(x=>x.id===id);
   if(!s)return;
@@ -443,7 +427,7 @@ function openSchool(id){
     </div>
     <p class="detail-desc">${s.desc||""}</p>
     <div class="detail-grid">
-      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${studentVoicesCard(s)}${mapCard}</div>
+      <div>${facHtml}${pricingCard(s)}${admissionCard(s.type)}${mapCard}</div>
       <div class="detail-card detail-side">
         <h3><i class="material-symbols-outlined">info</i> ព័ត៌មានសង្ខេប</h3>
         <div class="info-row"><span class="lbl"><i class="material-symbols-outlined">apartment</i> ប្រភេទ</span><span class="val">${typeLabel(s.type, s)}</span></div>
@@ -1432,6 +1416,39 @@ function initHomeFeatured(){
   }).join("");
 }
 
+function initHomeVoices(){
+  const host=document.getElementById("home-voices");
+  if(!host)return;
+  const entries=[];
+  schoolsData.forEach(s=>{(s.studentVoices||[]).forEach(v=>entries.push({...v,schoolName:s.name}))});
+  if(!entries.length){
+    host.innerHTML=`<div class="empty-state" style="padding:28px 0">
+      <i class="material-symbols-outlined">forum</i>
+      <p>មិនទាន់មានការចែករំលែកពីនិស្សិតនៅឡើយទេ — ចែករំលែករឿងរបស់អ្នកខាងក្រោម ជាដំបូងគេ!</p>
+    </div>`;
+    return;
+  }
+  host.innerHTML=entries.map(v=>`<div class="voice-item"><p class="voice-quote">"${v.quote}"</p><div class="voice-meta"><span class="voice-name">${v.name}</span><span class="voice-sep">•</span><span class="voice-program">${v.schoolName}${v.program?" — "+v.program:""}</span></div></div>`).join("");
+}
+function initVoiceForm(){
+  const form=document.getElementById("voice-form");
+  const select=document.getElementById("voice-school");
+  if(!form||!select)return;
+  select.innerHTML=`<option value="" disabled selected>ជ្រើសរើសសាលា</option>`+schoolsData.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(s=>`<option value="${s.name}">${s.name}</option>`).join("");
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=document.getElementById("voice-name").value.trim();
+    const school=select.value;
+    const program=document.getElementById("voice-program").value.trim();
+    const quote=document.getElementById("voice-quote").value.trim();
+    if(!name||!school||!quote)return;
+    const subject=encodeURIComponent(`Student Highlight submission — ${school}`);
+    const body=encodeURIComponent(`ឈ្មោះ / Name: ${name}\nសាលា / School: ${school}\nជំនាញ/ឆ្នាំ / Program: ${program||"—"}\n\nរឿងរបស់អ្នក / Story:\n${quote}`);
+    window.location.href=`mailto:thearitso935@gmail.com?subject=${subject}&body=${body}`;
+    form.reset();
+  });
+}
+
 /* ===== INIT (runs last, after all data/vars are declared) ===== */
 calcCost();
 typeHero();
@@ -1439,6 +1456,8 @@ initGridFlow();
 initHero3D();
 initHomeLogos();
 initHomeFeatured();
+initHomeVoices();
+initVoiceForm();
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");obs.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
