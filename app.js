@@ -240,8 +240,8 @@ const PUBLIC_SCHOOL_IDS = new Set([
 
 const schoolCategories = [
   { id: "all", label: "ទាំងអស់" },
-  { id: "public", label: "សាកលវិទ្យាល័យរដ្ឋ", icon: "account_balance" },
-  { id: "private", label: "សាកលវិទ្យាល័យឯកជន", icon: "domain" },
+  { id: "public", label: "រដ្ឋ", icon: "account_balance" },
+  { id: "private", label: "ឯកជន", icon: "domain" },
   { id: "institute", label: "វិទ្យាស្ថាន", icon: "science" },
   { id: "digital", label: "បច្ចេកវិទ្យា & ឌីជីថល", icon: "code" },
   { id: "k12", label: "សាលា K-12", icon: "school" },
