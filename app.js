@@ -1326,7 +1326,6 @@ function restoreView(){
   if(v==="careers")restoreJobState();
   if(document.getElementById("view-"+v))showView(v);
 }
-if(!checkSharedPlan()&&!checkSharedCost())restoreView();
 window.addEventListener("hashchange",()=>{
   if(/[#&](plan|cost)=/.test(location.hash))return;
   restoreView();
@@ -1629,6 +1628,7 @@ async function fetchComments(){
 
   allComments=combined;
   renderHomeVoices();
+  renderHomeHighlights();
 }
 
 function renderHomeVoices(){
@@ -1670,38 +1670,59 @@ function renderHomeVoices(){
     return;
   }
 
+  host.innerHTML=filtered.map(voiceCardHtml).join("");
+}
+
+function voiceCardHtml(v){
   const stars=n=>"★".repeat(Math.max(1,Math.min(5,n||5)))+"☆".repeat(Math.max(0,5-Math.max(1,Math.min(5,n||5))));
   const getInitial=name=>(name?name.trim().charAt(0):"U");
+  const schoolObj=schoolsData.find(s=>(v.schoolId&&s.id===v.schoolId)||(v.schoolName&&s.name===v.schoolName));
+  const schoolClick=schoolObj?`onclick="openSchool('${schoolObj.id}')"`:"";
+  const dateStr=v.createdAt?new Date(v.createdAt).toLocaleDateString('km-KH',{month:'short',day:'numeric'}):"";
 
-  host.innerHTML=filtered.map(v=>{
-    const schoolObj=schoolsData.find(s=>(v.schoolId&&s.id===v.schoolId)||(v.schoolName&&s.name===v.schoolName));
-    const schoolClick=schoolObj?`onclick="openSchool('${schoolObj.id}')"`:"";
-    const dateStr=v.createdAt?new Date(v.createdAt).toLocaleDateString('km-KH',{month:'short',day:'numeric'}):"";
-
-    return `
-      <div class="voice-item">
-        <div class="voice-head">
-          <div class="voice-author">
-            <div class="voice-avatar">${getInitial(v.name)}</div>
-            <div class="voice-author-text">
-              <span class="voice-name">${v.name}</span>
-              ${v.program?`<span class="voice-program">${v.program}</span>`:""}
-            </div>
+  return `
+    <div class="voice-item">
+      <div class="voice-head">
+        <div class="voice-author">
+          <div class="voice-avatar">${getInitial(v.name)}</div>
+          <div class="voice-author-text">
+            <span class="voice-name">${v.name}</span>
+            ${v.program?`<span class="voice-program">${v.program}</span>`:""}
           </div>
-          <span class="voice-stars" title="${v.rating||5} ផ្កាយ">${stars(v.rating)}</span>
         </div>
-        <p class="voice-quote">"${v.quote}"</p>
-        <div class="voice-foot">
-          <button type="button" class="voice-school-tag" ${schoolClick} title="មើលព័ត៌មាន ${v.schoolName}">
-            <i class="material-symbols-outlined" style="font-size:13px">school</i>
-            <span>${v.schoolName}</span>
-          </button>
-          ${dateStr?`<span class="voice-date">${dateStr}</span>`:""}
-        </div>
+        <span class="voice-stars" title="${v.rating||5} ផ្កាយ">${stars(v.rating)}</span>
       </div>
-    `;
-  }).join("");
+      <p class="voice-quote">"${v.quote}"</p>
+      <div class="voice-foot">
+        <button type="button" class="voice-school-tag" ${schoolClick} title="មើលព័ត៌មាន ${v.schoolName}">
+          <i class="material-symbols-outlined" style="font-size:13px">school</i>
+          <span>${v.schoolName}</span>
+        </button>
+        ${dateStr?`<span class="voice-date">${dateStr}</span>`:""}
+      </div>
+    </div>
+  `;
 }
+
+function renderHomeHighlights(){
+  const host=document.getElementById("home-highlight-voices");
+  if(!host)return;
+  const picks=allComments.slice(0,6);
+  if(!picks.length){
+    host.innerHTML=`<div class="empty-state" style="padding:28px 0">
+      <i class="material-symbols-outlined">forum</i>
+      <p>មិនទាន់មានមតិយោបល់នៅឡើយទេ — ចែករំលែកជាមួយគេដំបូងគេ!</p>
+    </div>`;
+    return;
+  }
+  host.innerHTML=picks.map(voiceCardHtml).join("");
+}
+
+function goToVoices(){
+  showView("facts");
+  if(typeof filterFacts==="function")filterFacts("voices");
+}
+window.goToVoices=goToVoices;
 
 function filterVoices(schoolId){
   activeVoiceSchoolFilter=schoolId;
@@ -1798,6 +1819,7 @@ function initVoiceForm(){
     saveLocalComment(savedComment);
     allComments.unshift(savedComment);
     renderHomeVoices();
+    renderHomeHighlights();
 
     if(submitBtn){
       submitBtn.disabled=false;
@@ -2701,3 +2723,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     if(q)askQuestion(q);
   });
 })();
+
+// Runs last: restoring a saved/shared route (e.g. landing directly on the facts/voices
+// tab) can call into the comments system, so this must fire after everything above —
+// including SEED_COMMENTS/allComments — has finished being declared.
+if(!checkSharedPlan()&&!checkSharedCost())restoreView();
