@@ -1,4 +1,4 @@
-# Contributing to treyvisai.com (Trey Visai / Careerpass)
+# Contributing to TREYVISAI (Trey Visai / Careerpass)
 
 This is a static site (plain HTML/CSS/JS, no build step, no framework). Before
 adding or editing data, read this file — it captures the conventions the
