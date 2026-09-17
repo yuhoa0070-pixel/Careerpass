@@ -560,24 +560,57 @@ button.faculty-item{cursor:pointer;}
 .compare-table tr:hover td{background:var(--accent-tint);}
 .empty-state{text-align:center;padding:60px 0;color:var(--text-3);font-size:14px;}
 .empty-state .material-symbols-outlined{font-size:48px;margin-bottom:12px;opacity:.4;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 48;}
-.voice-list{display:flex;flex-direction:column;gap:12px;}
-.voice-item{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:14px 16px;}
-.voice-quote{font-size:13.5px;line-height:1.7;color:var(--text);margin:0 0 8px;font-style:italic;}
-.voice-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-3);}
-.voice-name{font-weight:700;color:var(--text-2);}
-#home-voices.voice-list{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:32px;}
+.voice-filter-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.voice-filter-chips .chip{font-size:12px;padding:6px 13px;}
+.voice-list{display:flex;flex-direction:column;gap:14px;}
+#home-voices.voice-list{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px;}
 @media(min-width:768px){#home-voices.voice-list{grid-template-columns:1fr 1fr;}}
 @media(min-width:1100px){#home-voices.voice-list{grid-template-columns:1fr 1fr 1fr;}}
+
+.voice-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:transform .15s var(--ease),box-shadow .15s var(--ease);position:relative;}
+.voice-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.voice-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;}
+.voice-author{display:flex;align-items:center;gap:10px;}
+.voice-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;border:1px solid var(--border);}
+.voice-author-text{display:flex;flex-direction:column;}
+.voice-name{font-weight:700;color:var(--text);font-size:13.5px;line-height:1.3;}
+.voice-program{font-size:11.5px;color:var(--text-3);line-height:1.3;margin-top:2px;}
+.voice-stars{color:#f59e0b;font-size:13px;letter-spacing:1px;display:inline-flex;align-items:center;}
+.voice-quote{font-size:13px;line-height:1.75;color:var(--text-2);margin:0 0 16px;font-style:normal;}
+.voice-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:12px;border-top:1px solid var(--border);font-size:11.5px;color:var(--text-3);}
+.voice-school-tag{display:inline-flex;align-items:center;gap:4px;background:var(--bg);border:1px solid var(--border);color:var(--accent);padding:3px 9px;border-radius:6px;font-weight:600;font-size:11px;cursor:pointer;transition:all .15s;}
+.voice-school-tag:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.voice-date{font-size:11px;color:var(--text-3);}
+
 .voice-submit{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);}
 .voice-submit h3{display:flex;align-items:center;gap:8px;font-size:16px;margin:0 0 8px;}
 .voice-submit h3 .material-symbols-outlined{color:var(--accent);}
-.voice-submit-note{font-size:13px;color:var(--text-3);line-height:1.6;margin:0 0 18px;}
+.voice-submit-note{font-size:13px;color:var(--text-3);line-height:1.6;margin:0 0 16px;}
+.voice-alert{padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:16px;display:none;align-items:center;gap:10px;line-height:1.5;}
+.voice-alert.show{display:flex;}
+.voice-alert.success{background:rgba(22,163,74,.1);color:#16a34a;border:1px solid rgba(22,163,74,.25);}
+.voice-alert.error{background:rgba(220,38,38,.1);color:#dc2626;border:1px solid rgba(220,38,38,.25);}
+.voice-alert.loading{background:var(--accent-tint);color:var(--accent);border:1px solid var(--border);}
+.voice-alert .material-symbols-outlined{font-size:18px;flex-shrink:0;}
+
 .voice-form{display:grid;grid-template-columns:1fr;gap:16px;}
 @media(min-width:640px){.voice-form{grid-template-columns:1fr 1fr;}.voice-form-row-full{grid-column:1/-1;}}
-.voice-form-row label{font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:7px;display:block;}
+.voice-form-row label{font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;}
 .voice-form-row input,.voice-form-row select,.voice-form-row textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--text);background:var(--bg);outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;resize:vertical;}
 .voice-form-row input:focus,.voice-form-row select:focus,.voice-form-row textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint);}
+.rating-options{display:flex;gap:10px;align-items:center;}
+.rating-label{display:inline-flex;align-items:center;gap:4px;cursor:pointer;font-size:12.5px;color:var(--text-2);padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);transition:all .15s;}
+.rating-label:hover,.rating-label.selected{border-color:var(--accent);background:var(--accent-tint);color:var(--accent);}
+.rating-label input{display:none;}
 .voice-form button{grid-column:1/-1;justify-self:start;}
+
+/* School Detail Comments */
+.detail-comments{margin-top:20px;}
+.detail-comments-empty{font-size:13px;color:var(--text-3);padding:14px 0;}
+.detail-comment-card{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--bg);margin-bottom:10px;}
+.detail-comment-card:last-child{margin-bottom:0;}
+.detail-comment-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12.5px;}
+.detail-comment-quote{font-size:13px;color:var(--text-2);line-height:1.65;margin:0;}
 
 /* ===== GOAL 3 — COST ESTIMATOR ===== */
 .cost-layout{display:grid;grid-template-columns:1fr;gap:24px;}
