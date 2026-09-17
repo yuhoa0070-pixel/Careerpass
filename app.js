@@ -389,7 +389,7 @@ function openSchool(id){
       <a class="btn btn-ghost btn-sm map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=${mapQ}" target="_blank" rel="noopener noreferrer"><i class="material-symbols-outlined">map</i> បើកក្នុង Google Maps</a>
     </div>`;
   document.getElementById("school-detail").innerHTML=`
-    <div class="detail-back" onclick="showView('schools')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅសាលា</div>
+    <button type="button" class="detail-back" onclick="showView('schools')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅសាលា</button>
     <div class="detail-head">
       <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
       <div style="flex:1;min-width:220px">
@@ -719,7 +719,7 @@ function openCareer(id){
   const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
   const relHtml=rel.length?rel.map(s=>`<div class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></div>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
-    <div class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</div>
+    <button type="button" class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
     <div class="detail-head">
       <div class="detail-logo" style="background:var(--accent)"><i class="material-symbols-outlined" style="font-size:30px">${j.icon}</i></div>
       <div style="flex:1;min-width:220px">
