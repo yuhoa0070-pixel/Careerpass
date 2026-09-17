@@ -337,7 +337,7 @@ function schoolAbbr(s){if(logoMap[s.id])return logoMap[s.id];const m=s.name.matc
 function schoolColor(s){let h=0;for(let i=0;i<s.id.length;i++)h=(h*31+s.id.charCodeAt(i))>>>0;return logoColors[h%logoColors.length];}
 function logoFont(abbr,big){const n=abbr.length;if(big)return n>4?"13px":n>3?"16px":"19px";return n>4?"11px":n>3?"13px":"15px";}
 /* renders the school logo: official image from public/logos/<id>.png, falling back to coloured initials if missing */
-function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
+function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="public/logos/${s.id}.png" alt="" loading="lazy" decoding="async" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
 
 function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>{x.classList.remove("open");x.setAttribute("aria-expanded","false");});if(!wasOpen){el.classList.add("open");el.setAttribute("aria-expanded","true");}}
 function scholarLine(s){
@@ -1305,7 +1305,7 @@ function initHomeLogos(){
   const track=document.getElementById("logo-track");
   if(!track)return;
   const ids=["rupp","rule","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","uhst","uok","sbu","psbu","knia","aupp","paragon","puc","up","bbu","vanda","iu","acac","angkor","hru","rufa","cmu","aub","khemarak","cus","dmuc","pcu","cu","setec"];
-  const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
+  const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.remove()"></div>`).join("");
   track.innerHTML=items+items; // duplicate for a seamless loop
 }
 function initHomeFeatured(){
