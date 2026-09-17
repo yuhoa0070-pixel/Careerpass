@@ -159,6 +159,14 @@ function showView(v){
   if(v==="plan")renderPlan();
   if(v==="home")typeHero();
   try{sessionStorage.setItem("tv_view",v);}catch(e){}
+  if(v==="home"){
+    if(location.hash&&!/[#&](plan|cost)=/.test(location.hash)){
+      if(history.replaceState)history.replaceState(null,"",location.pathname+location.search);
+      else location.hash="";
+    }
+  }else if(!/[#&](plan|cost)=/.test(location.hash)&&!v.endsWith("-detail")){
+    if(history.replaceState)history.replaceState(null,"","#"+v);
+  }
 }
 document.querySelectorAll("[data-view]").forEach(el=>{
   el.addEventListener("click",()=>{
@@ -437,6 +445,7 @@ function openSchool(id){
   showView("school-detail");
   document.title = `${s.name} — មហាវិទ្យាល័យ & ថ្លៃសិក្សា | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
+  if(history.replaceState)history.replaceState(null,"","#school="+id);
 }
 
 function toggleCompare(id){
@@ -765,6 +774,7 @@ function openCareer(id){
   showView("career-detail");
   document.title = `${j.name} — ប្រាក់ខែ & ជំនាញ | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
+  if(history.replaceState)history.replaceState(null,"","#career="+id);
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
 
@@ -959,11 +969,12 @@ function costShareText(){
   L.push("💰 សរុប៖ "+(d.total||"$0"));
   if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
   L.push(bar);
-  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai");
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai: https://treyvisai.com/#cost");
+  L.push("#TreyVisai #ត្រីវិស័យ #សាកលវិទ្យាល័យ #ថ្លៃសិក្សា #បាក់ឌុប #CambodiaEducation");
   return L.join("\n");
 }
 function shareCostTo(p){
-  const shareUrl=location.origin+location.pathname;
+  const shareUrl="https://treyvisai.com/#cost";
   if(p==="copy"){
     const txt=costShareText()+"\n"+shareUrl;const done=()=>showShareToast("បានចម្លងអត្ថបទ ✓");
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}else fallbackCopy(txt,done);
@@ -1001,6 +1012,7 @@ function planShareText(){
   if(plan.cost)lines.push("💰 ថ្លៃសិក្សាប៉ាន់ស្មាន៖ $"+Number(plan.cost.total).toLocaleString()+" ("+plan.cost.years+" ឆ្នាំ)");
   lines.push("");
   lines.push("👨‍👩‍👧 សូមឪពុកម្ដាយជួយមើល និងពិភាក្សាជាមួយគ្នា 🙏");
+  lines.push("#TreyVisai #ត្រីវិស័យ #ផែនការសិក្សា #សាកលវិទ្យាល័យ #បាក់ឌុប #CambodiaEducation");
   return lines.join("\n");
 }
 function sharePlanTo(p){
@@ -1199,7 +1211,43 @@ function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
   document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});
 }
+function parseRouteFromUrl(){
+  const raw=(location.hash||"").replace(/^#/,"").trim();
+  if(!raw){
+    try{
+      const params=new URLSearchParams(location.search);
+      const qv=params.get("view");
+      if(qv&&document.getElementById("view-"+qv))return {view:qv};
+      const qs=params.get("school");
+      if(qs)return {view:"school-detail",type:"school",id:qs};
+      const qc=params.get("career");
+      if(qc)return {view:"career-detail",type:"career",id:qc};
+    }catch(e){}
+    return null;
+  }
+  if(raw.startsWith("school=")){
+    const sid=raw.slice(7);
+    return {view:"school-detail",type:"school",id:sid};
+  }
+  if(raw.startsWith("career=")){
+    const cid=raw.slice(7);
+    return {view:"career-detail",type:"career",id:cid};
+  }
+  const clean=raw.replace(/\?.*$/,"").toLowerCase();
+  if(clean==="scholarships")return {view:"scholarship"};
+  if(document.getElementById("view-"+clean))return {view:clean};
+  return null;
+}
+
 function restoreView(){
+  const route=parseRouteFromUrl();
+  if(route){
+    if(route.view==="school-detail"&&route.id&&typeof openSchool==="function"){openSchool(route.id);return;}
+    if(route.view==="career-detail"&&route.id&&typeof openCareer==="function"){openCareer(route.id);return;}
+    if(route.view==="schools")restoreSchoolState();
+    if(route.view==="careers")restoreJobState();
+    if(document.getElementById("view-"+route.view)){showView(route.view);return;}
+  }
   let v=null;try{v=sessionStorage.getItem("tv_view");}catch(e){}
   if(!v||v==="home"||v==="shared")return;
   if(v==="school-detail"||v==="career-detail"){
@@ -1215,6 +1263,10 @@ function restoreView(){
   if(document.getElementById("view-"+v))showView(v);
 }
 if(!checkSharedPlan()&&!checkSharedCost())restoreView();
+window.addEventListener("hashchange",()=>{
+  if(/[#&](plan|cost)=/.test(location.hash))return;
+  restoreView();
+});
 
 /* ===== ANIMATED GRID BEAMS: light beams traveling along the background grid lines ===== */
 function initGridFlow(){

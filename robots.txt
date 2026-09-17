@@ -4,5 +4,24 @@
 User-agent: *
 Allow: /
 
+# Dedicated crawlers for Google, Facebook, Telegram & X
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
 # Sitemap
 Sitemap: https://treyvisai.com/sitemap.xml
