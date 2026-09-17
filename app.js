@@ -157,7 +157,10 @@ function showView(v){
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
   if(v==="plan")renderPlan();
-  if(v==="home")typeHero();
+  if(v==="home"){
+    typeHero();
+    if(window.__layoutHero3D)window.__layoutHero3D();
+  }
   try{sessionStorage.setItem("tv_view",v);}catch(e){}
   if(v==="home"){
     if(location.hash&&!/[#&](plan|cost)=/.test(location.hash)){
@@ -1345,23 +1348,47 @@ function initHero3D(){
     else{o.el.style.setProperty("--x",(o.c.idle.x*s).toFixed(1)+"px");o.el.style.setProperty("--y",(o.c.idle.y*s).toFixed(1)+"px");o.el.style.setProperty("--r",o.c.idle.r+"deg");o.el.style.setProperty("--s","1");o.el.style.zIndex="2";}
   }
   function layout(){
-    const cw=Math.min(300,Math.floor((host.clientWidth||480)/1.56));
-    const s=cw/300, ch=Math.round(cw*9/16);
-    // size the band to the rotated bounding box of the furthest-scattered card (no clipping)
-    const ext=Math.max.apply(null,cards.map(c=>{const rad=Math.abs(c.idle.r)*Math.PI/180;return Math.abs(c.idle.y)*s+(cw*Math.sin(rad)+ch*Math.cos(rad))/2;}));
-    host.style.height=Math.round(2*ext+18)+"px";
-    els.forEach(o=>{o.s=s;o.el.style.width=cw+"px";o.el.style.height=ch+"px";o.el.innerHTML=faceHTML(o.c,s);apply(o);});
+    const hostW = host.clientWidth || host.parentElement?.clientWidth || window.innerWidth || 360;
+    const cw = Math.min(300, Math.max(150, Math.floor((hostW - 24) / 1.76)));
+    const s = cw / 300, ch = Math.round(cw * 9 / 16);
+    // size the band to the rotated bounding box of the furthest-scattered card + clearance for hint
+    const extTop = Math.max.apply(null, cards.map(c => {
+      const rad = Math.abs(c.idle.r) * Math.PI / 180;
+      return Math.max(0, -c.idle.y) * s + (cw * Math.sin(rad) + ch * Math.cos(rad)) / 2;
+    }));
+    const extBottom = Math.max.apply(null, cards.map(c => {
+      const rad = Math.abs(c.idle.r) * Math.PI / 180;
+      return Math.max(0, c.idle.y) * s + (cw * Math.sin(rad) + ch * Math.cos(rad)) / 2;
+    }));
+    const ext = Math.max(extTop, extBottom);
+    host.style.height = Math.round(2 * ext + 38) + "px";
+    els.forEach(o => {
+      o.s = s;
+      o.el.style.width = cw + "px";
+      o.el.style.height = ch + "px";
+      o.el.innerHTML = faceHTML(o.c, s);
+      apply(o);
+    });
   }
-  cards.forEach(c=>{
-    const el=document.createElement("div");
-    el.className="lc-card";el.style.background=c.bg;el.dataset.view=c.view;
-    const o={el,c,s:1};
-    el.addEventListener("click",()=>{selected=(selected===c.view?null:c.view);els.forEach(apply);host.classList.toggle("lc-focused",selected!==null);});
-    host.appendChild(el);els.push(o);
+  cards.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "lc-card"; el.style.background = c.bg; el.dataset.view = c.view;
+    const o = { el, c, s: 1 };
+    el.addEventListener("click", () => {
+      selected = (selected === c.view ? null : c.view);
+      els.forEach(apply);
+      host.classList.toggle("lc-focused", selected !== null);
+    });
+    host.appendChild(el); els.push(o);
   });
-  const hint=document.createElement("div");hint.className="lc-hint";hint.textContent="ចុចលើកាតដើម្បីផ្ដោត";host.appendChild(hint);
+  const hint = document.createElement("div"); hint.className = "lc-hint"; hint.textContent = "ចុចលើកាតដើម្បីផ្ដោត"; host.appendChild(hint);
   layout();
-  let t;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(layout,200);});
+  window.__layoutHero3D = layout;
+  let t; window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(layout, 150); });
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => { layout(); });
+    ro.observe(host);
+  }
 }
 
 /* ===== HOMEPAGE: university logo marquee + featured growing careers ===== */
