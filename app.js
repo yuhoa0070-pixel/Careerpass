@@ -131,16 +131,16 @@ hamburger.addEventListener("click",toggleSidebar);
 
 /* ===== NAVIGATION ===== */
 const VIEW_TITLES = {
-  home: "treyvisai.com (ត្រីវិស័យ) — ស្វែងរកអាជីព សាកលវិទ្យាល័យ និងថ្លៃសិក្សានៅកម្ពុជា",
-  schools: "ស្វែងរកសាលារៀន និងសាកលវិទ្យាល័យ ១១៦+ នៅកម្ពុជា — treyvisai.com",
-  careers: "បញ្ជីអាជីព និងការងារពេញនិយមនៅកម្ពុជា — treyvisai.com",
-  cost: "ប៉ាន់ស្មានថ្លៃសិក្សា & ជីវភាពរស់នៅ — treyvisai.com",
-  quiz: "តេស្តស្វែងរកអាជីពដែលស័ក្តិសម — treyvisai.com",
-  scholarship: "អាហារូបករណ៍រដ្ឋ និងជំនួយហិរញ្ញវត្ថុ — treyvisai.com",
-  compare: "ប្រៀបធៀបសាកលវិទ្យាល័យនៅកម្ពុជា — treyvisai.com",
-  plan: "ផែនការអប់រំ និងអាជីពផ្ទាល់ខ្លួន — treyvisai.com",
-  facts: "តើអ្នកដឹងទេ? ការពិត និងស្ថិតិអប់រំ — treyvisai.com",
-  terms: "លក្ខខណ្ឌប្រើប្រាស់ និងគោលការណ៍ឯកជនភាព — treyvisai.com"
+  home: "TREYVISAI (ត្រីវិស័យ) — ស្វែងរកអាជីព សាកលវិទ្យាល័យ និងថ្លៃសិក្សានៅកម្ពុជា",
+  schools: "ស្វែងរកសាលារៀន និងសាកលវិទ្យាល័យ ១១៦+ នៅកម្ពុជា — TREYVISAI",
+  careers: "បញ្ជីអាជីព និងការងារពេញនិយមនៅកម្ពុជា — TREYVISAI",
+  cost: "ប៉ាន់ស្មានថ្លៃសិក្សា & ជីវភាពរស់នៅ — TREYVISAI",
+  quiz: "តេស្តស្វែងរកអាជីពដែលស័ក្តិសម — TREYVISAI",
+  scholarship: "អាហារូបករណ៍រដ្ឋ និងជំនួយហិរញ្ញវត្ថុ — TREYVISAI",
+  compare: "ប្រៀបធៀបសាកលវិទ្យាល័យនៅកម្ពុជា — TREYVISAI",
+  plan: "ផែនការអប់រំ និងអាជីពផ្ទាល់ខ្លួន — TREYVISAI",
+  facts: "តើអ្នកដឹងទេ? ការពិត និងស្ថិតិអប់រំ — TREYVISAI",
+  terms: "លក្ខខណ្ឌប្រើប្រាស់ និងគោលការណ៍ឯកជនភាព — TREYVISAI"
 };
 
 function showView(v){
@@ -435,7 +435,7 @@ function openSchool(id){
       </div>
     </div>`;
   showView("school-detail");
-  document.title = `${s.name} — មហាវិទ្យាល័យ ថ្លៃសិក្សា & អាហារូបករណ៍ | treyvisai.com`;
+  document.title = `${s.name} — មហាវិទ្យាល័យ ថ្លៃសិក្សា & អាហារូបករណ៍ | TREYVISAI`;
   try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
 }
 
@@ -763,7 +763,7 @@ function openCareer(id){
       </div>
     </div>`;
   showView("career-detail");
-  document.title = `${j.name} — ប្រាក់ខែ ជំនាញ & សាលា | treyvisai.com`;
+  document.title = `${j.name} — ប្រាក់ខែ ជំនាញ & សាលា | TREYVISAI`;
   try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
@@ -946,7 +946,7 @@ function costData(){
 function costShareText(){
   const d=costData();
   const bar="━━━━━━━━━━━━━";
-  const L=["🧾 វិក្កយបត្រថ្លៃសិក្សា — treyvisai.com",bar];
+  const L=["🧾 វិក្កយបត្រថ្លៃសិក្សា — TREYVISAI",bar];
   if(d.sc)L.push("🏫 "+d.sc);
   if(d.dur)L.push("🎓 "+d.dur);
   L.push(bar);
@@ -959,7 +959,7 @@ function costShareText(){
   L.push("💰 សរុប៖ "+(d.total||"$0"));
   if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
   L.push(bar);
-  L.push("🔗 គណនាដោយខ្លួនឯងនៅ treyvisai.com");
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TREYVISAI");
   return L.join("\n");
 }
 function shareCostTo(p){
@@ -970,7 +970,7 @@ function shareCostTo(p){
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — treyvisai.com",text:costShareText(),url:shareUrl}).catch(()=>{});}else shareCostTo("copy");
+    if(navigator.share){navigator.share({title:"ថ្លៃសិក្សា — TREYVISAI",text:costShareText(),url:shareUrl}).catch(()=>{});}else shareCostTo("copy");
     return;
   }
   const url=encodeURIComponent(shareUrl);
@@ -993,7 +993,7 @@ function decodePlanHash(b64){
   try{return JSON.parse(decodeURIComponent(escape(atob(b64))));}catch(e){return null;}
 }
 function planShareText(){
-  const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — treyvisai.com",""];
+  const lines=["🎓 ផែនការសិក្សារបស់ខ្ញុំ — TREYVISAI",""];
   let careerName=null;
   if(plan.careers.length){const j=careersList.find(x=>x.id===plan.careers[0]);if(j)careerName=j.name;}
   if(careerName)lines.push("🎯 អាជីពគោលដៅ៖ "+careerName);
@@ -1010,7 +1010,7 @@ function sharePlanTo(p){
     return;
   }
   if(p==="native"){
-    if(navigator.share){navigator.share({title:"ផែនការសិក្សា — treyvisai.com",text:planShareText(),url:encodePlanUrl()}).catch(()=>{});}else sharePlanTo("copy");
+    if(navigator.share){navigator.share({title:"ផែនការសិក្សា — TREYVISAI",text:planShareText(),url:encodePlanUrl()}).catch(()=>{});}else sharePlanTo("copy");
     return;
   }
   const url=encodeURIComponent(encodePlanUrl());
@@ -1526,7 +1526,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   ];
 
   const TROLL_FALLBACKS=[
-    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ treyvisai.com មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរពេញនិយម» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
+    "សួរអីចម្លែកៗម៉្លេះ Bro/Sis? ខ្ញុំជាជំនួយការ TREYVISAI មិនមែនគ្រូទាយទេ! 🔮😂 សាកចុចលើ «សំណួរពេញនិយម» ខាងក្រោម ឬសួររឿងសាលា/អាជីពវិញមក!",
     "អានសំណួរហើយ ខ្ញុំចង់គាំង CPU ដែរ! 😵‍💫💻 សួរឈ្មោះសាលា ឬអាជីពឱ្យស្រួលបួលមក ចាំជួយប្រាប់!",
     "សំណួរនេះស៊ីអារម្មណ៍ពេក ខ្ញុំឆ្លើយអត់ត្រូវទេ! 🤣 សួររឿងប្រាក់ខែ សាលារៀន ឬអាជីពវិញមក ចាំឆ្លើយឱ្យចង់វិលមុខ!"
   ];
@@ -1544,7 +1544,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       const avatar=document.createElement("img");
       avatar.src=POSES.idle;
       avatar.className="mascot-msg-avatar";
-      avatar.alt="treyvisai.com";
+      avatar.alt="TREYVISAI";
       row.appendChild(avatar);
     }
 
@@ -1578,7 +1578,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.celebrate;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai.com";
+    avatar.alt="TREYVISAI";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1635,7 +1635,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.celebrate;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai.com";
+    avatar.alt="TREYVISAI";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1692,7 +1692,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     const avatar=document.createElement("img");
     avatar.src=POSES.thinking;
     avatar.className="mascot-msg-avatar";
-    avatar.alt="treyvisai.com";
+    avatar.alt="TREYVISAI";
     row.appendChild(avatar);
 
     const bubbleWrap=document.createElement("div");
@@ -1784,7 +1784,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
       const avatar=document.createElement("img");
       avatar.src=POSES.thinking;
       avatar.className="mascot-msg-avatar";
-      avatar.alt="treyvisai.com";
+      avatar.alt="TREYVISAI";
       row.appendChild(avatar);
 
       const bubbleWrap=document.createElement("div");
