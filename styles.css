@@ -815,34 +815,26 @@ button.faculty-item{cursor:pointer;}
 
 /* ===== Mascot widget ===== */
 .mascot-widget{--mgutter:20px;--mbtn:112px;position:fixed;right:calc(var(--mgutter) + env(safe-area-inset-right));bottom:calc(var(--mgutter) + env(safe-area-inset-bottom));z-index:2000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
-.mascot-btn,.mascot-dismiss,.mascot-sug-pill,.mascot-chat-send,.mascot-chat-close,.mascot-chat-header-btn,.mascot-card-btn,.mascot-choice-btn,.mascot-game-action-btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.mascot-dismiss,.mascot-sug-pill,.mascot-chat-send,.mascot-chat-close,.mascot-chat-header-btn,.mascot-card-btn,.mascot-choice-btn,.mascot-game-action-btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 @media(min-width:768px){.mascot-widget{--mgutter:32px;}}
 @media(min-width:1200px){.mascot-widget{--mgutter:48px;}}
 .mascot-widget.is-dismissed{display:none;}
-.mascot-btn-wrap{position:relative;display:flex;align-items:center;will-change:transform;}
+.mascot-btn-wrap{position:relative;display:flex;align-items:center;will-change:transform;touch-action:none !important;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
 .mascot-btn-wrap.is-snapping{transition:transform .38s cubic-bezier(.34,1.28,.5,1);}
 .mascot-btn-wrap.is-dragging{cursor:grabbing !important;}
 .mascot-btn-wrap.is-dragging .mascot-btn{cursor:grabbing !important;transform:scale(1.08);}
-.mascot-btn-wrap.is-dragging .mascot-img{animation-play-state:paused !important;filter:drop-shadow(0 16px 28px rgba(16,24,40,.35));}
+.mascot-btn-wrap.is-dragging .mascot-img{filter:drop-shadow(0 16px 28px rgba(16,24,40,.35));}
 .mascot-btn-wrap.is-dragging .mascot-dismiss{opacity:0;pointer-events:none;transition:opacity .15s;}
 .mascot-btn-wrap.dock-left .mascot-dismiss{right:auto;left:-6px;}
 
-.mascot-btn{width:var(--mbtn);height:var(--mbtn);border:none;background:transparent;padding:0;cursor:grab;touch-action:none;display:flex;align-items:center;justify-content:center;transition:transform .2s var(--ease);}
+.mascot-btn{width:var(--mbtn);height:var(--mbtn);border:none;background:transparent;padding:0;cursor:grab;touch-action:none !important;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;display:flex;align-items:center;justify-content:center;transition:transform .2s var(--ease);}
 .mascot-dismiss{position:absolute;top:2px;right:-6px;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text-2);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);transition:background .15s var(--ease),color .15s var(--ease),opacity .15s var(--ease);z-index:2;}
 .mascot-dismiss:hover,.mascot-dismiss:focus-visible{background:var(--accent-tint);color:var(--accent);}
-.mascot-btn:active:not(.is-dragging){transform:translateY(0) scale(.96);}
-.mascot-img{width:100%;height:100%;object-fit:contain;animation:mascot-bounce 2.6s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(16,24,40,.22));transition:filter .2s, transform .15s ease-out;}
-.mascot-btn:focus-visible .mascot-img{animation-play-state:paused;}
+.mascot-btn:active:not(.is-dragging){transform:scale(.95);}
+.mascot-img{width:100%;height:100%;object-fit:contain;pointer-events:none;touch-action:none !important;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;filter:drop-shadow(0 10px 18px rgba(16,24,40,.22));transition:filter .2s, transform .15s ease-out;}
 @media(hover:hover){
-  .mascot-btn:hover:not(.is-dragging){transform:translateY(-4px);}
-  .mascot-btn:hover:not(.is-dragging) .mascot-img{animation-play-state:paused;}
+  .mascot-btn:hover:not(.is-dragging) .mascot-img{filter:drop-shadow(0 12px 22px rgba(16,24,40,.3));}
 }
-@keyframes mascot-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-@media(prefers-reduced-motion:reduce){.mascot-img{animation:none;}}
-
-/* Interactive scroll responses */
-.mascot-btn.is-scrolling-down .mascot-img{transform:translateY(-5px) rotate(5deg) scale(1.03);}
-.mascot-btn.is-scrolling-up .mascot-img{transform:translateY(-5px) rotate(-5deg) scale(1.03);}
 
 @media(min-width:481px){
   .mascot-chat.dock-left{right:auto;left:var(--mgutter);}
