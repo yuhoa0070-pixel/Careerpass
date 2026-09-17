@@ -168,7 +168,6 @@ function restoreSchoolState(){
   const si=document.getElementById("school-search");if(si)si.value=schoolSearch;
   const syncSel=(id,val)=>{const el=document.getElementById(id);if(!el)return;el.value=val;if(el._csSync)el._csSync();};
   syncSel("school-province",schoolProvince);
-  syncSel("school-type",schoolType);
   syncSel("school-career-filter",schoolCareer);
   renderSchoolChips();
 }
@@ -262,8 +261,6 @@ function renderSchoolChips(){
 function setSchoolType(t){
   schoolType = t;
   schoolPage = 1;
-  const sel = document.getElementById("school-type");
-  if(sel){ sel.value = t; if(sel._csSync) sel._csSync(); }
   renderSchoolChips();
   renderSchools();
 }
@@ -461,7 +458,6 @@ function clearCompare(){compareList=[];document.getElementById("compare-section"
 
 document.getElementById("school-search").addEventListener("input",e=>{schoolSearch=e.target.value;schoolPage=1;renderSchools();});
 document.getElementById("school-province").addEventListener("change",e=>{schoolProvince=e.target.value;schoolPage=1;renderSchools();});
-document.getElementById("school-type").addEventListener("change",e=>{schoolType=e.target.value;schoolPage=1;renderSchools();});
 document.getElementById("school-career-filter").addEventListener("change",e=>{schoolCareer=e.target.value;schoolPage=1;renderSchools();});
 
 /* ===== GOAL 3: COST ===== */
