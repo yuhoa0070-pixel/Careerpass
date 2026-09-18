@@ -1,0 +1,8 @@
+# Local-dev-only files — not meant to be publicly fetchable from the
+# deployed site (they were previously servable at e.g. /server.js).
+# The api/ function needs its own files (including api/comments-seed.json),
+# so only exclude what's truly dev-only.
+server.js
+tools/
+CONTRIBUTING.md
+.claude/

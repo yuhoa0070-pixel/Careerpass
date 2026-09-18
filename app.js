@@ -1590,6 +1590,10 @@ const SEED_COMMENTS = [
   }
 ];
 
+function escapeHtml(str){
+  if(typeof str!=="string")return "";
+  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
 let allComments = [...SEED_COMMENTS];
 let activeVoiceSchoolFilter = "all";
 
@@ -1799,7 +1803,8 @@ function initVoiceForm(){
       schoolId,
       program,
       quote,
-      rating
+      rating,
+      website:document.getElementById("voice-website")?.value||"" // honeypot — always empty for real users
     };
 
     let savedComment=null;
@@ -1816,13 +1821,17 @@ function initVoiceForm(){
     }catch(err){}
 
     if(!savedComment){
+      // The server escapes HTML for us on success (and this is only ever
+      // rendered back into this one browser via localStorage) — but escape
+      // it here too, so a failed request can't leave unescaped markup that
+      // later gets injected via innerHTML same as the server-backed path.
       savedComment={
         id:"c_local_"+Date.now(),
-        name,
-        schoolName:school,
+        name:escapeHtml(name),
+        schoolName:escapeHtml(school),
         schoolId:schoolId||school.toLowerCase().replace(/[^a-z0-9]/g,""),
-        program,
-        quote,
+        program:escapeHtml(program),
+        quote:escapeHtml(quote),
         rating,
         createdAt:new Date().toISOString()
       };

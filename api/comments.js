@@ -5,7 +5,7 @@ const path = require('path');
 let memoryComments = null;
 
 // Paths for persistent fallback
-const DATA_FILE = path.join(__dirname, '..', 'data', 'comments.json');
+const DATA_FILE = path.join(__dirname, 'comments-seed.json');
 const TMP_FILE = path.join('/tmp', 'treyvisai_comments.json');
 
 function sanitize(str) {
@@ -63,6 +63,8 @@ function saveComments(list) {
   }
 }
 
+const MAX_BODY_BYTES = 20 * 1024; // a comment payload only ever needs a few KB
+
 async function parseBody(req) {
   if (req.body && typeof req.body === 'object') {
     return req.body;
@@ -74,8 +76,17 @@ async function parseBody(req) {
   }
   return new Promise((resolve) => {
     let body = '';
-    req.on('data', chunk => { body += chunk; });
+    let tooLarge = false;
+    req.on('data', chunk => {
+      if (tooLarge) return;
+      body += chunk;
+      if (body.length > MAX_BODY_BYTES) {
+        tooLarge = true;
+        resolve(null); // signals "reject", handled by the caller
+      }
+    });
     req.on('end', () => {
+      if (tooLarge) return;
       try {
         resolve(JSON.parse(body || '{}'));
       } catch (e) {
@@ -84,6 +95,32 @@ async function parseBody(req) {
     });
     req.on('error', () => resolve({}));
   });
+}
+
+// Best-effort per-IP rate limit. In-memory only, so it resets on cold start
+// and isn't shared across serverless instances — this raises the bar against
+// naive scripted spam without needing new infra, but isn't a hard guarantee.
+// A durable multi-instance limit would need a shared store (e.g. Vercel KV).
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const rateLimitLog = new Map(); // ip -> timestamps[]
+
+function getClientIp(req) {
+  const fwd = (req.headers && req.headers['x-forwarded-for']) || '';
+  const first = fwd.split(',')[0].trim();
+  return first || (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const recent = (rateLimitLog.get(ip) || []).filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+  if (recent.length >= RATE_LIMIT_MAX) {
+    rateLimitLog.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  rateLimitLog.set(ip, recent);
+  return false;
 }
 
 module.exports = async function handler(req, res) {
@@ -116,6 +153,10 @@ module.exports = async function handler(req, res) {
 
     const result = filtered.slice(0, Math.max(1, limit));
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    // Let Vercel's edge cache serve repeated reads for a bit instead of
+    // re-invoking this function on every single page load — this is what
+    // actually matters for many people opening the site at once.
+    res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=120');
     res.statusCode = 200;
     return res.end(JSON.stringify({
       success: true,
@@ -127,7 +168,31 @@ module.exports = async function handler(req, res) {
 
   // POST: Create a new comment without login
   if (req.method === 'POST') {
+    const ip = getClientIp(req);
+    if (isRateLimited(ip)) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.statusCode = 429;
+      return res.end(JSON.stringify({
+        success: false,
+        error: 'អ្នកបានបញ្ចេញមតិញឹកញាប់ពេក សូមព្យាយាមម្តងទៀតក្នុងពេលបន្តិច (Too many comments — please try again later)'
+      }));
+    }
+
     const payload = await parseBody(req);
+    if (payload === null) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.statusCode = 413;
+      return res.end(JSON.stringify({ success: false, error: 'Payload too large' }));
+    }
+
+    // Honeypot: a real user never fills this hidden field. Silently accept
+    // (so a bot can't tell it was rejected) without actually saving anything.
+    if (payload.website) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.statusCode = 201;
+      return res.end(JSON.stringify({ success: true }));
+    }
+
     const rawName = payload.name || payload.author;
     const rawSchool = payload.schoolName || payload.school;
     const rawSchoolId = payload.schoolId || '';
