@@ -163,13 +163,13 @@ function showView(v){
     if(window.__layoutHero3D)window.__layoutHero3D();
   }
   try{sessionStorage.setItem("tv_view",v);}catch(e){}
+  const onSharedUrl=/[#&](plan|cost)=/.test(location.hash)||/[?&](plan|cost)=/.test(location.search);
   if(v==="home"){
-    if(location.hash&&!/[#&](plan|cost)=/.test(location.hash)){
-      if(history.replaceState)history.replaceState(null,"",location.pathname+location.search);
-      else location.hash="";
+    if(!onSharedUrl&&location.pathname!=="/"&&history.replaceState){
+      history.replaceState(null,"","/");
     }
-  }else if(!/[#&](plan|cost)=/.test(location.hash)&&!v.endsWith("-detail")){
-    if(history.replaceState)history.replaceState(null,"","#"+v);
+  }else if(!onSharedUrl&&!v.endsWith("-detail")){
+    if(history.replaceState)history.replaceState(null,"","/"+v);
   }
 }
 document.querySelectorAll("[data-view]").forEach(el=>{
@@ -373,7 +373,7 @@ function schoolAbbr(s){if(logoMap[s.id])return logoMap[s.id];const m=s.name.matc
 function schoolColor(s){let h=0;for(let i=0;i<s.id.length;i++)h=(h*31+s.id.charCodeAt(i))>>>0;return logoColors[h%logoColors.length];}
 function logoFont(abbr,big){const n=abbr.length;if(big)return n>4?"13px":n>3?"16px":"19px";return n>4?"11px":n>3?"13px":"15px";}
 /* renders the school logo: official image from public/logos/<id>.png, falling back to coloured initials if missing */
-function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
+function schoolLogo(s,extraStyle){const abbr=schoolAbbr(s);return`<div class="school-logo" style="${extraStyle||""}background:${schoolColor(s)};font-size:${logoFont(abbr,false)}">${abbr}<img src="/public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>`;}
 
 function toggleFaculty(el){const wasOpen=el.classList.contains("open");el.parentNode.querySelectorAll(".faculty-item.open").forEach(x=>{x.classList.remove("open");x.setAttribute("aria-expanded","false");});if(!wasOpen){el.classList.add("open");el.setAttribute("aria-expanded","true");}}
 function scholarLine(s){
@@ -479,7 +479,7 @@ function openSchool(id){
   document.getElementById("school-detail").innerHTML=`
     <button type="button" class="detail-back" onclick="showView('schools')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅសាលា</button>
     <div class="detail-head">
-      <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}<img src="public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
+      <div class="detail-logo" style="background:${schoolColor(s)};font-size:${logoFont(schoolAbbr(s),true)}">${schoolAbbr(s)}<img src="/public/logos/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
       <div style="flex:1;min-width:220px">
         <span class="school-type-badge ${typeBadgeClass(s.type)}">${typeLabel(s.type, s)}</span>
         <h1 class="detail-title" style="margin-top:8px">${s.name}</h1>
@@ -514,7 +514,7 @@ function openSchool(id){
   showView("school-detail");
   document.title = `${s.name} — មហាវិទ្យាល័យ & ថ្លៃសិក្សា | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","school:"+id);}catch(e){}
-  if(history.replaceState)history.replaceState(null,"","#school="+id);
+  if(history.replaceState)history.replaceState(null,"","/school/"+encodeURIComponent(id));
 }
 
 function toggleCompare(id){
@@ -838,7 +838,7 @@ function openCareer(id){
   showView("career-detail");
   document.title = `${j.name} — ប្រាក់ខែ & ជំនាញ | TreyVisai`;
   try{sessionStorage.setItem("tv_detail","career:"+id);}catch(e){}
-  if(history.replaceState)history.replaceState(null,"","#career="+id);
+  if(history.replaceState)history.replaceState(null,"","/career/"+encodeURIComponent(id));
 }
 document.getElementById("career-search").addEventListener("input",e=>{jobSearch=e.target.value;jobPage=1;renderCareers();});
 
@@ -1033,12 +1033,12 @@ function costShareText(){
   L.push("💰 សរុប៖ "+(d.total||"$0"));
   if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
   L.push(bar);
-  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai: https://treyvisai.com/#cost");
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai: https://treyvisai.com/cost");
   L.push("#TreyVisai #ត្រីវិស័យ #សាកលវិទ្យាល័យ #ថ្លៃសិក្សា #បាក់ឌុប #CambodiaEducation");
   return L.join("\n");
 }
 function shareCostTo(p){
-  const shareUrl="https://treyvisai.com/#cost";
+  const shareUrl="https://treyvisai.com/cost";
   if(p==="copy"){
     const txt=costShareText()+"\n"+shareUrl;const done=()=>showShareToast("បានចម្លងអត្ថបទ ✓");
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}else fallbackCopy(txt,done);
@@ -1062,7 +1062,7 @@ function encodePlanUrl(){
   const d={c:plan.careers||[],s:plan.schools||[],k:plan.cost||null};
   let b64="";
   try{b64=btoa(unescape(encodeURIComponent(JSON.stringify(d))));}catch(e){b64="";}
-  return location.origin+location.pathname+"#plan="+b64;
+  return location.origin+location.pathname+"?plan="+b64;
 }
 function decodePlanHash(b64){
   try{return JSON.parse(decodeURIComponent(escape(atob(b64))));}catch(e){return null;}
@@ -1144,8 +1144,10 @@ function exitShared(action,careerId){
   else showView("home");
 }
 function checkSharedPlan(){
-  const m=(location.hash||"").match(/plan=([^&]+)/);
-  if(m){const data=decodePlanHash(m[1]);if(data){renderSharedPlan(data);showView("shared");return true;}}
+  let raw=null;
+  try{raw=new URLSearchParams(location.search).get("plan");}catch(e){}
+  if(!raw){const m=(location.hash||"").match(/plan=([^&]+)/);if(m)raw=m[1];} // legacy hash links
+  if(raw){const data=decodePlanHash(raw);if(data){renderSharedPlan(data);showView("shared");return true;}}
   return false;
 }
 function renderSharedCost(d){
@@ -1174,8 +1176,10 @@ function renderSharedCost(d){
   el.innerHTML=html;
 }
 function checkSharedCost(){
-  const m=(location.hash||"").match(/cost=([^&]+)/);
-  if(m){const data=decodePlanHash(m[1]);if(data){renderSharedCost(data);showView("shared");return true;}}
+  let raw=null;
+  try{raw=new URLSearchParams(location.search).get("cost");}catch(e){}
+  if(!raw){const m=(location.hash||"").match(/cost=([^&]+)/);if(m)raw=m[1];} // legacy hash links
+  if(raw){const data=decodePlanHash(raw);if(data){renderSharedCost(data);showView("shared");return true;}}
   return false;
 }
 
@@ -1243,7 +1247,7 @@ function enhanceAllSelects(){document.querySelectorAll("select.form-input,select
   ov.addEventListener("click",e=>{if(e.target===ov)close();});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ov.classList.contains("show"))close();});
   let seen=false;try{seen=sessionStorage.getItem("tv_news_seen")==="1";}catch(e){}
-  const onShared=/[#&](plan|cost)=/.test(location.hash);
+  const onShared=/[#&](plan|cost)=/.test(location.hash)||/[?&](plan|cost)=/.test(location.search);
   if(!seen&&!onShared){setTimeout(open,1800);}
 })();
 
@@ -1277,30 +1281,37 @@ function filterFacts(c){
   if(c==="all"||c==="voices") renderHomeVoices();
 }
 function parseRouteFromUrl(){
-  const raw=(location.hash||"").replace(/^#/,"").trim();
-  if(!raw){
-    try{
-      const params=new URLSearchParams(location.search);
-      const qv=params.get("view");
-      if(qv&&document.getElementById("view-"+qv))return {view:qv};
-      const qs=params.get("school");
-      if(qs)return {view:"school-detail",type:"school",id:qs};
-      const qc=params.get("career");
-      if(qc)return {view:"career-detail",type:"career",id:qc};
-    }catch(e){}
-    return null;
+  // Legacy hash links (#careers, #school=id, #career=id) — kept working for any
+  // previously shared/bookmarked URLs from before the switch to clean paths.
+  const rawHash=(location.hash||"").replace(/^#/,"").trim();
+  if(rawHash){
+    if(rawHash.startsWith("school="))return {view:"school-detail",type:"school",id:rawHash.slice(7)};
+    if(rawHash.startsWith("career="))return {view:"career-detail",type:"career",id:rawHash.slice(7)};
+    const cleanHash=rawHash.replace(/\?.*$/,"").toLowerCase();
+    if(cleanHash==="scholarships")return {view:"scholarship"};
+    if(document.getElementById("view-"+cleanHash))return {view:cleanHash};
   }
-  if(raw.startsWith("school=")){
-    const sid=raw.slice(7);
-    return {view:"school-detail",type:"school",id:sid};
+
+  // Clean path routing: /careers, /schools, /school/<id>, /career/<id>, ...
+  const seg=location.pathname.replace(/^\/+|\/+$/g,"").split("/").filter(Boolean);
+  if(seg.length){
+    const first=seg[0].toLowerCase();
+    if(first==="school"&&seg[1])return {view:"school-detail",type:"school",id:decodeURIComponent(seg[1])};
+    if(first==="career"&&seg[1])return {view:"career-detail",type:"career",id:decodeURIComponent(seg[1])};
+    if(first==="scholarships")return {view:"scholarship"};
+    if(document.getElementById("view-"+first))return {view:first};
   }
-  if(raw.startsWith("career=")){
-    const cid=raw.slice(7);
-    return {view:"career-detail",type:"career",id:cid};
-  }
-  const clean=raw.replace(/\?.*$/,"").toLowerCase();
-  if(clean==="scholarships")return {view:"scholarship"};
-  if(document.getElementById("view-"+clean))return {view:clean};
+
+  // Query-param fallback (?view=, ?school=, ?career=)
+  try{
+    const params=new URLSearchParams(location.search);
+    const qv=params.get("view");
+    if(qv&&document.getElementById("view-"+qv))return {view:qv};
+    const qs=params.get("school");
+    if(qs)return {view:"school-detail",type:"school",id:qs};
+    const qc=params.get("career");
+    if(qc)return {view:"career-detail",type:"career",id:qc};
+  }catch(e){}
   return null;
 }
 
@@ -1327,9 +1338,8 @@ function restoreView(){
   if(v==="careers")restoreJobState();
   if(document.getElementById("view-"+v))showView(v);
 }
-if(!checkSharedPlan()&&!checkSharedCost())restoreView();
-window.addEventListener("hashchange",()=>{
-  if(/[#&](plan|cost)=/.test(location.hash))return;
+window.addEventListener("popstate",()=>{
+  if(/[#&](plan|cost)=/.test(location.hash)||/[?&](plan|cost)=/.test(location.search))return;
   restoreView();
 });
 
@@ -1476,7 +1486,7 @@ function initHomeLogos(){
   const track=document.getElementById("logo-track");
   if(!track)return;
   const ids=["rupp","rule","num","uhs","itc","rua","cadt","npic","nie","era","ntti","nubb","uhst","uok","sbu","psbu","knia","aupp","paragon","puc","up","bbu","vanda","iu","acac","angkor","hru","rufa","cmu","aub","khemarak","cus","dmuc","pcu","cu","setec"];
-  const items=ids.map(id=>`<div class="logo-item"><img src="public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
+  const items=ids.map(id=>`<div class="logo-item"><img src="/public/logos/${id}.png" alt="" onerror="this.parentNode.remove()"></div>`).join("");
   track.innerHTML=items+items; // duplicate for a seamless loop
 }
 function initHomeFeatured(){
@@ -1630,6 +1640,7 @@ async function fetchComments(){
 
   allComments=combined;
   renderHomeVoices();
+  renderHomeHighlights();
 }
 
 function renderHomeVoices(){
@@ -1671,38 +1682,59 @@ function renderHomeVoices(){
     return;
   }
 
+  host.innerHTML=filtered.map(voiceCardHtml).join("");
+}
+
+function voiceCardHtml(v){
   const stars=n=>"★".repeat(Math.max(1,Math.min(5,n||5)))+"☆".repeat(Math.max(0,5-Math.max(1,Math.min(5,n||5))));
   const getInitial=name=>(name?name.trim().charAt(0):"U");
+  const schoolObj=schoolsData.find(s=>(v.schoolId&&s.id===v.schoolId)||(v.schoolName&&s.name===v.schoolName));
+  const schoolClick=schoolObj?`onclick="openSchool('${schoolObj.id}')"`:"";
+  const dateStr=v.createdAt?new Date(v.createdAt).toLocaleDateString('km-KH',{month:'short',day:'numeric'}):"";
 
-  host.innerHTML=filtered.map(v=>{
-    const schoolObj=schoolsData.find(s=>(v.schoolId&&s.id===v.schoolId)||(v.schoolName&&s.name===v.schoolName));
-    const schoolClick=schoolObj?`onclick="openSchool('${schoolObj.id}')"`:"";
-    const dateStr=v.createdAt?new Date(v.createdAt).toLocaleDateString('km-KH',{month:'short',day:'numeric'}):"";
-
-    return `
-      <div class="voice-item">
-        <div class="voice-head">
-          <div class="voice-author">
-            <div class="voice-avatar">${getInitial(v.name)}</div>
-            <div class="voice-author-text">
-              <span class="voice-name">${v.name}</span>
-              ${v.program?`<span class="voice-program">${v.program}</span>`:""}
-            </div>
+  return `
+    <div class="voice-item">
+      <div class="voice-head">
+        <div class="voice-author">
+          <div class="voice-avatar">${getInitial(v.name)}</div>
+          <div class="voice-author-text">
+            <span class="voice-name">${v.name}</span>
+            ${v.program?`<span class="voice-program">${v.program}</span>`:""}
           </div>
-          <span class="voice-stars" title="${v.rating||5} ផ្កាយ">${stars(v.rating)}</span>
         </div>
-        <p class="voice-quote">"${v.quote}"</p>
-        <div class="voice-foot">
-          <button type="button" class="voice-school-tag" ${schoolClick} title="មើលព័ត៌មាន ${v.schoolName}">
-            <i class="material-symbols-outlined" style="font-size:13px">school</i>
-            <span>${v.schoolName}</span>
-          </button>
-          ${dateStr?`<span class="voice-date">${dateStr}</span>`:""}
-        </div>
+        <span class="voice-stars" title="${v.rating||5} ផ្កាយ">${stars(v.rating)}</span>
       </div>
-    `;
-  }).join("");
+      <p class="voice-quote">"${v.quote}"</p>
+      <div class="voice-foot">
+        <button type="button" class="voice-school-tag" ${schoolClick} title="មើលព័ត៌មាន ${v.schoolName}">
+          <i class="material-symbols-outlined" style="font-size:13px">school</i>
+          <span>${v.schoolName}</span>
+        </button>
+        ${dateStr?`<span class="voice-date">${dateStr}</span>`:""}
+      </div>
+    </div>
+  `;
 }
+
+function renderHomeHighlights(){
+  const host=document.getElementById("home-highlight-voices");
+  if(!host)return;
+  const picks=allComments.slice(0,6);
+  if(!picks.length){
+    host.innerHTML=`<div class="empty-state" style="padding:28px 0">
+      <i class="material-symbols-outlined">forum</i>
+      <p>មិនទាន់មានមតិយោបល់នៅឡើយទេ — ចែករំលែកជាមួយគេដំបូងគេ!</p>
+    </div>`;
+    return;
+  }
+  host.innerHTML=picks.map(voiceCardHtml).join("");
+}
+
+function goToVoices(){
+  showView("facts");
+  if(typeof filterFacts==="function")filterFacts("voices");
+}
+window.goToVoices=goToVoices;
 
 function filterVoices(schoolId){
   activeVoiceSchoolFilter=schoolId;
@@ -1799,6 +1831,7 @@ function initVoiceForm(){
     saveLocalComment(savedComment);
     allComments.unshift(savedComment);
     renderHomeVoices();
+    renderHomeHighlights();
 
     if(submitBtn){
       submitBtn.disabled=false;
@@ -1853,7 +1886,7 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
   const sendBtn=form.querySelector(".mascot-chat-send");
   const messages=document.getElementById("mascot-chat-messages");
   const sugTrack=document.getElementById("mascot-sug-track");
-  const POSES={idle:"public/mascot/idle.png",wave:"public/mascot/wave.png",thinking:"public/mascot/thinking.png",celebrate:"public/mascot/celebrate.png"};
+  const POSES={idle:"/public/mascot/idle.png",wave:"/public/mascot/wave.png",thinking:"/public/mascot/thinking.png",celebrate:"/public/mascot/celebrate.png"};
   let isOpen=false,closeTimer=null,celebrateTimer=null;
   let isDragging=false,hasDragged=false,currentTx=0,currentTy=0,isDockedLeft=false;
   let isPointerDown=false,activePointerId=null;
@@ -2702,3 +2735,8 @@ document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
     if(q)askQuestion(q);
   });
 })();
+
+// Runs last: restoring a saved/shared route (e.g. landing directly on the facts/voices
+// tab) can call into the comments system, so this must fire after everything above —
+// including SEED_COMMENTS/allComments — has finished being declared.
+if(!checkSharedPlan()&&!checkSharedCost())restoreView();
