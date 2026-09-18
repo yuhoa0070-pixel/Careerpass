@@ -1252,9 +1252,8 @@ function enhanceAllSelects(){document.querySelectorAll("select.form-input,select
   const ov=document.getElementById("news-overlay");if(!ov)return;
   function close(){ov.classList.remove("show");try{sessionStorage.setItem("tv_news_seen","1");}catch(e){}}
   function open(){ov.classList.add("show");}
-  const c=document.getElementById("news-close"),d=document.getElementById("news-dismiss");
+  const c=document.getElementById("news-close");
   if(c)c.addEventListener("click",close);
-  if(d)d.addEventListener("click",close);
   ov.addEventListener("click",e=>{if(e.target===ov)close();});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ov.classList.contains("show"))close();});
   let seen=false;try{seen=sessionStorage.getItem("tv_news_seen")==="1";}catch(e){}
