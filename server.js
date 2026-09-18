@@ -38,25 +38,27 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Handle Static Files
-  let filePath = path.join(ROOT, pathname === '/' ? 'index.html' : pathname);
+  const decodedPath = decodeURIComponent(pathname === '/' ? '/index.html' : pathname);
+  const filePath = path.resolve(ROOT, '.' + decodedPath);
 
-  // Security check: prevent path traversal
-  if (!filePath.startsWith(ROOT)) {
+  // Security check: prevent path traversal. A plain startsWith(ROOT) can be
+  // fooled by a sibling directory that happens to share ROOT as a string
+  // prefix (e.g. ROOT="/a/project" vs "/a/project-evil") — require an exact
+  // match or a real path-separator boundary instead.
+  if (filePath !== ROOT && !filePath.startsWith(ROOT + path.sep)) {
     res.statusCode = 403;
     res.end('Forbidden');
     return;
   }
 
   fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      // SPA Fallback to index.html if file not found
-      filePath = path.join(ROOT, 'index.html');
-    }
+    // SPA fallback to index.html if the resolved path isn't a real file
+    const servePath = (err || !stats.isFile()) ? path.join(ROOT, 'index.html') : filePath;
 
-    const ext = path.extname(filePath).toLowerCase();
+    const ext = path.extname(servePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-    fs.readFile(filePath, (readErr, content) => {
+    fs.readFile(servePath, (readErr, content) => {
       if (readErr) {
         res.statusCode = 404;
         res.end('Not Found');
