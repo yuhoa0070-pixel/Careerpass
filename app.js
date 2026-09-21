@@ -646,7 +646,7 @@ const jobCats={
   logistics:{label:"ដឹកជញ្ជូន និងខ្សែសង្វាក់ផ្គត់ផ្គង់",icon:"local_shipping"}
 };
 const careersList=[
-  {id:"softeng",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","paragon","kit","camtech","tux","ab","biu","dmuc","nib","itstep"]},
+  {id:"softeng",image:"/public/careers/softeng.jpg",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","paragon","kit","camtech","tux","ab","biu","dmuc","nib","itstep"]},
   {id:"webdev",name:"អ្នកអភិវឌ្ឍន៍គេហទំព័រ (Web Developer)",cat:"tech",icon:"html",salary:"$400–$1,200",desc:"សាងសង់គេហទំព័រ និងកម្មវិធីវ៉េប។",skills:["HTML/CSS","React","Node.js"],schools:["ab","sabaicode","cadt","itc","kit","tux","camtech","khmercoders","dichi","setec","nib","itstep"]},
   {id:"mobiledev",name:"អ្នកអភិវឌ្ឍន៍ App (Mobile App Developer)",cat:"tech",icon:"smartphone",salary:"$500–$1,400",desc:"បង្កើតកម្មវិធីលើ Android និង iOS។",skills:["Flutter","Kotlin","Swift"],schools:["cadt","itc","kit","sabaicode","ab","tux"]},
   {id:"dataanalyst",growing:true,name:"អ្នកវិភាគទិន្នន័យ (Data Analyst)",cat:"tech",icon:"monitoring",salary:"$500–$1,300",desc:"វិភាគទិន្នន័យ ដើម្បីជួយសម្រេចចិត្ត។",skills:["Excel","SQL","Power BI","Python"],schools:["cadt","num","itc","aupp","aub","paragon","camtech"]},
@@ -794,13 +794,16 @@ function renderCareers(){
   const start=(jobPage-1)*JOBS_PER_PAGE;
   const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
   grid.innerHTML=pageItems.map((j,i)=>`
-    <div class="job-card" style="animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
-      <div class="job-top">
-        <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
-        <div style="flex:1"><p class="job-name">${j.name}</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="job-cat">${jobCats[j.cat].label}</span>${j.growing?`<span class="hc-grow" style="padding:1px 6px;font-size:9.5px"><i class="material-symbols-outlined" style="font-size:11px">trending_up</i>កំពុងកើនឡើង</span>`:""}</div></div>
+    <div class="job-card${j.image?' has-bg':''}" style="animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
+      ${j.image?`<div class="job-card-bg" style="background-image:url('${j.image}')"></div><div class="job-card-overlay"></div>`:""}
+      <div class="job-card-content">
+        <div class="job-top">
+          <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
+          <div style="flex:1"><p class="job-name">${j.name}</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="job-cat">${jobCats[j.cat].label}</span>${j.growing?`<span class="hc-grow" style="padding:1px 6px;font-size:9.5px"><i class="material-symbols-outlined" style="font-size:11px">trending_up</i>កំពុងកើនឡើង</span>`:""}</div></div>
+        </div>
+        <p class="job-desc">${j.desc}</p>
+        <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
       </div>
-      <p class="job-desc">${j.desc}</p>
-      <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
     </div>`).join("");
   srReveal(grid,".job-card");
   renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
@@ -1512,7 +1515,16 @@ function initHomeFeatured(){
   host.innerHTML=list.map(j=>{
     const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
     const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
-    return `<div class="hc-card" role="button" tabindex="0" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងត្រូវប៉ាន់</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
+    return `<div class="hc-card${j.image?' has-bg':''}" role="button" tabindex="0" onclick="openCareer('${j.id}')">
+      ${j.image?`<div class="hc-card-bg" style="background-image:url('${j.image}')"></div><div class="hc-card-overlay"></div>`:""}
+      <div class="hc-card-content">
+        <div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងត្រូវប៉ាន់</span></div>
+        <h3 class="hc-name">${j.name}</h3>
+        <div class="hc-cat">${cat}</div>
+        <div class="hc-skills">${skills}</div>
+        <div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div>
+      </div>
+    </div>`;
   }).join("");
 }
 
