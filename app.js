@@ -142,7 +142,7 @@ hamburger.addEventListener("click",toggleSidebar);
 
 /* ===== NAVIGATION ===== */
 const VIEW_TITLES = {
-  home: "TreyVisai (ត្រីវិស័យ) — ស្វែងរកអាជីព & សាកលវិទ្យាល័យ ១២៧+ នៅកម្ពុជា",
+  home: "TreyVisai (ត្រីវិស័យ) — ថ្នាលណែនាំអាជីព & ឧត្តមសិក្សា",
   schools: "សាលារៀន & សាកលវិទ្យាល័យ ១២៧+ — TreyVisai",
   careers: "បញ្ជីអាជីព និងការងារ — TreyVisai",
   cost: "គណនាថ្លៃសិក្សា — TreyVisai",
