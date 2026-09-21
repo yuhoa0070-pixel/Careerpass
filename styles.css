@@ -264,7 +264,7 @@ input,select{font-family:inherit;}
 .vs-a{
   opacity:0;
   transform:translateX(-28px);
-  transition:opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1);
   will-change:opacity,transform;
 }
 
@@ -273,7 +273,7 @@ input,select{font-family:inherit;}
 .vs-b{
   opacity:0;
   transform:translateX(28px);
-  transition:opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1);
   will-change:opacity,transform;
 }
 
@@ -295,33 +295,33 @@ input,select{font-family:inherit;}
   transform:translateX(0);
 }
 
-/* Staggered row cascade */
+/* Staggered row cascade: one row by one */
 .in-view .vs-grid > :nth-child(1), .in-view .vs-grid > :nth-child(2),
-.vs-grid.in-view > :nth-child(1), .vs-grid.in-view > :nth-child(2){ transition-delay:.04s; }
+.vs-grid.in-view > :nth-child(1), .vs-grid.in-view > :nth-child(2){ transition-delay:.08s; }
 
 .in-view .vs-grid > :nth-child(3), .in-view .vs-grid > :nth-child(4),
-.vs-grid.in-view > :nth-child(3), .vs-grid.in-view > :nth-child(4){ transition-delay:.10s; }
+.vs-grid.in-view > :nth-child(3), .vs-grid.in-view > :nth-child(4){ transition-delay:.26s; }
 
 .in-view .vs-grid > :nth-child(5), .in-view .vs-grid > :nth-child(6),
-.vs-grid.in-view > :nth-child(5), .vs-grid.in-view > :nth-child(6){ transition-delay:.16s; }
+.vs-grid.in-view > :nth-child(5), .vs-grid.in-view > :nth-child(6){ transition-delay:.44s; }
 
 .in-view .vs-grid > :nth-child(7), .in-view .vs-grid > :nth-child(8),
-.vs-grid.in-view > :nth-child(7), .vs-grid.in-view > :nth-child(8){ transition-delay:.22s; }
+.vs-grid.in-view > :nth-child(7), .vs-grid.in-view > :nth-child(8){ transition-delay:.62s; }
 
 .in-view .vs-grid > :nth-child(9), .in-view .vs-grid > :nth-child(10),
-.vs-grid.in-view > :nth-child(9), .vs-grid.in-view > :nth-child(10){ transition-delay:.28s; }
+.vs-grid.in-view > :nth-child(9), .vs-grid.in-view > :nth-child(10){ transition-delay:.80s; }
 
 .in-view .vs-grid > :nth-child(11), .in-view .vs-grid > :nth-child(12),
-.vs-grid.in-view > :nth-child(11), .vs-grid.in-view > :nth-child(12){ transition-delay:.34s; }
+.vs-grid.in-view > :nth-child(11), .vs-grid.in-view > :nth-child(12){ transition-delay:.98s; }
 
 .in-view .vs-grid > :nth-child(13), .in-view .vs-grid > :nth-child(14),
-.vs-grid.in-view > :nth-child(13), .vs-grid.in-view > :nth-child(14){ transition-delay:.40s; }
+.vs-grid.in-view > :nth-child(13), .vs-grid.in-view > :nth-child(14){ transition-delay:1.16s; }
 
 .in-view .vs-grid > :nth-child(15), .in-view .vs-grid > :nth-child(16),
-.vs-grid.in-view > :nth-child(15), .vs-grid.in-view > :nth-child(16){ transition-delay:.46s; }
+.vs-grid.in-view > :nth-child(15), .vs-grid.in-view > :nth-child(16){ transition-delay:1.34s; }
 
 .in-view .vs-grid > :nth-child(17), .in-view .vs-grid > :nth-child(18),
-.vs-grid.in-view > :nth-child(17), .vs-grid.in-view > :nth-child(18){ transition-delay:.52s; }
+.vs-grid.in-view > :nth-child(17), .vs-grid.in-view > :nth-child(18){ transition-delay:1.52s; }
 
 @media(prefers-reduced-motion:reduce){
   .fade-in-right, .fade-in-left,
