@@ -769,19 +769,23 @@ function restoreJobState(){
   jobSearch=st.q||"";jobCat=st.c||"all";jobPage=st.pg||1;
   const si=document.getElementById("career-search");if(si)si.value=jobSearch;
 }
-function renderCareerChips(){
-  const row=document.getElementById("career-chips");
-  if(!row)return;
-  let html='<button type="button" class="chip'+(jobCat==="all"?" active":"")+'" onclick="setJobCat(\'all\')">ទាំងអស់</button>';
-  html+='<button type="button" class="chip'+(jobCat==="growing"?" active":"")+'" onclick="setJobCat(\'growing\')"><i class="material-symbols-outlined">rocket_launch</i>អាជីពដែលនឹងកើនឡើង</button>';
-  Object.keys(jobCats).forEach(k=>{
-    html+='<button type="button" class="chip'+(jobCat===k?" active":"")+'" onclick="setJobCat(\''+k+'\')"><i class="material-symbols-outlined">'+jobCats[k].icon+'</i>'+jobCats[k].label+'</button>';
-  });
-  row.innerHTML=html;
+function initCareerCatSelect(){
+  const sel=document.getElementById("career-cat-select");
+  if(!sel)return;
+  let html='<option value="all">ទាំងអស់</option><option value="growing">🚀 អាជីពដែលនឹងកើនឡើង</option>';
+  Object.keys(jobCats).forEach(k=>{html+='<option value="'+k+'">'+jobCats[k].label+'</option>';});
+  sel.innerHTML=html;
+  sel.addEventListener("change",()=>setJobCat(sel.value));
 }
-function setJobCat(c){jobCat=c;jobPage=1;renderCareerChips();renderCareers();}
+function syncCareerCatSelect(){
+  const sel=document.getElementById("career-cat-select");
+  if(!sel)return;
+  sel.value=jobCat;
+  if(sel._csSync)sel._csSync();
+}
+function setJobCat(c){jobCat=c;jobPage=1;syncCareerCatSelect();renderCareers();}
 function renderCareers(){
-  renderCareerChips();
+  syncCareerCatSelect();
   const q=jobSearch.toLowerCase();
   const grid=document.getElementById("jobs-grid");
   if(!grid)return;
@@ -1273,6 +1277,7 @@ function populateCostSchools(){
 loadPlan();
 updatePlanBadge();
 populateCostSchools();
+initCareerCatSelect();
 enhanceAllSelects();
 /* ===== THEME TOGGLE (light / dark) ===== */
 (function(){
