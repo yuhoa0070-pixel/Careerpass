@@ -94,6 +94,27 @@ a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 input,select{font-family:inherit;}
 
+/* ===== INTRO PRELOADER ===== */
+.preloader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;will-change:transform;}
+.preloader.done{animation:preUp .9s cubic-bezier(.76,0,.24,1) forwards;}
+@keyframes preUp{to{transform:translateY(-100%);}}
+/* On-brand compass preloader — the needle sweeps to "find your direction" */
+.pre-inner{text-align:center;}
+.pre-compass{width:92px;height:92px;margin:0 auto 22px;animation:pcPulse 2.2s ease-in-out infinite;}
+.pre-compass svg{width:100%;height:100%;overflow:visible;}
+.pc-ring{fill:none;stroke:var(--border-strong);stroke-width:2;}
+.pc-arc{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-dasharray:58 206;transform-box:view-box;transform-origin:center;animation:pcSpin 1.15s linear infinite;}
+.pc-needle{transform-box:view-box;transform-origin:center;animation:pcNeedle 2.2s cubic-bezier(.62,.03,.34,.98) infinite;}
+.pc-needle .nd-n{fill:var(--accent);}
+.pc-needle .nd-s{fill:var(--text-3);}
+.pc-hub{fill:var(--text);}
+@keyframes pcSpin{to{transform:rotate(360deg);}}
+@keyframes pcNeedle{0%{transform:rotate(0deg);}55%{transform:rotate(390deg);}70%{transform:rotate(352deg);}100%{transform:rotate(360deg);}}
+@keyframes pcPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.pre-word{font-weight:800;font-size:clamp(22px,5vw,30px);letter-spacing:5px;text-transform:uppercase;color:var(--text);opacity:0;animation:preFade .8s ease forwards .2s;}
+.pre-sub{font-size:12px;letter-spacing:1.5px;color:var(--text-3);margin-top:8px;opacity:0;animation:preFade .8s ease forwards .45s;}
+@keyframes preFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;font-size:20px;line-height:1;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 
 /* ===== TOP NAVBAR (Cura style) ===== */
@@ -165,6 +186,33 @@ input,select{font-family:inherit;}
 .sr{opacity:0;transform:translateY(24px);transition:opacity .55s var(--ease),transform .55s var(--ease) !important;will-change:opacity,transform;}
 .sr.sr-in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){.sr{opacity:1 !important;transform:none !important;transition:none !important;}}
+
+/* ===== NEWS ALERT MODAL ===== */
+.news-overlay{position:fixed;inset:0;background:rgba(20,16,40,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;padding:max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));opacity:0;pointer-events:none;transition:opacity .3s ease;zoom:1 !important;}
+.news-overlay.show{opacity:1;pointer-events:auto;}
+.news-modal{background:var(--card);max-width:480px;width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3);transform:translateY(24px) scale(.98);transition:transform .38s cubic-bezier(.62,.05,.3,1);position:relative;border:1px solid var(--border);}
+.news-overlay.show .news-modal{transform:none;}
+.news-head{background:linear-gradient(120deg,var(--accent),var(--accent-h));color:#fff;padding:20px 22px;flex-shrink:0;position:relative;}
+.news-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);font-size:11px;font-weight:700;letter-spacing:.4px;padding:4px 10px;margin-bottom:8px;text-transform:uppercase;}
+.news-badge .material-symbols-outlined{font-size:15px;}
+.news-head h2{font-size:17px;font-weight:800;margin:0;line-height:1.35;padding-right:32px;}
+.news-close{position:absolute;top:14px;right:14px;z-index:1;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.32);border:1.5px solid rgba(255,255,255,.7);color:#fff;cursor:pointer;transition:background .15s,border-color .15s;box-shadow:0 1px 4px rgba(0,0,0,.15);}
+.news-close:hover{background:rgba(255,255,255,.48);border-color:#fff;}
+.news-close:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.news-body{padding:20px 22px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.news-body>p{font-size:13px;color:var(--text-2);line-height:1.65;margin:0 0 14px;}
+.news-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.news-stat{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;}
+.news-stat .n{font-size:18px;font-weight:800;color:var(--accent);letter-spacing:-.5px;}
+.news-stat .t{font-size:11px;color:var(--text-2);line-height:1.4;margin-top:2px;}
+.news-camp{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--border);}
+.news-camp .material-symbols-outlined{font-size:20px;color:var(--accent);flex-shrink:0;margin-top:2px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+.news-camp h4{margin:0 0 2px;font-size:13px;font-weight:700;}
+.news-camp p{margin:0;font-size:12px;color:var(--text-2);line-height:1.5;}
+.news-province{font-size:12px;color:var(--text-3);line-height:1.4;margin:12px 0 0;}
+.news-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.news-src{font-size:11px;color:var(--text-3);line-height:1.5;margin:12px 0 0;}
+.news-src a{color:var(--accent);}
 
 /* ===== DID YOU KNOW (FACTS) PAGE ===== */
 .facts-grid{display:grid;grid-template-columns:1fr;gap:16px;}
@@ -865,5 +913,49 @@ button.faculty-item{cursor:pointer;}
 .bacii-school-tags .tag{cursor:pointer;border:1px solid var(--border);background:var(--bg);color:var(--accent);font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:6px;transition:all .15s;}
 .bacii-school-tags .tag:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 
+@media(max-width:480px){
+  /* News Alert Modal — Mobile compact responsive layout */
+  .news-overlay{padding:max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));}
+  .news-modal{max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px);width:100%;}
+  .news-head{padding:12px 14px;}
+  .news-badge{font-size:10px;padding:2px 7px;margin-bottom:4px;gap:4px;}
+  .news-badge .material-symbols-outlined{font-size:13px;}
+  .news-head h2{font-size:13.5px;line-height:1.35;padding-right:28px;}
+  .news-close{top:8px;right:8px;width:30px;height:30px;}
+  .news-close .material-symbols-outlined{font-size:18px;}
+  .news-body{padding:12px 14px;}
+  .news-body>p{font-size:11.5px;line-height:1.45;margin:0 0 8px;}
+  .news-stats{gap:6px;margin-bottom:8px;}
+  .news-stat{padding:5px 8px;}
+  .news-stat .n{font-size:14.5px;}
+  .news-stat .t{font-size:10px;line-height:1.25;margin-top:2px;}
+  .news-camp{gap:8px;padding:5px 0;}
+  .news-camp .material-symbols-outlined{font-size:18px;margin-top:1px;}
+  .news-camp h4{font-size:12px;margin-bottom:1px;}
+  .news-camp p{font-size:11px;line-height:1.35;}
+  .news-province{font-size:10.5px;margin:6px 0 0;}
+  .news-actions{gap:8px;margin-top:8px;}
+  .news-actions .btn{padding:6px 13px;font-size:11.5px;}
+  .news-src{font-size:9.5px;line-height:1.3;margin:6px 0 0;}
+}
 
-
+@media(max-height:640px){
+  .news-overlay{padding:max(6px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));}
+  .news-modal{max-height:calc(100vh - 12px);max-height:calc(100dvh - 12px);}
+  .news-head{padding:8px 12px;}
+  .news-head h2{font-size:12.5px;line-height:1.25;}
+  .news-badge{font-size:9px;margin-bottom:2px;padding:1px 5px;}
+  .news-body{padding:8px 12px;}
+  .news-body>p{font-size:11px;line-height:1.35;margin:0 0 5px;}
+  .news-stats{gap:4px;margin-bottom:5px;}
+  .news-stat{padding:3px 6px;}
+  .news-stat .n{font-size:13px;}
+  .news-stat .t{font-size:9px;}
+  .news-camp{padding:3px 0;gap:6px;}
+  .news-camp h4{font-size:11px;}
+  .news-camp p{font-size:10px;}
+  .news-province{font-size:10px;margin:4px 0 0;}
+  .news-actions{margin-top:6px;gap:6px;}
+  .news-actions .btn{padding:4px 10px;font-size:11px;}
+  .news-src{margin:4px 0 0;font-size:9px;}
+}
