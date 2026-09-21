@@ -146,10 +146,8 @@ const VIEW_TITLES = {
   schools: "សាលារៀន & សាកលវិទ្យាល័យ ១២៧+ — TreyVisai",
   careers: "បញ្ជីអាជីព និងការងារ — TreyVisai",
   cost: "គណនាថ្លៃសិក្សា — TreyVisai",
-  quiz: "តេស្តស្វែងរកអាជីព — TreyVisai",
   scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
   bacii: "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប & បើធ្លាក់រៀនអ្វី? — TreyVisai",
-  compare: "ប្រៀបធៀបសាលារៀន — TreyVisai",
   facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ & មតិយោបល់ — TreyVisai",
   terms: "លក្ខខណ្ឌប្រើប្រាស់ — TreyVisai"
 };
