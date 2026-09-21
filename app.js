@@ -772,8 +772,8 @@ function restoreJobState(){
 function initCareerCatSelect(){
   const sel=document.getElementById("career-cat-select");
   if(!sel)return;
-  let html='<option value="all">ទាំងអស់</option><option value="growing">🚀 អាជីពដែលនឹងកើនឡើង</option>';
-  Object.keys(jobCats).forEach(k=>{html+='<option value="'+k+'">'+jobCats[k].label+'</option>';});
+  let html='<option value="all" data-icon="apps">ទាំងអស់</option><option value="growing" data-icon="rocket_launch">អាជីពដែលនឹងកើនឡើង</option>';
+  Object.keys(jobCats).forEach(k=>{html+='<option value="'+k+'" data-icon="'+jobCats[k].icon+'">'+jobCats[k].label+'</option>';});
   sel.innerHTML=html;
   sel.addEventListener("change",()=>setJobCat(sel.value));
 }
@@ -1211,15 +1211,18 @@ function enhanceSelect(sel){
   trigger.innerHTML='<span class="cs-label"></span><i class="material-symbols-outlined cs-arrow">expand_more</i>';
   const panel=document.createElement("div");panel.className="cs-panel";
   const label=trigger.querySelector(".cs-label");
+  // An <option data-icon="..."> renders a Material Symbols icon alongside its label —
+  // a real <select> can't show icons in its native list, but this custom panel can.
+  function optIcon(o){return o.dataset.icon?'<i class="material-symbols-outlined cs-opt-icon">'+o.dataset.icon+'</i>':'';}
   function build(){
-    panel.innerHTML=Array.from(sel.options).map((o,i)=>`<div class="cs-option${i===sel.selectedIndex?" sel":""}" data-i="${i}"><span>${o.textContent}</span><i class="material-symbols-outlined cs-check">check</i></div>`).join("");
+    panel.innerHTML=Array.from(sel.options).map((o,i)=>`<div class="cs-option${i===sel.selectedIndex?" sel":""}" data-i="${i}">${optIcon(o)}<span class="cs-label-text">${o.textContent}</span><i class="material-symbols-outlined cs-check">check</i></div>`).join("");
     panel.querySelectorAll(".cs-option").forEach(el=>el.addEventListener("click",()=>{
       const i=+el.dataset.i;
       if(i!==sel.selectedIndex){sel.selectedIndex=i;sel.dispatchEvent(new Event("change",{bubbles:true}));}
       sync();closeAllSelects();
     }));
   }
-  function sync(){const o=sel.options[sel.selectedIndex];label.textContent=o?o.textContent:"";Array.from(panel.querySelectorAll(".cs-option")).forEach((el,i)=>el.classList.toggle("sel",i===sel.selectedIndex));}
+  function sync(){const o=sel.options[sel.selectedIndex];label.innerHTML=o?optIcon(o)+'<span class="cs-label-text">'+o.textContent+'</span>':"";Array.from(panel.querySelectorAll(".cs-option")).forEach((el,i)=>el.classList.toggle("sel",i===sel.selectedIndex));}
   sel._csSync=sync;
   trigger.addEventListener("click",e=>{e.stopPropagation();const open=wrap.classList.contains("cs-open");closeAllSelects();if(!open){build();sync();wrap.classList.add("cs-open");}});
   /* The real <select> stays in the tab order (visually hidden, not display:none) so
