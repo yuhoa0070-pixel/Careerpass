@@ -215,42 +215,6 @@
 </head>
 <body>
 
-<!-- Intro preloader -->
-<div class="preloader" id="preloader">
-  <div class="pre-inner">
-    <div class="pre-compass">
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <circle class="pc-ring" cx="50" cy="50" r="42"/>
-        <circle class="pc-arc" cx="50" cy="50" r="42"/>
-        <g class="pc-needle">
-          <path class="nd-n" d="M50 18 L56 50 L44 50 Z"/>
-          <path class="nd-s" d="M50 82 L56 50 L44 50 Z"/>
-        </g>
-        <circle class="pc-hub" cx="50" cy="50" r="4"/>
-      </svg>
-    </div>
-    <div class="pre-word">TreyVisai</div>
-    <div class="pre-sub">កំពុងស្វែងរកផ្លូវរបស់អ្នក…</div>
-  </div>
-</div>
-<script>
-  document.documentElement.style.overflow='hidden';
-  (function(){
-    var pre=document.getElementById('preloader');
-    if(!pre)return;
-    if(sessionStorage.getItem('introSeen')){pre.style.display='none';document.documentElement.style.overflow='';return;}
-    function finish(){
-      if(pre.classList.contains('done'))return;
-      pre.classList.add('done');
-      document.documentElement.style.overflow='';
-      sessionStorage.setItem('introSeen','1');
-      setTimeout(function(){if(pre&&pre.parentNode)pre.parentNode.removeChild(pre);},950);
-    }
-    window.addEventListener('load',function(){setTimeout(finish,1700);});
-    setTimeout(finish,4200);
-  })();
-</script>
-
 <!-- Top Navbar -->
 <header class="navbar">
   <div class="nav-inner">
@@ -1205,69 +1169,6 @@
 </footer>
 
 </div><!-- /app-main -->
-
-<!-- ======================== NEWS ALERT MODAL ======================== -->
-<div class="news-overlay" id="news-overlay">
-  <div class="news-modal" role="dialog" aria-modal="true" aria-labelledby="news-title">
-    <button class="news-close" id="news-close" aria-label="បិទ"><i class="material-symbols-outlined">close</i></button>
-    <div class="news-head">
-      <div class="news-badge"><i class="material-symbols-outlined">campaign</i> ព័ត៌មានអប់រំ · MoEYS & UNICEF</div>
-      <h2 id="news-title">យុទ្ធនាការជាតិ ២ ដើម្បីកាត់បន្ថយការឈប់រៀន — ឆ្នាំសិក្សា ២០២៥–២០២៦</h2>
-    </div>
-    <div class="news-body">
-      <p>ក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS) សហការជាមួយ UNICEF បើកយុទ្ធនាការថ្នាក់ជាតិចំនួន ២ ដើម្បីធានាការអប់រំប្រកបដោយគុណភាព និងបរិយាបន្នសម្រាប់កុមារគ្រប់រូប ខណៈឆ្នាំសិក្សាថ្មីនឹងបើកនៅខែវិច្ឆិកា។</p>
-      <div class="news-stats">
-        <div class="news-stat"><div class="n">~៣០០ពាន់</div><div class="t">កុមារ និងក្មេងជំទង់នៅក្រៅសាលា</div></div>
-        <div class="news-stat"><div class="n">១៥.៥%</div><div class="t">អត្រាឈប់រៀន (មធ្យមសិក្សាបឋមភូមិ)</div></div>
-        <div class="news-stat"><div class="n">៦០%</div><div class="t">បញ្ចប់មធ្យមសិក្សាបឋមភូមិ</div></div>
-        <div class="news-stat"><div class="n">៣០%</div><div class="t">កុមារ ៥ឆ្នាំ មិនបានចូលមត្តេយ្យ</div></div>
-      </div>
-      <div class="news-camp"><i class="material-symbols-outlined">family_restroom</i><div><h4>Caring Parents, Smart Kids</h4><p>ការថែទាំ និងអភិវឌ្ឍកុមារតូច (ECCD) — គាំទ្រឪពុកម្ដាយក្នុងការរៀបចំកូនសម្រាប់ចូលសាលា។</p></div></div>
-      <div class="news-camp"><i class="material-symbols-outlined">school</i><div><h4>Your Choice, Your Future</h4><p>ការពារការឈប់រៀនរបស់ក្មេងជំទង់ — លើកទឹកចិត្តឲ្យបន្តការសិក្សា និងស្វែងរកជំនួយ។</p></div></div>
-      <p class="news-province">ចាប់ផ្ដើមនៅ រតនគិរី · សៀមរាប · កំពង់ចាម (ខេត្តដែលមានអត្រាឈប់រៀនខ្ពស់)។</p>
-      <div class="news-actions">
-        <a class="btn btn-primary btn-sm" href="https://unicef.link/46QraSN" target="_blank" rel="noopener noreferrer"><i class="material-symbols-outlined">open_in_new</i> ស្វែងយល់បន្ថែម</a>
-      </div>
-      <p class="news-src">ប្រភព៖ សេចក្ដីប្រកាសព័ត៌មាន MoEYS &amp; UNICEF (កំពង់ចាម · ១៤ តុលា ២០២៥)។</p>
-    </div>
-  </div>
-</div>
-
-<div id="mascot-backdrop" class="mascot-backdrop"></div>
-<div id="mascot-widget" class="mascot-widget">
-  <div id="mascot-chat" class="mascot-chat" role="dialog" aria-modal="false" aria-label="ជំនួយការគេហទំព័រ TreyVisai" hidden>
-    <div class="mascot-chat-header">
-      <div style="display:flex;align-items:center;gap:8px">
-        <img src="/public/mascot/idle.png" alt="" class="mascot-header-avatar" width="28" height="28">
-        <div>
-          <div class="mascot-chat-title">ជំនួយការ TreyVisai</div>
-          <div class="mascot-chat-status"><span class="mascot-online-dot"></span> កំពុងដំណើរការ</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:4px">
-        <button type="button" id="mascot-chat-reset" class="mascot-chat-header-btn" title="ចាប់ផ្តើមសារថ្មី" aria-label="ចាប់ផ្តើមសារថ្មី">
-          <i class="material-symbols-outlined" style="font-size:18px">refresh</i>
-        </button>
-        <button type="button" id="mascot-chat-close" class="mascot-chat-close" aria-label="បិទបង្អួចជជែក">&times;</button>
-      </div>
-    </div>
-    <div id="mascot-chat-messages" class="mascot-chat-messages" aria-live="polite"></div>
-    <div id="mascot-suggestions" class="mascot-suggestions" aria-label="សំណួរណែនាំ">
-      <div class="mascot-sug-title"><i class="material-symbols-outlined" style="font-size:14px">local_fire_department</i> សំណួរពេញនិយម៖</div>
-      <div class="mascot-sug-track" id="mascot-sug-track"></div>
-    </div>
-    <form id="mascot-chat-form" class="mascot-chat-form">
-      <input type="text" id="mascot-chat-input" class="mascot-chat-input" placeholder="សួរអំពីសាលា ឬអាជីព..." autocomplete="off" maxlength="200">
-      <button type="submit" class="mascot-chat-send" aria-label="ផ្ញើសារ"><svg class="mascot-send-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-    </form>
-  </div>
-  <div id="mascot-btn-wrap" class="mascot-btn-wrap">
-    <button type="button" id="mascot-btn" class="mascot-btn" aria-haspopup="dialog" aria-expanded="false" aria-label="បើក/បិទជំនួយការជជែក">
-      <img id="mascot-img" src="/public/mascot/idle.png" alt="" class="mascot-img" width="112" height="112">
-    </button>
-    <button type="button" id="mascot-dismiss" class="mascot-dismiss" aria-label="លាក់ជំនួយការ">&times;</button>
-  </div>
-</div>
 
 <script src="/app.js"></script>
 </body>
