@@ -1387,11 +1387,11 @@ function initHero3D(){
   const BAR=[1,2,1,1,3,1,2,1,1,3,1,1,2,1,2,1,3,1,1,2,1,3,1,2,1,1,2,1];
   // scattered "label" cards — tap one to focus it to centre (Careerpass-themed)
   const cards=[
-    {view:"plan",   title:"ផែនការ",       sub1:"ផែនការផ្ទាល់ខ្លួន",   sub2:"សាលា និងអាជីព",     since:"ផ្ទាល់ខ្លួន",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
-    {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"គ្រប់វិស័យការងារ",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
-    {view:"schools",title:"សាលា",           sub1:"សាកលវិទ្យាល័យ ១២៧",  sub2:"រដ្ឋ និងឯកជន",       since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
-    {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ការវិភាគ ROI",       since:"ឧបករណ៍",     bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
-    {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិត និងស្ថិតិ",  sub2:"អំពីការអប់រំ",       since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
+    {view:"plan",   title:"តម្រង់ទិស",     sub1:"ផែនការផ្ទាល់ខ្លួន",   sub2:"សាលា & ជំនាញត្រូវរៀន", since:"ឥតគិតថ្លៃ",   bg:"#624EBC", fg:"#F1EEFB", idle:{x:-82,y:-70,r:-11}},
+    {view:"careers",title:"អាជីព",         sub1:"អាជីព ១០០+ មុខ",    sub2:"ទីផ្សារការងារកម្ពុជា",   since:"១២ វិស័យ",   bg:"#5CAD60", fg:"#12210F", idle:{x:-48,y:66,r:9}},
+    {view:"schools",title:"សាលារៀន",       sub1:"១២៧+ សាលា & TVET", sub2:"គ្រប់ ២៥ ខេត្ត-ក្រុង",   since:"ទូទាំងប្រទេស",bg:"#1C2E8A", fg:"#E8EDF8", idle:{x:12,y:-14,r:-4}},
+    {view:"cost",   title:"ថ្លៃសិក្សា",     sub1:"គណនាថ្លៃសិក្សា",     sub2:"ថ្លៃសាលា & ការរស់នៅ", since:"ច្បាស់លាស់", bg:"#E08030", fg:"#2A1A06", idle:{x:68,y:62,r:14}},
+    {view:"facts",  title:"តើអ្នកដឹងទេ?",   sub1:"ការពិតនៃការអប់រំ",  sub2:"មតិពិតពីរៀមច្បង",     since:"ស្វែងយល់",   bg:"#D43C3C", fg:"#FAE8E8", idle:{x:84,y:-86,r:18}}
   ];
   let selected=null;
   const els=[];
@@ -1512,7 +1512,7 @@ function initHomeFeatured(){
   host.innerHTML=list.map(j=>{
     const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
     const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
-    return `<div class="hc-card" role="button" tabindex="0" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងកើនឡើង</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
+    return `<div class="hc-card" role="button" tabindex="0" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងត្រូវប៉ាន់</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
   }).join("");
 }
 
