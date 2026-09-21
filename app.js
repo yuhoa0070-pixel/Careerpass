@@ -783,9 +783,24 @@ function syncCareerCatSelect(){
   sel.value=jobCat;
   if(sel._csSync)sel._csSync();
 }
-function setJobCat(c){jobCat=c;jobPage=1;syncCareerCatSelect();renderCareers();}
+// Wide screens show these as a scrollable row of tabs (quicker, more visible at a
+// glance); narrow screens hide this row via CSS and show #career-cat-select instead
+// (a dropdown reads easier than a horizontal scroll on a small touch screen). Both
+// controls drive the same jobCat state, so whichever is visible stays in sync.
+function renderCareerChips(){
+  const row=document.getElementById("career-chips");
+  if(!row)return;
+  let html='<button type="button" class="chip'+(jobCat==="all"?" active":"")+'" onclick="setJobCat(\'all\')">ទាំងអស់</button>';
+  html+='<button type="button" class="chip'+(jobCat==="growing"?" active":"")+'" onclick="setJobCat(\'growing\')"><i class="material-symbols-outlined">rocket_launch</i>អាជីពដែលនឹងកើនឡើង</button>';
+  Object.keys(jobCats).forEach(k=>{
+    html+='<button type="button" class="chip'+(jobCat===k?" active":"")+'" onclick="setJobCat(\''+k+'\')"><i class="material-symbols-outlined">'+jobCats[k].icon+'</i>'+jobCats[k].label+'</button>';
+  });
+  row.innerHTML=html;
+}
+function setJobCat(c){jobCat=c;jobPage=1;syncCareerCatSelect();renderCareerChips();renderCareers();}
 function renderCareers(){
   syncCareerCatSelect();
+  renderCareerChips();
   const q=jobSearch.toLowerCase();
   const grid=document.getElementById("jobs-grid");
   if(!grid)return;
