@@ -2,7 +2,7 @@
   --bg: #FAF9F5;
   --text: #1a1a1a;
   --text-2: #4a4a4a;
-  --text-3: #888;
+  --text-3: #767676;
   --accent: #624EBC;
   --accent-h: #4f3e9c;
   --accent-tint: rgba(98,78,188,0.08);
@@ -200,7 +200,7 @@ input,select{font-family:inherit;}
 .news-close:hover{background:rgba(255,255,255,.48);border-color:#fff;}
 .news-close:focus-visible{outline:2px solid #fff;outline-offset:2px;}
 .news-body{padding:20px 22px;flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.news-body>p{font-size:13px;color:var(--text-2);line-height:1.65;margin:0 0 14px;}
+.news-body>p{font-size:14px;color:var(--text-2);line-height:1.65;margin:0 0 14px;}
 .news-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
 .news-stat{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;}
 .news-stat .n{font-size:18px;font-weight:800;color:var(--accent);letter-spacing:0;line-height:1.25;}
@@ -224,7 +224,7 @@ input,select{font-family:inherit;}
 .fact-icon .material-symbols-outlined{font-size:24px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .fact-num{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:0;line-height:1.25;margin-bottom:8px;padding-block:2px;}
 .fact-card h4{font-size:15px;font-weight:700;margin:0 0 6px;}
-.fact-card p{font-size:13px;color:var(--text-2);line-height:1.6;margin:0;}
+.fact-card p{font-size:14px;color:var(--text-2);line-height:1.6;margin:0;}
 .fact-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--accent);cursor:pointer;}
 .fact-link:hover{text-decoration:underline;}
 .fact-src{font-size:11px;color:var(--text-3);margin-top:22px;}
@@ -243,7 +243,7 @@ input,select{font-family:inherit;}
 .future-proof .fp-icon .material-symbols-outlined{font-size:26px;color:var(--accent);}
 .future-proof .fp-body{flex:1;}
 .future-proof h4{margin:0 0 4px;font-size:16px;font-weight:800;}
-.future-proof p{margin:0 0 12px;font-size:13px;color:var(--text-2);line-height:1.6;}
+.future-proof p{margin:0 0 12px;font-size:14px;color:var(--text-2);line-height:1.6;}
 .future-proof .fact-skills .tag{background:#fff;}
 @media(max-width:560px){.future-proof{flex-direction:column;gap:12px;}}
 .fact-grow{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#16a34a;background:rgba(34,197,94,.12);padding:3px 9px;margin-bottom:8px;}
@@ -435,7 +435,7 @@ input,select{font-family:inherit;}
 .sch-sec-title{font-size:14px;font-weight:700;color:var(--text-1);margin:18px 0 10px;display:flex;align-items:center;gap:6px;}
 .sch-sec-title i{font-size:18px;color:var(--accent);}
 .sch-list{margin:0 0 16px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
-.sch-list li{font-size:13px;color:var(--text-2);line-height:1.55;display:flex;align-items:flex-start;gap:8px;}
+.sch-list li{font-size:14px;color:var(--text-2);line-height:1.55;display:flex;align-items:flex-start;gap:8px;}
 .sch-list li i{font-size:16px;color:#16a34a;flex-shrink:0;margin-top:2px;}
 .sch-list.req li i{color:var(--accent);}
 .sch-list.doc li i{color:#b45309;}
@@ -486,7 +486,7 @@ input,select{font-family:inherit;}
 .goal-card:hover .goal-illu{transform:scale(1.05);transition:transform .3s var(--ease);}
 .goal-card .icon-wrap .material-symbols-outlined{font-size:26px;color:var(--accent);}
 .goal-card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
-.goal-card p{font-size:13px;color:var(--text-2);margin:0;line-height:1.5;}
+.goal-card p{font-size:14px;color:var(--text-2);margin:0;line-height:1.5;}
 .goal-card .goal-number{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-tint);padding:2px 10px;border-radius:999px;margin-bottom:12px;}
 
 /* ===== GOAL 1 — CAREER QUIZ ===== */
@@ -644,7 +644,7 @@ button.faculty-item{cursor:pointer;}
 .price-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:9px 12px;background:var(--bg);border:1px solid var(--border);}
 .pr-label{color:var(--text-2);}
 .pr-val{font-weight:700;color:var(--accent);white-space:nowrap;}
-.price-scholar{display:flex;gap:10px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);padding:12px 14px;font-size:13px;color:var(--text-2);line-height:1.6;}
+.price-scholar{display:flex;gap:10px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);padding:12px 14px;font-size:14px;color:var(--text-2);line-height:1.6;}
 .price-scholar .material-symbols-outlined{font-size:20px;color:var(--accent);flex-shrink:0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
 .price-note{font-size:11.5px;color:var(--text-3);margin:12px 0 0;font-style:italic;}
 .price-disclaimer{display:flex;gap:12px;align-items:flex-start;background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.25);border-left:4px solid #d97706;padding:12px 14px;font-size:12.5px;color:var(--text-2);line-height:1.6;margin-top:14px;}
@@ -667,7 +667,7 @@ button.faculty-item{cursor:pointer;}
 .job-icon .material-symbols-outlined{font-size:24px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .job-name{font-size:15px;font-weight:700;margin:0 0 3px;letter-spacing:-.2px;}
 .job-cat{font-size:11px;color:var(--text-3);font-weight:600;}
-.job-desc{font-size:13px;color:var(--text-2);margin:0 0 14px;line-height:1.5;}
+.job-desc{font-size:14px;color:var(--text-2);margin:0 0 14px;line-height:1.5;}
 .job-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);}
 .job-salary{font-size:14px;font-weight:700;color:var(--accent);}
 .rel-schools{display:flex;flex-direction:column;gap:8px;}
@@ -748,7 +748,7 @@ button.faculty-item{cursor:pointer;}
 .detail-comment-card{border:1px solid var(--border);border-radius:var(--radius);padding:14px;background:var(--bg);margin-bottom:10px;}
 .detail-comment-card:last-child{margin-bottom:0;}
 .detail-comment-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12.5px;}
-.detail-comment-quote{font-size:13px;color:var(--text-2);line-height:1.65;margin:0;}
+.detail-comment-quote{font-size:14px;color:var(--text-2);line-height:1.65;margin:0;}
 
 /* ===== GOAL 3 — COST ESTIMATOR ===== */
 .cost-layout{display:grid;grid-template-columns:1fr;gap:24px;}
@@ -886,7 +886,7 @@ button.faculty-item{cursor:pointer;}
 .roadmap-step .dot .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .roadmap-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm);}
 .roadmap-card h4{font-size:14px;font-weight:800;margin:0 0 4px;}
-.roadmap-card p{font-size:13px;color:var(--text-2);margin:0 0 10px;line-height:1.55;}
+.roadmap-card p{font-size:14px;color:var(--text-2);margin:0 0 10px;line-height:1.55;}
 .roadmap-card p:last-child{margin-bottom:0;}
 .roadmap-tags{display:flex;flex-wrap:wrap;gap:6px;}
 .roadmap-tags .tag{font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 10px;font-weight:600;}
@@ -940,7 +940,7 @@ button.faculty-item{cursor:pointer;}
 .hs-item:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.06);}
 .hs-num{font-size:clamp(22px,2.6vw,36px);font-weight:800;letter-spacing:0;line-height:1.35;padding:4px 6px 8px;display:inline-flex;align-items:baseline;justify-content:center;gap:3px;background:linear-gradient(135deg,var(--accent),#8a6ff0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
 .hs-num .hs-unit{font-size:.62em;font-weight:700;letter-spacing:0;}
-.hs-lbl{font-size:13px;color:var(--text-2);line-height:1.55;margin-top:auto;margin-bottom:0;padding-top:8px;}
+.hs-lbl{font-size:14px;color:var(--text-2);line-height:1.55;margin-top:auto;margin-bottom:0;padding-top:8px;}
 .vs-home{max-width:760px;margin:0 auto;}
 .home-features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 /* iOS-style frosted "liquid glass" feature cards */
@@ -1003,11 +1003,11 @@ button.faculty-item{cursor:pointer;}
 .faq-item summary::-webkit-details-marker{display:none;}
 .faq-item summary .material-symbols-outlined{font-size:20px;color:var(--text-3);transition:transform .25s;flex-shrink:0;}
 .faq-item[open] summary .material-symbols-outlined{transform:rotate(180deg);}
-.faq-item p{margin:0 0 16px;font-size:13px;color:var(--text-2);line-height:1.7;}
+.faq-item p{margin:0 0 16px;font-size:14px;color:var(--text-2);line-height:1.7;}
 @media(max-width:720px){
   .hs-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
   .hs-item{padding:20px 12px 18px;}
-  .hs-lbl{font-size:12px;line-height:1.45;}
+  .hs-lbl{font-size:13px;line-height:1.45;}
   .home-features{grid-template-columns:1fr;}
   .home-careers{grid-template-columns:1fr 1fr;}
   .home-stats,.home-section{padding:40px 20px;}
@@ -1044,7 +1044,7 @@ button.faculty-item{cursor:pointer;}
 .bacii-card-icon .material-symbols-outlined{font-size:22px;}
 .bacii-card-head h3{font-size:15.5px;font-weight:800;color:var(--text);margin:0 0 3px;line-height:1.35;}
 .bacii-card-sub{font-size:12px;color:var(--text-3);font-weight:600;}
-.bacii-card-desc{font-size:13px;color:var(--text-2);line-height:1.7;margin:0 0 16px;}
+.bacii-card-desc{font-size:14px;color:var(--text-2);line-height:1.7;margin:0 0 16px;}
 .bacii-keypoint{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:var(--radius);padding:12px 14px;font-size:12.5px;color:var(--text-2);line-height:1.6;margin-bottom:16px;}
 .bacii-keypoint .material-symbols-outlined{font-size:18px;color:#16a34a;flex-shrink:0;margin-top:2px;}
 .bacii-list{display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--text-2);margin-bottom:16px;}
