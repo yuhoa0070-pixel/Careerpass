@@ -631,45 +631,37 @@
 <!-- ======================== SCHOLARSHIPS ======================== -->
 <section id="view-scholarship" class="view">
   <div class="page-wrap">
-    <h2 class="page-title">អាហារូបករណ៍</h2>
-    <p class="page-sub">ឱកាសអាហារូបករណ៍សម្រាប់សិស្សកម្ពុជា — ក្នុងស្រុក និងអន្តរជាតិ</p>
-    <div class="scholar-grid reveal">
-      <div class="scholar-card" style="animation-delay:0s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">account_balance</i></div><span class="sch-tag">ពេញលេញ</span></div>
-        <h3>អាហារូបករណ៍រដ្ឋាភិបាល (MOEYS)</h3>
-        <p>ផ្ដល់ជូនសិស្សពូកែ សម្រាប់ការសិក្សានៅសាកលវិទ្យាល័យរដ្ឋក្នុងប្រទេស</p>
-        <div class="scholar-meta"><span class="scholar-amount">ដល់ $2,000/ឆ្នាំ</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> កញ្ញា</span></div>
+    <h2 class="page-title">អាហារូបករណ៍សម្រាប់សិស្សកម្ពុជា</h2>
+    <p class="page-sub">ស្វែងរកឱកាសអាហារូបករណ៍ថ្នាក់បរិញ្ញាបត្រ បច្ចេកទេស និងក្រោយឧត្តមសិក្សា — ក្នុងស្រុក និងអន្តរជាតិ</p>
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="material-symbols-outlined">search</i>
+        <input type="text" id="scholarship-search" aria-label="ស្វែងរកអាហារូបករណ៍" placeholder="ស្វែងរកឈ្មោះអាហារូបករណ៍ ប្រទេស ឬជំនាញ..." oninput="filterScholarships()">
       </div>
-      <div class="scholar-card" style="animation-delay:.06s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">science</i></div><span class="sch-tag">ពេញលេញ</span></div>
-        <h3>មូលនិធិ JICA (ជប៉ុន)</h3>
-        <p>ផ្នែកវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា នៅវិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា (ITC)</p>
-        <div class="scholar-meta"><span class="scholar-amount">ដល់ $3,500/ឆ្នាំ</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> មិថុនា</span></div>
+      <div class="filter-select-group">
+        <select class="filter-select" id="scholarship-level-filter" aria-label="កម្រិតសិក្សា" onchange="filterScholarships()">
+          <option value="all">កម្រិតសិក្សាទាំងអស់</option>
+          <option value="undergrad">បរិញ្ញាបត្រ (Undergraduate)</option>
+          <option value="tvet">បច្ចេកទេស / TVET (Diploma)</option>
+          <option value="postgrad">អនុបណ្ឌិត / បណ្ឌិត (Postgraduate)</option>
+        </select>
       </div>
-      <div class="scholar-card" style="animation-delay:.12s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">engineering</i></div><span class="sch-tag">ពេញលេញ</span></div>
-        <h3>អាហារូបករណ៍ ADB</h3>
-        <p>ផ្នែកវិស្វកម្ម និងពាណិជ្ជកម្ម សម្រាប់សិស្សដែលមានសក្ដានុពល</p>
-        <div class="scholar-meta"><span class="scholar-amount">$1,500–$4,000/ឆ្នាំ</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> មីនា</span></div>
-      </div>
-      <div class="scholar-card" style="animation-delay:.18s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">public</i></div><span class="sch-tag">ពេញលេញ</span></div>
-        <h3>Australia Awards</h3>
-        <p>អាហារូបករណ៍ពេញលេញសម្រាប់សិក្សាថ្នាក់បរិញ្ញាបត្រ និងអនុបណ្ឌិតនៅអូស្ត្រាលី</p>
-        <div class="scholar-meta"><span class="scholar-amount">ពេញលេញ</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> មេសា</span></div>
-      </div>
-      <div class="scholar-card" style="animation-delay:.24s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">workspace_premium</i></div><span class="sch-tag">ពេញលេញ</span></div>
-        <h3>Chevening (UK)</h3>
-        <p>អាហារូបករណ៍រដ្ឋាភិបាលអង់គ្លេស សម្រាប់ការសិក្សាថ្នាក់អនុបណ្ឌិត</p>
-        <div class="scholar-meta"><span class="scholar-amount">ពេញលេញ</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> វិច្ឆិកា</span></div>
-      </div>
-      <div class="scholar-card" style="animation-delay:.3s">
-        <div class="sch-top"><div class="sch-icon"><i class="material-symbols-outlined">school</i></div><span class="sch-tag partial">ផ្នែក</span></div>
-        <h3>អាហារូបករណ៍សាកលវិទ្យាល័យ</h3>
-        <p>បញ្ចុះតម្លៃសិក្សាផ្ទាល់ពីសាកលវិទ្យាល័យឯកជន តាមលទ្ធផលសិក្សា</p>
-        <div class="scholar-meta"><span class="scholar-amount">បញ្ចុះ ២០–១០០%</span><span class="scholar-deadline"><i class="material-symbols-outlined">event</i> រាល់ឆមាស</span></div>
-      </div>
+    </div>
+    <div class="chip-row" id="scholarship-chips">
+      <button type="button" class="chip active" data-sch-cat="all" onclick="setScholarshipCategory('all')">ទាំងអស់ (<span id="sch-count-all">២០</span>)</button>
+      <button type="button" class="chip" data-sch-cat="domestic" onclick="setScholarshipCategory('domestic')">🇰🇭 ក្នុងប្រទេស (<span id="sch-count-domestic">៩</span>)</button>
+      <button type="button" class="chip" data-sch-cat="international" onclick="setScholarshipCategory('international')">🌏 អន្តរជាតិ (<span id="sch-count-international">១១</span>)</button>
+      <button type="button" class="chip" data-sch-cat="full" onclick="setScholarshipCategory('full')">💎 ពេញលេញ ១០០%</button>
+      <button type="button" class="chip" data-sch-cat="partial" onclick="setScholarshipCategory('partial')">⚡ ផ្នែកខ្លះ / ជំនួយ</button>
+    </div>
+    <div class="scholar-results-header">
+      <span class="scholar-count-badge" id="scholarship-count-text"><i class="material-symbols-outlined" style="font-size:16px;color:var(--accent)">school</i> បង្ហាញ ២០ អាហារូបករណ៍</span>
+    </div>
+    <div class="scholar-grid" id="scholar-grid"></div>
+    <div id="scholar-empty" style="display:none;text-align:center;padding:48px 20px;color:var(--text-3);background:var(--card);border:1px dashed var(--border);border-radius:var(--radius-lg);margin-top:12px">
+      <i class="material-symbols-outlined" style="font-size:46px;margin-bottom:10px;opacity:.5;color:var(--accent)">search_off</i>
+      <p style="font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text-1)">រកមិនឃើញអាហារូបករណ៍ដែលត្រូវគ្នាទេ</p>
+      <p style="font-size:13px;color:var(--text-2);margin:0">សូមសាកល្បងស្វែងរកពាក្យគន្លឹះផ្សេង ឬជ្រើសរើសប្រភេទ «ទាំងអស់» ឡើងវិញ</p>
     </div>
   </div>
 </section>
@@ -1233,6 +1225,15 @@
       </div>
       <p class="news-src">ប្រភព៖ សេចក្ដីប្រកាសព័ត៌មាន MoEYS &amp; UNICEF (កំពង់ចាម · ១៤ តុលា ២០២៥)។</p>
     </div>
+</div>
+</div>
+
+<!-- ======================== SCHOLARSHIP DETAIL MODAL ======================== -->
+<div class="scholar-overlay" id="scholarship-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="sch-modal-title">
+  <div class="scholar-modal-backdrop" onclick="closeScholarshipModal()"></div>
+  <div class="scholar-modal">
+    <button type="button" class="scholar-modal-close" onclick="closeScholarshipModal()" aria-label="បិទផ្ទាំង"><i class="material-symbols-outlined">close</i></button>
+    <div id="scholar-modal-content"></div>
   </div>
 </div>
 
