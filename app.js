@@ -1010,28 +1010,25 @@ function renderScholarships(){
   if (empty) empty.style.display = "none";
 
   grid.innerHTML = filtered.map((s, i) => `
-    <div class="scholar-card" style="animation-delay:${i * 0.03}s" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
-      <div class="sch-top">
-        <div class="sch-icon"><i class="material-symbols-outlined">${s.icon}</i><img src="/public/scholarships/${s.id}.png" alt="" loading="lazy" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
-        <div class="sch-badge-group">
-          <span class="sch-country-pill">${s.country}</span>
-          <span class="sch-tag ${s.coverageType === 'partial' ? 'partial' : ''}">${s.coverageLabel}</span>
+    <div class="scholar-card" style="animation-delay:${i * 0.03}s;background-image:url('/public/scholarships/bg/${s.id}.jpg')" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
+      <div class="sch-badge-pill ${s.coverageType === 'partial' ? 'partial' : ''}"><i class="material-symbols-outlined">workspace_premium</i>${s.coverageLabel}</div>
+      <div class="sch-country-flag">${s.country}</div>
+      <div class="sch-scrim">
+        <div class="sch-amount">${s.amount}</div>
+        <h3>${s.name}</h3>
+        <div class="sch-sponsor">${s.sponsor}</div>
+        <div class="sch-stats-row">
+          <span><i class="material-symbols-outlined">school</i>${s.levelLabel}</span>
+          <span class="sch-stats-divider"></span>
+          <span><i class="material-symbols-outlined">event</i>${s.deadline}</span>
         </div>
-      </div>
-      <h3>${s.name}</h3>
-      <div class="sch-sponsor">${s.sponsor}</div>
-      <p class="sch-desc">${s.desc}</p>
-      <div class="sch-tags-row">
-        <span class="sch-pill"><i class="material-symbols-outlined" style="font-size:12px;vertical-align:-1px;margin-right:2px">school</i>${s.levelLabel}</span>
-        <span class="sch-pill" style="background:rgba(0,0,0,.04);color:var(--text-2)"><i class="material-symbols-outlined" style="font-size:12px;vertical-align:-1px;margin-right:2px">category</i>${s.targetFields.split(",")[0]}</span>
-      </div>
-      <div class="scholar-meta">
-        <span class="scholar-amount">${s.amount}</span>
-        <span class="scholar-deadline"><i class="material-symbols-outlined">event</i> ${s.deadline}</span>
-      </div>
-      <div class="sch-action-row">
-        <span>មើលលម្អិត & ដាក់ពាក្យ</span>
-        <i class="material-symbols-outlined">arrow_forward</i>
+        <div class="sch-bottom-row">
+          <div class="sch-bottom-id">
+            <img class="sch-mini-logo" src="/public/scholarships/${s.id}.png" alt="" loading="lazy" onerror="this.remove()">
+            <span>${s.sponsor}</span>
+          </div>
+          <i class="material-symbols-outlined">arrow_forward</i>
+        </div>
       </div>
     </div>
   `).join("");
