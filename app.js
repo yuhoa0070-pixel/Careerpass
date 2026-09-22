@@ -146,7 +146,7 @@ const VIEW_TITLES = {
   schools: "សាលារៀន & សាកលវិទ្យាល័យ ១២៧+ — TreyVisai",
   careers: "បញ្ជីអាជីព និងការងារ — TreyVisai",
   cost: "គណនាថ្លៃសិក្សា — TreyVisai",
-  scholarship: "អាហារូបករណ៍រដ្ឋ — TreyVisai",
+  scholarship: "អាហារូបករណ៍ក្នុងស្រុក & អន្តរជាតិ — TreyVisai",
   bacii: "មគ្គុទ្ទេសក៍និទ្ទេសបាក់ឌុប & បើធ្លាក់រៀនអ្វី? — TreyVisai",
   facts: "តើអ្នកដឹងទេ? ការពិតអប់រំ & មតិយោបល់ — TreyVisai",
   terms: "លក្ខខណ្ឌប្រើប្រាស់ — TreyVisai"
@@ -165,6 +165,7 @@ function showView(v){
   if(v==="schools")renderSchools();
   if(v==="careers")renderCareers();
   if(v==="cost")calcCost();
+  if(v==="scholarship")renderScholarships();
   if(v==="facts")renderHomeVoices();
   if(v==="home"){
     typeHero();
@@ -202,6 +203,942 @@ function switchBaciiTab(tabId){
   });
 }
 window.switchBaciiTab = switchBaciiTab;
+
+/* ===== SCHOLARSHIPS DIRECTORY ===== */
+const scholarshipsData = [
+  {
+    id: "moeys",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាល (MoEYS)",
+    nameEn: "Cambodia Government Scholarship (MoEYS)",
+    sponsor: "ក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS)",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ឥតគិតថ្លៃ ៤–៥ ឆ្នាំ",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ / បរិញ្ញាបត្ររង",
+    deadline: "កញ្ញា – តុលា (ក្រោយបាក់ឌុប)",
+    desc: "អាហារូបករណ៍រដ្ឋដ៏ធំជាងគេនៅកម្ពុជា ផ្តល់ការលើកលែងថ្លៃសិក្សា ១០០% សម្រាប់សិស្សទូទាំងប្រទេស នៅគ្រប់សាកលវិទ្យាល័យរដ្ឋ (RUPP, ITC, RULE, NUM, UHS, UBB, SRU, MCU, RUA...)។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% ពេញមួយវគ្គសិក្សា ៤ ទៅ ៥ ឆ្នាំ",
+      "សន្សំការចំណាយថ្លៃសាលាចាប់ពី $1,600 ដល់ជាង $4,000",
+      "សិទ្ធិអាទិភាពស្នើសុំកន្លែងស្នាក់នៅក្នុងអន្តេវាសិកដ្ឋានរដ្ឋ (ជាពិសេសសិស្សនារី)",
+      "សញ្ញាបត្ររដ្ឋទទួលស្គាល់ទូទាំងប្រទេស និងអន្តរជាតិ"
+    ],
+    requirements: [
+      "សិស្សប្រឡងជាប់សញ្ញាបត្រមធ្យមសិក្សាទុតិយភូមិ (បាក់ឌុប) ក្នុងឆ្នាំសិក្សាសាមី",
+      "បំពេញទម្រង់ពាក្យសុំអាហារូបករណ៍រដ្ឋ (ទម្រង់ពណ៌លឿង/ផ្កាឈូក) តាមកាលកំណត់",
+      "ផ្តល់អាទិភាពខ្ពស់សម្រាប់សិស្សនារី, សិស្សមានប័ណ្ណក្រីក្រ (IDPoor), និងសិស្សមកពីខេត្តដាច់ស្រយាល"
+    ],
+    documents: [
+      "ពាក្យសុំអាហារូបករណ៍រដ្ឋដែលបានបំពេញត្រឹមត្រូវ",
+      "វិញ្ញាបនបត្របណ្តោះអាសន្ន ឬសញ្ញាបត្របាក់ឌុប",
+      "ព្រឹត្តិបត្រពិន្ទុបាក់ឌុបផ្លូវការ",
+      "សៀវភៅគ្រួសារ ឬសំបុត្រកំណើត និងរូបថត ៤x៦"
+    ],
+    tips: "ជ្រើសរើសជម្រើសសាកលវិទ្យាល័យ និងដេប៉ាតឺម៉ង់ដែលសមស្របនឹងនិទ្ទេសបាក់ឌុបរបស់អ្នក។ កុំភ្លេចពិនិត្យកូតាអាទិភាពតាមខេត្តរបស់ក្រសួង។",
+    targetFields: "គ្រប់ជំនាញ (STEM, សេដ្ឋកិច្ច, នីតិសាស្ត្រ, ភាសាបរទេស, វិស្វកម្ម, សុខាភិបាល)",
+    link: "https://www.moeys.gov.kh",
+    icon: "account_balance"
+  },
+  {
+    id: "tvet15m",
+    name: "កម្មវិធីបណ្តុះបណ្តាលវិជ្ជាជីវៈ ១.៥លាននាក់ (TVET 1.5M)",
+    nameEn: "National TVET 1.5M Programme",
+    sponsor: "ក្រសួងការងារ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ (MLVT)",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "full",
+    coverageLabel: "ឥតគិតថ្លៃ + ប្រាក់ខែ",
+    amount: "ឧបត្ថម្ភ ២៨០,០០០៛/ខែ",
+    level: "tvet",
+    levelLabel: "បច្ចេកទេស និងវិជ្ជាជីវៈ (C1–C3)",
+    deadline: "ចុះឈ្មោះរៀងរាល់ខែ (បន្តបន្ទាប់)",
+    desc: "កម្មវិធីថ្នាក់ជាតិគាំទ្រយុវជនមកពីគ្រួសារក្រីក្រ និងងាយរងហានិភ័យ ឱ្យទទួលបានការបណ្តុះបណ្តាលជំនាញបច្ចេកទេសជាក់ស្តែង ឆាប់ចប់ មានការងារធ្វើ និងទទួលបានប្រាក់ឧបត្ថម្ភប្រចាំខែ។",
+    benefits: [
+      "រៀនឥតគិតថ្លៃ ១០០% រយៈពេល ៤ ទៅ ៨ ខែ (កម្រិត C1, C2, C3)",
+      "ប្រាក់ឧបត្ថម្ភជីវភាព ២៨០,០០០ រៀល/ខែ (~$70) រហូតដល់ចប់វគ្គ",
+      "អនុវត្តការងារផ្ទាល់ជាមួយម៉ាស៊ីន ឧបករណ៍ និងរោងជាងស្តង់ដារ",
+      "ធានាជួយស្វែងរកការងារធ្វើ ឬចុះកម្មសិក្សានៅរោងចក្រ សហគ្រាសផ្ទាល់"
+    ],
+    requirements: [
+      "យុវជនមានអាយុចាប់ពី ១៥ ឆ្នាំឡើងទៅ",
+      "មានប័ណ្ណសមធម៌ (IDPoor) ឬប័ណ្ណសម្គាល់គ្រួសារងាយរងហានិភ័យ",
+      "មិនទាមទារសញ្ញាបត្របាក់ឌុប (ធ្លាក់បាក់ឌុប ឬរៀនមិនចប់ទី១២ ក៏ចុះឈ្មោះបាន)"
+    ],
+    documents: [
+      "ប័ណ្ណសមធម៌ ឬប័ណ្ណគ្រួសារងាយរងហានិភ័យ",
+      "អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ ឬសំបុត្រកំណើត",
+      "រូបថត ៤x៦ ចំនួន ២ សន្លឹក"
+    ],
+    tips: "អាចចុះឈ្មោះតាមទូរស័ព្ទដៃតាមរយៈកម្មវិធី 'TVET 1.5M App' ឬទៅកាន់វិទ្យាស្ថានបច្ចេកទេសរដ្ឋ (NTI, NTTI, NPIC, JVC, RTC) ដែលនៅជិតផ្ទះបំផុត។",
+    targetFields: "មេកានិកយានយន្ត, អគ្គិសនី, បរិក្ខារត្រជាក់, ឌីជីថល, សំណង់, កាត់ដេរ, បដិសណ្ឋារកិច្ច",
+    link: "https://tvet.gov.kh",
+    icon: "handyman"
+  },
+  {
+    id: "cadt",
+    name: "អាហារូបករណ៍ទេពកោសល្យឌីជីថល (CADT Digital Talent)",
+    nameEn: "CADT Digital Talent Scholarship",
+    sponsor: "ក្រសួងប្រៃសណីយ៍ និងទូរគមនាគមន៍ (MPTC)",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០% + Laptop",
+    amount: "ដល់ ~$10,000 សរុប",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (៤ ឆ្នាំ)",
+    deadline: "តុលា – វិច្ឆិកា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍រដ្ឋកម្រិតខ្ពស់ផ្នែកបច្ចេកវិទ្យាឌីជីថល ផ្តល់ការលើកលែងថ្លៃសិក្សា ១០០% ប្រាក់ឧបត្ថម្ភការរស់នៅ និងកុំព្យូទ័រយួរដៃ ដើម្បីបណ្តុះធនធានបច្ចេកវិទ្យាឈានមុខរបស់ប្រទេស។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% រយៈពេល ៤ ឆ្នាំពេញ",
+      "ផ្តល់កុំព្យូទ័រយួរដៃ (Laptop) កម្រិតខ្ពស់សម្រាប់រៀនកូដ",
+      "ប្រាក់ឧបត្ថម្ភការសិក្សា និងការរស់នៅរហូតដល់ $3,600/ឆ្នាំ",
+      "ឱកាសចុះកម្មសិក្សា និងធានាការងារនៅស្ថាប័នរដ្ឋ ឬក្រុមហ៊ុនបច្ចេកវិទ្យាធំៗ"
+    ],
+    requirements: [
+      "សិស្សជាប់បាក់ឌុប (និទ្ទេស A, B, C ឬមានចំណូលចិត្តខ្លាំងលើ IT)",
+      "ប្រឡងជាប់វិញ្ញាសាតេស្តសមត្ថភាព៖ គណិតវិទ្យា តក្កវិទ្យា (Logic) និងភាសាអង់គ្លេស",
+      "ឆ្លងកាត់ការសម្ភាសន៍ផ្ទាល់ដោយជោគជ័យ"
+    ],
+    documents: [
+      "ពាក្យសុំចុះឈ្មោះប្រឡង CADT (តាមប្រព័ន្ធអនឡាញ)",
+      "ព្រឹត្តិបត្រពិន្ទុបាក់ឌុប ឬវិញ្ញាបនបត្របណ្តោះអាសន្ន",
+      "អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ"
+    ],
+    tips: "ត្រៀមលំហាត់តក្កវិទ្យា (Logic Puzzles), គណិតវិទ្យាអនុគមន៍/ប្រូបាប និងពាក្យបច្ចេកទេសភាសាអង់គ្លេសជាមុន។",
+    targetFields: "Software Engineering, Data Science & AI, Cybersecurity, Digital Business",
+    link: "https://cadt.edu.kh/scholarship",
+    icon: "terminal"
+  },
+  {
+    id: "techo-stem",
+    name: "អាហារូបករណ៍សម្តេចតេជោ STEM & កសិកម្ម",
+    nameEn: "Samdech Techo STEM & Agriculture Scholarship",
+    sponsor: "មូលនិធិសម្តេចតេជោ & ក្រសួងកសិកម្ម / ITC / RUA",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ឥតគិតថ្លៃ ៤–៥ ឆ្នាំ",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (៤-៥ ឆ្នាំ)",
+    deadline: "តុលា – ធ្នូ រៀងរាល់ឆ្នាំ",
+    desc: "គាំទ្រសិស្សានុសិស្សដែលស្រឡាញ់ជំនាញ STEM (វិទ្យាសាស្ត្រ បច្ចេកវិទ្យា វិស្វកម្ម គណិតវិទ្យា) និងកសិកម្មឆ្លាតវៃ ដើម្បីលើកកម្ពស់សេដ្ឋកិច្ច និងឧស្សាហកម្មកម្ពុជា។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% រយៈពេល ៤ ទៅ ៥ ឆ្នាំ",
+      "បន្ទប់ពិសោធន៍ទំនើប និងឧបករណ៍អនុវត្តជាក់ស្តែង",
+      "អាទិភាពចូលរួមគម្រោងស្រាវជ្រាវជាតិ និងអន្តរជាតិ",
+      "ឱកាសអាហារូបករណ៍បន្តទៅបរទេសក្រោយបញ្ចប់ការសិក្សា"
+    ],
+    requirements: [
+      "សិស្សបញ្ចប់បាក់ឌុបផ្នែកវិទ្យាសាស្ត្រពិត",
+      "និទ្ទេស A, B, C ឬមានពិន្ទុខ្ពស់លើមុខវិជ្ជាគណិត រូប គីមី ជីវ",
+      "ឆ្លងកាត់ការប្រឡងជ្រើសរើសរបស់គ្រឹះស្ថាន"
+    ],
+    documents: [
+      "ពាក្យសុំអាហារូបករណ៍",
+      "សញ្ញាបត្រ ឬវិញ្ញាបនបត្របាក់ឌុប",
+      "ប្រវត្តិរូបសង្ខេប និងរូបថត ៤x៦"
+    ],
+    tips: "ផ្តោតលើមូលដ្ឋានគ្រឹះវិទ្យាសាស្ត្រពិត និងបង្ហាញចំណាប់អារម្មណ៍លើការអភិវឌ្ឍវិស័យកសិកម្ម និងឧស្សាហកម្មកម្ពុជា។",
+    targetFields: "វិស្វកម្ម, កសិកម្មទំនើប, ជីវបច្ចេកវិទ្យា, បច្ចេកវិទ្យាអាហារ",
+    link: "https://rua.edu.kh",
+    icon: "biotech"
+  },
+  {
+    id: "aub",
+    name: "អាហារូបករណ៍ឧត្តមភាព ធនាគារ អេស៊ីលីដា (AUB)",
+    nameEn: "AUB ACLEDA Excellence Scholarship",
+    sponsor: "ធនាគារ អេស៊ីលីដា ភីអិលស៊ី & សាកលវិទ្យាល័យអេស៊ីលីដាពាណិជ្ជកម្ម",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "partial",
+    coverageLabel: "បញ្ចុះ ៥០%–១០០%",
+    amount: "$1,600 – $4,800 + ការងារ",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (៤ ឆ្នាំ)",
+    deadline: "តុលា – ធ្នូ រៀងរាល់ឆ្នាំ",
+    desc: "ផ្តល់អាហារូបករណ៍បញ្ចុះតម្លៃពី ៥០% ដល់ ១០០% សម្រាប់សិស្សពូកែ និងធានាផ្តល់ឱកាសការងារផ្ទាល់នៅធនាគារ អេស៊ីលីដា ភីអិលស៊ី ក្រោយបញ្ចប់ការសិក្សា។",
+    benefits: [
+      "បញ្ចុះថ្លៃសិក្សា ៥០% ដល់ ១០០% រយៈពេល ៤ ឆ្នាំពេញ",
+      "ធានាឱកាសចុះកម្មសិក្សា (Internship) នៅសាខាធនាគារ អេស៊ីលីដា",
+      "អាទិភាពជ្រើសរើសចូលបម្រើការងារផ្លូវការនៅធនាគារ អេស៊ីលីដា ក្រោយបញ្ចប់ការសិក្សា",
+      "បណ្តុះបណ្តាលដោយអ្នកជំនាញធនាគារ និងហិរញ្ញវត្ថុជាក់ស្តែង"
+    ],
+    requirements: [
+      "សិស្សប្រឡងជាប់បាក់ឌុបនិទ្ទេស A ឬ B (ទទួលបាន ៥០% ដល់ ១០០% ភ្លាមៗ)",
+      "សិស្សនិទ្ទេស C អាចប្រឡងតេស្តសមត្ថភាពអាហារូបករណ៍របស់ AUB",
+      "មានភាពស្មោះត្រង់ វិន័យ និងចំណង់ចំណូលចិត្តលើវិស័យហិរញ្ញវត្ថុ"
+    ],
+    documents: [
+      "ព្រឹត្តិបត្រពិន្ទុបាក់ឌុប",
+      "វិញ្ញាបនបត្របណ្តោះអាសន្ន ឬសញ្ញាបត្របាក់ឌុប",
+      "អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ"
+    ],
+    tips: "ប្រសិនបើអ្នកមាននិទ្ទេស A ឬ B គួររួសរាន់ដាក់ពាក្យមុនគេ ព្រោះកូតាអាហារូបករណ៍ ១០០% មានកំណត់។",
+    targetFields: "ធនាគារ និងហិរញ្ញវត្ថុ, FinTech, គណនេយ្យ, គ្រប់គ្រងធុរកិច្ច, IT ធុរកិច្ច",
+    link: "https://aub.edu.kh",
+    icon: "payments"
+  },
+  {
+    id: "paul-dubrule",
+    name: "អាហារូបករណ៍សាលាបដិសណ្ឋារកិច្ច ប៉ូល ឌុយប្រ៊ូល (សៀមរាប)",
+    nameEn: "Paul Dubrule Hospitality Scholarship",
+    sponsor: "Ecole d'Hôtellerie et de Tourisme Paul Dubrule",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "full",
+    coverageLabel: "១០០% ឥតគិតថ្លៃ + ស្នាក់នៅ",
+    amount: "ឥតគិតថ្លៃ + ស្នាក់នៅ & អាហារ",
+    level: "tvet",
+    levelLabel: "សញ្ញាបត្រជាន់ខ្ពស់បដិសណ្ឋារកិច្ច",
+    deadline: "មិថុនា – សីហា រៀងរាល់ឆ្នាំ",
+    desc: "ផ្តល់អាហារូបករណ៍ពេញលេញ ១០០% រួមទាំងការស្នាក់នៅ អាហារូបត្ថម្ភ និងឯកសណ្ឋាន សម្រាប់យុវជនមកពីគ្រួសារខ្វះខាតជីវភាព លើជំនាញចម្អិនម្ហូប បម្រើសេវាកម្ម និងសណ្ឋាគារលំដាប់អន្តរជាតិ។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% រយៈពេល ១ ដល់ ២ ឆ្នាំ",
+      "កន្លែងស្នាក់នៅ និងអាហារ ៣ ពេលឥតគិតថ្លៃនៅខេត្តសៀមរាប",
+      "ឯកសណ្ឋាន និងសម្ភារសិក្សាគ្រប់បែបយ៉ាង",
+      "អត្រាមានការងារធ្វើ ១០០% នៅសណ្ឋាគារផ្កាយ ៥ និងរមណីយដ្ឋានល្បីៗ"
+    ],
+    requirements: [
+      "យុវជន-យុវនារីមកពីគ្រួសារក្រីក្រខ្វះខាតពិតប្រាកដ (គ្រប់ខេត្ត-ក្រុង)",
+      "អាយុពី ១៧ ដល់ ២៣ ឆ្នាំ",
+      "មានឆន្ទៈខ្ពស់ ឧស្សាហ៍ព្យាយាម និងស្រឡាញ់វិស័យទេសចរណ៍/បដិសណ្ឋារកិច្ច",
+      "ឆ្លងកាត់ការចុះអង្កេតជាក់ស្តែងដល់ផ្ទះ (Social Investigation)"
+    ],
+    documents: [
+      "លិខិតបញ្ជាក់ភាពក្រីក្រ ឬប័ណ្ណសមធម៌ពីអាជ្ញាធរឃុំ/សង្កាត់",
+      "សៀវភៅគ្រួសារ",
+      "សំបុត្រកំណើត",
+      "ព្រឹត្តិបត្រពិន្ទុ ឬសញ្ញាបត្រ"
+    ],
+    tips: "សាលាផ្ដោតខ្លាំងលើភាពស្មោះត្រង់ និងការប្តេជ្ញាចិត្តផ្លាស់ប្តូរជីវភាពគ្រួសារ មិនចាំបាច់មានពិន្ទុរៀនខ្ពស់ខ្លាំងនោះទេ។",
+    targetFields: "សិល្បៈធ្វើម្ហូប & នំប៉័ង (Culinary Arts), សេវាកម្មភោជនីយដ្ឋាន & បារ, គ្រប់គ្រងសណ្ឋាគារ",
+    link: "https://pauldubrule.com",
+    icon: "restaurant"
+  },
+  {
+    id: "paragoniu",
+    name: "អាហារូបករណ៍សាកលវិទ្យាល័យអន្តរជាតិ ផារ៉ាហ្គន (ParagonU)",
+    nameEn: "Paragon International University Merit Scholarship",
+    sponsor: "Paragon International University",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "partial",
+    coverageLabel: "បញ្ចុះ ២៥%–១០០%",
+    amount: "ដល់ $3,000 – $12,000",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (៤ ឆ្នាំ)",
+    deadline: "កក្កដា – តុលា រៀងរាល់ឆ្នាំ",
+    desc: "កម្មវិធីអាហារូបករណ៍ផ្អែកលើសមត្ថភាពសិក្សា (Merit-based) សម្រាប់សិស្សឆ្នើមនិទ្ទេស A/B ឬសិស្សដែលប្រឡងជាប់ពិន្ទុខ្ពស់ក្នុងកម្មវិធីប្រឡងប្រជែងអាហារូបករណ៍ប្រចាំឆ្នាំ។",
+    benefits: [
+      "បញ្ចុះតម្លៃសិក្សា ២៥%, ៥០%, ៧៥%, រហូតដល់ ១០០% សម្រាប់ ៤ ឆ្នាំ",
+      "សិក្សាជាភាសាអង់គ្លេសស្តង់ដារអន្តរជាតិ",
+      "ឱកាសផ្លាស់ប្តូរការសិក្សាជាមួយសាកលវិទ្យាល័យដៃគូនៅក្រៅប្រទេស",
+      "បណ្តាញនិស្សិតឆ្នើម និងឱកាសការងារជាមួយក្រុមហ៊ុនពហុជាតិ"
+    ],
+    requirements: [
+      "សិស្សនិទ្ទេស A និង B ទទួលបានអាហារូបករណ៍ដោយស្វ័យប្រវត្តិ (តាមកូតា)",
+      "សិស្សផ្សេងទៀតត្រូវចូលរួមការប្រឡង Paragon Scholarship Exam (គណិតវិទ្យា និងភាសាអង់គ្លេស)",
+      "រក្សាបាននូវ GPA តាមលក្ខខណ្ឌកំណត់ក្នុងកំឡុងពេលសិក្សា"
+    ],
+    documents: [
+      "វិញ្ញាបនបត្របាក់ឌុប ឬព្រឹត្តិបត្រពិន្ទុ",
+      "លទ្ធផលតេស្តភាសាអង់គ្លេស (បើមាន)",
+      "អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ"
+    ],
+    tips: "ការប្រឡងតេស្តអាហារូបករណ៍ធ្វើឡើងជាភាសាអង់គ្លេស ដូច្នេះគួរសិក្សាពាក្យគន្លឹះគណិតវិទ្យាជាភាសាអង់គ្លេសជាមុន។",
+    targetFields: "វិទ្យាសាស្ត្រកុំព្យូទ័រ, វិស្វកម្មសំណង់, ស្ថាបត្យកម្ម, ទំនាក់ទំនងអន្តរជាតិ, គ្រប់គ្រងធុរកិច្ច",
+    link: "https://paragoniu.edu.kh",
+    icon: "school"
+  },
+  {
+    id: "setec",
+    name: "អាហារូបករណ៍វិទ្យាស្ថានសេតិច (SETEC Institute)",
+    nameEn: "SETEC Institute Excellence Scholarship",
+    sponsor: "វិទ្យាស្ថានសេតិច (SETEC) & ក្រុមហ៊ុនដៃគូបច្ចេកវិទ្យា",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "partial",
+    coverageLabel: "បញ្ចុះ ២០%–១០០%",
+    amount: "ដល់ $800 – $3,200",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ / បរិញ្ញាបត្ររង",
+    deadline: "កញ្ញា – វិច្ឆិកា រៀងរាល់ឆ្នាំ",
+    desc: "ផ្តល់ការបញ្ចុះតម្លៃសិក្សា ២០% ដល់ ១០០% សម្រាប់សិស្សពូកែនិទ្ទេស A/B និងការប្រឡងតេស្តសមត្ថភាពលើជំនាញព័ត៌មានវិទ្យា (MIS), ការរចនា (Design) និងពាណិជ្ជកម្មព័ត៌មានវិទ្យា (BIT)។",
+    benefits: [
+      "បញ្ចុះតម្លៃសិក្សា ២០% ដល់ ១០០% ពេញ ៤ ឆ្នាំ",
+      "បន្ទប់កុំព្យូទ័រ Mac Lab និង Studio រចនាទំនើប",
+      "ឱកាសអាហារូបករណ៍បន្ថែមពីក្រុមហ៊ុនដៃគូបច្ចេកវិទ្យា",
+      "ការបណ្តុះបណ្តាលសង្កត់ធ្ងន់លើជំនាញអនុវត្តជាក់ស្តែង"
+    ],
+    requirements: [
+      "សិស្សប្រឡងជាប់បាក់ឌុប (និទ្ទេស A/B ទទួលបានអាហារូបករណ៍លើកទឹកចិត្តភ្លាមៗ)",
+      "ចូលរួមការប្រឡងតេស្តអាហារូបករណ៍ប្រចាំឆ្នាំលើចំណេះដឹងទូទៅ និងកុំព្យូទ័រ/គូររូប",
+      "មានចំណង់ចំណូលចិត្តច្បាស់លាស់លើផ្នែក IT ឬ Design"
+    ],
+    documents: [
+      "ព្រឹត្តិបត្រពិន្ទុបាក់ឌុប",
+      "វិញ្ញាបនបត្របណ្តោះអាសន្ន",
+      "រូបថត ៤x៦"
+    ],
+    tips: "សម្រាប់ផ្នែក Design អាចយកស្នាដៃគំនូរ ឬក្រាហ្វិកដែលធ្លាប់ធ្វើមកបង្ហាញពេលសម្ភាសន៍ដើម្បីទទួលបានពិន្ទុបន្ថែម។",
+    targetFields: "MIS (ព័ត៌មានវិទ្យា), Design (ក្រាហ្វិក/3D/Interior), BIT (ពាណិជ្ជកម្មអេឡិចត្រូនិក)",
+    link: "https://www.setecu.com",
+    icon: "palette"
+  },
+  {
+    id: "up",
+    name: "អាហារូបករណ៍សុខាភិបាល & IT ពុទ្ធិសាស្ត្រ (UP)",
+    nameEn: "University of Puthisastra Merit Scholarship",
+    sponsor: "សាកលវិទ្យាល័យពុទ្ធិសាស្ត្រ (University of Puthisastra)",
+    country: "🇰🇭 កម្ពុជា",
+    cat: "domestic",
+    coverageType: "partial",
+    coverageLabel: "បញ្ចុះ ២៥%–១០០%",
+    amount: "ដល់ $1,500 – $6,000+",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (៤-៥ ឆ្នាំ)",
+    deadline: "សីហា – វិច្ឆិកា រៀងរាល់ឆ្នាំ",
+    desc: "ផ្តល់អាហារូបករណ៍រហូតដល់ ១០០% សម្រាប់សិស្សឆ្នើមនិទ្ទេស A/B លើជំនាញវិទ្យាសាស្ត្រសុខាភិបាល (ឱសថសាស្ត្រ គិលានុបដ្ឋាក មន្ទីរពិសោធន៍) និងបច្ចេកវិទ្យាព័ត៌មាន (IT)។",
+    benefits: [
+      "បញ្ចុះតម្លៃ ២៥% ដល់ ១០០% លើថ្លៃសិក្សា",
+      "មន្ទីរពិសោធន៍វេជ្ជសាស្ត្រស្តង់ដារអន្តរជាតិ",
+      "ការហ្វឹកហាត់ជាមួយគ្រូពេទ្យ និងសាស្ត្រាចារ្យបរទេស",
+      "បណ្តាញកម្មសិក្សានៅមន្ទីរពេទ្យធំៗទូទាំងប្រទេស"
+    ],
+    requirements: [
+      "សិស្សនិទ្ទេស A ឬ B បាក់ឌុប",
+      "ជាប់ការប្រឡងតេស្តអាហារូបករណ៍ UP Scholarship Exam លើមុខវិជ្ជាវិទ្យាសាស្ត្រ និងភាសាអង់គ្លេស",
+      "រក្សាបាននូវលទ្ធផលសិក្សាល្អក្នុងកំឡុងពេលសិក្សា"
+    ],
+    documents: [
+      "ព្រឹត្តិបត្រពិន្ទុបាក់ឌុប",
+      "វិញ្ញាបនបត្របណ្តោះអាសន្ន",
+      "អត្តសញ្ញាណប័ណ្ណ"
+    ],
+    tips: "ពង្រឹងមុខវិជ្ជាគីមីវិទ្យា ជីវវិទ្យា និងភាសាអង់គ្លេសសម្រាប់ត្រៀមប្រឡង។",
+    targetFields: "ឱសថសាស្ត្រ (Pharmacy), គិលានុបដ្ឋាក, មន្ទីរពិសោធន៍, IT សុខាភិបាល",
+    link: "https://www.puthisastra.edu.kh",
+    icon: "medical_services"
+  },
+  {
+    id: "mext",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលជប៉ុន (MEXT Scholarship)",
+    nameEn: "Japan MEXT Government Scholarship",
+    sponsor: "ក្រសួងអប់រំ និងវិទ្យាសាស្ត្រជប៉ុន (MEXT) & ស្ថានទូតជប៉ុន",
+    country: "🇯🇵 ជប៉ុន",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + ប្រាក់ខែ + សំបុត្រយន្តហោះ",
+    level: "all-levels",
+    levelLabel: "បរិញ្ញាបត្រ, Kosen, អនុបណ្ឌិត/បណ្ឌិត",
+    deadline: "ឧសភា – មិថុនា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ពេញលេញដ៏ល្បីល្បាញបំផុតមួយរបស់រដ្ឋាភិបាលជប៉ុន ផ្តល់ជូនសិស្ស-និស្សិតកម្ពុជាទៅបន្តការសិក្សានៅសាកលវិទ្យាល័យកំពូលៗនៅប្រទេសជប៉ុន រួមទាំងវគ្គរៀនភាសាជប៉ុន ១ ឆ្នាំ។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា និងថ្លៃចុះឈ្មោះ ១០០%",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅ ¥117,000 – ¥145,000/ខែ (~$800–$1,000)",
+      "សំបុត្រយន្តហោះទៅ-មកកម្ពុជា-ជប៉ុន",
+      "វគ្គបណ្តុះបណ្តាលភាសាជប៉ុនពន្លឿន ១ ឆ្នាំពេញ"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ, អាយុក្រោម ២៥ ឆ្នាំ (បរិញ្ញាបត្រ) ឬក្រោម ៣៥ ឆ្នាំ (អនុបណ្ឌិត)",
+      "សញ្ញាបត្របាក់ឌុប ឬបរិញ្ញាបត្រដោយមានលទ្ធផលល្អ",
+      "ប្រឡងជាប់វិញ្ញាសាសរសេរ (ភាសាអង់គ្លេស, គណិត, ជប៉ុន) និងសម្ភាសន៍នៅស្ថានទូតជប៉ុន"
+    ],
+    documents: [
+      "ទម្រង់ពាក្យសុំ MEXT ផ្លូវការ",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្របកប្រែជាភាសាអង់គ្លេស",
+      "លិខិតពិនិត្យសុខភាព (Medical Certificate)",
+      "លិខិតណែនាំ (Recommendation Letters)"
+    ],
+    tips: "វិញ្ញាសាគណិតវិទ្យា និងភាសាអង់គ្លេសរបស់ MEXT មានកម្រិតពិបាក គួរសិក្សាវិញ្ញាសាចាស់ៗ (Past Papers) នៅគេហទំព័រស្ថានទូតជប៉ុន។",
+    targetFields: "វិស្វកម្ម, IT, វិទ្យាសាស្ត្រពិត, សេដ្ឋកិច្ច, វេជ្ជសាស្ត្រ, មនុស្សសាស្ត្រ",
+    link: "https://www.kh.emb-japan.go.jp",
+    icon: "flight_takeoff"
+  },
+  {
+    id: "aas",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលអូស្ត្រាលី (Australia Awards - AAS)",
+    nameEn: "Australia Awards Scholarships (AAS)",
+    sponsor: "រដ្ឋាភិបាលអូស្ត្រាលី (DFAT)",
+    country: "🇦🇺 អូស្ត្រាលី",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ពេញលេញ (~$60,000/ឆ្នាំ)",
+    level: "postgrad",
+    levelLabel: "អនុបណ្ឌិត (Master's Degree)",
+    deadline: "កុម្ភៈ – មេសា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ថ្នាក់អនុបណ្ឌិតពេញលេញនៅសាកលវិទ្យាល័យលំដាប់ពិភពលោកក្នុងប្រទេសអូស្ត្រាលី ផ្តោតលើការកសាងសមត្ថភាពអ្នកដឹកនាំ និងរួមចំណែកអភិវឌ្ឍន៍ប្រទេសកម្ពុជា។",
+    benefits: [
+      "ថ្លៃសិក្សា ១០០% ពេញលេញ",
+      "សំបុត្រយន្តហោះទៅ-មកកម្ពុជា-អូស្ត្រាលី",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅប្រចាំខែ (Establishment & CLE)",
+      "ធានារ៉ាប់រងសុខភាពសិស្សអន្តរជាតិ (OSHC)",
+      "វគ្គត្រៀមភាសាអង់គ្លេសមុនចេញដំណើរនៅ ACE ភ្នំពេញ"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ, បញ្ចប់បរិញ្ញាបត្រដោយមានលទ្ធផលល្អ",
+      "មានបទពិសោធន៍ការងារយ៉ាងតិច ២ ឆ្នាំពាក់ព័ន្ធនឹងជំនាញស្នើសុំ",
+      "IELTS Academic 6.5 (គ្មាន Band ក្រោម 6.0) ឬកម្រិតបញ្ជាក់សមមូល",
+      "ប្តេជ្ញាចិត្តត្រលប់មកបម្រើការងារនៅកម្ពុជាវិញយ៉ាងតិច ២ ឆ្នាំ"
+    ],
+    documents: [
+      "សញ្ញាបត្រ និងព្រឹត្តិបត្រពិន្ទុបរិញ្ញាបត្រ",
+      "លិខិតបញ្ជាក់បទពិសោធន៍ការងារ",
+      "លទ្ធផលប្រឡង IELTS/TOEFL",
+      "លិខិតអភិវឌ្ឍន៍ (Development Impact Plan)"
+    ],
+    tips: "គន្លឹះសំខាន់គឺការសរសេរ Development Impact Plan បង្ហាញពីរបៀបដែលជំនាញនេះនឹងជួយដោះស្រាយបញ្ហាជាក់ស្តែងនៅកម្ពុជា។",
+    targetFields: "កសិកម្ម, សុខាភិបាលសាធារណៈ, ហេដ្ឋារចនាសម្ព័ន្ធ, ការអប់រំ, បរិស្ថាន, អភិបាលកិច្ច",
+    link: "https://australiaawardscambodia.org",
+    icon: "public"
+  },
+  {
+    id: "chevening",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលអង់គ្លេស (Chevening Scholarship)",
+    nameEn: "UK Chevening Scholarship",
+    sponsor: "រដ្ឋាភិបាលចក្រភពអង់គ្លេស (FCDO)",
+    country: "🇬🇧 ចក្រភពអង់គ្លេស",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ពេញលេញ (~£40,000 សរុប)",
+    level: "postgrad",
+    levelLabel: "អនុបណ្ឌិត ១ ឆ្នាំ (Master's)",
+    deadline: "សីហា – វិច្ឆិកា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ថ្នាក់ដឹកនាំពិភពលោករបស់រដ្ឋាភិបាលអង់គ្លេស សម្រាប់ការសិក្សាថ្នាក់អនុបណ្ឌិតរយៈពេល ១ ឆ្នាំ នៅគ្រប់សាកលវិទ្យាល័យកំពូលៗនៅ UK (Oxford, Cambridge, LSE, UCL, Edinburgh...)។",
+    benefits: [
+      "ថ្លៃសិក្សាអនុបណ្ឌិត ១០០% ទាំងស្រុង",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅប្រចាំខែស្តង់ដារ UK",
+      "សំបុត្រយន្តហោះសេដ្ឋកិច្ចទៅ-មក",
+      "ថ្លៃទិដ្ឋាការ (Visa) និងប្រាក់ឧបត្ថម្ភធ្វើដំណើរ",
+      "ចូលរួមបណ្តាញអ្នកដឹកនាំពិភពលោក Chevening Alumni"
+    ],
+    requirements: [
+      "បញ្ចប់បរិញ្ញាបត្រ (កម្រិត 2:1 ឬប្រហាក់ប្រហែល)",
+      "មានបទពិសោធន៍ការងារយ៉ាងតិច ២ ឆ្នាំ (ស្មើនឹង ២,៨០០ ម៉ោង)",
+      "ជ្រើសរើស ៣ វគ្គសិក្សាផ្សេងគ្នានៅសាកលវិទ្យាល័យ UK",
+      "ត្រលប់មកកម្ពុជាវិញយ៉ាងតិច ២ ឆ្នាំក្រោយបញ្ចប់ការសិក្សា"
+    ],
+    documents: [
+      "សញ្ញាបត្រ និងព្រឹត្តិបត្រពិន្ទុ",
+      "អត្ថបទតែងសេចក្តី ៤ ប្រធានបទ (Leadership, Networking, Study in UK, Career Plan)",
+      "លិខិតណែនាំ ២ ច្បាប់",
+      "លិខិតផ្តល់កន្លែង (Unconditional Offer) ពីសាកលវិទ្យាល័យ UK"
+    ],
+    tips: "ផ្តោតសំខាន់លើអត្ថបទតែងសេចក្តី (Essays) ដោយលើកឧទាហរណ៍ជាក់ស្តែងអំពីភាពជាអ្នកដឹកនាំ និងការកសាងបណ្តាញទំនាក់ទំនង។",
+    targetFields: "គ្រប់ជំនាញទាំងអស់ (សេដ្ឋកិច្ច, ច្បាប់, សិទ្ធិមនុស្ស, IT, បរិស្ថាន, សុខាភិបាល, នយោបាយ)",
+    link: "https://www.chevening.org/scholarship/cambodia/",
+    icon: "workspace_premium"
+  },
+  {
+    id: "fulbright",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលអាមេរិក (Fulbright Student Program)",
+    nameEn: "US Fulbright Foreign Student Program",
+    sponsor: "ក្រសួងការបរទេសសហរដ្ឋអាមេរិក & ស្ថានទូតអាមេរិក",
+    country: "🇺🇸 សហរដ្ឋអាមេរិក",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ពេញលេញ (~$50,000/ឆ្នាំ)",
+    level: "postgrad",
+    levelLabel: "អនុបណ្ឌិត (១–២ ឆ្នាំ)",
+    deadline: "កុម្ភៈ – ឧសភា រៀងរាល់ឆ្នាំ",
+    desc: "កម្មវិធីផ្លាស់ប្តូរការសិក្សាដ៏មានកិត្យានុភាពខ្ពស់បំផុតរបស់សហរដ្ឋអាមេរិក ផ្តល់ឱកាសឱ្យយុវជនកម្ពុជាទៅសិក្សាថ្នាក់អនុបណ្ឌិតនៅសាកលវិទ្យាល័យឈានមុខនានានៅអាមេរិក។",
+    benefits: [
+      "ថ្លៃសិក្សា និងថ្លៃសាលា ១០០%",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅប្រចាំខែ",
+      "សំបុត្រយន្តហោះអន្តរជាតិទៅ-មក",
+      "ការធានារ៉ាប់រងសុខភាពគ្រោះថ្នាក់",
+      "ការគាំទ្រទិដ្ឋាការ J-1 Exchange Visitor"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ, បញ្ចប់បរិញ្ញាបត្រដោយមានកំណត់ត្រាសិក្សាឆ្នើម",
+      "មានបទពិសោធន៍ការងារយ៉ាងតិច ២ ឆ្នាំពាក់ព័ន្ធ",
+      "TOEFL iBT យ៉ាងតិច 80 ឬ IELTS 6.5+",
+      "មិនអនុញ្ញាតសម្រាប់ជំនាញព្យាបាលជំងឺផ្ទាល់លើអ្នកជំងឺ (Clinical Medicine)"
+    ],
+    documents: [
+      "សញ្ញាបត្រ និងព្រឹត្តិបត្រពិន្ទុ",
+      "លិខិតបញ្ជាក់សមត្ថភាពភាសាអង់គ្លេស",
+      "Study Objective Essay & Personal Statement",
+      "លិខិតណែនាំ ៣ ច្បាប់"
+    ],
+    tips: "Personal Statement ត្រូវសរសេររៀបរាប់ពីដំណើរជីវិត បទពិសោធន៍ និងគោលដៅអនាគតឱ្យមានភាពទាក់ទាញ និងបង្ហាញពីការយល់ដឹងអំពីវប្បធម៌។",
+    targetFields: "គ្រប់ជំនាញ (អាទិភាព៖ វិទ្យាសាស្ត្រ, បរិស្ថាន, សេដ្ឋកិច្ច, ការអប់រំ, គោលនយោបាយសាធារណៈ)",
+    link: "https://kh.usembassy.gov/education-culture/fulbright-program/",
+    icon: "flag"
+  },
+  {
+    id: "gks",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលកូរ៉េខាងត្បូង (GKS / KGSP)",
+    nameEn: "Global Korea Scholarship (GKS)",
+    sponsor: "វិទ្យាស្ថានជាតិសម្រាប់ការអប់រំអន្តរជាតិកូរ៉េ (NIIED)",
+    country: "🇰🇷 កូរ៉េខាងត្បូង",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + 1,000,000 KRW/ខែ",
+    level: "all-levels",
+    levelLabel: "បរិញ្ញាបត្រ & អនុបណ្ឌិត/បណ្ឌិត",
+    deadline: "កញ្ញា – តុលា (បរិញ្ញាបត្រ) / កុម្ភៈ – មីនា (អនុបណ្ឌិត)",
+    desc: "អាហារូបករណ៍ពេញលេញពីរដ្ឋាភិបាលកូរ៉េខាងត្បូង រួមបញ្ចូលទាំងការរៀនភាសាកូរ៉េ ១ ឆ្នាំពេញ និងការសិក្សាថ្នាក់បរិញ្ញាបត្រ ឬអនុបណ្ឌិតនៅសាកលវិទ្យាល័យកំពូលៗនៅកូរ៉េ។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% ទាំងវគ្គភាសា និងសញ្ញាបត្រ",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅ 1,000,000 KRW/ខែ (~$750)",
+      "សំបុត្រយន្តហោះទៅ-មក",
+      "ប្រាក់ឧបត្ថម្ភពេលមកដល់ 200,000 KRW និងប្រាក់រង្វាន់បញ្ចប់ការសិក្សា",
+      "ធានារ៉ាប់រងសុខភាពជាតិកូរ៉េ"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ (ទាំងបេក្ខជន និងឪពុកម្តាយមិនមែនសញ្ជាតិកូរ៉េ)",
+      "មធ្យមភាគពិន្ទុ GPA លើសពី 80% ឬស្ថិតក្នុងចំណាត់ថ្នាក់កំពូល ២០%",
+      "អាយុក្រោម ២៥ ឆ្នាំ (សម្រាប់បរិញ្ញាបត្រ) ឬក្រោម ៤០ ឆ្នាំ (សម្រាប់អនុបណ្ឌិត)",
+      "សុខភាពកាយសម្បទា និងផ្លូវចិត្តល្អ"
+    ],
+    documents: [
+      "ទម្រង់ពាក្យសុំ GKS ផ្លូវការ",
+      "Personal Statement & Statement of Purpose",
+      "លិខិតណែនាំពីលោកគ្រូ/សាស្ត្រាចារ្យ",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្របកប្រែជាភាសាអង់គ្លេស"
+    ],
+    tips: "អាចដាក់ពាក្យតាមរយៈស្ថានទូត (Embassy Track) ឬដាក់ផ្ទាល់ទៅកាន់សាកលវិទ្យាល័យនៅកូរ៉េ (University Track)។",
+    targetFields: "វិស្វកម្ម, IT, វិទ្យាសាស្ត្រពិត, ធុរកិច្ចអន្តរជាតិ, មនុស្សសាស្ត្រ, សិល្បៈ",
+    link: "https://www.studyinkorea.go.kr",
+    icon: "travel_explore"
+  },
+  {
+    id: "csc",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលចិន (Chinese Government Scholarship - CSC)",
+    nameEn: "Chinese Government Scholarship (CSC)",
+    sponsor: "ក្រុមប្រឹក្សាអាហារូបករណ៍ចិន (CSC) & MoEYS",
+    country: "🇨🇳 ប្រទេសចិន",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + ស្នាក់នៅ + ឧបត្ថម្ភប្រចាំខែ",
+    level: "all-levels",
+    levelLabel: "បរិញ្ញាបត្រ, អនុបណ្ឌិត, បណ្ឌិត",
+    deadline: "ធ្នូ – មីនា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ពេញលេញពីរដ្ឋាភិបាលចិន ផ្តល់ជូនតាមរយៈក្រសួងអប់រំកម្ពុជា ឬស្ថានទូតចិន ដើម្បីសិក្សានៅសាកលវិទ្យាល័យលំដាប់ជាតិនៅប្រទេសចិន។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០%",
+      "បន្ទប់ស្នាក់នៅអន្តេវាសិកដ្ឋានឥតគិតថ្លៃ",
+      "ប្រាក់ឧបត្ថម្ភ 2,500 – 3,500 RMB/ខែ (~$350–$500)",
+      "ការធានារ៉ាប់រងសុខភាពទូទៅ"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ, សុខភាពល្អ",
+      "សញ្ញាបត្របាក់ឌុប (បរិញ្ញាបត្រ អាយុក្រោម ២៥ ឆ្នាំ) ឬបរិញ្ញាបត្រ (អនុបណ្ឌិត អាយុក្រោម ៣៥ ឆ្នាំ)",
+      "បេក្ខជនរៀនជាភាសាចិនត្រូវមាន HSK 3-5 ឬភាសាអង់គ្លេសសម្រាប់កម្មវិធី English-taught"
+    ],
+    documents: [
+      "ទម្រង់ពាក្យសុំ CSC តាម Online",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្រ",
+      "លិខិតពិនិត្យសុខភាពបរទេស (Foreigner Physical Examination Form)",
+      "លិខិតណែនាំ ២ ច្បាប់"
+    ],
+    tips: "ទំនាក់ទំនងទៅកាន់សាស្រ្តាចារ្យ ឬសាកលវិទ្យាល័យចិនជាមុនដើម្បីសុំលិខិតទទួលយកបឋម (Pre-admission letter) នឹងបង្កើនឱកាសជាប់ខ្ពស់។",
+    targetFields: "វិស្វកម្ម, ស្ថាបត្យកម្ម, សេដ្ឋកិច្ចពាណិជ្ជកម្ម, កសិកម្ម, វេជ្ជសាស្ត្រចិន, ភាសាចិន",
+    link: "https://www.campuschina.org",
+    icon: "apartment"
+  },
+  {
+    id: "sirindhorn",
+    name: "អាហារូបករណ៍ព្រះរាជទានព្រះនាងកញា សិរិនថន (ថៃ - TICA)",
+    nameEn: "Royal Princess Sirindhorn & TICA Scholarship",
+    sponsor: "ព្រះរាជឧបត្ថម្ភព្រះនាងកញា សិរិនថន & ទីភ្នាក់ងារ TICA",
+    country: "🇹🇭 ប្រទេសថៃ",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + ស្នាក់នៅ + ឧបត្ថម្ភប្រចាំខែ",
+    level: "all-levels",
+    levelLabel: "បរិញ្ញាបត្រ & អនុបណ្ឌិត",
+    deadline: "ធ្នូ – កុម្ភៈ រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ព្រះរាជទានដ៏ឧត្តុង្គឧត្តមសម្រាប់សិស្ស-និស្សិតកម្ពុជា ដើម្បីបន្តការសិក្សានៅសាកលវិទ្យាល័យកំពូលៗនៃប្រទេសថៃ (Chulalongkorn, Mahidol, Thammasat, Kasetsart...)។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០%",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅប្រចាំខែ (Stipend)",
+      "កន្លែងស្នាក់នៅ និងថ្លៃសៀវភៅសិក្សា",
+      "ធានារ៉ាប់រងសុខភាព និងគ្រោះថ្នាក់"
+    ],
+    requirements: [
+      "សិស្ស-និស្សិតកម្ពុជាដែលមានលទ្ធផលសិក្សាឆ្នើម",
+      "មានសុខភាពល្អ និងអាកប្បកិរិយាល្អ",
+      "ឆ្លងកាត់ការប្រឡងជ្រើសរើសតាមរយៈក្រសួងអប់រំ យុវជន និងកីឡាកម្ពុជា"
+    ],
+    documents: [
+      "ពាក្យសុំអាហារូបករណ៍ព្រះរាជទាន",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្របាក់ឌុប/បរិញ្ញាបត្រ",
+      "លិខិតពិនិត្យសុខភាព"
+    ],
+    tips: "តាមដានសេចក្តីជូនដំណឹងផ្លូវការរបស់នាយកដ្ឋានទំនាក់ទំនងវប្បធម៌ និងអាហារូបករណ៍ នៃក្រសួងអប់រំកម្ពុជា។",
+    targetFields: "សុខាភិបាលសាធារណៈ, វិស្វកម្ម, កសិកម្ម, វិទ្យាសាស្ត្រជីវសាស្រ្ត, IT",
+    link: "https://tica-thaigov.mfa.go.th",
+    icon: "diamond"
+  },
+  {
+    id: "stipendium",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលហុងគ្រី (Stipendium Hungaricum)",
+    nameEn: "Stipendium Hungaricum Scholarship (Hungary)",
+    sponsor: "រដ្ឋាភិបាលហុងគ្រី (Tempus Public Foundation) & MoEYS",
+    country: "🇭🇺 ហុងគ្រី",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + ស្នាក់នៅ + ឧបត្ថម្ភ (€12,000/ឆ្នាំ)",
+    level: "all-levels",
+    levelLabel: "បរិញ្ញាបត្រ, អនុបណ្ឌិត, បណ្ឌិត",
+    deadline: "វិច្ឆិកា – មករា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍រដ្ឋាភិបាលនៃសហភាពអឺរ៉ុប ផ្តល់ការសិក្សាថ្នាក់ឧត្តមសិក្សាជាភាសាអង់គ្លេស ១០០% នៅសាកលវិទ្យាល័យប្រវត្តិសាស្ត្រល្បីៗក្នុងប្រទេសហុងគ្រី។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០%",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅប្រចាំខែ (Stipend)",
+      "កន្លែងស្នាក់នៅក្នុងអន្តេវាសិកដ្ឋាន ឬប្រាក់ឧបត្ថម្ភថ្លៃជួលផ្ទះ",
+      "ការធានារ៉ាប់រងសុខភាពស្របតាមច្បាប់សហភាពអឺរ៉ុប"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ, សញ្ញាបត្រ និងព្រឹត្តិបត្រពិន្ទុបាក់ឌុប ឬបរិញ្ញាបត្រ",
+      "សមត្ថភាពភាសាអង់គ្លេសល្អ (IELTS 5.5–6.5+ អាស្រ័យលើកម្រិត)",
+      "ត្រូវទទួលបានការតែងតាំង (Nomination) ពីក្រសួងអប់រំកម្ពុជា"
+    ],
+    documents: [
+      "ពាក្យសុំតាមប្រព័ន្ធ Online Stipendium Hungaricum",
+      "Motivation Letter (លិខិតលើកទឹកចិត្ត)",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្របកប្រែភាសាអង់គ្លេស",
+      "លទ្ធផលតេស្តភាសាអង់គ្លេស"
+    ],
+    tips: "ត្រូវបំពេញពាក្យលើ Website ហុងគ្រីផង និងដាក់ពាក្យទៅកាន់ក្រសួងអប់រំកម្ពុជា (MoEYS) ផងដើម្បីទទួលបានការតែងតាំង។",
+    targetFields: "កសិកម្ម, បរិស្ថាន និងគ្រប់គ្រងទឹក, វិស្វកម្ម, វិទ្យាសាស្ត្រកុំព្យូទ័រ, សេដ្ឋកិច្ច",
+    link: "https://stipendiumhungaricum.hu",
+    icon: "castle"
+  },
+  {
+    id: "erasmus",
+    name: "អាហារូបករណ៍សហភាពអឺរ៉ុប (Erasmus Mundus Joint Masters)",
+    nameEn: "EU Erasmus Mundus Joint Masters (EMJM)",
+    sponsor: "គណៈកម្មការអឺរ៉ុប (European Commission)",
+    country: "🇪🇺 សហភាពអឺរ៉ុប",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "€1,400/ខែ + ថ្លៃសិក្សា & ធ្វើដំណើរ",
+    level: "postgrad",
+    levelLabel: "អនុបណ្ឌិតរួម (Joint Master's)",
+    deadline: "តុលា – មករា/កុម្ភៈ រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ដ៏ពិសេសដែលអនុញ្ញាតឱ្យនិស្សិតសិក្សាថ្នាក់អនុបណ្ឌិតនៅសាកលវិទ្យាល័យយ៉ាងតិច ២ ទៅ ៣ ប្រទេសផ្សេងគ្នាក្នុងសហភាពអឺរ៉ុប និងទទួលបានសញ្ញាបត្ររួម ឬពហុសញ្ញាបត្រ។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% ទាំងស្រុង",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅ €1,400/ខែ (~$1,500/ខែ)",
+      "ថ្លៃធ្វើដំណើរ និងសំបុត្រយន្តហោះឆ្លងកាត់បណ្តាប្រទេសនៅអឺរ៉ុប",
+      "ធានារ៉ាប់រងសុខភាព និងការធ្វើដំណើរទូទាំងអឺរ៉ុប"
+    ],
+    requirements: [
+      "បញ្ចប់ថ្នាក់បរិញ្ញាបត្រដោយមានលទ្ធផលឆ្នើម",
+      "សមត្ថភាពភាសាអង់គ្លេសកម្រិតខ្ពស់ (IELTS 6.5 – 7.0+)",
+      "លិខិតលើកទឹកចិត្ត (Motivation Letter) ខ្លាំង និងត្រូវនឹងជំនាញ",
+      "បើកចំហសម្រាប់និស្សិតគ្រប់រូប គ្មានការកម្រិតអាយុ"
+    ],
+    documents: [
+      "សញ្ញាបត្រ និងព្រឹត្តិបត្រពិន្ទុបរិញ្ញាបត្រ",
+      "លទ្ធផលតេស្ត IELTS/TOEFL",
+      "Curriculum Vitae (CV) ទម្រង់ Europass",
+      "លិខិតណែនាំពីសាស្ត្រាចារ្យ ២-៣ ច្បាប់"
+    ],
+    tips: "ស្វែងរកកម្មវិធី Master ដែលត្រូវនឹងជំនាញរបស់អ្នកក្នុងកាតាឡុក Erasmus Mundus Catalogue ហើយអាចដាក់ពាក្យបានរហូតដល់ ៣ កម្មវិធីផ្សេងគ្នា។",
+    targetFields: "គ្រប់ជំនាញចម្រុះ (AI, Big Data, សន្តិសុខអន្តរជាតិ, គ្រប់គ្រងបរិស្ថាន, ជីវវេជ្ជសាស្ត្រ...)",
+    link: "https://erasmus-plus.ec.europa.eu",
+    icon: "hub"
+  },
+  {
+    id: "asean-sg",
+    name: "អាហារូបករណ៍អាស៊ាន សិង្ហបុរី (NUS / NTU / SMU)",
+    nameEn: "Singapore ASEAN Undergraduate Scholarship",
+    sponsor: "សាកលវិទ្យាល័យជាតិសិង្ហបុរី (NUS), NTU & SMU",
+    country: "🇸🇬 សិង្ហបុរី",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "ថ្លៃសិក្សា + S$5,800/ឆ្នាំ + ស្នាក់នៅ",
+    level: "undergrad",
+    levelLabel: "បរិញ្ញាបត្រ (Undergraduate)",
+    deadline: "វិច្ឆិកា – មករា រៀងរាល់ឆ្នាំ",
+    desc: "អាហារូបករណ៍ថ្នាក់បរិញ្ញាបត្រនៅសាកលវិទ្យាល័យកំពូលលំដាប់ពិភពលោកនៅសិង្ហបុរី (NUS និង NTU ជាប់ចំណាត់ថ្នាក់ Top 15 សកលលោក) ផ្តល់ជូនសិស្សឆ្នើមមកពីបណ្តាប្រទេសអាស៊ាន។",
+    benefits: [
+      "លើកលែងថ្លៃសិក្សា ១០០% ពេញ ៣ ទៅ ៤ ឆ្នាំ",
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅ S$5,800/ឆ្នាំ",
+      "ប្រាក់ឧបត្ថម្ភថ្លៃស្នាក់នៅ S$3,000/ឆ្នាំ",
+      "ប្រាក់ឧបត្ថម្ភកុំព្យូទ័រពេលមកដល់ S$1,750"
+    ],
+    requirements: [
+      "សិស្សបញ្ចប់បាក់ឌុប ឬកំពុងរៀនថ្នាក់ទី១២ ដែលមានលទ្ធផលឆ្នើមបំផុត (និទ្ទេស A សឹងគ្រប់មុខវិជ្ជា)",
+      "សមត្ថភាពភាសាអង់គ្លេសស្ទាត់ជំនាញ (IELTS 6.5+ ឬ SAT/ACT)",
+      "មានកំណត់ត្រាភាពជាអ្នកដឹកនាំ និងសកម្មភាពសង្គមលេចធ្លោ"
+    ],
+    documents: [
+      "ព្រឹត្តិបត្រពិន្ទុវិទ្យាល័យ (ថ្នាក់ទី១០ ទី១១ ទី១២)",
+      "លទ្ធផលបាក់ឌុប ឬលទ្ធផលប្រឡងអន្តរជាតិ (SAT, IELTS)",
+      "លិខិតបញ្ជាក់សកម្មភាពក្រៅម៉ោងសិក្សា និងពានរង្វាន់"
+    ],
+    tips: "ពាក្យសុំអាហារូបករណ៍ត្រូវបានពិចារណាដោយស្វ័យប្រវត្តិនៅពេលអ្នកដាក់ពាក្យចូលរៀន (Admission Application) នៅ NUS ឬ NTU។",
+    targetFields: "វិទ្យាសាស្ត្រកុំព្យូទ័រ, វិស្វកម្ម, ធុរកិច្ច & គណនេយ្យ, Data Science, ជីវវេជ្ជសាស្ត្រ",
+    link: "https://www.nus.edu.sg/oam/scholarships/community/asean-undergraduate-scholarship-(aus)",
+    icon: "military_tech"
+  },
+  {
+    id: "eiffel",
+    name: "អាហារូបករណ៍រដ្ឋាភិបាលបារាំង (France Eiffel Excellence)",
+    nameEn: "France Eiffel Excellence Scholarship Programme",
+    sponsor: "ក្រសួងអឺរ៉ុប និងការបរទេសបារាំង / Campus France",
+    country: "🇫🇷 ប្រទេសបារាំង",
+    cat: "international",
+    coverageType: "full",
+    coverageLabel: "ពេញលេញ ១០០%",
+    amount: "€1,181 – €1,700/ខែ + សំបុត្រយន្តហោះ",
+    level: "postgrad",
+    levelLabel: "អនុបណ្ឌិត & បណ្ឌិត (Master / PhD)",
+    deadline: "តុលា – មករា រៀងរាល់ឆ្នាំ",
+    desc: "បង្កើតឡើងដើម្បីទាក់ទាញនិស្សិតឆ្នើមបំផុតមកពីជុំវិញពិភពលោកមកបន្តការសិក្សាថ្នាក់អនុបណ្ឌិត និងបណ្ឌិតនៅគ្រឹះស្ថានឧត្តមសិក្សាកំពូលៗក្នុងប្រទេសបារាំង។",
+    benefits: [
+      "ប្រាក់ឧបត្ថម្ភការរស់នៅ €1,181/ខែ (សម្រាប់ Master) ឬ €1,700/ខែ (សម្រាប់ PhD)",
+      "សំបុត្រយន្តហោះអន្តរជាតិទៅ-មក",
+      "ការធានារ៉ាប់រងសង្គម និងសុខភាព",
+      "អាទិភាពទទួលបានកន្លែងស្នាក់នៅ និងសកម្មភាពវប្បធម៌"
+    ],
+    requirements: [
+      "សញ្ជាតិខ្មែរ (មិនមែនសញ្ជាតិបារាំង)",
+      "អាយុក្រោម ២៥ ឆ្នាំ (សម្រាប់ Master) ឬក្រោម ៣០ ឆ្នាំ (សម្រាប់ PhD)",
+      "លទ្ធផលសិក្សាឆ្នើមខ្លាំង",
+      "ត្រូវទទួលបានការតែងតាំងផ្ទាល់ពីសាកលវិទ្យាល័យនៅបារាំង (មិនអាចដាក់ពាក្យផ្ទាល់ដោយបុគ្គលទេ)"
+    ],
+    documents: [
+      "ប្រវត្តិរូបសង្ខេប CV",
+      "លិខិតលើកទឹកចិត្ត និងគម្រោងអាជីព",
+      "ព្រឹត្តិបត្រពិន្ទុ និងសញ្ញាបត្រ",
+      "លិខិតបញ្ជាក់កម្រិតភាសា (បារាំង ឬអង់គ្លេស តាមកម្មវិធី)"
+    ],
+    tips: "ត្រូវទាក់ទងទៅសាកលវិទ្យាល័យនៅបារាំងដែលអ្នកចង់រៀនតាំងពីខែកញ្ញា/តុលា ដើម្បីឱ្យសាលាយល់ព្រមតែងតាំងអ្នកទៅ Campus France។",
+    targetFields: "វិទ្យាសាស្ត្រវិស្វកម្ម, IT, សេដ្ឋកិច្ច និងគ្រប់គ្រង, ច្បាប់, វិទ្យាសាស្ត្រនយោបាយ",
+    link: "https://www.campusfrance.org/en/eiffel-scholarship-program-excellence",
+    icon: "auto_stories"
+  }
+];
+
+function toKhmerNum(n){
+  const k=["០","១","២","៣","៤","៥","៦","៧","៨","៩"];
+  return String(n).replace(/\d/g,d=>k[d]);
+}
+
+let schSearch = "", schCat = "all", schLevel = "all";
+
+function setScholarshipCategory(cat){
+  schCat = cat;
+  document.querySelectorAll("#scholarship-chips .chip").forEach(c => {
+    c.classList.toggle("active", c.dataset.schCat === cat);
+  });
+  renderScholarships();
+}
+
+function filterScholarships(){
+  const searchInput = document.getElementById("scholarship-search");
+  const levelSelect = document.getElementById("scholarship-level-filter");
+  if (searchInput) schSearch = searchInput.value.trim().toLowerCase();
+  if (levelSelect) schLevel = levelSelect.value;
+  renderScholarships();
+}
+
+function renderScholarships(){
+  const grid = document.getElementById("scholar-grid");
+  const empty = document.getElementById("scholar-empty");
+  const countText = document.getElementById("scholarship-count-text");
+  if (!grid) return;
+
+  const totalAll = scholarshipsData.length;
+  const totalDom = scholarshipsData.filter(s => s.cat === "domestic").length;
+  const totalInt = scholarshipsData.filter(s => s.cat === "international").length;
+
+  const countAllEl = document.getElementById("sch-count-all");
+  const countDomEl = document.getElementById("sch-count-domestic");
+  const countIntEl = document.getElementById("sch-count-international");
+  if (countAllEl) countAllEl.textContent = toKhmerNum(totalAll);
+  if (countDomEl) countDomEl.textContent = toKhmerNum(totalDom);
+  if (countIntEl) countIntEl.textContent = toKhmerNum(totalInt);
+
+  const filtered = scholarshipsData.filter(s => {
+    if (schCat === "domestic" && s.cat !== "domestic") return false;
+    if (schCat === "international" && s.cat !== "international") return false;
+    if (schCat === "full" && s.coverageType !== "full") return false;
+    if (schCat === "partial" && s.coverageType !== "partial") return false;
+
+    if (schLevel !== "all") {
+      if (s.level !== "all-levels" && s.level !== schLevel) return false;
+    }
+
+    if (schSearch) {
+      const haystack = [
+        s.name,
+        s.nameEn,
+        s.country,
+        s.sponsor,
+        s.desc,
+        s.targetFields,
+        s.amount,
+        s.deadline,
+        ...(s.benefits || []),
+        ...(s.requirements || [])
+      ].join(" ").toLowerCase();
+      if (!haystack.includes(schSearch)) return false;
+    }
+    return true;
+  });
+
+  if (countText) {
+    countText.innerHTML = `<i class="material-symbols-outlined" style="font-size:16px;color:var(--accent)">school</i> បង្ហាញ ${toKhmerNum(filtered.length)} អាហារូបករណ៍`;
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = "";
+    if (empty) empty.style.display = "block";
+    return;
+  }
+  if (empty) empty.style.display = "none";
+
+  grid.innerHTML = filtered.map((s, i) => `
+    <div class="scholar-card" style="animation-delay:${i * 0.03}s" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
+      <div class="sch-top">
+        <div class="sch-icon"><i class="material-symbols-outlined">${s.icon}</i></div>
+        <div class="sch-badge-group">
+          <span class="sch-country-pill">${s.country}</span>
+          <span class="sch-tag ${s.coverageType === 'partial' ? 'partial' : ''}">${s.coverageLabel}</span>
+        </div>
+      </div>
+      <h3>${s.name}</h3>
+      <div class="sch-sponsor">${s.sponsor}</div>
+      <p class="sch-desc">${s.desc}</p>
+      <div class="sch-tags-row">
+        <span class="sch-pill"><i class="material-symbols-outlined" style="font-size:12px;vertical-align:-1px;margin-right:2px">school</i>${s.levelLabel}</span>
+        <span class="sch-pill" style="background:rgba(0,0,0,.04);color:var(--text-2)"><i class="material-symbols-outlined" style="font-size:12px;vertical-align:-1px;margin-right:2px">category</i>${s.targetFields.split(",")[0]}</span>
+      </div>
+      <div class="scholar-meta">
+        <span class="scholar-amount">${s.amount}</span>
+        <span class="scholar-deadline"><i class="material-symbols-outlined">event</i> ${s.deadline}</span>
+      </div>
+      <div class="sch-action-row">
+        <span>មើលលម្អិត & ដាក់ពាក្យ</span>
+        <i class="material-symbols-outlined">arrow_forward</i>
+      </div>
+    </div>
+  `).join("");
+}
+
+function openScholarship(id){
+  const s = scholarshipsData.find(x => x.id === id);
+  if (!s) return;
+  const modalContent = document.getElementById("scholar-modal-content");
+  const overlay = document.getElementById("scholarship-modal-overlay");
+  if (!modalContent || !overlay) return;
+
+  modalContent.innerHTML = `
+    <div class="scholar-modal-header">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span class="sch-country-pill" style="font-size:12px;padding:3px 10px">${s.country}</span>
+        <span class="sch-tag ${s.coverageType === 'partial' ? 'partial' : ''}">${s.coverageLabel}</span>
+      </div>
+      <h2 id="sch-modal-title" style="font-size:18px;font-weight:800;margin:0 0 4px;color:var(--text-1);line-height:1.4">${s.name}</h2>
+      <div style="font-size:13px;color:var(--text-3);font-weight:500">${s.nameEn}</div>
+      <div style="font-size:12px;color:var(--accent);font-weight:600;margin-top:6px">${s.sponsor}</div>
+    </div>
+    <div class="scholar-modal-body">
+      <div class="sch-stat-grid">
+        <div class="sch-stat-item">
+          <span class="sch-stat-label">កម្រិតសិក្សា</span>
+          <span class="sch-stat-val">${s.levelLabel}</span>
+        </div>
+        <div class="sch-stat-item">
+          <span class="sch-stat-label">ប្រទេស / ម្ចាស់ជំនួយ</span>
+          <span class="sch-stat-val">${s.country}</span>
+        </div>
+        <div class="sch-stat-item">
+          <span class="sch-stat-label">ទំហំអាហារូបករណ៍</span>
+          <span class="sch-stat-val" style="color:var(--accent)">${s.amount}</span>
+        </div>
+        <div class="sch-stat-item">
+          <span class="sch-stat-label">ផុតកំណត់ទទួលពាក្យ</span>
+          <span class="sch-stat-val">${s.deadline}</span>
+        </div>
+      </div>
+
+      <div class="sch-sec-title"><i class="material-symbols-outlined">info</i> សេចក្តីសង្ខេប</div>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-2);margin:0 0 16px">${s.desc}</p>
+
+      <div class="sch-sec-title"><i class="material-symbols-outlined">verified</i> អត្ថប្រយោជន៍ទទួលបាន</div>
+      <ul class="sch-list">
+        ${(s.benefits || []).map(b => `<li><i class="material-symbols-outlined">check_circle</i><span>${b}</span></li>`).join("")}
+      </ul>
+
+      <div class="sch-sec-title"><i class="material-symbols-outlined">checklist</i> លក្ខខណ្ឌជ្រើសរើស (Requirements)</div>
+      <ul class="sch-list req">
+        ${(s.requirements || []).map(r => `<li><i class="material-symbols-outlined">arrow_right</i><span>${r}</span></li>`).join("")}
+      </ul>
+
+      <div class="sch-sec-title"><i class="material-symbols-outlined">description</i> ឯកសារចាំបាច់ (Required Documents)</div>
+      <ul class="sch-list doc">
+        ${(s.documents || []).map(d => `<li><i class="material-symbols-outlined">article</i><span>${d}</span></li>`).join("")}
+      </ul>
+
+      <div class="sch-sec-title"><i class="material-symbols-outlined">school</i> ជំនាញ/វិស័យអាទិភាព</div>
+      <p style="font-size:13px;color:var(--text-2);margin:0 0 14px;background:var(--accent-tint);padding:10px 14px;border-radius:8px">
+        <i class="material-symbols-outlined" style="font-size:16px;color:var(--accent);vertical-align:-2px;margin-right:6px">category</i>${s.targetFields}
+      </p>
+
+      ${s.tips ? `
+        <div class="sch-tip-card">
+          <i class="material-symbols-outlined">lightbulb</i>
+          <div>
+            <div style="font-size:12.5px;font-weight:700;color:var(--text-1);margin-bottom:2px">គន្លឹះត្រៀមខ្លួនសម្រាប់សិស្ស-និស្សិតខ្មែរ៖</div>
+            <p>${s.tips}</p>
+          </div>
+        </div>
+      ` : ""}
+    </div>
+    <div class="scholar-modal-footer">
+      <button type="button" class="btn btn-ghost btn-sm" onclick="closeScholarshipModal()">បិទ</button>
+      <a href="${s.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+        <i class="material-symbols-outlined">open_in_new</i> ទៅកាន់គេហទំព័រផ្លូវការ / ដាក់ពាក្យ
+      </a>
+    </div>
+  `;
+
+  overlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeScholarshipModal(){
+  const overlay = document.getElementById("scholarship-modal-overlay");
+  if (overlay) overlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    const overlay = document.getElementById("scholarship-modal-overlay");
+    if (overlay && overlay.classList.contains("show")) {
+      closeScholarshipModal();
+    }
+  }
+});
+
+window.setScholarshipCategory = setScholarshipCategory;
+window.filterScholarships = filterScholarships;
+window.renderScholarships = renderScholarships;
+window.openScholarship = openScholarship;
+window.closeScholarshipModal = closeScholarshipModal;
 
 
 /* ===== GOAL 2: SCHOOLS ===== */
@@ -996,10 +1933,10 @@ function renderPlan(){
   html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">school</i> សាលាដែលរក្សាទុក</h3><button class="btn btn-ghost btn-sm" onclick="showView('schools')"><i class="material-symbols-outlined">add</i> បន្ថែម</button></div>`;
   html+=plan.schools.length?`<div class="schools-grid">${plan.schools.map(planSchoolCard).join("")}</div>`:`<div class="plan-empty">មិនទាន់មានសាលារក្សាទុក។ ចុច 🔖 នៅលើកាតសាលា។</div>`;
   html+=`</div>`;
-  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍ណែនាំ</h3><button class="btn btn-ghost btn-sm" onclick="showView('scholarship')">មើលទាំងអស់ →</button></div><div class="scholarship-list">
-    <div class="scholarship-item"><h5>អាហារូបករណ៍រដ្ឋាភិបាល (MOEYS)</h5><p>សម្រាប់សិស្សពូកែសិក្សានៅសាកលវិទ្យាល័យរដ្ឋ</p><span class="scholarship-amount">ដល់ $2,000/ឆ្នាំ</span></div>
-    <div class="scholarship-item"><h5>មូលនិធិ JICA (ជប៉ុន)</h5><p>ផ្នែកវិទ្យាសាស្ត្រ និងបច្ចេកវិទ្យា</p><span class="scholarship-amount">ដល់ $3,500/ឆ្នាំ</span></div>
-    <div class="scholarship-item"><h5>អាហារូបករណ៍សាកលវិទ្យាល័យ</h5><p>បញ្ចុះតម្លៃតាមលទ្ធផលសិក្សា</p><span class="scholarship-amount">បញ្ចុះ ២០–១០០%</span></div>
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">workspace_premium</i> អាហារូបករណ៍ណែនាំ</h3><button class="btn btn-ghost btn-sm" onclick="showView('scholarship')">មើលទាំងអស់ (${toKhmerNum(scholarshipsData.length)}) →</button></div><div class="scholarship-list">
+    <div class="scholarship-item" style="cursor:pointer" onclick="openScholarship('moeys')"><h5>អាហារូបករណ៍រដ្ឋាភិបាល (MoEYS)</h5><p>សម្រាប់សិស្សពូកែសិក្សានៅសាកលវិទ្យាល័យរដ្ឋ</p><span class="scholarship-amount">ឥតគិតថ្លៃ ៤–៥ ឆ្នាំ</span></div>
+    <div class="scholarship-item" style="cursor:pointer" onclick="openScholarship('mext')"><h5>អាហារូបករណ៍រដ្ឋាភិបាលជប៉ុន (MEXT)</h5><p>ផ្នែកវិទ្យាសាស្ត្រ បច្ចេកវិទ្យា និងវិស្វកម្ម</p><span class="scholarship-amount">ពេញលេញ ១០០%</span></div>
+    <div class="scholarship-item" style="cursor:pointer" onclick="openScholarship('cadt')"><h5>អាហារូបករណ៍ទេពកោសល្យឌីជីថល (CADT)</h5><p>ផ្នែក Software, AI និង Cybersecurity</p><span class="scholarship-amount">ពេញលេញ + Laptop</span></div>
   </div></div>`;
   if(plan.cost){
     const fmt=n=>"$"+Number(n).toLocaleString();
