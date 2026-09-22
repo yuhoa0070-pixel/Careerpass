@@ -1075,7 +1075,7 @@ function openScholarship(id){
       </div>
 
       <div class="sch-sec-title"><i class="material-symbols-outlined">info</i> សេចក្តីសង្ខេប</div>
-      <p style="font-size:13px;line-height:1.65;color:var(--text-2);margin:0 0 16px">${s.desc}</p>
+      <p style="font-size:14px;line-height:1.65;color:var(--text-2);margin:0 0 16px">${s.desc}</p>
 
       <div class="sch-sec-title"><i class="material-symbols-outlined">verified</i> អត្ថប្រយោជន៍ទទួលបាន</div>
       <ul class="sch-list">
@@ -1093,7 +1093,7 @@ function openScholarship(id){
       </ul>
 
       <div class="sch-sec-title"><i class="material-symbols-outlined">school</i> ជំនាញ/វិស័យអាទិភាព</div>
-      <p style="font-size:13px;color:var(--text-2);margin:0 0 14px;background:var(--accent-tint);padding:10px 14px;border-radius:8px">
+      <p style="font-size:14px;color:var(--text-2);margin:0 0 14px;background:var(--accent-tint);padding:10px 14px;border-radius:8px">
         <i class="material-symbols-outlined" style="font-size:16px;color:var(--accent);vertical-align:-2px;margin-right:6px">category</i>${s.targetFields}
       </p>
 
@@ -1969,7 +1969,7 @@ function renderPlan(){
       </div>
     </div></div>`;
   }
-  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">family_restroom</i> ចែករំលែកជាមួយឪពុកម្ដាយ</h3></div><div class="share-plan"><p style="font-size:13px;color:var(--text-2);margin:0 0 14px;line-height:1.55">ផ្ញើផែនការនេះ (អាជីព សាលា និងថ្លៃសិក្សា) ទៅឪពុកម្ដាយ ដើម្បីឲ្យគាត់មើល និងពិភាក្សាជាមួយអ្នក។</p><div class="share-module">${sharePlanBtnsHTML()}</div></div></div>`;
+  html+=`<div class="plan-block"><div class="plan-block-head"><h3><i class="material-symbols-outlined">family_restroom</i> ចែករំលែកជាមួយឪពុកម្ដាយ</h3></div><div class="share-plan"><p style="font-size:14px;color:var(--text-2);margin:0 0 14px;line-height:1.55">ផ្ញើផែនការនេះ (អាជីព សាលា និងថ្លៃសិក្សា) ទៅឪពុកម្ដាយ ដើម្បីឲ្យគាត់មើល និងពិភាក្សាជាមួយអ្នក។</p><div class="share-module">${sharePlanBtnsHTML()}</div></div></div>`;
   html+=`<div style="text-align:center;margin-top:8px"><button class="btn btn-ghost btn-sm" onclick="clearPlan()"><i class="material-symbols-outlined">delete</i> សម្អាតផែនការ</button></div>`;
   c.innerHTML=html;
 }
