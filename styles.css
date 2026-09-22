@@ -143,7 +143,7 @@ input,select{font-family:inherit;}
 @media(max-width:860px){
   .nav-inner{padding:0 18px;}
   .hamburger{display:flex;}
-  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:2px;padding:10px;border-radius:0;box-shadow:var(--shadow-md);transform:perspective(1400px) rotateX(-90deg);transform-origin:top center;opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .42s cubic-bezier(.62,.05,.3,1),opacity .3s ease;z-index:94;}
+  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;background:var(--card);border-bottom:1px solid var(--border);flex-direction:column;align-items:stretch;gap:2px;padding:10px;border-radius:0;box-shadow:var(--shadow-md);transform:perspective(1400px) rotateX(-90deg);transform-origin:top center;opacity:0;pointer-events:none;will-change:transform,opacity;transition:transform .42s cubic-bezier(.62,.05,.3,1),opacity .3s ease;z-index:94;}
   .nav-links.open{transform:perspective(1400px) rotateX(0deg);opacity:1;pointer-events:auto;}
   .s-link{padding:13px 14px;font-size:15px;border-radius:8px;}
 }
