@@ -1012,7 +1012,7 @@ function renderScholarships(){
   grid.innerHTML = filtered.map((s, i) => `
     <div class="scholar-card" style="animation-delay:${i * 0.03}s" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
       <div class="sch-top">
-        <div class="sch-icon"><i class="material-symbols-outlined">${s.icon}</i></div>
+        <div class="sch-icon"><i class="material-symbols-outlined">${s.icon}</i><img src="/public/scholarships/${s.id}.png" alt="" loading="lazy" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
         <div class="sch-badge-group">
           <span class="sch-country-pill">${s.country}</span>
           <span class="sch-tag ${s.coverageType === 'partial' ? 'partial' : ''}">${s.coverageLabel}</span>
@@ -1046,6 +1046,7 @@ function openScholarship(id){
 
   modalContent.innerHTML = `
     <div class="scholar-modal-header">
+      <div class="sch-modal-logo"><i class="material-symbols-outlined">${s.icon}</i><img src="/public/scholarships/${s.id}.png" alt="" onload="this.parentNode.classList.add('has-logo')" onerror="this.remove()"></div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
         <span class="sch-country-pill" style="font-size:12px;padding:3px 10px">${s.country}</span>
         <span class="sch-tag ${s.coverageType === 'partial' ? 'partial' : ''}">${s.coverageLabel}</span>
