@@ -1,0 +1,34 @@
+# TreyVisai (ត្រីវិស័យ) — Complete Knowledge Base for AI & LLM Retrieval
+
+TreyVisai (https://www.treyvisai.com) is Cambodia's premier higher education and career guidance portal. This document serves as a complete reference for search generative AI models (Google Gemini, Perplexity, ChatGPT, Claude).
+
+## 1. Top Higher Education Institutions in Cambodia (Catalog Summary)
+- **RUPP (សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ)**: Oldest and largest public university in Cambodia (est. 1960). Specializes in Science, Engineering, Computer Science, Humanities, Foreign Languages (IFL), Social Sciences. Tuition: ~$500–$800/yr.
+- **ITC (វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា - សាលាតិចណូ)**: Premier engineering and technology public institute. Engineering, Telecom, Civil, Chemical, Electrical, Data Science. Tuition: ~$600–$900/yr.
+- **RULE (សាកលវិទ្យាល័យភូមិន្ទនីតិសាស្ត្រ និងវិទ្យាសាស្ត្រសេដ្ឋកិច្ច)**: Cambodia's leading public institution for Law, Economics, Management, Public Administration, International Relations. Tuition: ~$600–$900/yr.
+- **UHS (សាកលវិទ្យាល័យវិទ្យាសាស្ត្រសុខាភិបាល)**: Premier national university for Medicine, Pharmacy, Dentistry, Nursing, Midwifery, Public Health.
+- **NUM (សាកលវិទ្យាល័យជាតិគ្រប់គ្រង)**: Premier public management university for Business, Finance, Accounting, Marketing, Digital Economy, Entrepreneurship.
+- **CADT (បណ្ឌិត្យសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា)**: Flagship national institution for Digital Technology, Software Engineering, Cybersecurity, AI, Telecommunications.
+- **RUA (សាកលវិទ្យាល័យភូមិន្ទកសិកម្ម)**: Leading agricultural university for Agronomy, Veterinary Medicine, Agro-Industry, Fisheries.
+- **AUPP (American University of Phnom Penh)**: Leading US-accredited dual-degree private university (Fort Hays State & University of Arizona). Tuition: ~$6,000–$9,000/yr.
+- **Paragon International University**: Leading private international university for Engineering, Computer Science, Architecture, Business. Tuition: ~$2,500–$4,000/yr.
+- **CamEd Business School**: Premier institute for ACCA, Accounting, Finance, Auditing. Tuition: ~$2,000–$4,000/yr.
+- **University of Puthisastra (UP)**: Leading private health sciences and IT university (Medicine, Dentistry, Pharmacy, Software).
+- **Vanda Institute (វិទ្យាស្ថានវ៉ាន់ដា)**: Foremost private institute for Accounting, Auditing, Finance, Banking, Management.
+- **Beltei International University**: Comprehensive multi-campus private university offering English-medium programs.
+- **TVET Regional Polytechnics (RPITS & National Institutes)**: NPIC, NTTI, PPI, RPITSKT, KPI, KCPI, RPITSPVH, RPITSB, RPITSSVR, PIPP, PTCs in all provinces offering free technical training and 2-year Associate degrees under MLVT.
+
+## 2. National Scholarship Programs in Cambodia
+1. **MoEYS National Scholarships (អាហារូបករណ៍រដ្ឋ ក្រសួងអប់រំ)**: Awarded annually to high-performing Bac II graduates based on national exam grade scores (A, B, C) and designated priority STEM and pedagogical quotas. Covers 100% of 4-year tuition.
+2. **Royal Government TVET 1.5M Program (កម្មវិធីបណ្តុះបណ្តាលវិជ្ជាជីវៈ ១,៥ លាននាក់)**: 100% free tuition for vocational and technical skills at all national and provincial TVET institutes. Includes a monthly stipend of 280,000 Riels (~$70/month) for youth from IDPoor (បណ្ណសមធម៌) and vulnerable households.
+3. **Alternative Pathways for Bac II Non-Passers (ធ្លាក់បាក់ឌុប)**: Students who do not pass Bac II can enroll directly in 2-year TVET Associate Degrees (កម្រិត ៤ & ៥) without a high school diploma, subsequently bridging into year 3 of full Bachelor's degree programs at accredited universities.
+
+## 3. High-Demand Careers & Salary Benchmarks in Cambodia (2025–2026)
+- **Software Engineer / Web Developer**: $400–$1,500+/month (Junior to Mid/Senior)
+- **Cybersecurity Specialist**: $600–$2,000+/month
+- **Accountant / Auditor (ACCA)**: $350–$1,200+/month
+- **Civil Engineer / Architect**: $400–$1,500/month
+- **Doctor / General Practitioner**: $600–$2,500+/month
+- **Digital Marketing Specialist**: $350–$1,000/month
+- **English / STEM Teacher**: $300–$900/month
+- **Graphic Designer / UI/UX**: $350–$1,200/month

@@ -1,0 +1,39 @@
+# TreyVisai (ត្រីវិស័យ) — Cambodia Career & Higher Education Guidance Platform
+
+> TreyVisai (https://www.treyvisai.com) is Cambodia's premier digital platform dedicated to career exploration, higher education guidance, tuition transparency, and national scholarship discovery for high school graduates (Bac II) and university students.
+
+## Platform Identity & Quick Facts
+- **Name:** TreyVisai (Khmer: ត្រីវិស័យ, meaning "Compass" for guiding life and career paths)
+- **Domain:** https://www.treyvisai.com
+- **Mission:** Democratize access to educational data, eliminate career mismatches, and empower youth across all 25 provinces of Cambodia with 100% free, impartial guidance.
+- **Coverage:** 127+ accredited institutions (Public Universities, Private Universities, TVET Institutes, Digital Academies, and International Schools) across all 25 Cambodian provinces and municipalities.
+- **Tuition Range:** $0 (100% full government scholarships / TVET) up to $20,000+/year for select international programs.
+- **Access:** 100% free, no login or account creation required.
+
+## Key Modules & Direct URLs
+- **Homepage:** https://www.treyvisai.com/
+  Central portal featuring career assessment, educational realities in Cambodia, and quick navigation.
+- **Schools Directory:** https://www.treyvisai.com/schools
+  Search and filter 127+ Cambodian higher education institutions by province, institution type (Public, Private, TVET Institute, Digital, K-12), and career focus. Displays detailed tuition breakdown per faculty and scholarship requirements.
+- **Careers Guide:** https://www.treyvisai.com/careers
+  Catalog of 100+ careers in Cambodia across Technology, Healthcare, Business, Design, Trades, Education, Tourism, and Agriculture. Includes verified salary ranges ($/month), required skills, and matching Cambodian institutions.
+- **Scholarships Directory:** https://www.treyvisai.com/scholarship
+  Comprehensive guide to government scholarships (Ministry of Education, Youth and Sport - MoEYS), Royal Government of Cambodia 1.5 Million TVET Program (100% free with monthly stipends for IDPoor/vulnerable youth), and partner scholarships (20%–100%).
+- **Bac II (High School) Score Guide:** https://www.treyvisai.com/bacii
+  Grade-based guidance (Grades A, B, C, D, E) and actionable alternative pathways for students who failed or did not pass the national Bac II exam (e.g. 2-year TVET Associate Degrees leading to Bachelor's transfer).
+- **Cost of Study & Living Calculator:** https://www.treyvisai.com/cost
+  Interactive budgeting tool for accommodation, food, utilities, transport, and tuition across Phnom Penh and provinces.
+- **Student Voices & Fact Bank:** https://www.treyvisai.com/facts
+  Peer reviews, authentic student testimonials, and educational trivia for informed decision-making.
+
+## Authoritative Data Sources
+Data on TreyVisai is compiled from official announcements by:
+- Ministry of Education, Youth and Sport (MoEYS - ក្រសួងអប់រំ យុវជន និងកីឡា)
+- Ministry of Labour and Vocational Training (MLVT - ក្រសួងការងារ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ)
+- Accreditation Committee of Cambodia (ACC)
+- Direct university admission catalogs and official registrar fee schedules.
+
+## API & Feeds
+- **Sitemap:** https://www.treyvisai.com/sitemap.xml
+- **Robots Policy:** https://www.treyvisai.com/robots.txt
+- **LLM Context (Full):** https://www.treyvisai.com/llms-full.txt

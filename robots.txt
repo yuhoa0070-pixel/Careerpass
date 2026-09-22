@@ -1,16 +1,45 @@
 # Robots.txt for TreyVisai
-# https://www.treyvisai.com
+# Official: https://www.treyvisai.com
 
 User-agent: *
 Allow: /
 
-# Dedicated crawlers for Google, Facebook, Telegram & X
+# Dedicated search engine crawlers
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Mobile
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Dedicated AI search and generative answer engines (AGO / GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Social media unfurlers
 User-agent: Facebot
 Allow: /
 
@@ -23,5 +52,7 @@ Allow: /
 User-agent: Twitterbot
 Allow: /
 
-# Sitemap
+# AI Context & Sitemaps
 Sitemap: https://www.treyvisai.com/sitemap.xml
+# LLMs Context Standard
+# LLMs-Txt: https://www.treyvisai.com/llms.txt
