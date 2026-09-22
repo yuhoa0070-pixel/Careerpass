@@ -1996,12 +1996,12 @@ function costShareText(){
   L.push("💰 សរុប៖ "+(d.total||"$0"));
   if(d.pay&&d.pay!=="—")L.push("📊 ROI សងវិញ "+d.pay+(d.sal?" · ប្រាក់ខែ ~"+d.sal:""));
   L.push(bar);
-  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai: https://treyvisai.com/cost");
+  L.push("🔗 គណនាដោយខ្លួនឯងនៅ TreyVisai: https://www.treyvisai.com/cost");
   L.push("#TreyVisai #ត្រីវិស័យ #សាកលវិទ្យាល័យ #ថ្លៃសិក្សា #បាក់ឌុប #CambodiaEducation");
   return L.join("\n");
 }
 function shareCostTo(p){
-  const shareUrl="https://treyvisai.com/cost";
+  const shareUrl="https://www.treyvisai.com/cost";
   if(p==="copy"){
     const txt=costShareText()+"\n"+shareUrl;const done=()=>showShareToast("បានចម្លងអត្ថបទ ✓");
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}else fallbackCopy(txt,done);

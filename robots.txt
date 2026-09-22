@@ -1,5 +1,5 @@
 # Robots.txt for TreyVisai
-# https://treyvisai.com
+# https://www.treyvisai.com
 
 User-agent: *
 Allow: /
@@ -24,4 +24,4 @@ User-agent: Twitterbot
 Allow: /
 
 # Sitemap
-Sitemap: https://treyvisai.com/sitemap.xml
+Sitemap: https://www.treyvisai.com/sitemap.xml
