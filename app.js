@@ -1774,8 +1774,8 @@ function openCareer(id){
   const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
   const relHtml=rel.length?rel.map(s=>`<button type="button" class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></button>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
-    <button type="button" class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
     <div class="career-hero-banner" style="background-image:url('/public/careers/${j.id}.jpg')">
+      <button type="button" class="detail-back detail-back-overlay" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
       <div class="career-hero-scrim">
         <div class="career-hero-logo"><i class="material-symbols-outlined">${j.icon}</i></div>
         <div class="career-hero-info">
