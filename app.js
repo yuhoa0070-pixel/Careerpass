@@ -1749,7 +1749,7 @@ function renderCareers(){
     <div class="job-card" style="animation-delay:${i*.04+.02}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
       <img class="job-card-bg" src="/public/careers/${j.id}.jpg" alt="${j.name}" loading="lazy" onerror="this.onerror=null;this.src='/public/careers/cats/${j.cat}.jpg';">
       <div class="job-top-bar">
-        <span class="job-cat-badge"><i class="material-symbols-outlined">${jobCats[j.cat].icon}</i> ${jobCats[j.cat].label}</span>
+        <span class="job-cat-badge" title="${j.name}"><i class="material-symbols-outlined">${j.icon}</i></span>
         ${j.growing?`<span class="job-grow-badge"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span>`:""}
       </div>
       <div class="job-scrim">
