@@ -1756,9 +1756,6 @@ function renderCareers(){
         <div class="job-salary-tag">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</div>
         <h3 class="job-card-title">${j.name}</h3>
         <p class="job-card-desc">${j.desc}</p>
-        <div class="job-card-skills">
-          ${(j.skills||[]).slice(0,3).map(sk=>`<span class="job-skill-pill">${sk}</span>`).join("")}
-        </div>
         <div class="job-card-foot">
           <span class="job-schools-count"><i class="material-symbols-outlined">school</i> ${(j.schools||[]).length} សាលា</span>
           <span class="job-view-more">មើលលម្អិត →</span>
