@@ -47,8 +47,8 @@
 [data-theme="dark"] .vs-head-a{background:rgba(255,255,255,.08);color:var(--text-2);}
 [data-theme="dark"] .vs-a{background:rgba(255,255,255,.04);border-left-color:rgba(255,255,255,.22);color:var(--text-3);}
 [data-theme="dark"] .vs-b{background:var(--accent-tint);border-left-color:var(--accent);color:var(--text-2);}
-[data-theme="dark"] .school-logo.has-logo,[data-theme="dark"] .detail-logo.has-logo,[data-theme="dark"] .scholar-card .sch-icon.has-logo,[data-theme="dark"] .sch-modal-logo.has-logo{background:#fff !important;}
-[data-theme="dark"] .school-logo.has-logo img,[data-theme="dark"] .detail-logo.has-logo img,[data-theme="dark"] .scholar-card .sch-icon.has-logo img,[data-theme="dark"] .sch-modal-logo.has-logo img{background:#fff;}
+[data-theme="dark"] .school-logo.has-logo,[data-theme="dark"] .detail-logo.has-logo,[data-theme="dark"] .sch-modal-logo.has-logo{background:#fff !important;}
+[data-theme="dark"] .school-logo.has-logo img,[data-theme="dark"] .detail-logo.has-logo img,[data-theme="dark"] .sch-modal-logo.has-logo img{background:#fff;}
 [data-theme="dark"] .logo-item img{filter:grayscale(1) brightness(1.7);}
 /* theme toggle button */
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:transparent;border:1px solid var(--border);color:var(--text-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;flex-shrink:0;}
@@ -77,14 +77,9 @@ body::before{
 }
 /* Animated light beams that travel along the grid lines (positions injected by initGridFlow) */
 .grid-flow{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
-.gline,.hline{position:absolute;overflow:hidden;}
-.gline{top:0;bottom:0;width:1px;}
-.hline{left:0;right:0;height:1px;}
-.gline::before,.hline::before{content:'';position:absolute;}
-.gline::before{left:0;top:-180px;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(98,78,188,0.5),transparent);animation:beamDown var(--d,6s) linear infinite;animation-delay:var(--delay,0s);}
+.gline{position:absolute;overflow:hidden;top:0;bottom:0;width:1px;}
+.gline::before{content:'';position:absolute;left:0;top:-180px;width:1px;height:180px;background:linear-gradient(to bottom,transparent,rgba(98,78,188,0.5),transparent);animation:beamDown var(--d,6s) linear infinite;animation-delay:var(--delay,0s);}
 .gline.up::before{animation-name:beamUp;}
-.hline::before{top:0;left:-180px;height:1px;width:180px;background:linear-gradient(to right,transparent,rgba(98,78,188,0.5),transparent);animation:beamRight var(--d,6s) linear infinite;animation-delay:var(--delay,0s);}
-.hline.left::before{animation-name:beamLeft;background:linear-gradient(to left,transparent,rgba(98,78,188,0.5),transparent);}
 @keyframes beamDown{0%{transform:translateY(0);}100%{transform:translateY(calc(100vh + 180px));}}
 @keyframes beamUp{0%{transform:translateY(calc(100vh + 180px));}100%{transform:translateY(0);}}
 @keyframes beamRight{0%{transform:translateX(0);}100%{transform:translateX(calc(100vw + 180px));}}
@@ -168,8 +163,6 @@ input,select{font-family:inherit;}
 .btn-ghost:hover{background:var(--accent-tint);}
 .btn-sm{font-size:13px;padding:9px 18px;}
 .btn-lg{font-size:16px;padding:14px 30px;border-radius:12px;}
-.btn-outline-accent{border:1.5px solid var(--accent);color:var(--accent);background:transparent;}
-.btn-outline-accent:hover{background:var(--accent-tint);}
 
 /* ===== SECTION WRAPPER ===== */
 .page-wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px;}
@@ -235,19 +228,6 @@ input,select{font-family:inherit;}
 .future-note .material-symbols-outlined{font-size:30px;flex-shrink:0;}
 .future-note h3{margin:0 0 4px;font-size:16px;font-weight:800;}
 .future-note p{margin:0;font-size:13.5px;line-height:1.6;opacity:.95;}
-.fact-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
-.fact-skills .tag{font-size:12px;font-weight:600;background:var(--accent-tint);color:var(--accent);padding:4px 10px;line-height:1.3;}
-/* Future-proof skills banner */
-.future-proof{display:flex;gap:18px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);border-top:3px solid #16a34a;padding:22px;margin-top:16px;}
-.future-proof .fp-icon{width:48px;height:48px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.future-proof .fp-icon .material-symbols-outlined{font-size:26px;color:var(--accent);}
-.future-proof .fp-body{flex:1;}
-.future-proof h4{margin:0 0 4px;font-size:16px;font-weight:800;}
-.future-proof p{margin:0 0 12px;font-size:14px;color:var(--text-2);line-height:1.6;}
-.future-proof .fact-skills .tag{background:#fff;}
-@media(max-width:560px){.future-proof{flex-direction:column;gap:12px;}}
-.fact-grow{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#16a34a;background:rgba(34,197,94,.12);padding:3px 9px;margin-bottom:8px;}
-.fact-grow .material-symbols-outlined{font-size:14px;color:#16a34a;}
 /* ===== TRUTH ABOUT EDUCATION ===== */
 .edu-sub{font-size:14px;font-weight:800;color:var(--text);margin:26px 0 12px;display:flex;align-items:center;gap:8px;}
 .edu-sub .material-symbols-outlined{font-size:18px;color:var(--accent);}
@@ -342,15 +322,14 @@ input,select{font-family:inherit;}
   .btn{font-size:15px;}
   .btn-sm{font-size:14px;}
   .page-sub{font-size:15.5px;}
-  .job-name,.school-name,.match-name,.career-name{font-size:16.5px;}
-  .job-desc,.career-desc,.match-desc,.fact-card p,.job-foot{font-size:14.5px;}
+  .job-name,.school-name{font-size:16.5px;}
+  .job-desc,.fact-card p,.job-foot{font-size:14.5px;}
   .job-cat,.job-salary,.school-footer,.school-type-badge,.school-view-more{font-size:13px;}
   .fact-card h4,.detail-card h3{font-size:16px;}
-  .cost-line,.roi-stat,.info-row,.rc-line,.detail-side .info-row{font-size:14px;}
+  .cost-line,.roi-stat,.info-row,.detail-side .info-row{font-size:14px;}
   .detail-card p,.fac-name,.admission-item,.cs-option,.cs-trigger{font-size:15px;}
   .option span{font-size:15.5px;}
-  .q-text{font-size:19px;}
-  .match-tag,.match-badge,.tag,.chip,.fac-major-tag{font-size:12.5px;}
+  .tag,.chip,.fac-major-tag{font-size:12.5px;}
   .form-label,.form-input{font-size:15px;}
   .filter-bar{gap:10px;}
   .search-box{width:100%;flex:1 1 100%;}
@@ -466,8 +445,6 @@ input,select{font-family:inherit;}
 @keyframes blink{50%{opacity:0;}}
 .hero p.sub{font-size:clamp(14px,2.5vw,17px);color:var(--text-2);line-height:1.7;max-width:500px;margin:0 auto 32px;opacity:0;animation:fadeUp .7s ease forwards .25s;}
 .hero .cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;opacity:0;animation:fadeUp .7s ease forwards .4s;}
-.hero .browse-link{font-size:13px;color:var(--accent);cursor:pointer;border-bottom:1px solid transparent;transition:border-color .15s;}
-.hero .browse-link:hover{border-bottom-color:var(--accent);}
 @media(max-height:950px) and (min-width:769px){
   .hero{padding:24px 20px 16px;}
   .hero-badge{margin-bottom:10px;}
@@ -475,71 +452,6 @@ input,select{font-family:inherit;}
   .hero p.sub{margin:0 auto 16px;}
   .hero-3d{margin:0 auto 12px;}
 }
-
-/* ===== HOME VIEW ===== */
-.goals-row{display:flex;flex-direction:column;align-items:stretch;gap:16px;max-width:980px;margin:0 auto 60px;padding:0 20px;}
-@media(min-width:768px){.goals-row{flex-direction:row;align-items:stretch;}}
-.goal-card{flex:1;}
-.goal-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 22px;background:var(--card);text-align:center;cursor:pointer;transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease);}
-.goal-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-5px);border-color:transparent;}
-.goal-card .icon-wrap{width:54px;height:54px;border-radius:16px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:transform .3s var(--ease);}
-.goal-card:hover .icon-wrap{transform:scale(1.08);}
-.goal-illu{width:100%;max-width:150px;height:96px;margin:0 auto 16px;display:block;}
-.goal-photo{width:calc(100% + 44px);height:160px;object-fit:cover;display:block;margin:-26px -22px 18px;}
-.goal-card:hover .goal-photo{transform:none;}
-.goal-card:hover .goal-illu{transform:scale(1.05);transition:transform .3s var(--ease);}
-.goal-card .icon-wrap .material-symbols-outlined{font-size:26px;color:var(--accent);}
-.goal-card h3{font-size:16px;font-weight:700;margin:0 0 8px;}
-.goal-card p{font-size:14px;color:var(--text-2);margin:0;line-height:1.5;}
-.goal-card .goal-number{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-tint);padding:2px 10px;border-radius:999px;margin-bottom:12px;}
-
-/* ===== GOAL 1 — CAREER QUIZ ===== */
-.quiz-layout{display:grid;grid-template-columns:1fr;gap:24px;}
-@media(min-width:768px){.quiz-layout{grid-template-columns:1fr 280px;align-items:start;}}
-.quiz-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;box-shadow:var(--shadow-sm);}
-.quiz-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-3);margin-bottom:14px;font-weight:500;}
-.quiz-phase-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);background:var(--accent-tint);padding:3px 10px;border-radius:999px;}
-.progress-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:28px;}
-.progress-fill{height:100%;background:var(--accent);width:0%;transition:width .4s ease;border-radius:3px;}
-.q-text{font-size:clamp(16px,3.5vw,20px);font-weight:700;margin:0 0 22px;line-height:1.4;letter-spacing:-.3px;}
-.option{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:11px;margin-bottom:10px;cursor:pointer;transition:border-color .15s,background .15s;}
-.option:hover{border-color:var(--border-strong);}
-.option.selected{border-color:var(--accent);background:var(--accent-tint);}
-.option .material-symbols-outlined{font-size:16px;color:var(--text-3);flex-shrink:0;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-.option.selected .material-symbols-outlined{color:var(--accent);}
-.option span{font-size:14px;line-height:1.4;}
-.quiz-actions{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
-.quiz-side-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);}
-.quiz-side-card h4{font-size:13px;font-weight:700;margin:0 0 12px;color:var(--text);}
-.phase-list{display:flex;flex-direction:column;gap:8px;}
-.phase-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:13px;color:var(--text-3);border:1px solid var(--border);}
-.phase-item.active{background:var(--accent-tint);border-color:var(--accent);color:var(--accent);font-weight:600;}
-.phase-item.done{background:rgba(98,78,188,.05);border-color:rgba(98,78,188,.2);color:var(--text-2);}
-.phase-item .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-
-/* ===== PROFILE RESULT CARD ===== */
-.profile-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:28px;}
-@media(min-width:600px){.profile-grid{grid-template-columns:repeat(3,1fr);}}
-.profile-trait{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;text-align:center;}
-.profile-trait .material-symbols-outlined{font-size:28px;color:var(--accent);margin-bottom:10px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-.profile-trait h4{font-size:13px;font-weight:700;margin:0 0 8px;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;}
-.profile-trait .tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
-.profile-trait .tag{font-size:12px;font-weight:600;background:var(--accent-tint);color:var(--accent);padding:3px 10px;border-radius:999px;}
-.match-card{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px;border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:12px;background:var(--card);box-shadow:var(--shadow-sm);opacity:0;animation:fadeUp .5s ease forwards;transition:box-shadow .3s var(--ease),transform .3s var(--ease);}
-.match-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
-.match-left{display:flex;gap:14px;align-items:flex-start;}
-.match-icon{width:44px;height:44px;border-radius:12px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.match-icon .material-symbols-outlined{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-.match-name{font-size:15px;font-weight:700;margin:0 0 4px;}
-.match-why{font-size:12px;color:var(--text-2);margin:0 0 10px;line-height:1.5;max-width:30ch;}
-.match-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.match-tag{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:2px 8px;border-radius:999px;font-weight:600;}
-.match-salary{font-size:12px;color:var(--text-2);margin-top:6px;}
-.match-salary b{color:var(--text);}
-.match-pct{text-align:right;flex-shrink:0;}
-.match-pct .num{font-size:26px;font-weight:800;color:var(--accent);letter-spacing:-1px;}
-.match-pct .word{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);}
-.results-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
 
 /* ===== GOAL 2 — SCHOOL FINDER ===== */
 .filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center;}
@@ -650,7 +562,6 @@ button.faculty-item{cursor:pointer;}
 .pr-val{font-weight:700;color:var(--accent);white-space:nowrap;}
 .price-scholar{display:flex;gap:10px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);padding:12px 14px;font-size:14px;color:var(--text-2);line-height:1.6;}
 .price-scholar .material-symbols-outlined{font-size:20px;color:var(--accent);flex-shrink:0;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
-.price-note{font-size:11.5px;color:var(--text-3);margin:12px 0 0;font-style:italic;}
 .price-disclaimer{display:flex;gap:12px;align-items:flex-start;background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.25);border-left:4px solid #d97706;padding:12px 14px;font-size:12.5px;color:var(--text-2);line-height:1.6;margin-top:14px;}
 .price-disclaimer .material-symbols-outlined{font-size:20px;color:#d97706;flex-shrink:0;margin-top:2px;}
 .price-disclaimer strong{display:block;color:#b45309;font-size:12.5px;font-weight:700;margin-bottom:3px;}
@@ -707,12 +618,7 @@ button.faculty-item{cursor:pointer;}
 .rel-school{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:background .15s,border-color .15s;width:100%;text-align:left;font-family:inherit;}
 .rel-school:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .rel-school:hover{background:var(--accent-tint);border-color:var(--accent);}
-.rel-careers{display:flex;flex-direction:column;gap:8px;}
-.rel-career{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:background .15s,border-color .15s;}
-.rel-career:hover{background:var(--accent-tint);border-color:var(--accent);}
 .school-name{font-size:15px;font-weight:700;margin:0 0 5px;letter-spacing:-.2px;}
-.school-location{font-size:12px;color:var(--text-3);display:flex;align-items:center;gap:4px;margin-bottom:10px;}
-.school-location .material-symbols-outlined{font-size:14px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .school-programs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
 .school-prog-tag{font-size:11px;background:var(--accent-tint);color:var(--accent);padding:2px 9px;border-radius:999px;font-weight:600;}
 .school-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text-2);}
@@ -903,12 +809,6 @@ button.faculty-item{cursor:pointer;}
 .plan-block-head h3 .material-symbols-outlined{font-size:22px;color:var(--accent);font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .plan-empty{background:var(--card);border:1px dashed var(--border-strong);border-radius:var(--radius-lg);padding:28px;text-align:center;color:var(--text-3);font-size:14px;}
 .plan-empty .material-symbols-outlined{font-size:34px;opacity:.5;display:block;margin:0 auto 10px;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-.plan-hero{background:linear-gradient(120deg,var(--accent),var(--accent-h));color:#fff;border-radius:var(--radius-lg);padding:28px;margin-bottom:32px;box-shadow:var(--shadow-md);}
-.plan-hero .eyebrow{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.85;margin:0 0 6px;}
-.plan-hero h2{font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
-.plan-hero p{font-size:14px;opacity:.9;margin:0;line-height:1.6;max-width:60ch;}
-.plan-hero .top-match{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-top:14px;}
-.plan-hero .top-match .material-symbols-outlined{font-size:18px;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
 
 /* ===== ROADMAP ===== */
 .roadmap{position:relative;padding-left:34px;}
@@ -938,9 +838,8 @@ button.faculty-item{cursor:pointer;}
 .timeline-item .tlabel{font-size:13.5px;color:var(--text-2);margin-top:2px;line-height:1.5;}
 
 /* ===== RESPONSIVE ===== */
-@media(min-width:576px){.cost-form,.quiz-card,.cost-result{padding:32px 28px;}}
-@media(min-width:768px){.match-why{max-width:36ch;}}
-@media(hover:none){.school-card:hover,.goal-card:hover{transform:none;}}
+@media(min-width:576px){.cost-form,.cost-result{padding:32px 28px;}}
+@media(hover:none){.school-card:hover{transform:none;}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
 /* ============ HERO SCATTER LABEL CARDS (tap to focus) ============ */
@@ -989,7 +888,6 @@ button.faculty-item{cursor:pointer;}
 .feat-ic .material-symbols-outlined{font-size:26px;}
 .feat-ic.gA{background:linear-gradient(135deg,#624EBC,#8a6ff0);}
 .feat-ic.gB{background:linear-gradient(135deg,#d4860b,#f0a93a);}
-.feat-ic.gC{background:linear-gradient(135deg,#16a34a,#4ade80);}
 .feat-ic.gE{background:linear-gradient(135deg,#2563eb,#60a5fa);}
 .feat-card h3{font-size:17px;font-weight:800;margin:0 0 8px;color:var(--text);}
 .feat-card p{font-size:13.5px;color:var(--text-2);line-height:1.6;margin:0 0 14px;}
@@ -1052,7 +950,6 @@ button.faculty-item{cursor:pointer;}
 }
 
 /* ===== BAC II & GRADE GUIDANCE ===== */
-.gD{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;}
 .bacii-hero{text-align:center;max-width:760px;margin:0 auto 28px;}
 .bacii-tabs{justify-content:center;flex-wrap:wrap;gap:8px;}
 .bacii-tabs .chip{font-size:13px;padding:8px 14px;}
