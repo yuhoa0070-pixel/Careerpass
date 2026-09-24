@@ -1780,8 +1780,8 @@ function openCareer(id){
         <div class="career-hero-logo"><i class="material-symbols-outlined">${j.icon}</i></div>
         <div class="career-hero-info">
           <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-            <span class="school-type-badge badge-digital">${jobCats[j.cat].label}</span>
-            ${j.growing?`<span class="school-type-badge" style="background:rgba(34,197,94,.22);color:#22c55e;border:1px solid rgba(34,197,94,.4)"><i class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px">trending_up</i> កំពុងកើនឡើង</span>`:""}
+            <span class="job-cat-badge"><i class="material-symbols-outlined">${jobCats[j.cat].icon}</i> ${jobCats[j.cat].label}</span>
+            ${j.growing?`<span class="job-grow-badge"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span>`:""}
           </div>
           <h1 class="career-hero-title">${j.name}</h1>
           <div class="career-hero-meta">
