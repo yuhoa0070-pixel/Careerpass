@@ -1573,7 +1573,7 @@ const jobCats={
   tourism:{label:"ទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",icon:"tour"},
   agri:{label:"កសិកម្ម",icon:"agriculture"},
   law:{label:"ច្បាប់ និងរដ្ឋបាល",icon:"gavel"},
-  media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"newspaper"},
+  media:{label:"ប្រព័ន្ធផ្សព្វផ្សាយ",icon:"podcasts"},
   culinary:{label:"ចម្អិនអាហារ និងបដិសណ្ឋារកិច្ច",icon:"restaurant"},
   technician:{label:"ជាងបច្ចេកទេស និងសេវាកម្ម",icon:"home_repair_service"},
   logistics:{label:"ដឹកជញ្ជូន និងខ្សែសង្វាក់ផ្គត់ផ្គង់",icon:"local_shipping"}
