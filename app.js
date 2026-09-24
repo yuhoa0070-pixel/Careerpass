@@ -1010,7 +1010,7 @@ function renderScholarships(){
   if (empty) empty.style.display = "none";
 
   grid.innerHTML = filtered.map((s, i) => `
-    <div class="scholar-card" style="animation-delay:${i * 0.03}s;background-image:url('/public/scholarships/bg/${s.id}.jpg')" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
+    <div class="scholar-card" style="animation-delay:${i * 0.03 + 0.02}s;background-image:url('/public/scholarships/bg/${s.id}.jpg')" role="button" tabindex="0" onclick="openScholarship('${s.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openScholarship('${s.id}')">
       <div class="sch-badge-pill ${s.coverageType === 'partial' ? 'partial' : ''}"><i class="material-symbols-outlined">workspace_premium</i>${s.coverageLabel}</div>
       <div class="sch-country-flag">${s.country}</div>
       <div class="sch-scrim">
@@ -1746,7 +1746,7 @@ function renderCareers(){
   const start=(jobPage-1)*JOBS_PER_PAGE;
   const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
   grid.innerHTML=pageItems.map((j,i)=>`
-    <div class="job-card" style="animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
+    <div class="job-card" style="animation-delay:${i*.04+.02}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
       <img class="job-card-bg" src="/public/careers/${j.id}.jpg" alt="${j.name}" loading="lazy" onerror="this.onerror=null;this.src='/public/careers/cats/${j.cat}.jpg';">
       <div class="job-top-bar">
         <span class="job-cat-badge"><i class="material-symbols-outlined">${jobCats[j.cat].icon}</i> ${jobCats[j.cat].label}</span>
