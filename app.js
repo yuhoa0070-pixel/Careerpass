@@ -1746,13 +1746,23 @@ function renderCareers(){
   const start=(jobPage-1)*JOBS_PER_PAGE;
   const pageItems=filtered.slice(start,start+JOBS_PER_PAGE);
   grid.innerHTML=pageItems.map((j,i)=>`
-    <div class="job-card" style="animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
-      <div class="job-top">
-        <div class="job-icon"><i class="material-symbols-outlined">${j.icon}</i></div>
-        <div style="flex:1"><p class="job-name">${j.name}</p><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="job-cat">${jobCats[j.cat].label}</span>${j.growing?`<span class="hc-grow" style="padding:1px 6px;font-size:9.5px"><i class="material-symbols-outlined" style="font-size:11px">trending_up</i>កំពុងកើនឡើង</span>`:""}</div></div>
+    <div class="job-card" style="background-image:url('/public/careers/${j.id}.jpg');animation-delay:${i*.04}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
+      <div class="job-top-bar">
+        <span class="job-cat-badge"><i class="material-symbols-outlined">${jobCats[j.cat].icon}</i> ${jobCats[j.cat].label}</span>
+        ${j.growing?`<span class="job-grow-badge"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span>`:""}
       </div>
-      <p class="job-desc">${j.desc}</p>
-      <div class="job-foot"><span class="job-salary">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span><span class="school-view-more">មើលលម្អិត →</span></div>
+      <div class="job-scrim">
+        <div class="job-salary-tag">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</div>
+        <h3 class="job-card-title">${j.name}</h3>
+        <p class="job-card-desc">${j.desc}</p>
+        <div class="job-card-skills">
+          ${(j.skills||[]).slice(0,3).map(sk=>`<span class="job-skill-pill">${sk}</span>`).join("")}
+        </div>
+        <div class="job-card-foot">
+          <span class="job-schools-count"><i class="material-symbols-outlined">school</i> ${(j.schools||[]).length} សាលា</span>
+          <span class="job-view-more">មើលលម្អិត →</span>
+        </div>
+      </div>
     </div>`).join("");
   srReveal(grid,".job-card");
   renderPagination("jobs-pagination",filtered.length,jobPage,JOBS_PER_PAGE,"gotoJobPage");
@@ -1767,17 +1777,22 @@ function openCareer(id){
   const relHtml=rel.length?rel.map(s=>`<button type="button" class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></button>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
     <button type="button" class="detail-back" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
-    <div class="detail-head">
-      <div class="detail-logo" style="background:var(--accent)"><i class="material-symbols-outlined" style="font-size:30px">${j.icon}</i></div>
-      <div style="flex:1;min-width:220px">
-        <span class="school-type-badge badge-digital">${jobCats[j.cat].label}</span>
-        ${j.growing?`<span class="school-type-badge" style="background:rgba(34,197,94,.12);color:#16a34a;margin-left:6px"><i class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px">trending_up</i> កំពុងកើនឡើង</span>`:""}
-        <h1 class="detail-title" style="margin-top:8px">${j.name}</h1>
+    <div class="career-hero-banner" style="background-image:url('/public/careers/${j.id}.jpg')">
+      <div class="career-hero-scrim">
+        <div class="career-hero-logo"><i class="material-symbols-outlined">${j.icon}</i></div>
+        <div class="career-hero-info">
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <span class="school-type-badge badge-digital">${jobCats[j.cat].label}</span>
+            ${j.growing?`<span class="school-type-badge" style="background:rgba(34,197,94,.22);color:#22c55e;border:1px solid rgba(34,197,94,.4)"><i class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px">trending_up</i> កំពុងកើនឡើង</span>`:""}
+          </div>
+          <h1 class="career-hero-title">${j.name}</h1>
+          <div class="career-hero-meta">
+            <span><i class="material-symbols-outlined">payments</i> ${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span>
+            <span><i class="material-symbols-outlined">category</i> ${jobCats[j.cat].label}</span>
+            <span><i class="material-symbols-outlined">account_balance</i> ${rel.length} សាលា/វិទ្យាស្ថាន</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="detail-meta">
-      <span><i class="material-symbols-outlined">payments</i> ${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span>
-      <span><i class="material-symbols-outlined">category</i> ${jobCats[j.cat].label}</span>
     </div>
     <p class="detail-desc">${j.desc}</p>
     <div class="detail-grid">
