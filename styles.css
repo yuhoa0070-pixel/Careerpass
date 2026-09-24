@@ -183,7 +183,7 @@ input,select{font-family:inherit;}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s;}
 .reveal.in-view{opacity:1;transform:none;}
 /* scroll-triggered reveal for card grids (JS-driven, staggered) */
-.sr{opacity:0;transform:translateY(24px);transition:opacity .55s var(--ease),transform .55s var(--ease) !important;will-change:opacity,transform;}
+.sr{opacity:0;transform:translateY(24px);transition:opacity .55s var(--ease),transform .55s var(--ease) !important;will-change:opacity,transform;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
 .sr.sr-in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){.sr{opacity:1 !important;transform:none !important;transition:none !important;}}
 
