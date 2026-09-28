@@ -612,8 +612,8 @@ button.faculty-item{cursor:pointer;}
 .career-hero-meta span{display:flex;align-items:center;gap:5px;}
 .career-hero-meta .material-symbols-outlined{font-size:16px;color:#8f7bea;}
 @media(max-width:600px){
-  .career-hero-banner{min-height:180px;}
-  .career-hero-scrim{padding:24px 16px 16px;gap:12px;flex-direction:column;align-items:flex-start;}
+  .career-hero-banner{min-height:260px;aspect-ratio:auto;}
+  .career-hero-scrim{padding:52px 16px 16px;gap:10px;flex-direction:column;align-items:flex-start;}
   .career-hero-logo{width:48px;height:48px;}
   .career-hero-logo .material-symbols-outlined{font-size:26px;}
   .career-hero-title{font-size:18px;}
