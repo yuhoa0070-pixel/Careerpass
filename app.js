@@ -1580,7 +1580,7 @@ const jobCats={
 };
 const careersList=[
   {id:"softeng",name:"វិស្វករផ្នែកទន់ (Software Engineer)",cat:"tech",icon:"code",salary:"$500–$1,500",desc:"បង្កើត និងថែទាំកម្មវិធី និងប្រព័ន្ធកុំព្យូទ័រ។",skills:["JavaScript","Python","SQL","Git"],schools:["itc","cadt","rupp","norton","paragon","kit","camtech","tux","ab","biu","dmuc","nib","itstep"]},
-  {id:"webdev",name:"អ្នកអភិវឌ្ឍន៍គេហទំព័រ (Web Developer)",cat:"tech",icon:"html",salary:"$400–$1,200",desc:"សាងសង់គេហទំព័រ និងកម្មវិធីវ៉េប។",skills:["HTML/CSS","React","Node.js"],schools:["ab","sabaicode","cadt","itc","kit","tux","camtech","khmercoders","dichi","setec","nib","itstep"]},
+  {id:"webdev",name:"អ្នកអភិវឌ្ឍន៍គេហទំព័រ (Web Developer)",cat:"tech",icon:"code",salary:"$400–$1,200",desc:"សាងសង់គេហទំព័រ និងកម្មវិធីវ៉េប។",skills:["HTML/CSS","React","Node.js"],schools:["ab","sabaicode","cadt","itc","kit","tux","camtech","khmercoders","dichi","setec","nib","itstep"]},
   {id:"mobiledev",name:"អ្នកអភិវឌ្ឍន៍ App (Mobile App Developer)",cat:"tech",icon:"smartphone",salary:"$500–$1,400",desc:"បង្កើតកម្មវិធីលើ Android និង iOS។",skills:["Flutter","Kotlin","Swift"],schools:["cadt","itc","kit","sabaicode","ab","tux"]},
   {id:"dataanalyst",growing:true,name:"អ្នកវិភាគទិន្នន័យ (Data Analyst)",cat:"tech",icon:"monitoring",salary:"$500–$1,300",desc:"វិភាគទិន្នន័យ ដើម្បីជួយសម្រេចចិត្ត។",skills:["Excel","SQL","Power BI","Python"],schools:["cadt","num","itc","aupp","aub","paragon","camtech"]},
   {id:"aieng",growing:true,name:"វិស្វករ AI/ML (AI Engineer)",cat:"tech",icon:"smart_toy",salary:"$700–$2,000",desc:"បង្កើតគំរូបញ្ញាសិប្បនិម្មិត និងម៉ាស៊ីនរៀន។",skills:["Python","TensorFlow","NLP"],schools:["cadt","camtech","itc","kit","aupp"]},
