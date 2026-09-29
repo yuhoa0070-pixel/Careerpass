@@ -1787,7 +1787,6 @@ function openCareer(id){
           <div class="career-hero-meta">
             <span><i class="material-symbols-outlined">payments</i> ${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</span>
             <span><i class="material-symbols-outlined">category</i> ${jobCats[j.cat].label}</span>
-            <span><i class="material-symbols-outlined">account_balance</i> ${rel.length} សាលា/វិទ្យាស្ថាន</span>
           </div>
         </div>
       </div>
