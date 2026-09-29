@@ -351,7 +351,7 @@ input,select{font-family:inherit;}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:4px;}
 }
 @media(max-width:1130px){
-  .footer-inner{padding-bottom:76px;}
+  .footer-inner{padding-bottom:64px;}
 }
 
 /* ===== LEGAL / TERMS PAGE ===== */
