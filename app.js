@@ -2204,7 +2204,7 @@ function enhanceSelect(sel){
 function closeAllSelects(){document.querySelectorAll(".cs-wrap.cs-open").forEach(w=>w.classList.remove("cs-open"));}
 document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))closeAllSelects();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAllSelects();});
-/* Activate role="button" cards (school-card/job-card/hc-card) with Enter/Space,
+/* Activate role="button" cards (school-card/job-card) with Enter/Space,
    same as a native <button> -- these can't be real <button>s because they contain
    nested interactive children (compare/save buttons) or heading elements. */
 document.addEventListener("keydown",e=>{
@@ -2479,11 +2479,23 @@ function initHomeFeatured(){
     if(!seenCats.has(j.cat)){seenCats.add(j.cat);diverse.push(j);}
   });
   const list=diverse.slice(0,6);
-  host.innerHTML=list.map(j=>{
-    const cat=(typeof jobCats!=="undefined"&&jobCats[j.cat])?jobCats[j.cat].label:"";
-    const skills=(j.skills||[]).slice(0,3).map(s=>`<span class="hc-skill">${s}</span>`).join("");
-    return `<div class="hc-card" role="button" tabindex="0" onclick="openCareer('${j.id}')"><div class="hc-top"><div class="hc-ic"><i class="material-symbols-outlined">${j.icon||"work"}</i></div><span class="hc-grow"><i class="material-symbols-outlined">trending_up</i>កំពុងត្រូវប៉ាន់</span></div><h3 class="hc-name">${j.name}</h3><div class="hc-cat">${cat}</div><div class="hc-skills">${skills}</div><div class="hc-foot"><span class="hc-salary">${j.salary||"—"}/ខែ</span><i class="material-symbols-outlined">arrow_forward</i></div></div>`;
-  }).join("");
+  host.innerHTML=list.map((j,i)=>`
+    <div class="job-card" style="animation-delay:${i*.04+.02}s" role="button" tabindex="0" onclick="openCareer('${j.id}')">
+      <img class="job-card-bg" src="/public/careers/${j.id}.jpg" alt="${j.name}" loading="lazy" onerror="this.onerror=null;this.src='/public/careers/cats/${j.cat}.jpg';">
+      <div class="job-top-bar">
+        <span class="job-cat-badge" title="${j.name}"><i class="material-symbols-outlined">${j.icon}</i></span>
+        ${j.growing?`<span class="job-grow-badge"><i class="material-symbols-outlined">trending_up</i> កំពុងកើនឡើង</span>`:""}
+      </div>
+      <div class="job-scrim">
+        <div class="job-salary-tag">${j.salary}${j.salary.indexOf("$")>=0?"/ខែ":""}</div>
+        <h3 class="job-card-title">${j.name}</h3>
+        <p class="job-card-desc">${j.desc}</p>
+        <div class="job-card-foot">
+          <span class="job-schools-count"><i class="material-symbols-outlined">school</i> ${(j.schools||[]).length} សាលា</span>
+          <span class="job-view-more">មើលលម្អិត →</span>
+        </div>
+      </div>
+    </div>`).join("");
 }
 
 /* ===== STUDENT VOICES & COMMUNITY COMMENTS (Backend data & No login required) ===== */
