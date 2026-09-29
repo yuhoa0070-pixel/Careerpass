@@ -437,7 +437,7 @@ input,select{font-family:inherit;}
 /* ===== HOME VIEW ===== */
 .hero{position:relative;padding:60px 20px 48px;text-align:center;max-width:700px;margin:0 auto;}
 @media(min-width:769px){
-  .hero-landing{display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-height:calc((100vh / var(--page-zoom)) - var(--nav-h));}
+  .hero-landing{display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-height:min(calc((100vh / var(--page-zoom)) - var(--nav-h)), 820px);}
 }
 .hero-badge,.hero h1,.hero .sub,.hero .cta-row{position:relative;z-index:1;}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-tint);color:var(--accent);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:20px;letter-spacing:.3px;}
