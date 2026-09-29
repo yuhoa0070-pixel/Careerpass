@@ -1774,7 +1774,9 @@ function openCareer(id){
   const rel=(j.schools||[]).map(sid=>schoolsData.find(s=>s.id===sid)).filter(Boolean);
   const relHtml=rel.length?rel.map(s=>`<button type="button" class="rel-school" onclick="openSchool('${s.id}')">${schoolLogo(s,"width:38px;height:38px;")}<div><div style="font-weight:700;font-size:13px">${s.name}</div><div style="font-size:11px;color:var(--text-3)">${provinceLabel(s.province)} · ${tuitionLabel(s)}</div></div><i class="material-symbols-outlined" style="margin-left:auto;color:var(--text-3)">chevron_right</i></button>`).join(""):'<p style="font-size:13px;color:var(--text-3)">មិនមានទិន្នន័យសាលា</p>';
   document.getElementById("career-detail").innerHTML=`
-    <div class="career-hero-banner" style="background-image:url('/public/careers/${j.id}.jpg')">
+    <div class="career-hero-banner">
+      <div class="career-hero-skeleton"></div>
+      <img class="career-hero-img" src="/public/careers/${j.id}.jpg" alt="" onload="this.parentNode.classList.add('loaded')" onerror="this.parentNode.classList.add('loaded')">
       <button type="button" class="detail-back detail-back-overlay" onclick="showView('careers')"><i class="material-symbols-outlined">arrow_back</i> ត្រលប់ទៅអាជីព</button>
       <div class="career-hero-scrim">
         <div class="career-hero-logo"><i class="material-symbols-outlined">${j.icon}</i></div>
@@ -1795,7 +1797,7 @@ function openCareer(id){
     <div class="detail-grid">
       <div class="detail-card">
         <h3><i class="material-symbols-outlined">bolt</i> ជំនាញត្រូវការ</h3>
-        <div class="detail-tags">${j.skills.map(sk=>'<span class="tag">'+sk+'</span>').join("")}</div>
+        <div class="detail-tags detail-tags-oneline">${j.skills.map(sk=>'<span class="tag">'+sk+'</span>').join("")}</div>
         <h3 style="margin-top:24px"><i class="material-symbols-outlined">school</i> សាលាដែលបង្រៀន</h3>
         <div class="rel-schools">${relHtml}</div>
       </div>
