@@ -1797,7 +1797,7 @@ function openCareer(id){
     <div class="detail-grid">
       <div class="detail-card">
         <h3><i class="material-symbols-outlined">bolt</i> ជំនាញត្រូវការ</h3>
-        <div class="detail-tags">${j.skills.map(sk=>'<span class="tag">'+sk+'</span>').join("")}</div>
+        <div class="detail-tags detail-tags-oneline">${j.skills.map(sk=>'<span class="tag">'+sk+'</span>').join("")}</div>
         <h3 style="margin-top:24px"><i class="material-symbols-outlined">school</i> សាលាដែលបង្រៀន</h3>
         <div class="rel-schools">${relHtml}</div>
       </div>
