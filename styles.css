@@ -350,10 +350,6 @@ input,select{font-family:inherit;}
 @media(max-width:640px){
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:4px;}
 }
-@media(max-width:1130px){
-  .footer-inner{padding-bottom:64px;}
-}
-
 /* ===== LEGAL / TERMS PAGE ===== */
 .legal-box{display:flex;gap:14px;align-items:flex-start;background:var(--accent-tint);border:1px solid rgba(98,78,188,.25);padding:20px 22px;margin-bottom:28px;}
 .legal-box .material-symbols-outlined{font-size:30px;color:var(--accent);flex-shrink:0;}
