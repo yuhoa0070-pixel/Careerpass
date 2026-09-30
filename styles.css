@@ -146,7 +146,6 @@ input,select{font-family:inherit;}
 }
 
 /* ===== MAIN ===== */
-.app-main{min-height:100dvh;}
 
 /* ===== VIEWS ===== */
 .view{display:none;}
