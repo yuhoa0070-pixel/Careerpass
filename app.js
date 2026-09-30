@@ -2255,6 +2255,28 @@ enhanceAllSelects();
   sync();
   if(btn)btn.addEventListener("click",()=>{const next=curTheme()==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",next);try{localStorage.setItem("tv_theme",next);}catch(e){}sync();});
 })();
+/* On mobile, the theme toggle floats as a fixed FAB — dock it into the footer's
+   normal flow when the footer scrolls into view instead of reserving permanent
+   empty space below the footer text to keep it clear of the button. */
+(function(){
+  const btn=document.getElementById("theme-toggle");
+  const footer=document.querySelector(".site-footer");
+  const footerBottom=document.querySelector(".footer-bottom");
+  if(!btn||!footer||!footerBottom||!("IntersectionObserver" in window))return;
+  const originalParent=btn.parentNode,originalNext=btn.nextSibling;
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        footerBottom.appendChild(btn);
+        btn.classList.add("docked");
+      }else{
+        if(originalNext)originalParent.insertBefore(btn,originalNext);else originalParent.appendChild(btn);
+        btn.classList.remove("docked");
+      }
+    });
+  },{threshold:0});
+  obs.observe(footer);
+})();
 function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
   document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});
