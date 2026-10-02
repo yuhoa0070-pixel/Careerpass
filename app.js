@@ -2255,6 +2255,15 @@ enhanceAllSelects();
   sync();
   if(btn)btn.addEventListener("click",()=>{const next=curTheme()==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",next);try{localStorage.setItem("tv_theme",next);}catch(e){}sync();});
 })();
+/* ===== SCROLL TO TOP ===== */
+(function(){
+  const btn=document.getElementById("scroll-top-btn");
+  if(!btn)return;
+  function toggle(){btn.classList.toggle("visible",window.scrollY>400);}
+  window.addEventListener("scroll",toggle,{passive:true});
+  toggle();
+  btn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+})();
 function filterFacts(c){
   document.querySelectorAll("#facts-tabs .chip").forEach(el=>el.classList.toggle("active",el.dataset.fc===c));
   document.querySelectorAll(".fact-section").forEach(s=>{s.style.display=(c==="all"||s.dataset.fc===c)?"":"none";});

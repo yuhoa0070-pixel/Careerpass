@@ -54,6 +54,11 @@
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:transparent;border:1px solid var(--border);color:var(--text-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;flex-shrink:0;}
 .theme-toggle:hover{background:var(--accent-tint);color:var(--accent);border-color:var(--accent);}
 .theme-toggle .material-symbols-outlined{font-size:20px;}
+/* scroll-to-top button */
+.scroll-top-btn{position:fixed;left:18px;bottom:18px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);color:var(--text-2);box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;z-index:95;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease,background .15s,color .15s,border-color .15s;}
+.scroll-top-btn.visible{opacity:1;pointer-events:auto;transform:none;}
+.scroll-top-btn:hover{background:var(--accent-tint);color:var(--accent);border-color:var(--accent);}
+.scroll-top-btn .material-symbols-outlined{font-size:22px;}
 *,*::before,*::after{box-sizing:border-box;}
 *,*::before,*::after{border-radius:0 !important;}
 html{scroll-behavior:smooth;}
